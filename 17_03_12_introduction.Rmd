@@ -17,8 +17,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-![Thomas Penyngton Kirkman](assets/kirkman.jpg)
-
 Kirkman’s Schoolgirl Problem
 ----------------------------
 

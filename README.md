@@ -64,8 +64,6 @@ May 27, 2018
 Introduction
 ============
 
-![Thomas Penyngton Kirkman](assets/kirkman.jpg)
-
 Kirkman’s Schoolgirl Problem
 ----------------------------
 
