@@ -543,7 +543,7 @@ Graph factorisations
 
 A graph *G*(*V*, *E*) consists of two sets. The first *V*, is called the vertex-set, while the other *E* consists of unordered pairs of *V* and is called the edge set. Usually graphs are represented with diagrams where the members of *V* are drawn as points and the members of *E* as lines connecting points. Adjacency for two vertices means being connected by an edge. The **complete graph** *K*<sub>*n*</sub> is the graph on *n* vertices in which all distinct vertices are adjacent.
 
-![*K*<sub>4</sub> and *K*<sub>5</sub>](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![*K*<sub>4</sub> and *K*<sub>5</sub>](figure/unnamed-chunk-9-1.png)
 
 A **one-factor** *f*<sub>*i*</sub> is a set of edges in which each vertex appears exactly once.
 
@@ -555,7 +555,7 @@ Two possible one-factors of *K*<sub>4</sub> are:
 
 A **one-factorisation** of the complete graph is a set of one-factors in which all possible edges (i.e. all unordered pairs from the edge-set) appear exactly once.
 
-![*K*<sub>6</sub>](README_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![*K*<sub>6</sub>](figure/unnamed-chunk-10-1.png)
 
 #### Example 2.1.2
 
@@ -577,7 +577,7 @@ E(g)[c(4, 7, 12)]$color <- "black"
 plot(g, layout = layout_in_circle(g), vertex.color = "white", vertex.size = 20)
 ```
 
-![One-factorisation of *K*<sub>6</sub>](README_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![One-factorisation of *K*<sub>6</sub>](figure/unnamed-chunk-11-1.png)
 
 Two one factors *f* and *l* are said to be ***orthogonal*** if *f* ∩ *l* contains at most one edge. Two one-factorisations *F* and *L* are orthogonal if every one-factor in *F* is orthogonal to every one-factor in *L*.
 

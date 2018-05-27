@@ -6,6 +6,22 @@ output:
   github_document:
     toc: yes
 ---
+
+```{r init, include = FALSE, echo = FALSE}
+knitr::opts_chunk$set(
+  cache = FALSE,
+  cache.path = "cache/",
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "figure/",
+  fig.width = 8,
+  fig.height = 4,
+  comment = "#>",
+  collapse = TRUE
+)
+
+ggplot2::theme_set(hrbrthemes::theme_ipsum_rc())
+```
     
 # Introduction
 
