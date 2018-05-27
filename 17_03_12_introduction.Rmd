@@ -1,0 +1,354 @@
+---
+title: "Introduction"
+author: "Matthew Henderson"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    code_folding: hide
+    fig_caption: yes
+    theme: paper
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![Thomas Penyngton Kirkman](assets/kirkman.jpg)
+
+Kirkman’s Schoolgirl Problem
+----------------------------
+
+In 1850 Thomas Penyngton Kirkman, an English mathematician from Bolton,
+published the following problem in the *Lady’s and Gentleman’s Diary.*
+
+> *Fifteen young ladies of a school walk out three abreast for seven
+> days in succession: it is required to arrange them daily so that no
+> two shall walk abreast more than once*
+
+In solving this problem Kirkman discovered the following square array,
+which he observed was a very "curious arrangement".
+
+```{r, echo = FALSE, results='asis'}
+t <- matrix(
+  c(
+    "", "", "", "hi", "kl", "mn", "op",
+    "", "il", "mo", "", "np", "hk", " ",
+    "", "no", "hl", "mp", "", "", "ik",
+    "lp", "", "in", "ko", "hm", "", "",
+    "im", "", "kp", "", "", "lo", "hn"
+  ), ncol = 7, byrow = TRUE
+)
+
+pander::pandoc.table(t, style = "grid", caption = "Kirkman’s curious arrangement")
+```
+
+The curiosity of this square is that each of the letters h, i, k, l, m, n, o, p
+occurs precisely once in every column and row, while in the entire
+square each of the letters makes a pair with every other letter exactly
+once. Kirkman was able to employ this square to solve his Schoolgirl
+Problem. To each pair in the first column he added the element 1, to
+each pair in the second column 2 and so on. In addition he introduced
+the missing triple of numbers to each row. (e.g. row one has no elements
+in any of the first three columns so the numbers 1,2 and 3 would not
+appear hence he would add the triple 123). The seven rows of unique
+triples then corresponded to seven days in which the elements,
+corresponding to schoolgirls, were paired together exactly once
+throughout the arrangement. Thereby solving the problem.
+
+```{r, echo = FALSE, results = 'asis'}
+t <- matrix(
+  c(
+    "Day 1", "123", "hi4", "kl5", "mn6", "op7",
+    "Day 2", "147", "il2", "mo3", "np5", "hk6",
+    "Day 3", "156", "no2", "hl3", "mp4", "ik7",
+    "Day 4", "267", "lo2", "in3", "ko4", "hm5",
+    "Day 5", "245", "io2", "kp3", "lo6", "hn7",
+    "Day 6", "357", "ho2", "km2", "ln4", "ip6",
+    "Day 7", "346", "ko2", "hp2", "io5", "lm7"
+  ),
+  ncol = 6,
+  byrow = TRUE
+)
+
+pander::pandoc.table(t, caption = "Kirkman's Schoolgirl's Solution")
+```
+
+Kirkman was a notable mathematician who is often regarded as the
+originator of the object in Figure 2, which has subsequently become
+known as a Room square (after T.G. Room).
+
+Tournaments
+-----------
+
+Suppose the English Football Association proposed hosting a new type of
+international tournament to be staged as a one-off event in England.
+This tournament would involve eight national sides competing in a league
+that would be staged in various stadia around the country over two
+weeks. The structure of the tournament would be such that every team
+played every other team once, with the winner being the team which
+accumulated most points in the manner of a normal football league (3
+points for a win, 1 for a draw).
+
+To know which matches need playing is simple. Suppose the eight invited
+teams are:
+
+```{r, echo = FALSE, results='asis'}
+t <- matrix(
+  c(
+    'Argentina', 'England',
+    'Brazil', 'France',
+    'Columbia', 'Germany',
+    'Denmark', 'Holland'
+  ), ncol = 2,
+  byrow = TRUE
+)
+
+pander::pandoc.table(t, caption = "Teams")
+```
+
+If we write matches as alphabetic pairs in the obvious way, (e.g. ab
+denoting Argentina versus Brazil). The complete list of matches (the
+match set, M) is simply all unordered pairs from team set, T:
+$$T = \{a, b, c, d, e, f, g, h\}.$$ i.e. 
+
+$$ 
+M = \{
+  ab,ac,ad,ae,af,ag,ah,bc,bd,be,bf,bg,bh,cd,
+  ce,cf,cg,ch,de,df,dg,dh,ef,eg,eh,fg,fh,gh
+\}
+$$
+
+It remains to be decided where and when the matches will be played.
+
+The English F.A., for whatever reason (the financial cost of hosting
+eight teams, for example), has imposed a time limit of two weeks on the
+tournament. Realistically the treams can only manage to play on
+alternate days so it is decided to have, in effect, seven different
+"rounds" with each team competing once in each round. (Seven being
+the smallest number of rounds because each team has to play seven
+others).
+
+For reasons of fairness the F.A. also demands the condition that each
+team will play once at each stadium.
+Can such a tournament exist?
+Suppose the stadia used are the following:
+
+```{r, echo = FALSE, results='asis'}
+t <- matrix(
+  c(
+    'Wembley', 'Highbury',
+    'Villa Park', 'Stadium of Light',
+    'Stamford Bridge', 'Old Trafford',
+    'St. James Park'
+  ), ncol = 1,
+  byrow = TRUE
+)
+
+pander::pandoc.table(t, caption = "Stadium")
+```
+
+Then figure 4 provides a match schedule which is suitable for such a
+tournament.
+
+```{r, echo = FALSE, results='asis'}
+t <- data.frame(
+  "1" = c("  ", "  ", "  ", "dh", "be", "ag", "cf"),
+  "2" = c("  ", "bd", "fg", "  ", "  ", "ce", "ah"),
+  "3" = c("  ", "eg", "ad", "bf", "ch", "  ", "  "),
+  "4" = c("ab", "  ", "eh", "cg", "  ", "df", "  "),
+  "5" = c("cd", "fh", "  ", "ae", "  ", "  ", "bg"),
+  "6" = c("ef", "ah", "  ", "  ", "bg", "bh", "  "),
+  "7" = c("gh", "  ", "bc", "  ", "af", "  ", "de")
+)
+
+colnames(t) <- 1:7
+# Hack to give some row names (doesn't work with 1:7)
+rownames(t) <- paste(1:7, " ")
+pander::pandoc.table(t, caption = "Fixture List for an International Soccer League")
+```
+
+Looking along the rows, each team plays once in each round. Looking down
+columns, each stadia hosts each team exactly once. And throughout the
+tournament as a whole each pair from the original match list appears
+exactly once, hence every team opposes every other team once. Figure 4
+is another Room square of side 7. Alternatively, because the pairs are
+made from a set containing 8 elements, we say that this is a Room square
+of order 8.
+
+T.G. Room, (1902-86)
+--------------------
+
+In 1955, Thomas Gerald Room, then Professor of Mathematics at the
+University of Sydney, published a brief note in the Mathematical Gazette
+entitled *A new type of magic square*.[20] In it he presented another
+example of a square array with the same properties as Kirkman’s. This
+square, Room explained, had been discovered as "a by-product of
+another investigation". It was preceded in the note by a particularly
+efficient statement of the properties of these squares, which have
+subsequently been known by his name.
+
+> "The problem is to arrange the $n(2n-1)$ symbols $rs$ (which is the
+> same as $sr$) formed from all pairs of $2n$ digits such that in each
+> row and each column there appear $n$ symbols (and $n-1$ blanks) which
+> among them contain all $2n$ digits."
+
+Room’s note went on to explain that while the trivial $n = 1$ Room square
+exists[^1] , the non-existence of those with $n = 2$ (side 2) and $n = 3$
+(side 5) is easily proven. Room considered the $n = 2$ proof so
+straightforward that it was omitted from this note, while for the $n = 3$
+case he made reference to a graph-theoretic proof.
+
+Consider the $n = 2$ case, we are required to place all the pairs of 4
+digits in a 3x3 array. If we choose to use the set of non-negative
+integers $\{0, 1, 2, 3\}$, then we need to find somewhere to put each of
+the pairs $\{01, 02, 03, 12, 13, 23\}$. That we can swap the rows and columns
+of a Room square without damaging that square’s Room-ness is
+self-evident. Therefore there is no less of generality in assuming that
+a $3 \times 3$ Room square has the pair $\{0, 1\}$ in cell $(1, 1)$.
+
+```{r, echo = FALSE, results = 'asis'}
+t <- matrix(
+  c(
+    "01"
+  ),
+  ncol = 1,
+  byrow = TRUE
+)
+
+pander::pandoc.table(t, caption = "")
+```
+
+If we hope to make this array a Room square we must place the pair
+$\{2, 3\}$ in the first row, while to complete the first column we must
+also place the same pair in either position $(1, 2)$ or $(1, 3)$, but each
+pair is only allowed to appear once. So there is no Room square of side
+3, order 4.
+
+For the $n = 3$, a Room square of side 5, case we consider the following
+array:
+
+```{r, echo = FALSE, results = 'asis'}
+t <- matrix(
+  c(
+    "01", "23", "45", "-", "-",
+    "24", "-", "-", "-", "-",
+    "35", "-", "-", "-", "-"
+  ),
+  ncol = 5,
+  byrow = TRUE
+)
+
+pander::pandoc.table(t, caption = "")
+```
+
+There is no loss in generality in using this array because we can
+reorder rows and columns to obtain the first row in this form and then
+the first column must contain either the pairs $\{01, 24, 35\}$ or
+$\{01, 25, 34\}$ and the latter can be converted into the former by the
+permutation $(45)$[^2] which leaves the first row unchanged. We now show
+that completion of this square is impossible. The pairs
+$\{2,5\},\{3,4\}$ must appear somewhere in the array other than the
+first three rows or columns. Also they must appear in separate
+rows/columns to prevent a forced recurrence of $\{0, 1\}$. Suppose we put
+$\{2, 5\}$ in $(4, 4)$ and $\{3, 4\}$ in $(5, 5)$, then we know that cells
+$(4, 5)$ and $(5, 4)$ are empty, as the only pair which could legally go
+in either would be $\{0, 1\}$.
+
+Hence we know that cells $(4, 2), (4, 3), (5, 2), (5, 3)$ each contain pairs.
+Take cell $(5, 2)$, it could only contain $\{0, 5\}$ or $\{1, 5\}$, and the
+latter becomes the former under $(01)$, so assume it contains $\{0, 5\}$.
+We are now forced to fill in the other cells to give the array in Figure
+8.
+
+```{r, echo = FALSE, results = 'asis'}
+t <- matrix(
+  c(
+    "01", "23", "45", "-", "-",
+    "24", "-", "-", "-", "-",
+    "35", "-", "-", "-", "-",
+    "-", "14", "03", "25", "-",
+    "-", "05", "12", "-", "34"
+  ),
+  ncol = 5,
+  byrow = TRUE
+)
+
+pander::pandoc.table(t, caption = "")
+```
+
+We still need to place the pairs $\{0, 2\}$ and $\{0, 4\}$, which cannot
+be done because neither can appear in the second row and they cannot
+both appear in the third row. Hence there is no Room square of side 5,
+order 6.
+
+The real significance of Room’s note was that mathematicians soon took
+on the task of determining the spectra of Room squares (those values of
+$n$ for which Room squares exist). Research which cumulated 19 years
+later in the complete statement of the existence of Room squares, made
+by W.D. Wallis, that:
+
+> *"Room squares exist for all odd positive integer sides except 3
+> and 5"* [24]
+
+Proving this statement, which was suspected to be true from an early
+stage, turned out to be protracted and difficult.
+
+The most significant breakthrough came in 1968 when Stanton and Mullin
+introduced the starter-adder method for constructing Room squares. This
+method reduces the problem of constructing Room squares to the problem
+of finding a certain type of initial row from which a Room square can be
+developed straightforwardly.
+
+In this work much emphasis will be placed upon the proof of the
+existence of Room squares.
+
+The Galois Field
+----------------
+
+Throughout this work much use will be made of a particular *finite
+field*, known as the Galois field, denoted by $GF(p^n)$. Whenever $p^n$
+is a prime (i.e. $n=1$) the Galois field is precisely the integers under
+modulo p arithmetic, denoted $Z_p$. The Galois field has a number of
+important properties which are used in many of the proofs that follow,
+we introduce some of these now.
+
+-   Every Galois field (every finite field in fact) has a *primitive
+    element*. An element, $x$ say, is primitive in $GF(q)$ if
+    $x^0,x^1,x^2,...,x^{q-1}$ are all the non-zero members of $GF(q)$.
+
+### Example
+
+$x=2$ is a primitive element in $GF(11)$ because,
+$$x^0 = 1 \hspace{0.5cm} x^1 = 2 \hspace{0.5cm} x^2 = 4 \hspace{0.5cm} x^3 = 8 \hspace{0.5cm} x^4 = 5$$
+$$x^5 = 10 \hspace{0.5cm} x^6 = 9 \hspace{0.5cm} x^7 = 7 \hspace{0.5cm} x^8 = 3 \hspace{0.5cm} x^9 = 6$$
+
+-   It can be shown [3] that $x^{q-1}=1$ is always true for any $GF(q)$
+    where $q$ is odd, and $x^i \neq 1$ for any $1 \leq i \leq q-1$
+
+-   $x^{q-1}=1$ implies that
+    $(x^{\frac{1}{2}(q-1)}-1)(x^{\frac{1}{2}(q-1)}+1)=0$, therefore
+    either $x^{\frac{1}{2}(q-1)}=1$ or $x^{\frac{1}{2}(q-1)}=-1$.
+    Clearly because of the previous remark, only the latter can be true.
+
+-   If $b$ is a non-zero residue modulo $p$, then $b$ is a quadratic
+    residue (or square) if $x^2 \equiv b(\textrm{mod } p)$ has
+    solutions, otherwise $b$ is a quadratic non-residue (or non-square).
+    So the non-zero squares are precisely the even powers of the
+    primitive element, while the non-zero non-squares are the odd
+    powers.
+
+-   There are precisely $\frac{1}{2}(p-1)$ squares mod $p$, and
+    $\frac{1}{2}(p-1)$ non-squares.
+
+-   $-1$ is a square if $q \equiv 1(\textrm{mod } 4)$, but not a square
+    for $q \equiv 3(\textrm{mod } 4)$
+
+    -   $q \equiv 1(\textrm{mod } 4)$, then if $x^i$ is a square so is
+        $-x^i$.
+
+    -   $q \equiv 3(\textrm{mod } 4)$, then $x^i$ is a square $-x^i$ is
+        a non-square.

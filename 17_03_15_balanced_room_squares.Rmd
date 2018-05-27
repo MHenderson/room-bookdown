@@ -1,0 +1,1481 @@
+---
+title: "Balanced Room Squares"
+author: "Matthew Henderson"
+date: "15/03/2017"
+output: html_document
+---
+
+BIBDs and BRBs
+--------------
+
+A ***balanced incomplete block design (BIBD)*** is an arrangement of
+elements (varieties) from a set $S$ of size $v$, into $b$ subsets
+(blocks) each of size $k$ such that each variety occurs in $r$ blocks
+and any particular pair of distinct varieties occurs in $\lambda$
+blocks.
+
+#### Example 5.1.1
+$$\{a,b,c\},\{a,b,d\},\{a,c,e\},\{a,d,f\},\{a,e,f\},\{b,c,f\},\{b,d,e\},\{b,e,f\},\{c,d,e\},\{c,d,f\}$$
+This is a BIBD with parameters: $v = 6$, $b = 10$, $k = 3$, $r = 5$,
+$\lambda = 2$.
+
+In any $BIBD(v, b, r, k, \lambda)$ there are $b$ blocks each containing $k$
+elements, so $bk$ elements in total. Also, each of the $v$ elements
+occurs $r$ times, so there are $rv$ elements in total. Therefore:
+$$bk = vr$$ Also in a particular block, any element makes a pair with
+$k - 1$ other elements, and each element occurs in $r$ blocks, so there
+are $r(k - 1)$ pairs involving that element. Also, by definition, that
+element is paired with each of the other $v - 1$ members of $S$ $\lambda$
+times, so: $$\lambda (v - 1) = r(k - 1)$$ The second expression rearranges
+to give $r = \lambda (v - 1)/(k - 1)$, which can be substituted into the first
+expression to give $b=v\lambda (v - 1)/k(k - 1)$. So $b$ amd $r$ are both
+determined by the values of $v$, $k$ and $\lambda$. For this reason we
+need only quote those three parameters when referring to a particular
+block design. The example was a $BIBD(6, 3, 2)$ (or $(6, 3, 2)$design).
+
+In any Room square, the pairs $\{x,y\}$ are unordered. If we replace
+these pairs by one of the ordered pairs $(x,y)$ or $(y,x)$ we call the
+resulting array an ***ordered Room square (ORS)***.
+
+Consider the following ordered Room square:
+
+   $\infty 0$       62           54                        31                   
+  ------------ ------------ ------------ ------------ ------------ ------------ ------------
+                $\infty 1$       03           65                        42      
+                             $\infty 2$       14           06                        53
+       64                                 $\infty 3$       25           10      
+                    05                                 $\infty 4$       36           21
+       32                        16                                 $\infty 5$       40
+       51           43                        20                                 $\infty 6$
+
+**Figure 27**
+
+Suppose we extract the blocks of a design (not necessarily a BIBD) from
+this square in one of the two following ways:
+
+1.  As *half-columns*. This means taking all left hand members of pairs
+    from a particular column as the members of one block, and all right
+    hand members as another block.
+
+2.  By *half-rows*. Take all left members from a particular row as one
+    block, and all right members as another block.
+
+Notice that for this example, both methods generate exactly the same
+blocks.
+$$\{\infty,6,5,3\},\{0,2,4,1\},\{\infty,0,6,4\},\{1,3,5,2\},\{\infty,1,0,5\},\{2,4,6,3\},\{6, \infty,2,1\},$$
+$$\{4,3,5,0\},\{0,\infty,3,2\},\{5,4,6,1\},\{3,1,\infty,4\},\{2,6,5,0\},\{5,4,2,\infty\},\{1, 3,0,6\}$$
+Certainly this design seems to have the appropriate parameters to
+qualify as a BIBD. The original Room square was based on 8 elements,
+hence $v=8$. Also, the Room square’s seven rows each produced 2 blocks
+of 4 elements, hence $b=14$ and $k=4$. Finally, each element occurred
+once in each row of the Room square, therefore in half the total number
+of blocks, hence $r=7$. $$bk=4\cdot 14 = 7 \cdot 8 = vr$$ So this design
+is a BIBD, provided: $$\lambda = \frac{r(k-1)}{v-1} = \frac{7(3)}{7}=3$$
+In other words, provided each pair of elements occurs in precisely 3
+blocks.
+
+By definition a ***balanced Room square [$BRS(n)$]*** is an ordered Room
+square based on $n$ elements whose corresponding block design, derived
+as above, is a BIBD.
+
+Complete Balanced Howell Rotations
+----------------------------------
+
+Edwin C. Howell is an enigmatic figure in the history of mathematics.
+The rotations named after him are designs for the scheduling of Bridge
+tournaments.
+
+In a duplicate bridge tournament players compete in partnerships, two
+partnerships at a table. At the beginning of a round each table is given
+one from a certain number of duplicate boards each of which contains a
+pack of cards dealt evenly into four pockets. The boards are labelled
+north-south-east-west, and are aligned on the table so that one
+partnership plays north-south and the other east-west. After the game is
+finished the cards are returned to the pockets as they were dealt and
+the duplicate board is returned, to be used again in subsequent
+matches.
+
+If one partnership plays directly against another at the same table, the
+two partnerships are said to *oppose* each other. If two partnerships
+play in the same direction on the same board in different rounds, they
+are said to *compete*.
+
+In scoring, not only is the performance of teams in opposition
+considered, but also the performance of partnerships which compete.
+
+A good tournament design would have the properties that each partnership
+opposed each other partnership at the same table exactly once and also
+that each partnership competed against each other partnership at the
+same number of times.
+
+A ****complete balanced Howell rotation [$CBHR(n)$]****[^10] is an array
+(based on $n$ elements) of side $s$, where $s=n$ for $n$ odd, and
+$s=n-1$ for $n$ even, which satisfies the following properties:
+
+1.  Each of the $s^2$ cells is empty or contains an ordered pair of
+    distinct elements.
+
+2.  Each of the $n$ elements appears exactly once in each row and each
+    column. (If $n$ is odd, then one row and one column is excepted)
+
+3.  Each unordered pair of distinct elements occurs in exactly one cell
+    of the array.
+
+4.  Each pair of distinct elements appears together in a block[^11]
+    exactly $\left \lfloor{n/2}\right \rfloor -1$ times, where
+    $\left \lfloor{x}\right \rfloor $ means the integral part of $x$.
+
+To interpret a CBHR as a duplicate bridge tournament schedule, we
+represent the partnerships by elements, the boards ny rows and the
+rounds of the tournament by columns.
+
+Then an ordered pair $(x,y)$ in position $(i,j)$ of the array
+corresponds to partnership $x$ opposing partnership $y$ on board $i$ in
+round $j$. We adopt the convention that $x$ plays NS, $y$ EW. The third
+property in the definition of a CBHR ensures that all partnerships are
+in opposition exactly once, while the fourth (with blocks of the
+associated BIBD representing partnerships in competition) ensures that
+each partnership competes against each other partnership the same number
+of times.
+
+Notice that when $n$ is even the definition of a CBHR is precisely that
+of a balanced Room square. So the BRS above is also a $CBHR(8)$. The
+reason for maintaining both definitions is that a CBHR is, according to
+conditions 2 and 4, allowed to have odd order. Also, an important
+construction for $BRS(4n)$, which will be introduced, involves two
+$CBHR(2n-1)$s.
+
+Unlike Room squares the question of the existence of balanced Room
+squares is far from resolved, but various proofs have shown there to be
+many infinite classes of these designs. The details of some of these
+proofs are given below.
+
+Interestingly the existence problem for balanced Room squares (then
+known exclusively as CBHR) was brought to the attention of
+mathematicians, in 1955 by Parker and Mood, the very same year as T.G.
+Room published his original article. Either this problem has proved to
+be very much more difficult, or has aroused significantly less interest.
+The first general result, that of Hwang (1970), coming only a few years
+before the corresponding problem for Room squares was settled (1973).
+
+In order to discuss these results the first step is to make the
+necessary adaptation of the starter-adder approach.
+
+Starters and Adders for BRS and CBHR
+------------------------------------
+
+In deriving the definitions of a starter and adder for a Room square,
+the terminology of difference systems was introduced. We saw that a
+requirement of the starter was that each non-zero member of the relevant
+Galois field occurred exactly once as a difference between the members
+of some pair. This was so that each pair occurred exactly once in the
+Room square\
+\
+BIBDs can be constructed from difference systems in much the same way,
+but with the difference that each element in the BIBD occurs occurs with
+each other element $\lambda$ times, not necessarily just once.\
+\
+*Example*\
+A BIBD on $GF(7)$ can be constructed from the sets
+$\{6,5,3\}\{2,4,1\}$.\
+\
+$\{0,6,4\},\{1,0,5\},\{2,1,6\},\{3,2,0\},\{4,3,1\},\{5,4,2\}$ are the
+blocks obtained from the left hand set.\
+$\{3,5,2\},\{4,6,3\},\{5,0,4\},\{6,1,5\},\{0,2,6\},\{1,3,0\}$ are the
+blocks obtained from the right hand set.\
+\
+Because the two sets are both triples, under cyclic construction the
+block design obtained will necessarily have $k=r=3$.\
+\
+The left hand set has each non-zero member of $GF(7)$ occurring exactly
+once as a difference between its members. So, taken with its translates
+(those blocks obtained from it under cyclic development), this set
+should form a BIBD with $r=3$ and $\lambda=1$. Similarly the right hand
+block forms a BIBD with $r=3$ and $\lambda=1$, and the two sets taken
+together as difference system therefore generate a BIBD with $r=6$ and
+$\lambda =2$.\
+\
+If we add the ideal element $\infty$ to the left hand set and all its
+translates, and 0 to the right hand set (developing it cyclically along
+with the other members) then we obtain a new BIBD with $r=7$ and
+$\lambda = 3$, whose blocks are:
+$$\{\infty,6,5,3\},\{\infty,0,6,4\},\{\infty,1,0,5\},\{\infty,2,1,6\},\{\infty,3,2,0\},\{\infty,4,3,1\},\{\infty,5,4,2\}$$
+$$\{0,2,4,1\},\{1,3,5,2\},\{2,4,6,3\},\{3,5,0,4\},\{4,6,1,5\},\{5,0,2,6\},\{6,1,3,0\}$$
+Which is precisely the BIBD obtained from the Room square at the
+beginning of this chapter. If the block design associated with a BRS, or
+a CBHR, is obtained by taking the left hand member of the pairs in the
+first row as one block and the left hand members in subsequent rows as
+the translates, and all right members of pairs as the remaining blocks
+of a BIBD, then clearly those two blocks, the left hand and the right
+hand, which belong to the starter must form a difference system.\
+\
+The set of pairs $(x_1,y_1),(x_2,y_2),...,(x_{n-1},y_{n-1})$ is a
+***balanced starter*** in $G=GF(2n-1)$ if
+
+1.  the unordered pairs $\{x_i,y_i\}$ form a starter in $G$, and
+
+2.  the blocks $\{x_1,x_2,...,x_{n-1}\}$ and $\{y_1,y_2,...,y_{n-1}\}$
+    form a difference system.
+
+A balanced starter is ***strong*** if
+$x_1+y_1,x_2+y_2,...,x_{n-1}+y_{n-1}$ are all distinct mod$(2n-1)$.
+
+#### Theorem 5.3.1
+
+Given a strong balanced starter on $G=GF(2n-1)$, then a $CBHR(2n-1)$
+exists.\
+*Proof*\
+Assign the pair $(x_i+g,y_i+g)$ to cell $(g,x_i+y_i+g)$ for all
+$g \in G$. Condition (i) along with the strong-ness of the starter
+ensures that every $g \in G$ occurs in every row and column exactly once
+except $g$ does not occur in row or column $g$ for all $g \in G$ [due to
+the absence in cell (0,0) of the pair $\{\infty,0\}$]. Condition (i)
+also ensures that each unordered pair of $G$ occurs exactly once in the
+array, replace the unordered pairs with ordered pairs.\
+That the block design obtained is balanced follows from condition (ii).\
+Notice that each of the 2 blocks generates $(n-1)(n-2)$ differences and
+these represent each of $2n-2$ members of $G \backslash \{0\}$,
+$\lambda$ times. Therefore $2(n-1)(n-2) = \lambda (2n-2),$
+$ \Rightarrow \lambda = n-2$.
+
+#### Theorem 5.3.2
+
+Given a strong balanced starter on $G=GF(2n-1)$, then a $BRS(2n)$
+exists.\
+*Proof*\
+Assign the pair $(x_i+g,y_i+g)$ to cell $(g,x_i+y_i+g)$ for all
+$g \in G$, and (provided $n$ is even), also assign the pair $(\infty,g)$
+to cell $(g,g)$ for all $g \in G$.\
+Again, condition (i) and the strong-ness of the starter ensure that an
+ORS based on $G \cup \{\infty\}$ is obtained. The block design
+associated with this array has initial blocks,
+$$\{\infty\} \cup \{x_1,x_2,...,x_{n-1}\}$$
+$$\{0\} \cup \{y_1,y_2,...,y_{n-1}\}$$ Adjoining 0 to
+$\{y_1,y_2,...,y_{n-1}\}$ creates each non-zero member of $G$ as a
+difference once more, either as $y_i-0$ or $0-y_i$.\
+Adjoining $\infty$ to $\{x_1,x_2,..,x_{n-1}\}$ creates $n-1$ pairs
+involving $\infty$ in this block, hence $\infty$ makes a pair with each
+member of $G$ $n-1$ times.\
+So the design is balanced with a concurrence number of $n-1$.\
+\
+It is a simple matter to derive the remaining parameters of the BIBD
+associated with either array.
+
+                         $v$        $b$        $r$       $k$    $\lambda$
+  -------------------- -------- ----------- ---------- ------- -----------
+      $CBHR(2n-1)$      $2n-1$   $2(2n-1)$   $2(n-1)$   $n-1$     $n-2$
+   $CBHR(2n)/BRS(2n)$    $2n$    $2(2n-1)$   $2n-1)$     $n$      $n-1$
+
+**Table 7 BIBD parameters for BRS and CBHR**
+
+The block design of a balanced Room square is *self-complementary*. This
+means that if a block $D$ belongs to the design, then its complement
+$\overline{D}$ also appears. If the left hand pairs in row $x$ form one
+block then the right hand pairs in the same row are also a block, and
+the two blocks are complementary. Alternatively we can say that, in a
+self-complementary BIBD, the complementary design (obtained by replacing
+all blocks with their complements) is identical to the design itself.\
+Schellenberg proved an interesting result regarding self-complementary
+BIBDs.
+
+#### Theorem 5.3.3
+
+[21] In a self-complementary BIBD with parameters of the form,\
+$(2n,2(2n-1)t,(2n-1)t,n,(n-1)t)$, every triple of elements is contained
+in $t(n-2)/2$ blocks.\
+\
+*Proof*\
+Suppose $B$ is a self-complementary BIBD with parameters of the form
+above, based on a set of elements $V$. Denote by $S_{i...j}$ the set of
+blocks which contain $u$ but not $v$ or $w$. Because the design is
+self-complementary to each block of this set there corresponds a unique
+block which contains $v$ and $w$ but not $u$. The set of these blocks is
+$S_{vw}-S_u$ and clearly: $$|S_u - \{S_v \cup S_w\}| = |S_{vw} - S_u|$$
+Now,\
+$|S_u-\{S_v \cup S_w\}| = |S_u| - |S_{uv}| -|S_{uw}| + |S_{uvw}|$ and,\
+$|S_{vw} - S_u| = |S_{vw}| - |S_{uvw}|$
+$$\therefore |S_u| - |S_{uv}| -|S_{uw}| + |S_{uvw}| = |S_{vw}| - |S_{uvw}|$$
+$$2|S_{uvw}| = |S_{vw}| + |S_{uv}| + |S_{uw}| - |S_{U}|$$ Because $B$ is
+a $BIBD$, each pair of elements occur together in $\lambda = (n-1)t$
+blocks and each element occurs in $r=(2n-1)t$ blocks. So,
+$$|S_{vw}| = |S_{uv}| = |S_{uw}| = (n-1)t$$ and $$|S_u| = (2n-1)t$$
+Therefore, $$2|S_{uvw}|=3(n-1)t-(2n-1)t=(n-2)t$$ and so,
+$$|S_{uvw}| = \frac{(n-2)t}{2}$$ Since $u$, $v$ and $w$ are arbitrary
+this implies that each triple occurs in $(n-2)t/2$ blocks. $\square$\
+\
+The implication of this result for balanced Room squares is that,
+because $t=1$ for a $BRS$[^12] and we require the LHS of this expression
+to be an integer, $n$ is necessarily even. So writing $n=2m$, we know
+the order of a $BRS$ is always of the form $4m$.
+
+#### Corollary 5.3.1
+
+A $BRS(n)$ can only exist for $n \equiv 0$ mod 4.\
+\
+We now present Hwang’s starter-adder construction for balanced Room
+squares.
+
+#### Theorem 5.3.4
+
+[14] There exists a $BRS$ of order $q+1$, where $q=p^r \equiv $ 3(mod 4)
+is a prime power strictly greater than 3.\
+\
+*Proof*\
+We show that the pairs
+$$X = \left \{(x^{2i+1},x^{2i}): 0 \leq i \leq \frac{q-3}{2} \right \}$$
+form a balanced starter, where $x$ is a primitive element in $GF(q)$,
+and the set
+$$A(X) = \left \{-x^{2i}(1+x): 0 \leq i \leq \frac{q-3}{2} \right \}$$
+is a corresponding adder.\
+Looking back at Theorem 2.4(?), we have already shown that the unordered
+pairs
+$$\left \{\{x^{2i},x^{2i+1}\}: 0 \leq i \leq \frac{q-3}{2} \right \}$$
+are those of a starter with adder $A(X)$. So it remains to show that the
+starter is balanced which involves proving that the two blocks
+$$B_1 = \{0,x,x^3,...,x^{q-2}\} \hspace{0.5cm} \mathrm{and} \hspace{0.5cm} B_2 = \{\infty,x^0,x^2,...,x^{q-3}\}$$
+generate a $BIBD$. This result is due to R.C. Bose and makes use of the
+properties of the squares and non-squares of $GF(q)$ where $q$ is an odd
+prime.\
+Let $R$ and $N$ denote the sets of non-zero square and non-squares in
+$GF(q)$, respectively. $$R=\{x^2,x^4,...,x^{q-1}\}$$
+$$N=\{x^1,x^3,...,x^{q-2}\}$$ These sets both contain precisely
+$\frac{1}{2}(q-1)$ elements.\
+So, $$B_1 = \{0\} \cup N,$$ and because $x^{q-1} = 1 = x^0$,\
+$$B_2 = \{\infty\} \cup R$$ Also, if $a$ is square then $-a$ is a
+non-square[^13], which implies that $R=-N$.\
+\
+To show that the blocks with their translates form a $BIBD$ it is
+necessary to show that the differences between members of $B_1$ and $R$
+generate all the non-zero members of $GF(q)$ some number of times, then
+by adjoining the element $\infty$ to $R$ and its translates will
+generate a $BIBD$.\
+Firstly, suppose that 1, which belongs to $R$, can be expressed as a
+difference between members of $R$ in a certain number of different ways,
+$$1 = x^{2a_1}-x^{2b_1}=...x^{2a_r}-x^{2b_r}$$ Were this true, any
+member of $R$ could be written as a difference in the same number of
+ways.\
+Multiply through by any $x^{2s} \in R$.
+$$x^{2s} = x^{2(a_1+s)}-x^{2(b_1+s)}=...=x^{2(a_r+s)}-x^{2(b_r+s)}$$ But
+now suppose that any element of $R$ can be expressed as a difference
+between members of $R$ in a certain number of ways, i.e. assume this
+second expression holds. Then by dividing through by $x^{2s}$, we
+recover the first expression and hence for each representation of 1
+there is a corresponding representation of $x^{2s}$, and vice versa. So
+there are an equal number of representations of every member of $R$ as a
+difference of members of $R$. The remaining non-zero members of $GF(q)$,
+are all those $q \notin R$ where $-q \in R$, but each representation of
+$-r$ gives a corresponding representation of $r$: $$-r=x^{2a}-x^{2b}$$
+$$r = x^{2b} - x^{2a}$$ So every element of $-r$ has the same number of
+representations as a difference between members of $R$ as $R$ does.\
+\
+We know that $R$ has $\frac{1}{2}(q-1)$ elements, therefore there are\
+$\frac{1}{2}(q-1) \cdot \frac{1}{2} (q-3) = \frac{1}{4}(q-1)(q-3)$
+differences between those elements, and if each of these differences
+generates each of the $q-1$ non-zero members of $GF(q)$, $\lambda$ times
+then: $$\lambda(q-1)=\frac{1}{4}(q-1)(q-3)$$
+$$\lambda=\frac{1}{4}(q-3)$$ Also, because $N=-R$, we can say that all
+the non-zero members of $GF(q)$ arise as differences between members of
+$N$. Further, $B_1$ also gives the differences
+$0-n,n-0 \hspace{0.5cm} n\in N$, which are all the non-zero members of
+$GF(q)$, once again. So in total every non-zero member of $GF(q)$ occurs
+as a difference between elements of $B_1$ and $R$,
+$2 \cdot \frac{1}{4} (q-3) + 1 = \frac{1}{2} (q-1)$ times.\
+Because $R$ and its translates each contain $ \frac{1}{2}(q-1)$
+elements, each member of $GF(q)$ occurs $ \frac{1}{2}(q-1)$ times in all
+those blocks. Therefore, adjoining $\infty$ to each block generates
+blocks of size $ \frac{1}{2}(q-1)$, with $\infty$ making a pair with
+each member of $GF(q)$, $ \frac{1}{2}(q-1)$ times.\
+So we can say that $B_1$, $B_2$ and their translates for a
+$BIBD(q+1,\frac{1}{2}(q+1), \frac{1}{2}(q-1))$.\
+Therefore Hwang’s starter is balanced. $\square$\
+\
+The $BRS$ in Figure 27 was obtained from Hwang’s starter, hence its
+block design was a $BIBD$.\
+\
+*Example 5.3.1*\
+A balanced starter in $GF(19)$ is:
+$$X = \{(2,1),(8,4),(13,16),(14,7),(18,9),(15,17),(3,11),(12,6),(10,5)\}$$
+Which has a corresponding adder: $$A(X) = \{16,7,9,17,11,6,5,1,4\}$$ So
+the following row is an appropriate choice for a $BRS(20)$:
+
+   $\infty,0$   -   14,7   2,1   15,7   -   -   -   18,9   -   13,16   -   8,4   -   3,11   10,5   -   -   12,6
+  ------------ --- ------ ----- ------ --- --- --- ------ --- ------- --- ----- --- ------ ------ --- --- ------
+
+A Multiplicative Construction for BRS
+-------------------------------------
+
+Although the Hwang starter-adder construction establishes the existence
+of an infinite class of $BRS$, like Mullin & Nemeth’s construction for
+Room squares, exceptions still remain.\
+\
+Particularly all those $BRS$ of order $q+1$ where q is not a prime
+power, yet is congruent 3 modulo 4. For example, the existence of
+$BRS(16)$ is not established yet, because 15 is not a prime power. One
+approach to resolving this problem would be to establish a
+multiplication theorem like those established for Room squares. The
+following doubling construction for $BRS$ (due to Schellenberg), for
+example, enables to construction of a $BRS(16)$ from two $BRS(8)$.\
+\
+Significantly, used along with Hwang’s starter-adder construction, it
+establishes the existence of another infinite class of $BRS$, those of
+order $2(q+1)$, where $q$ is subject to the conditions of Theorem 3.5.\
+\
+Before presenting the doubling construction a few definitions need to be
+made, and another result regarding self-complementary block designs
+established.\
+\
+The ***reduced*** Room square $\hat{R}$, is obtained by taking a
+standardised Room square $R$ and removing the pairs involving $\infty$,
+i.e. the diagonal pairs.\
+\
+Two $ORS$, $R$ and $S$ (both of side $a$) are said to be a ***Latin
+pair*** if on forming the join of $\hat{R}$ and $\hat{S}$, and placing
+the pair $(i,i)$ in cell $(i,i)$ for $0 \leq i \leq q-1$ the join of two
+$MOLS$ is obtained, denoted by $R \odot S$.\
+\
+A ***common traversal*** of $R \odot S$ is a set of $q$ cells, one from
+each row and each column, whose $n$ ordered pairs have $n$ distinct
+first elements and $n$ distinct second elements.\
+\
+Suppose we have a set of varieties $V = \{1,2,3,...\}$, then by a set
+$V'$, we mean $V'=\{1',2',3',...\}$.
+
+#### Lemma 5.4.1
+
+[21] If
+$$\bigcup\limits_{i=1}^{2k-1} \left \{C_i,\bar{C_i} \right \} \hspace{0.5cm} \mathrm{and} \hspace{0.5cm} 
+\bigcup\limits_{i=1}^{2k-1} \left \{D_i,\bar{D_i} \right \}$$ are the
+blocks of two self-complementary $BIBD$s, both defined on a set of
+elements $V$, where $\bar{C}$ denotes the complement of $C$, with
+parameters $(2k,2(2k-1),2k-1,k,k-1)$ then.
+$$\bigcup\limits_{i=1}^{2k-1} \left \{C_i \cup D'_i, \bar{C_i} \cup \bar{D'_i}, C_i \cup \bar{D'_i},
+\bar{C_i} \cup D'_i  \right \} \cup \{V,V'\}$$ is the set of blocks of a
+self-complementary $BIBD$, defined on the set of elements $V \cup V'$,
+with parameters $(4k,2(4k-1),4k-1,2k,2k-1)$.\
+\
+*Proof*\
+Consider an arbitrary pair $\{a,b\}$ in the new $BIBD$ where
+$a,b \in V$. The concurrence number of the original $BIBD$ was $k-1$, so
+this pair occurred $k-1$ times in the blocks
+$\bigcup\limits_{i=1}^{2k-1} \left \{C_i,\bar{C_i} \right \}$, but these
+blocks clearly appear twice each in the new $BIBD$. Also the pair
+$\{a,b\}$ occurs once in the block $V$, so the pair $\{a,b\}$ occurs
+$2(k-1)+1 = 2k-1$ times. The same would be true for any pair $\{a,b\}$
+when $a,b \in V'$.\
+\
+Now consider an arbitrary pair $\{a,b\}$ when $a \in V$, and $b \in V'$.
+From the definition of complementary blocks $a$ occurs either $C$ or
+$\bar{C}$ and $b$ in either $D'$ or $\bar{D'}$, for some value of $i$,
+and because all pair combinations between $C$-blocks and $D'$-blocks are
+formed in the new design and because $i$ takes $2k-1$ values in the new
+design so the pair makes $2k-1$ appearances.\
+\
+Hence the new block design is a $BIBD$ with $\lambda =2k-1$. $\square$
+
+#### Theorem 5.4.1
+
+Suppose we have two $BRS(q+1)$, $R$ and $S$ based on $G = GF(q)$, with
+the following properties:
+
+1.  $R$ and $S$ are a *Latin pair* such that,
+
+2.  $R \odot S$ has a pair of disjoint *common transversals* $T_1$ and
+    $T_2$ (with $T_2$ in $R$), which do not intersect the main diagonal,
+    and
+
+3.  the block designs obtained from $R$ and $S$, call them $D(R)$ and
+    $D(S)$ respectively, have the property that if $\{\infty\} \cup B_i$
+    and $\{i\} \cup C_i$ are the blocks of $D(R)$ obtained from row $i$,
+    then $\{i\} \cup B_i$ and $\{\infty\} \cup C_i$ are the blocks of
+    $D(S)$ obtained from row $i$.
+
+Then a $BRS(2(q+1))$ exists.\
+\
+*Proof*\
+Define $A$ to be the array obtained from the superposition of $\hat{R}$
+and $\hat{S'}$. Where $\hat{S'}$ is obtained by replacing the elements
+of $G$ in $\hat{S}$ (the reduced RS) by the corresponding elements of
+$G'$ and replacing $\infty$ by $\infty'$. $R$ and $S$ were $BRS$ so each
+column and row of $A$ contains each member of
+$G \cup G' \cup \{\infty,\infty'\}$, except those elements $i,i',\infty$
+and $\infty'$ which are missing from row and column $i$ due to the
+reduction process. Further, $A$ contains every pair
+$\{i,j\},\{i',j'\} \hspace{0.25cm} i,j \in G,i \neq j$ exactly once.\
+Define $B$ as the array obtained from $R \odot S$ when each pair $(i,j)$
+is replaced by $(i,j')$.\
+\
+Now, $D$ is defined as the array obtained from $B$ according to this
+procedure:\
+If cell $(m,n), m\neq n$ of $R$ is not empty, replace $(i,j')$ in cell
+$(m,n)$ of $B$ by $(j',i)$. Because $R \odot S$ is a pair of superposed
+orthogonal latin squares $D$ contains each member of $G \cup G'$ exactly
+once in each row and column. Also, the way in which we have repalced
+elements ensures that every unordered pair $\{i,j'\}$ for all
+$i,j \in G$ occurs exactly once in $D$.\
+\
+Next, construct $C$ by arranging the arrays $A$ and $D$ according to the
+following layout, in which $\phi$ is the $q \times q$ array with every
+cell empty, $\theta$ the $1 \times q$ array of empty cells and
+$\theta ^T$ the transpose of $\theta$:
+
+$C=$
+
+     $A$       $\phi$      $\theta ^T$
+  ---------- ---------- ------------------
+    $\phi$      $D$        $\theta ^T$
+   $\theta$   $\theta$   $\infty',\infty$
+
+The rows and columns of this new array are labelled
+$0,1,2,...,q-1,0',1',2',...,(q-1)',l$. So that the pair
+$(\infty ', \infty)$ is in cell $(l,l)$.\
+\
+Let
+
+$T'_p = \{ (i'_m,j'_m) | (i_m,j_m)$ *is a cell transversal* $T_p \}$
+
+be the set of cells of $C$, corresponding to transversal
+$T_p \hspace{0.25cm}(p=1,2)$ of $R \odot S$.\
+\
+Construct a new array $F$, based on $C$ according to the following
+prescription:\
+\
+Consider cell $(i'_m,j'_m) \in T'_1$. If cell $(i_m,j_m)$ is not empty
+in $R$ then $(i'_m,j'_m)$ of $C$ contains a pair $(k',n)$, otherwise it
+contains a pair $(n,k')$. [In either case
+$k,nm \in G \hspace{0.25cm} k \neq n$ (the transversal does not
+intersect the diagonal)]. Remove whichever pair appears in cell
+$(i'_m,j'_m)$ and put it in cell $(i'_m,l)$. Also place $(\infty',k')$,
+$(\infty,n)$ in cells $(k,j'_m),(n,j'_m)$ respectively.\
+If $(i'_m,j'_m) \in T'_2$ then a pair $(k',n)$ appears in cell
+$(i'_m,j'_m)$. Again remove it, but this time put it in $(l,j'_m)$. In
+addition pairs $(k',\infty),(\infty ',n)$ go in cells
+$(i'_m,k),(i'_m,n)$ respectively.\
+\
+$F$ is a $BRS$ because,
+
+-   $A$ and $D$ between them intially contain all the unordered pairs
+    $\{i,j\},\{i',j'\}$ $i,j \in G, i\neq j$ and $\{i,j'\}$ for all
+    $i,j \in G$. So $F$ has an ordered pair corresponding to each of
+    these.
+
+-   The procedure in the preceding paragraph contributes the remaining
+    ordered pairs\
+    $(\infty ',k'),(\infty,n),(k',\infty),(\infty ',n)$ for all
+    $k,n \in G \hspace{0.25cm} k \neq n$ in such a way that the elements
+    missing from the first $q$ rows and columns are suitably placed, and
+    $\infty$ and $\infty '$ are placed in each row and column of $F$.
+    Hence each row and column of $F$ contains every member of
+    $\{\infty, \infty '\} \cup G \cup G'$ exactly once.
+
+The block design obtained from the rows of $F$ has blocks:
+
+$
+\left.
+\begin{tabular}{c}
+${} B~i~ {’} C’~i~$\\
+${i} C~i~ {i’} B’~i~$\\
+\end{tabular}
+\right \}
+0 \leq i \leq q-1
+$
+
+from rows 0,1,...,$q-1$ blocks
+
+$
+\left.
+\begin{tabular}{c}
+${} B~i~ {i’} B’~i~$\\
+${i} C~i~ {} C’~i~$\\
+\end{tabular}
+\right \}
+0 \leq i \leq q-1
+$
+
+from rows $0',1',...,(q-1)'$, and the blocks
+$$\{\infty\} \cup F, \{\infty '\} \cup G'$$ obtained from row $l$.\
+According to condition 3 of Theorem 3.6 and Lemma 3.1, these blocks for
+a $BIBD$. $\square$\
+\
+*Example 5.4.1*\
+Consider the following $BRS(8)$s
+
+$R=$
+
+   $\infty 0$       26           45                        13                   
+  ------------ ------------ ------------ ------------ ------------ ------------ ------------
+                $\infty 1$       30           56                        24      
+                             $\infty 2$       41           60                        35
+       46                                 $\infty 3$       52           01      
+                    50                                 $\infty 4$       63           12
+       23                        61                                 $\infty 5$       04
+       15           34                        02                                 $\infty 6$
+
+$\hspace{0.5cm} S=$
+
+   $\infty 0$                                 64                        32           51
+  ------------ ------------ ------------ ------------ ------------ ------------ ------------
+       62       $\infty 1$                                 05                        43
+       54           03       $\infty 2$                                 16      
+                    65           14       $\infty 3$                                 20
+       31                        06           25       $\infty 4$               
+                    42                        10           36       $\infty 5$  
+                                 53                        21           40       $\infty 6$
+
+$\hspace{3.5cm}$ **Figure 28** $\hspace{6cm}$ **Figure 29**\
+\
+These $BRS$ satisfy all three properties required by Theorem 3.6. (We
+shall see why later).\
+Suppose we take the following two disjoint common transversals as $T_1$
+(lighter grey shading) and $T_2$ (darker grey shading).
+
+$R \odot S=$
+
+   00   26   45   64   13   32   51
+  ---- ---- ---- ---- ---- ---- ----
+   62   11   30   56   05   24   43
+   54   03   22   41   60   16   35
+   46   65   14   33   52   01   20
+   31   50   06   25   44   63   12
+   23   42   61   10   36   55   04
+   15   34   53   02   21   40   66
+
+**Figure 30**
+
+Next we obtain $A$ from the superposition of $\hat{R}$ and $\hat{S'}$:
+
+$A = $
+
+              26       45     $6'4'$     13     $3'2'$   $5'1'$
+  -------- -------- -------- -------- -------- -------- --------
+   $6'2'$              30       56     $0'5'$     24     $4'3'$
+   $5'4'$   $0'3'$              41       60     $1'6'$     35
+     46     $6'5'$   $1'4'$              52       01     $2'0'$
+   $3'1'$     50     $0'6'$   $2'5'$              63       12
+     23     $4'2'$     61     $1'0'$   $3'6'$              04
+     15       34     $5'3'$     02     $2'1'$   $4'0'$  
+
+**Figure 31**
+
+Then we construct $B$, and after swapping the order of certain pairs,
+obtain $D$:
+
+$B=$
+
+   $00'$   $26'$   $45'$   $64'$   $13'$   $32'$   $51'$
+  ------- ------- ------- ------- ------- ------- -------
+   $62'$   $11'$   $30'$   $56'$   $05'$   $24'$   $43'$
+   $54'$   $03'$   $22'$   $41'$   $60'$   $16'$   $35'$
+   $46'$   $65'$   $14'$   $33'$   $52'$   $01'$   $20'$
+   $31'$   $50'$   $06'$   $25'$   $44'$   $63'$   $12'$
+   $23'$   $42'$   $61'$   $10'$   $36'$   $55'$   $04'$
+   $15'$   $34'$   $53'$   $02'$   $21'$   $40'$   $66'$
+
+$\hspace{0.5cm} \Rightarrow D=$
+
+   $00'$   $6'2$   $5'4$   $64'$   $3'1$   $32'$   $51'$
+  ------- ------- ------- ------- ------- ------- -------
+   $62'$   $11'$   $0'3$   $6'5$   $05'$   $4'2$   $43'$
+   $54'$   $03'$   $22'$   $1'4$   $0'6$   $16'$   $5'3$
+   $6'4$   $65'$   $14'$   $33'$   $2'5$   $1'0$   $20'$
+   $31'$   $0'5$   $06'$   $25'$   $44'$   $3'6$   $2'1$
+   $3'2$   $42'$   $1'6$   $10'$   $36'$   $55'$   $4'0$
+   $5'1$   $4'3$   $53'$   $2'0$   $21'$   $40'$   $66'$
+
+$\hspace{3.5cm}$ **Figure 32** $\hspace{6cm}$ **Figure 33**\
+\
+$C$ is obtained by arranging $A$ and $D$ thus:
+
+            0        1        2        3        4        5        6      $0'$    $1'$    $2'$    $3'$    $4'$    $5'$    $6'$           $l$
+  ------ -------- -------- -------- -------- -------- -------- -------- ------- ------- ------- ------- ------- ------- ------- -------------------
+    0                26       45     $6'4'$     13     $3'2'$   $5'1'$                                                          
+    1     $6'2'$              30       56     $0'5'$     24     $4'3'$                                                          
+    2     $5'4'$   $0'3'$              41       60     $1'6'$     35                                                            
+    3       46     $6'5'$   $1'4'$              52       01     $2'0'$                                                          
+    4     $3'1'$     50     $0'6'$   $2'5'$              63       12                                                            
+    5       23     $4'2'$     61     $1'0'$   $3'6'$              04                                                            
+    6       15       34     $5'3'$     02     $2'1'$   $4'0'$                                                                   
+   $0'$                                                                  $00'$   $6'2$   $5'4$   $64'$   $3'1$   $32'$   $51'$  
+   $1'$                                                                  $62'$   $11'$   $0'3$   $6'5$   $05'$   $4'2$   $43'$  
+   $2'$                                                                  $54'$   $03'$   $22'$   $1'4$   $0'6$   $16'$   $5'3$  
+   $3'$                                                                  $6'4$   $65'$   $14'$   $33'$   $2'5$   $1'0$   $20'$  
+   $4'$                                                                  $31'$   $0'5$   $06'$   $25'$   $44'$   $3'6$   $2'1$  
+   $5'$                                                                  $3'2$   $42'$   $1'6$   $10'$   $36'$   $55'$   $4'0$  
+   $6'$                                                                  $5'1$   $4'3$   $53'$   $2'0$   $21'$   $40'$   $66'$  
+   $l$                                                                                                                           $\infty ' \infty$
+
+**Figure 34**
+
+Finally we construct $F$ according to the 2 presciptions in the final
+part of the construction. Which involves first replacing some of the
+pairs in those cells of $C$ corresponding to $D$.\
+Consider
+$$T'_1 = \{(2',6'),(3',0'),(4',1'),(5',2'),(6',3'),(0',4'),(1',5')\}$$
+In $R$, the cells $(2,6),(3,0),(4,1),(5,2),(6,3),(0,4)$ and $(1,5)$ were
+all non-empty, so $C$ contains pairs of the form $(k',n)$ in all cells
+$(2',6'),(3',0')$, ... All of these are removed and replaced in the
+final column of the same row. And, for each pair $(k',n)$, corresponding
+pairs of the form $(\infty ', k'), (\infty,n)$ are put in cells
+$(k,j'_m),(n,j'_m)$, respectively.\
+e.g.\
+$(5',3)$ appears in position $(2',6')$ of $C$. So in $F$, $(5',3)$
+appears in $(2',l)$ and the additional pairs $(\infty,3)$ and
+$(\infty ',5')$ appear in column $6'$, in rows 3 and 5 respectively.\
+\
+All of which makes the final columns appear like so:
+
+               $0'$            $1'$            $2'$            $3'$             $4'$             $5'$             $6'$               $l$
+  ------ ---------------- --------------- --------------- --------------- ---------------- ---------------- ---------------- -------------------
+    0                      $\infty ' 0'$                    $\infty 0$                                                       
+    1                                      $\infty ' 1'$                     $\infty 1$                                      
+    2                                                      $\infty ' 2'$                      $\infty 2$                     
+    3                                                                      $\infty ' 3 '$                      $\infty 3$    
+    4      $\infty  4 $                                                                     $\infty ' 4 '$                   
+    5                      $\infty  5 $                                                                      $\infty ' 5 '$  
+    6     $\infty ' 6 '$                    $\infty 6 $                                                                      
+   $0'$       $00'$            $6'2$           $5'4$           $64'$           $3'1$            $32'$            $51'$              $3'1$
+   $1'$       $62'$            $11'$           $0'3$           $6'5$           $05'$            $4'2$            $43'$              $4'2$
+   $2'$       $54'$            $03'$           $22'$           $1'4$           $0'6$            $16'$            $5'3$              $5'3$
+   $3'$       $6'4$            $65'$           $14'$           $33'$           $2'5$            $1'0$            $20'$              $6'4$
+   $4'$       $31'$            $0'5$           $06'$           $25'$           $44'$            $3'6$            $2'1$              $0'5$
+   $5'$       $3'2$            $42'$           $1'6$           $10'$           $36'$            $55'$            $4'0$              $1'6$
+   $6'$       $5'1$            $4'3$           $53'$           $2'0$           $21'$            $40'$            $66'$              $2'0$
+   $l$                                                                                                                        $\infty ' \infty$
+
+**Figure 35**
+
+Now consider:
+$$T'_2 = \{(4',5'),(5',6'),(6',0'),(0',1'),(1',2'),(2',3'),(3',4')\}$$
+In each cell $(i'_m,j'_m)$ of $C$, where $(i'_m,j'_m) \in T'_2$, occurs
+a pair $(k',n)$, we remove this and place it in cell $(l,j'_m)$, also
+putting pairs $(k',\infty),(\infty ',n)$ in cells $(i'_m,k),(i'_m,n)$.\
+e.g.\
+$(3',6)$ appears in $(4',5')$, so $(3',6)$ goes in $(l,5')$ and
+$(3',\infty), (\infty ', 6)$ go in $(4',3),(4',6)$ respectively.
+
+               0              1              2              3              4              5              6         $0'$    $1'$    $2'$    $3'$    $4'$    $5'$    $6'$           $l$
+  ------ -------------- -------------- -------------- -------------- -------------- -------------- -------------- ------- ------- ------- ------- ------- ------- ------- -------------------
+   $0'$                                 $\infty ' 2$                                                $6' \infty$    $00'$           $5'4$   $64'$           $32'$   $51'$         $3'1$
+   $1'$   $0' \infty$                                  $\infty ' 3$                                                $62'$   $11'$           $6'5$   $05'$           $43'$         $4'2$
+   $2'$                  $1' \infty$                                  $\infty ' 4$                                 $54'$   $03'$   $22'$           $0'6$   $16'$                 $5'3$
+   $3'$                                 $2' \infty$                                  $\infty ' 5$                          $65'$   $14'$   $33'$           $1'0$   $20'$         $6'4$
+   $4'$                                                $3' \infty$                                  $\infty ' 6$   $31'$           $06'$   $25'$   $44'$           $2'1$         $0'5$
+   $5'$   $\infty ' 0$                                                $4' \infty$                                  $3'2$   $42'$           $10'$   $36'$   $55'$                 $1'6$
+   $6'$                  $\infty ' 1$                                                $5' \infty$                           $4'3$   $53'$           $21'$   $40'$   $66'$         $2'0$
+   $l$                                                                                                             $5'1$   $6'2$   $0'3$   $1'4$   $2'5$   $3'6$   $4'0$   $\infty ' \infty$
+
+**Figure 36**
+
+So the following array, the completed $F$, is a $BRS(16)$:
+
+                       26             45           $6'4'$           13           $3'2'$         $5'1'$                     $\infty ' 0'$                    $\infty 0$                                                    
+  -------------- -------------- -------------- -------------- -------------- -------------- -------------- -------------- --------------- --------------- --------------- --------------- --------------- --------------- -------------------
+      $6'2'$                          30             56           $0'5'$           24           $4'3'$                                     $\infty ' 1'$                    $\infty 1$                                    
+      $5'4'$         $0'3'$                          41             60           $1'6'$           35                                                       $\infty ' 2'$                    $\infty 2$                    
+        46           $6'5'$         $1'4'$                          52             01           $2'0'$                                                                     $\infty ' 3'$                    $\infty 3$    
+      $3'1'$           50           $0'6'$         $2'5'$                          63             12         $\infty 4$                                                                    $\infty ' 4'$                  
+        23           $4'2'$           61           $1'0'$         $3'6'$                          04                        $\infty 5$                                                                     $\infty ' 5'$  
+        15             34           $5'3'$           02           $2'1'$         $4'0'$                     $\infty' 6'$                    $\infty 6$                                                                    
+                                 $\infty ' 2$                                                $6' \infty$       $00'$                           $5'4$           $64'$                           $32'$           $51'$             $3'1$
+   $0' \infty$                                  $\infty ' 3$                                                   $62'$           $11'$                           $6'5$           $05'$                           $43'$             $4'2$
+                  $1' \infty$                                  $\infty ' 4$                                    $54'$           $03'$           $22'$                           $0'6$           $16'$                             $5'3$
+                                 $2' \infty$                                  $\infty ' 5$                                     $65'$           $14'$           $33'$                           $1'0$           $20'$             $6'4$
+                                                $3' \infty$                                  $\infty ' 6$      $31'$                           $06'$           $25'$           $44'$                           $2'1$             $0'5$
+   $\infty ' 0$                                                $4' \infty$                                     $3'2$           $42'$                           $10'$           $36'$           $55'$                             $1'6$
+                  $\infty ' 1$                                                $5' \infty$                                      $4'3$           $53'$                           $21'$           $40'$           $66'$             $2'0$
+                                                                                                               $5'1$           $6'2$           $0'3$           $1'4$           $2'5$           $3'6$           $4'0$       $\infty ' \infty$
+
+**Figure 37**
+
+Schellenberg applied his multiplicative construction to the $BRS$
+generated by Hwang’s starter-adder construction, and in doing so was
+able to establish the following Theorem:
+
+#### Theorem 5.4.2
+
+[21] For $q \equiv 3$(mod 4), with $q$ a prime power strictly greater
+than 3, there exists a $BRS(2(q+1))$.\
+\
+*Proof*\
+Construct $R$ from the following balanced starter,
+$$X = \left \{ (x^{2i},x^{2i+1}):0 \leq i \leq \frac{q-3}{2} \right \}$$
+with adder,
+$$A(X) = \left \{ -x^{2i}(1+x):0 \leq i \leq \frac{q-3}{2} \right \}$$
+Clearly this is just the Hwang starter-adder of Theorem 5.3.4, although
+the elements in the starter pairs have swapped order. Now, construct $S$
+from the balanced starter,
+$$Y = \left \{ (x^{2i-1},x^{2i}):0 \leq i \leq \frac{q-3}{2} \right \}$$
+$$A(Y) = \left \{ -x^{2i-1}(1+x):0 \leq i \leq \frac{q-3}{2} \right \}$$
+$Y$ has been obtained simply by swapping the pairs of $X$ and
+multiplying them by $x^{-1}$. Therefore, that $Y$ is a balanced starter
+follows from the fact that $X$ is balanced, as was established in
+Theorem 3.5.\
+It remains to show that $R$ and $S$ satisfy conditions 1,2 and 3 of
+Theorem 3.6:
+
+1.  $R$ and $S$ are a Latin pair: The positions of the starter pais in
+    the first row of each square are determined by the adder, so
+    $A(X) \cap A(Y) = \varnothing$[^14] ensures that each cell of the
+    first row, hence subsequent rows, of $R \odot S$ contains only one
+    pair.\
+    \
+    That $R \odot S$ is a pair of superposed Latin squares requires that
+    for the pairs in any row, the left hand members take all values
+    0...$q-1$, and the right members also take values 0...$q-1$.\
+    Clearly this property holds for all rows if it holds for the first.
+    The pairs in the first row of $R \odot S$ are:
+    $$\{(0,0)\} \cup \left \{ (x^{2i-1},x^{2i}),(x^{2i},x^{2i+1}) \middle| 0 \leq i \leq \frac{q-3}{2} \right \}$$
+    So all $(q-1)/2$ non-squares and all $(q-1)/2$ squares occur as left
+    hand members of pairs, and similarly as right hand members. So
+    $R \odot S$ is a pair of superposed Latin squares.\
+    For these Latin squares to be orthogonal requires that there is no
+    repetition of ordered pairs. For a repetition to occur would require
+    some repetition of ordered differences among the starter pairs.\
+    Either:
+    $$x^{2i-1} - x^{2i} = x^{2i} - x^{2i+1} \hspace{0.2cm} \mathrm{or} \hspace{0.2cm}
+    x^{2i} - x^{2i-1} = x^{2i+1} - x^{2i} \hspace{0.2cm} \mathrm{i.e.}$$
+    $$\pm (x^{2i-1} + x^{2i+1}) = \pm (x^{2i} + x^{2i})$$
+    $$x^{-1} + x = 2 \Rightarrow x = 1$$ Clearly false, so ordered
+    differences are unique.
+
+2.  $R \odot S$ has a pair of disjoint *common transversals*:\
+    For any fixed non-zero $j$ the cells $(i,i+j)$, $0 \leq i \leq q-1$
+    form a common transversal which does not intersect the diagonal.
+
+3.  The block designs for $R$ and $S$ are balanced:\
+    The starters $X$ and $Y$ are balanced starters hence the block
+    designs for $R$ and $S$ are $BIBD$s. $\square$
+
+So the Schellenberg multiplication construction establishes the
+existence of some new orders $q+1$ where $q$ is not necessarily a prime
+power.\
+e.g.\
+the orders in bold are now established which had not been under Hwang’s
+construction:
+
+<span>|c|c|c|c|c|c|c|c|c|c|c|c|c|</span>
+
+  --------------------------------
+            Hwang $BRS$
+   $p^r + 1: p^r \equiv 3$(mod 4)
+  --------------------------------
+
+& 8 & 12 & & 20 & 24 & 28 & 32 & & & 44 & 48 & ...\
+
+  --------------
+   Schellenberg
+   $2(p^r + 1)$
+  --------------
+
+& **16** & 24 & 32 & **40** & 48 & **56** & **64** & 72 & 80 & **88** &
+**96** & ...\
+
+**Table 8**
+
+Even with both these theorems, there are obviously missing orders. The
+first exception, 36 occurs, for example, because 35 is not a prime power
+and because 17 is not congruent to 3 mod 4.\
+\
+Schellenberg applied the multiplicative construction to the case when
+$p^r \equiv 1$(mod 4) [then, of course, $2(p^r+1) \equiv 0$(mod 4) as is
+required] and was able to obtain further results. Although, as an
+interesting parallel to the Mullin-Nemeth construction, he also had
+problems with the Fermat primes and again they were treated separately.
+Rather than look at his approach we consider the later approach by Du,
+Yu, Hwang and Kang amongst others.
+
+Symmetric Skew Balanced Starters
+--------------------------------
+
+If $(x_1,y_1),(x_2,y_2), ...,(x_{(q-1)/2},y_{(q-1)/2})$ are the pairs of
+a balanced starter in $GF(q)$ then we say that starter is ***skew*** if
+$\pm(x_1+y_1), \pm(x_2+y_2), ..., \pm(x_{(q-1)/2},y_{(q-1)/2})$ are all
+distinct mod $q$.\
+Notice that a skew starter is necessarily a strong starter (all sums are
+distinct).\
+A balanced starter is ***symmetric*** if
+$\{x_1,x_2,...,x_{(q-1)/2}\}=\{-x_1,-x_2,...,x_{(q-1)/2}\}$\
+\
+In [13] it was claimed that Schellenberg’s multiplication theorem could
+be applied to two $CBHR(2n-1)$s, both obtained from $SSBS$, to construct
+a $BRS(4n)$. It was then shown that $SSBS$ exist for all prime powers
+$2n-1=8k+5>5$, and so the existence of $BRS(4n)$ for these values was
+believed to be established.
+
+    k     1    3    4     6     7    12    13    16    18    19    ...
+  ------ ---- ---- ---- ----- ----- ----- ----- ----- ----- ----- -----
+   $4n$   28   60   76   108   124   204   220   268   300   316   ...
+
+**Table 9**
+
+Recently, Anderson[2], has noticed a flaw in this approach and corrected
+it.\
+Suppose we wished to apply Schellenberg’s construction to two
+$CBHR(2n-1)$s, call them $P$ and $Q$, then it would be necessary to make
+a slight alteration to Theorem 3.6 to accomodate the missing diagonal
+pairs, i.e. $\{\infty,i\}$ from row $i$.\
+\
+**Theorem 5.5.1** Suppose we have two $CBHR(2n-1)$, $P$ and $Q$ based on
+$G=GF(2n-1)$, with the following properties:
+
+1.  $P$ and $Q$ are a *Latin pair* such that,
+
+2.  $P \odot Q$ has a pair of disjoint *common transversals* $T_1$ and
+    $T_2$ (with $T_2$ in $P$), which do not intersect that main
+    diagonal, and
+
+3.  the block designs obtained from $P$ and $Q$, call them $D(P)$ and
+    $D(Q)$ respectively, have the property that if $B_i$ and $C_i$ are
+    the blocks from $D(P)$ obtained from row $i$, then $B_i$ and $C_i$
+    are also the blocks of $D(Q)$ obtained from row $i$.
+
+Then a $BRS(4n)$ exists.\
+\
+*Proof*\
+As for Theorem 3.6\
+ It was then claimed that the two $CBHR(2n-1)$s obtained from a $SSBS$
+and its transpose satisfy the three conditions of Theorem 3.8. Hence
+implying the existence of a $BRS(4n)$.\
+However, recently a counter-example has been found.
+
+#### Lemma 5.5.1
+
+[2] If $p=8k+5$ is a prime, $p > 5$, then the pairs
+$$(x^{4i},-x{4i+1}),(x^{4i+2},x^{4i+1})\hspace{0.5cm} 0 \leq i \leq 2k$$
+form a $SSBS$ in $GF(p)$, provided $x^2-1$ is a square mod $p$.\
+\
+*Proof*
+
+1.  The elements in the starter pairs are a complete replication of
+    $GF(p) \backslash \{0\}$.\
+    $x^{\frac{1}{2} (q-1)} = x^{4k+2} = -1$, therefore we can write the
+    pairs as,
+    $$(X^{4i},x^{4(k+i)+3}),(x^{4i+2},x^{4i+1}) \hspace{0.5cm} 0 \leq i \leq 2k$$
+    All the members of these pairs are clearly unique and there are
+    $4(2k+1)=8k+4$ of them, hence they must all of
+    $(GF(p) \backslash \{0\}$.
+
+2.  The differences are similarly a complete replication of
+    $GF(p)  \backslash \{0\}$.\
+    The differences are $\pm x^{4i}(x+1), \pm x^{4i+1}(x-1)$, which can
+    be written as
+    $$x^{4i}(x+1), x^{4(i+k)+2}(x+1),x^{4i+1}(x-1),x^{4(i+k)+3}(x-1)$$
+    Which are all unique provided $(x+1)$ and $(x-1)$ have the same
+    quadratic character (meaning either both of neither are squares).
+    This is true because $(x+1)(1-x) = x^2-1$ is a square.
+
+3.  The starter is ***skew***, (the positive and negative sums are all
+    distinct).\
+    The sums are $\pm x^{4i}(1-x), \pm x^{4i+1}(x+1)$ which again are
+    all unique, provided $(1-x)$ and $(x+1)$ have the same quadratic
+    character. True, because $(1-x)(x+1) = -(x^2-1) = x^{4k+2}(x^2-1)$,
+    is a square.
+
+4.  The starter is ***symmetric***.\
+    Indeed, $-x^{4i} = x^{4(i+k)+2}$, generates the same elements as
+    $x^{4i+2}$ shifted by $k$ places.
+
+5.  The associated block design is balanced.\
+    The blocks in the first row are,\
+    $\{\infty\} \cup R$, due to the left hand members (where $R$ is the
+    set of squares).\
+    $\{0\} \cup N$, due to the right hand members (where $N$ is the set
+    of non-squares).\
+    We can show that these blocks along with their translates form a
+    $BIBD$.\
+    \
+    Using an argument from Theorem 5.2.4, we can say that all elements
+    of $R$ are generated as differences of $R$ from the same number of
+    times (say $\lambda _1$ times). Also, a similar argument allows us
+    to say that all the elements of $N$ are generated as differences of
+    $R$ the same number of times (say $\lambda _2$). Now, of course
+    $N = xR$. So we can say that to each difference of members of $R$
+    which generates a square there is a difference of $N$ which
+    generates a non-square. Therefore every $r \in R$ occurs as a
+    difference in $N, \lambda _1$ times. For the same reason every
+    $n \in N$ occurs as a difference between members of $N, \lambda _2$
+    times. Therefore, each element of $GF(p) \backslash \{0\}$ occurs
+    $\lambda _1 + \lambda _2$ times as a difference in $R$ or $N$.\
+    \
+    Now, $|R| = |N| = 4k+2$. So each of the two sets, $R$ and $N$, gives
+    $(4k+2)(4k+1)$ differences. Furthermore there are $8k+4$ elements of
+    $GF(p) \backslash \{0\}$, and each occurs as a difference
+    $\lambda _1 + \lambda _2$ times. So,
+    $$(2(4k+2)(4k+1) = (\lambda _1 + \lambda _2)(8k+4)$$
+    $$\therefore \lambda _1 + \lambda _2 = 4k+1$$ Adjoining 0 to $N$
+    creates each member of $GF(p) \backslash \{0\}$ once again, as
+    either $0-n$ or $n-0$.\
+    Adjoining $\infty$ to $R$, makes $|R| = 4k+2$ pairs involving
+    $\infty$. Therefore, $\{\infty\} \cup R$ and $\{0\} \cup N$ and
+    their translates have between them each pair from
+    $\{\infty\{ \cup GF(p)$ occurring $4k+2$ times. Hence the block
+    design is balanced.
+
+*Example 5.5.1*\
+Let $P$ be the $CBHR(2n-1)$ obtained from the $SSBS$ in Lemma 3.2 when
+$p=13$ $$(1,11),(3,7),(4,2),(9,8),(10,5),(12,6)$$ By the ***transpose***
+$X^T$ of a starter $X$ we mean those pairs in the first column of the
+square generated by $X$.\
+In this case, for example, $(1,11)$ goes in cell (0,12) therefore will
+be a pair in the first column $(1+i,11+i)$ in position $(0+i,12+i)$,
+such that $12+i = 0$ mod 13,
+
+(2,12) goes in (1,0) hence belongs to the transpose of this starter
+
+In general a starter-pair $(a,b)$ goes in $(0,a+b)$, so the
+corresponding transpose-pair will be $(a-a-b,b-a-b) = (-b,-a)$. So the
+transpose of the above starter is:
+$$(2,12),(6,10),(11,9),(5,4),(8,3),(7,1)$$ If we now apply the
+Schellenberg construction as suggested in [13] we obtain $P \odot Q$:
+
+<span>-0.45cm</span><span>-0.45cm</span>
+
+$P \odot Q = $
+
+   0,0    2,12    10,5    6,10    9,8    12,6    4,2    11,9     7,1    5,4     3,7     8,3    1,11
+  ------ ------- ------- ------- ------ ------ ------- ------- ------- ------ ------- ------- -------
+   2,12    1,1     3,0    11,6    7,11   10,9    0,7     5,3    12,10   8,2     6,5     4,8     9,4
+   10,5    3,0     2,2     4,1    12,7   8,12   11,10    1,8     6,4    0,11    9,3     7,6     5,9
+   6,10   11,6     4,1     3,3    5,2    0,8     9,0    12,11    2,9    7,5    1,12    10,4     8,7
+   9,8    7,11    12,7     5,2    4,4    6,3     1,9    10,1    0,12    3,10    8,6     2,0    11,5
+   12,6   10,9    8,12     0,8    6,3    5,5     7,4    2,10    11,2    1,0    4,11     9,7     3,1
+   4,2     0,7    11,10    9,0    1,9    7,4     6,6     8,5    3,11    12,3    2,1    5,12    10,8
+   11,9    5,3     1,8    12,11   10,1   2,10    8,5     7,7     9,6    4,12    0,4     3,2     6,0
+   7,1    12,10    6,4     2,9    0,12   11,2   3,11     9,6     8,8    10,7    5,0     1,5     4,3
+   5,4     8,2    0,11     7,5    3,10   1,0    12,3    4,12    10,7    9,9    11,8     6,1     2,6
+   3,7     6,5     9,3    1,12    8,6    4,11    2,1     0,4     5,0    11,8   10,10   12,9     7,2
+   8,3     4,8     7,6    10,4    2,0    9,7    5,12     3,2     1,5    6,1    12,9    11,11   0,10
+   1,11    9,4     5,9     8,7    11,5   3,1    10,8     6,0     4,3    2,6     7,2    0,10    12,12
+
+**Figure 38**
+
+Although this is the join of two Latin squares, the repetition of
+ordered pairs means that they are not orthogonal. An immediate solution
+might be to reverse the order of half the repeated pairs, but this
+approach ruins the join of Latin squares property.\
+Anderson, has developed a theorem to overcome this property. We present
+a slight adaptation of this theorem:
+
+#### Theorem 5.5.2
+
+[2] Let $p=8k+5$ be a prime, $p>5$. Then a $BRS$ of side $2p+1$ exists.\
+\
+*Proof*\
+Suppose we take $P \odot Q$, and label elements of the pairs from $P$
+with subscript 1 and all those from $Q$ with subscript 2. Then remove
+the diagonal pairs $(a,a)$, and call this new array $A$.\
+$A$ contains all the unordered pairs $\{a_1,b_1\},\{a_2,b_2\}$ exactly
+once.\
+The first row of $A$ contains the ordered pairs,
+
+$(x_1^{4i},-x_1^{4i+1}),(x_1^{4i+2},-x_1^{4i+1})$ due to $P$, and\
+$(x_2^{4i+1},-x_2^{4i}),(x_2^{4i+1},-x_2^{4i+2})$ due to $Q$\
+
+So all the squares subscript 1 appear as left hand members of pairs as
+do all the non-squares subscript 2. Also, all the non-squares appear
+with subscript 1 in the right hand positions and all the squares with
+subscript 2.\
+\
+If we denote the set of squares with subscript 1 by $R_1$, and with
+subscript 2 by $R_2$. And similarly denote the sets of non-squares as
+$N_1$ and $N_2$. Then in $A$,
+
+$R_1 \cup N_2$ occupies the left hand positions\
+while $N_1 \cup R_2$ occupies the right\
+
+Now define $B$ as the array of side $p$ whose first row contains the
+pairs:
+$$(x_2^{4i},-x_1^{4i+1}),(x_1^{4i+2},x_2^{4i+1}),(-x_2^{4i},x_1^{4i+1}),(-x_1^{4i+2},-x_2^{4i+1})$$
+So in $B$ the left hand positions are occupied by $R_2 \cup R_1$, while
+the right are occupied by $N_1 \cup N_2$.\
+In order that all unordered pairs $\{a_1,b_2\}$ occur once in $B$
+requires that in the first row all the members of $GF(p)$ occur once as
+a difference in one of two ways:
+
+Either as $a_1-b_2$ which are called $(1,2)$ ***mixed differences***\
+Or as $b_2 -a_1$, called (2,1) mixed differences.\
+
+Consider $(2,1)$ mixed differences in the first row, they are:\
+$x^{4i} + x^{4i+1} = x^{4i}(1+x)$\
+$-x^{4i}-x^{4i+1}=-x^{4i}(1+x)$\
+$x^{4i+1} - x^{4i+2} = x^{4i+1}(1-x)$\
+$-x^{4i+1} + x^{4i+2} = -x^{4i+1}(1-x)$\
+i.e. $\pm x^{4i}(1+x), \pm x^{4i+1}(1-x)$\
+Again, these are all of $GF(p)$ provided that $x^2- 1$ is a square.\
+\
+Now arrange $A$ and $B$ in the following familiar manner to construct an
+array of side $2p+1$:
+
+     $A$       $\phi$         $\theta ^T$
+  ---------- ---------- ------------------------
+    $\phi$      $B$           $\theta ^T$
+   $\theta$   $\theta$   $\infty _1, \infty _2$
+
+Next place the missing pairs in a manner similar to the original
+construction of Schellenberg. Take a pair $(a_1,b_2$ from the first row
+of $B$ in position $(0_2,h_2)$ and consider the cells in transversal
+$T_1$ of $B$, where
+$$T_1 = \left \{((0+g)_2,(h+g)_2) \hspace{0.2cm} \middle| \hspace{0.2cm} g \in Z_p \right \}$$
+If cell $(i_2,j_2)$ in $T_1$ contains $(n_1,k_2)$,
+
+-   put $(n_1,k_2)$ in cell $(i_2,\infty)$
+
+-   also put $(\infty _1,k_2)$ in $(k_1,j_2)$ and $(\infty _2,n_1)$ in
+    $(n_1,j_2)$
+
+Now consider the transversal $T_2$ of $B$, where $(u_1,v_2)$ is a pair
+in $(0_2,l_2)$ and,
+$$T_2 = \left \{((0+g)_2,(l+g)_2) \hspace{0.2cm} \middle| \hspace{0.2cm} g \in Z_p \right \}$$
+If cell $(i_2,j_2)$ in $T_2$ contains $(h_1,m_2)$,
+
+-   put $(h_1,m_2)$ in cell $(\infty,j_2)$
+
+-   also put $(\infty _2,m_2)$ in $(0_2,m_1)$ and $(h_1,\infty _1)$ in
+    $(0_2,h_1)$
+
+Finally put $(i_1,i_2)$ in $(i_2,i_2)$ for $0 \leq i \leq p-1$, and put
+$(\infty _1, \infty _2)$ in cell $(\infty, \infty )$.\
+\
+*Example*\
+Continuing from before,\
+\
+
+<span>-1.5cm</span><span>-1.5cm</span>
+
+$A=$ $\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & 0_1 & 1_1 & 2_1 & 3_1 & 4_1 & 5_1 & 6_1 & 7_1 & 8_1 & 9_1 & 10_1 & 11_1 & 12_1\\\hline
+0_1 &  & 2_2 12_2 & 10_1 5_1 & 6_2 10_2 & 9_1 8_1 & 12_1 6_1 & 4_1 2_1 & 11_2 9_2 & 7_2 1_2 & 5_2 4_2 & 3_1 7_1 & 8_2 3_2 & 1_1 11_1\\\hline
+1_1 & 2_1 12_1 & & 3_2 0_2 & 11_1 6_1 & 7_2 11_2 & 10_1 9_1 & 0_1 7_1 & 5_1 3_1 & 12_2 10_2 & 8_2 2_2 & 6_2 5_2 & 4_1 8_1 & 9_2 4_2\\\hline
+2_1 & 10_2 5_2 & 3_1 0_1 & & 4_2 1_2 & 12_1 7_1 & 8_2 12_2 & 11_1 10_1 & 1_1 8_1 & 6_1 4_1 & 0_2 11_2 & 9_2 3_2 & 7_2 6_2 & 5_1 9_1\\\hline
+3_1 & 6_1 10_1 & 11_2 6_2 & 4_1 1_1 & & 5_2 2_2 & 0_1 8_1 & 9_2 0_2 & 12_1 11_1 & 2_1 9_1 & 7_1 5_1 & 1_1 12_2 & 10_2 4_2 & 8_2 7_2\\\hline
+4_1 & 9_2 8_2 & 7_1 11_1 & 12_2 7_2 & 5_1 2_1 & & 6_2 3_2 & 1_1 9_1 & 10_2 1_2 & 0_1 12_1 & 3_1 10_1 & 8_1 6_1 & 2_2 0_2 & 11_2 5_2\\\hline
+5_1 & 12_2 6_2 & 10_2 9_2 & 8_1 12_1 & 0_2 8_2 & 6_1 3_1 & & 7_1 4_1 & 2_1 10_1 & 11_2 2_2 & 1_1 0_1 & 4_1 11_1 & 9_1 7_1 & 3_2 1_2\\\hline
+6_1 & 4_2 2_2 & 0_2 7_2 & 11_2 10_2 & 9_1 0_1 & 1_2 9_2 & 7_1 4_1 & & 8_2 5_2 & 3_1 11_1 & 12_2 3_2 & 2_1 1_1 & 5_1 12_1 & 10_1 8_1\\\hline
+7_1 & 11_1 9_1 & 5_2 3_2 & 1_2 8_2 & 12_2 11_2 & 10_1 1_1 & 2_2 10_2 & 8_1 5_1 & & 9_2 6_2 & 4_1 12_1 & 0_2 4_2 & 3_1 2_1 & 6_1 0_1\\\hline
+8_1 & 7_1 1_1 & 12_1 10_1 & 6_2 4_2 & 2_2 9_2 & 0_1 12_1 & 11_2 2_2 & 3_1 11_1 & 9_1 6_1 & & 10_2 7_2 & 5_1 0_1 & 1_2 5_2 & 4_1 3_1\\\hline
+9_1 & 5_1 4_1 & 8_1 2_1 & 0_1 11_1 & 7_2 5_2 & 3_2 10_2 & 1_2 0_2 & 12_1 3_1 & 4_2 12_2 & 10_1 7_1 & & 11_2 8_2 & 6_1 1_1 & 2_2 6_2\\\hline
+10_1 & 3_2 7_2 & 6_1 5_1 & 9_1 3_1 & 1_1 12_1 & 8_2 6_2 & 4_2 11_2 & 2_2 1_2 & 0_1 4_1 & 5_2 0_2 & 11_1 8_1 & & 12_2 9_2 & 7_1 2_1\\\hline
+11_1 & 8_1 3_1 & 4_2 8_2 & 7_1 6_1 & 10_1 4_1 & 2_1 0_1 & 9_2 7_2 & 5_2 12_2 & 3_2 2_2 & 1_1 5_1 & 6_2 1_2  & 12_1 9_1 & & 0_2 10_2\\\hline
+12_1 & 1_2 11_2 & 9_1 4_1 & 5_2 9_2 & 8_1 7_1 & 11_1 5_1 & 3_1 1_1 & 10_2 8_2 & 6_2 0_2 & 4_2 3_2 & 2_1 6_1 & 7_2 2_2 & 0_1 10_1 & \\\hline
+\end{array}$
+
+**Figure 39**
+
+<span>-1.5cm</span><span>-1.5cm</span>
+
+$B=$ $\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & 0_2 & 1_2 & 2_2 & 3_2 & 4_2 & 5_2 & 6_2 & 7_2 & 8_2 & 9_2 & 10_2& 11_ 2& 12_2\\\hline
+0_2 &  & 12_2 2_1 & 10_1 5_2 & 10_2 6_1 & 9_2 8_1 & 12_1 6_2 & 4_1 2_2 & 9_1 11_2  & 1_1 7_2 & 4_2 5_1  & 3_2 7_1 & 3_1 8_2  & 1_2 11_1\\\hline
+1_2 & 2_2 12_1 & & 0_2 3_1  & 11_1 6_2 &  11_2 7_1 & 10_2 9_1 & 0_1 7_2 & 5_1 3_2 & 10_1 12_2  & 2_1 8_2  & 5_2 6_1  & 4_2 8_1 & 4_1 9_2 \\\hline
+2_2 & 5_1 10_2  & 3_2 0_1 & & 1_2 4_1  & 12_1 7_2 & 12_2 8_1  & 11_2 10_1 & 1_1 8_2 & 6_1 4_2 & 11_1 0_2  & 3_1 9_2  & 6_2 7_1  & 5_2 9_1\\\hline
+3_2 & 6_2 10_1 &  6_1 11_2 & 4_2 1_1 & &  2_2 5_1 & 0_1 8_2 & 0_2 9_1  & 12_2 11_1 & 2_1 9_2 & 7_1 5_2 & 12_1 1_2& 4_1 10_2  & 7_2 8_1 \\\hline
+4_2 & 8_2 9_1  & 7_2 11_1 & 7_1  12_2 & 5_2 2_1 & & 3_2 6_1  & 1_1 9_2 & 1_2 10_1 & 0_2 12_1 & 3_1 10_2 & 8_1 6_2 & 0_1 2_2  & 5_1 11_2 \\\hline
+5_2 &  6_1 12_2 & 9_2 10_1  & 8_2 12_1 & 8_1 0_2  & 6_2 3_1 & & 4_2 7_1  & 2_1 10_2 & 2_2 11_1  & 1_2 0_1 & 4_1 11_2 & 9_1 7_2 & 1_1 3_2 \\\hline
+6_2 & 2_1 4_2  & 7_1 0_2  &  10_2 11_1 & 9_2 0_1 & 9_1 1_2  & 7_2 4_1 & &  5_2 8_1 & 3_1 11_2 & 3_2 12_1  & 2_2 1_1 & 5_1 12_2 & 10_1 8_2\\\hline
+7_2 & 11_1 9_2 & 3_1 5_2  & 8_1 1_2  & 11_2 12_1  & 10_2 1_1 & 10_1 2_2  & 8_2 5_1 & &  6_2 9_1 & 4_1 12_2 &  4_2 0_1 & 3_2 2_1 & 6_1 0_1\\\hline
+8_2 & 7_1 1_2 & 12_1 10_2 & 4_1 6_2  & 9_1 2_2  &12_2 0_1  & 11_2 2_1 &  11_1 3_2 & 9_2 6_1 & &  7_2 10_1 & 5_1 0_2 &  5_2 1_1 & 4_2 3_1\\\hline
+9_2 & 5_2 4_1 & 8_1 2_2 & 0_1 11_2 & 5_1 7_2  & 10_1 3_2  &  0_2 1_1 & 12_2 3_1 & 12_1 4_2  & 10_2 7_1 & &  8_2 11_1 & 6_1 1_2 &  6_2 2_1\\\hline
+10_2 &  7_2 3_1 & 6_2 5_1 & 9_1 3_2 & 1_1 12_2 & 6_1 8_2  & 11_1 4_2  &  1_2 2_1 & 0_2 4_1 & 0_1 5_2  & 11_2 8_1 & &  9_2 12_1 & 7_1 2_2\\\hline
+11_2 & 8_1 3_2 &  8_2 4_1 & 7_2 6_1 & 10_1 4_2 & 2_1 0_2 & 7_1 9_2  & 12_1 5_2  &  2_2 3_1 & 1_2 5_1 & 1_1 6_2   & 12_2 9_1 & &  10_2 0_1\\\hline
+12_2 &  11_2 1_1 & 9_1 4_2 &  9_2 5_1 & 8_2 7_1 & 11_1 5_2 & 3_1 1_2 & 8_1 10_2  & 0_1 6_2  &  3_2 4_1 & 2_2 6_1 & 2_1 7_2  & 0_2 10_1 & \\\hline
+\end{array}$
+
+**Figure 40**
+
+Now, assemble the large array and apply the construction using the
+following transversals,
+$$T_1 = \{((0+g)_2,(5+g)_2)\hspace{0.2cm}|\hspace{0.2cm}g \in Z_{13}\}$$
+$$T_2 = \{((0+g)_2,(11+g)_2)\hspace{0.2cm}|\hspace{0.2cm}g \in Z_{13}\}$$
+The obtained array is the $BRS(28)$ in Figure 41.\
+\
+The finished array (Figure 41) is an $ORS$ because it contains one
+ordered pair corresponding to each unordered pair from the set
+$\{\infty _1, \infty _2, 0_1,...,p-1_1,0_2,...,p-1_2\}$, with each
+member of the same set occurring exactly once in each row and column. To
+prove that this $ORS$ is a $BRS$ we need to show that the block design
+obtained from the rows in the usual way is balanced.\
+\
+Consider the blocks obtained from the first $p$ rows. We have shown
+already that the first row of $A$ conssted of two blocks, left and right
+where\
+$\hspace{1cm}$ Left block: $R_1 \cup N_2$\
+$\hspace{1cm}$ Right block: $N_1 \cup R_2$\
+The last stage of the construction put the pairs $\{\infty _2, 0_1\}$
+and $\{\infty _1,0_2\}$ in row $0_1$ of the finished array. So the
+blocks obtained from the first $p$ rows are:
+$$R_1 \cup N_2 \cup \{\infty _2, \infty _1 \}$$
+$$N_1 \cup R_2 \cup \{0 _1, 0 _2 \}$$ and their translates.\
+By similar reasoning the blocks obtained from the next $p$ rows are:
+$$R_2 \cup R_1 \cup \{0 _1, \infty _2 \}$$
+$$N_1 \cup N_2 \cup \{0 _2, \infty _1 \}$$ and their translates. Finally
+the row labelled $\infty$ contributes a further two blocks to the
+design: $\hspace{1cm} \{0_1,\infty _1\} \cup R_1 \cup N_1$ obtained from
+the left hand members of pairs, and\
+$\hspace{1cm} \{0_2,\infty _2\} \cup R_2 \cup N_2$ obtained from the
+right hand members.\
+Fortunately, Schellenberg has shown that these blocks do indeed form a
+$BIBD$ with parameters,\
+$(2(p+1_,p+1,p)$.\
+\
+To show this we consider another result due to Bose. He showed that the
+blocks\
+$\{\infty,x^0,x^2,...,x^{q-3}\}\{0,x^0,x^2,...,x^{q-3}\}$ form a
+difference system in $GF(q)$ with $\lambda = (q-1)/2$. This result
+implies that the blocks
+$\{\infty, x^1,x^3,...,x^{q-2}\}\{0,x^1,x^3,...,x^{q-2}\}$ also form a
+difference system with the same concurrence number.
+
+#### Lemma 5.5.2
+
+[4] If $q = p^n \equiv 1$(mod 4) is a prime power, then if we write down
+the non-zero elements of $GF(q)$ which are squares:
+$$x^0,x^2,x^4,...,x^{q-3}$$ Every non-square element of $GF(q)$ occurs
+exactly $(q-1)/4$ times as a difference between these elements and every
+square occurs $(q-5)/4$ times.\
+\
+*Proof*\
+We can write the differences in the following way: $$
+
+  ------------------------------ ----------------------------------- --------------------------------------- ----------------------
+            $(x^2-1)$                     $x^{2}(x^{2}-1)$            $ \hspace{0.5cm} ... \hspace{0.5cm} $    $x^{q-3}(x^{2}-1)$
+            $(x^4-1)$                     $x^{2}(x^{4}-1)$            $ \hspace{0.5cm} ... \hspace{0.5cm} $    $x^{q-3}(x^{4}-1)$
+                                                                      $ \hspace{0.5cm} ... \hspace{0.5cm} $  
+   $(x^{q-3}-1)\hspace{0.25cm}$   $\hspace{0.25cm}x^{2}(x^{q-3}-1)$   $ \hspace{0.5cm} ... \hspace{0.5cm} $   $x^{q-3}(x^{q-3}-1)$
+  ------------------------------ ----------------------------------- --------------------------------------- ----------------------
+
+$$ Where the first column has been obtained by substracting $x^0$ from
+every other square. The second column by taking $x^2$ from every other
+square, the third by taking $x^4$ and so on.\
+\
+Because the differences in every column except the first have an even
+power of $x$ multiplied by some member of the first column it is clear
+that the quadratic nature of these terms is determined by whether or not
+the elements in the first column are square or not.\
+\
+Therefore to complete the proof we need to show that among the $(q-3)/2$
+elements, $$x^2-1,x^4-1,...,x^{q-3}-1$$ every square occurs $(q-5)/4$
+times and every non-square $(q-1)/4$ times. We can further simplify the
+problem if we write,
+$$x^{2i}-1=(x^i+1)(x^i-1)=\frac{x^i+1}{x^i-1}(x^i-1)^2$$ Then $x^{2i}-1$
+is a square or non-square depending on whether:
+$$z_i = \frac{x^i+1}{x^i-1}$$ is a square or not. So it remains only to
+count the occurrences of squares/non-squares in the set:
+$$Z=\{z_1,z_2,...,z_{(q-3)/2}\}$$ Suppose we consider instead the set,
+$$A = \{z_1,z_2,...,z_{q-2}\}$$ which clearly has $q-2$ members. We can
+show that each member is a unique member of $GF(q)$, because if two
+different elements $z_i$ and $z_j$ were the same we would have:
+$$\frac{x^i+1}{x^i-1} \equiv \frac{x^j+1}{x^j-1}(\mathrm{mod}\hspace{0.1cm} q)$$
+$$(x^j-1)(x^i+1) \equiv (x^j+1)(x^i-1)\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} q)$$
+$$x^jx^i+x^j-x^i-1 \equiv x^jx^i - x^j + x^i -1\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} q)$$
+$$x^j \equiv x^i \hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} q)$$ but
+$1 \leq i, j \leq q-2$, therefore the above is only satisfied if
+$x^j = x^i, \therefore i=j$, which contradicts the assumption that the
+two elements were different.\
+Further, if $z_i \equiv -1\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} q)$
+then $x^i+1 = -x^i+1$, which implies $x^i=0$. So $-1 \notin A$. Recall
+that when $q \equiv 1\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} 4)$, $-1$
+is a square.\
+Also, if $z_i \equiv -1\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} q)$
+then $x^i+1=x^i-1$, so $1 \notin A$. 1 is a square.\
+Finally, $x^{q-1/2}=-1$, therefore $z_{q-1/2}=0$.\
+Clearly, then $A=GF(q) \backslash \{1,-1\}$, and
+$A \backslash \{z_{q-1/2}\}
+= GF(q) \backslash \{0,1,-1\}$, so $A \backslash \{z_{q-1/2}\}$ contains
+$(q-1)/2$ non-squares and $(q-5)/2$ squares.
+$$A \backslash \{z_{(q-1)/2}\}=\{z_1,z_2,...,z_{(q-3)/2},z_{(q+1)/2},z_{(q+3)/2},...,z_{q-2}\}$$
+But,
+$$z_{\{(q+1)/2\}+k} = \frac{x^{\{(q+1)/2\}+k}+1}{x^{\{(q+1)/2\}+k}-1}
+= \frac{-x^k+1}{-x^k-1} = \frac{1}{z^k} \hspace{0.5cm} k = 1,2,...,(q-3)/2$$
+So $z_{\{(q+1)/2\}+k}$ and $z_k$ $[ k = 1,2,...,(q-3)/2]$ are both
+squares or both non-squares, hence $Z=\{z_1,z_2,...,z_{(q-3)/2}\}$
+contains exactly $(q-1)/4$ non-squares and $(q-5)/4$ squares. So the
+lemma is proven.
+
+#### Corollary 5.5.2
+
+If $q = p^n \equiv 1$(mod 4) is a prime power, then if we write down the
+non-zero elements of $GF(q)$ which are non-squares:
+$$x^1,x^3,x^5,...,x^{q-2}$$ Every square element of $GF(q)$ occurs
+exactly $(q-1)/4$ times as a difference between these elements and every
+non-square occurs $(q-5)/4$ times.\
+\
+*Proof*\
+As for the previous theorem except that each difference is multiplied by
+$x$, so squares become non-squares and non-squares, squares.
+
+#### Theorem 5.5.3
+
+[4] The blocks
+$$\{\infty,x^0,x^2,...,x^{q-3}\}\{0,x^0,x^2,...,x^{q-3}\}$$ along with
+their translates, form a $BIBD$ with $\lambda = (q-1)/2$ in $GF(q)$,
+when $q = p^n \equiv 1$(mod 4).\
+\
+*Proof*\
+From the Lemma we have shown that in the set
+$$\{x^0,x^2,x^4,...,x^{q-3}\}$$ each square occurs as a difference
+$(q-5)/4$ times, and each non-square $(q-1)/4$ times. The right hand
+block also contributes the differences
+$$x^0-0,0-x^0,1-x^2,x^2-1,...,x^{q-3}-0,0-x^{q-3}$$
+$$\pm x^0, \pm x^2, ... ,\pm x^{q-3}$$ And because $-1$ is a square,
+each square of $GF(q)$ occurs a further twice due to these differences.
+
+                 $\{\infty,x^0,x^2,...,x^{q-3}\}$   $\{0,x^0,x^2,...,x^{q-3}$     Total
+  ------------- ---------------------------------- --------------------------- -----------
+     Squares                $(q-5)/4$                    $\{(q-5)/4\}+2$        $(q-1)/2$
+   Non-squares              $(q-1)/4$                       $(q-1)/4$           $(q-1)/2$
+
+**Table 10**
+
+Adjoining $\infty$ to a block of size $(q-1)/2$ creates $(q-1)/2$ pairs
+involving $\infty$. Therefore in $\{\infty,x^0,x^2,...,x^{q-3}\}$ and
+the translates obtained from this block $\infty$ makes a pair with each
+member of $GF(q)$, $(q-1)/2$ times.\
+Therefore the block design obtained from these two blocks is balanced,
+and the concurrence number is $\lambda = (q-1)/2$.\
+\
+Although we don’t need the following result, it now follows
+straightforwardly from Corollary 5.4.2.
+
+#### Corollory 5.5.3
+
+[4] The blocks,
+$$\{\infty,x^1,x^3,...,x^{q-2}\}\{0,x^1,x^3,...,x^{q-2}\}$$ along with
+their translates, form a $BIBD$ with $\lambda = (q-1)/2$ in $GF(q)$,
+when $q = p^n \equiv 1$(mod 4).\
+\
+Now returning to the Anderson construction:\
+Let: $$S = R_1 \cup N_2 \cup \{\infty _2, \infty _1\}$$
+$$T = N_1 \cup R_2 \cup \{0_1, 0_2\}$$
+$$U = N_1 \cup N_2 \cup \{0 _2, \infty _1\}$$
+$$V = R_2 \cup R_1 \cup \{0_1, \infty _2\}$$ Now consider the pairs
+$\{a_1,b_1\}$ such that $a,b \in GF(q) \cup \{\infty\}$. We know, due to
+the Bose result, that the blocks\
+$\{\infty _1\} \cup R_1$ and $0 _1\} \cup R_1$ along with their
+translates contain each pair $\{a_1,b_1\}$, $(q-1)/2$ times,\
+also\
+$\{\infty _1\} \cup N_1$ and $0 _1\} \cup N_1$ and translates contain
+each pair $\{a_1,b_1\}$, $(q-1)/2$ times.\
+But,
+$$\{\infty _1\} \cup R_1 \subset R_1 \cup N_2 \cup \{\infty _1, \infty _2\}$$
+$$\{\infty _1\} \cup N_1 \subset N_1 \cup R_2 \cup \{0_1, 0_2\}$$
+Therefore $S$ and $T$, along with their translates, contain each pair
+$\{a_1,b_1\}, 2\cdot (q-1)/2 = q-1$, times. Finally each pair
+$\{a_1,b_1\}$ occurs once more in the set
+$\{\infty _1,0_1\} \cup R_1 \cup N_1$. So in the entire block design
+each pair $\{a_1,b_1\}$ occurs $q$ times.\
+The same reasoning can be applied to show that the pairs $\{a_2,b_2\}$
+for $a,b \in GF(q) \cup \{\infty\}$ also occur $q$ times in the block
+design.\
+It remains to show that the mixed pairs of the form $\{a_1,b_2\}$, where
+$a,b \in GF(q) \cup \{\infty\}$, also occur $q$ times in the block
+design. Again we consider (1,2) mixed differences.\
+For a pair $\{a_1,a_2\}$ to occur in the block design requires a mixed
+difference of 0 in either $S$, $T$, $U$ or $V$.\
+In $T$, $0_1-0_2 = 0$, gives one occurrence, while in $U$\
+ $ \left.
+\begin{tabular}{l l}
+$x~1~^1^$ & $-x~2~^1^$\\
+$x~1~^3^$ & $-x~2~^3^$\\
+\multicolumn{1}{c}{\vdots} & \multicolumn{1}{c}{\vdots}\\
+$x^q-2^~1~$ & $-x~2~^q-2^$\\
+\end{tabular}
+\right \} $ gives $(q-1)/2$ occurrences of 0, and similarly $V$,\
+\
+ $ \left.
+\begin{tabular}{l l}
+$x~1~^0^$ & $-x~2~^0^$\\
+$x~1~^2^$ & $-x~2~^2^$\\
+\multicolumn{1}{c}{\vdots} & \multicolumn{1}{c}{\vdots}\\
+$x^q-3^~1~$ & $-x~2~^q-3^$\\
+\end{tabular}
+\right \} $ gives another $(q-1)/2$ occurrences of 0 as a mixed
+difference.\
+\
+Therefore, 0 occurs as mixed difference in $S,T,U$ and $V$
+$(2\cdot (q-1)/2)+1=q$ times, therefore each pair of the form
+$\{a_1,a_2\}$, occurs $q$ times in the block design.\
+\
+Next, consider pairs of the form $\{\infty _1, b_2\}$. In $S$ and $U$,
+$\infty _1$ makes a pair with each of the $(q-1)/2$ members of $N_2$.
+Therefore in the blocks consisting of $S$, $U$ and their translates,
+$\infty _1$ makes a pair with each element $b_2$ [for all $b \in GF(q)$]
+$2 \cdot (q-1)/2 = q-1$ times. Also in $U$, $\infty _1$ is paired with
+$0_2$, so $\infty _1$ makes a pair with each $b_2$ once more. So there
+are $q$ pairs $\{\infty _1,b_2\}$ for each element $b_2$ in the block
+design.\
+\
+By identical reasoning we can say that $\infty _2$ makes a pair with
+each $b_1$, for all $b \in GF(q)$, $(q-1)/2$ times in $S$ and its
+translates. Also $\{\infty _2,b_1\}$ [for all $b \in GF(q)$] occurs
+$(q+1)/2$ times due to $V$ and its translates.\
+Therefore the pairs $\{\infty _2, b_1 \}$ each occur $q$ times in the
+block design, for all $b \in GF(q)$.\
+\
+Next we confirm that all the pairs $\{a_1,b_2\}$ $a,b \in GF(q)$ each
+occur $q$ times in the block design. In order to do this we need to show
+that the non-zero members of $GF(q)$ each occur $q$ times as a mixed
+difference $a_1 - b_2$.\
+We have shown that for $q \equiv 1($mod 4)
+
+1.  every square, non-square occurs as a difference of two squares of
+    $GF(q)$, $s-1$, $s$ times respectively. $s = (q-1)/4$.
+
+2.  every square, non-square occurs as a difference of non-two squares
+    of $GF(q)$, $s$, $s-1$ times respectively.
+
+Consider first the mixed differences $a_1-b_2 = c$, where $c$ is a
+square.\
+$U$ contains $N_1 \cup N_2$, so according to $B$ every square occurs as
+a (1,2) difference $(q-1)/4$ times in $U$. Also according to $B$ each
+non-square occurs as a (1,2) difference between members of $U$,
+$(q-5)/4$ times. Finally, $U$ contains the element $0_2$, so each
+non-square is generated once more.
+$x_1^1-0_2=x^1_1,x_1^3-0_2=x_1^3,...,x_1^{q-2}-0_2=x_1^{q-2}$.\
+Similarly, in $V$ each non-square occurs as a mixed difference $(q-1)/4$
+times while each square occurs as a difference $(q-5)/4_1$ times.\
+Next, consider blocks $S$ and $T$. In $T$ each square/non-square exists
+as a mixed difference once, in the following way: $$
+
+  ------------- -------- ------------
+  $x_1^1$       $-0_2$   $=x^1$
+  $x_1^3$       $-0_2$   $=x^3$
+                         
+  $x^{q-2}_1$   $-0_2$   $=x^{q-2}$
+  ------------- -------- ------------
+
+  ------------- -------- ------------
+  $x_2^0$       $-0_1$   $=x^0$
+  $x_2^2$       $-0_1$   $=x^2$
+                         
+  $x^{q-3}_2$   $-0_1$   $=x^{q-3}$
+  ------------- -------- ------------
+
+The remaining mixed differences in $S$ and $T$ all involve
+differences between one square and one non-square (and vice versa). Now,
+for any $c \in GF(q)$, $a-b=c$ has $q$ solutions. Two of these,
+$$a=0-(-a)$$ $$a=a-0$$ involve zero, and can be rejected because we have
+already considered all differences involving 0 in these blocks. Further,
+from $A$ and $B$, we know there are $(q-5)/4 + (q-1)/4 = (q-3)/2$
+solutions which involve either both squares or both non-squares, and so
+there remain $$(q-2)-[(q-3)/2] = (q-1)/2$$ solutions which involve
+elements of opposite quadratic character. Hence we can say that each
+square, non-square occurs as a difference in $S$ and $T$ in $(q-1)/2+1$
+ways.
+
+<span>|c|c|c|</span> &\
+& c=square & c = nonsquare\
+S & &\
+ T & &\
+U & & +1\
+V & +1 &\
+ & q & q\
+
+Which confirms that each pair $\{a_1,b_2\}$ for
+$a,b \in GF(a) \cup \{\infty\}$ appears in $q$ blocks of the block
+design.\
+So every pair $\{a,b\}$,
+$a,b \in GF(q)_1 \cup GF(q)_2 \cup \{\infty _1, \infty _2\}, a \neq b$
+appears in $q$ blocks of the block design. Hence that design is a
+$BIBD$, with parameters $(2(q+1),q+1,q)$.\
+So theorem 5.5.2 is established.

@@ -1,0 +1,299 @@
+---
+title: "Hill-Climbing for One-Factorisations"
+author: "Matthew Henderson"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    code_folding: show
+    fig_caption: yes
+    theme: paper
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+http://kateto.net/netscix2016
+
+https://jameshoward.us/writing/computational-methods-numerical-analysis-r/
+
+http://www.bnlearn.com/
+http://www.bnlearn.com/documentation/man/hc.html
+
+## One-factors
+
+We begin with a complete graph on six vertices. In **igraph** such a graph can
+be generated with the `make_full_graph()` function.
+
+```{r}
+library(igraph)
+
+g <- make_full_graph(6)
+plot(g)
+```
+
+Next we give the vertices and edges names, to make them easier to refer to.
+
+```{r}
+V(g)$name <- LETTERS[1:6]
+E(g)$name <- 1:15
+```
+
+```{r}
+library(ggraph)
+
+ggraph(g, layout = 'kk') + 
+  geom_node_text(aes(label = name), size = 4) +
+  geom_edge_link(aes(label = name), show.legend = FALSE, angle_calc = 'along', label_dodge = unit(3.0, 'mm'), label_push = unit(-6.0, 'mm'), start_cap = circle(4, 'mm'), end_cap = circle(4, 'mm'), label_colour = "blue") +
+  theme_graph(foreground = 'steelblue', fg_text_colour = 'white')
+```
+
+A **one-factor** $f_i$ is a set of edges in which each vertex appears
+exactly once.
+
+For example,
+
+```{r}
+f1 <- c(1, 11, 14)
+E(g)[f1]
+```
+
+```{r}
+E(g)[f1]$factor <- "f1"
+
+ggraph(g, layout = 'kk') + 
+  geom_node_text(aes(label = name), size = 4) +
+  geom_edge_link(aes(label = name, color = factor), show.legend = FALSE, angle_calc = 'along', label_dodge = unit(2.5, 'mm'), label_push = unit(-6.0, 'mm'), start_cap = circle(4, 'mm'), end_cap = circle(4, 'mm'), label_colour = "blue") +
+  theme_graph(foreground = 'steelblue', fg_text_colour = 'white')
+```
+
+We need a function to test whether a set of edges constitutes a one-factor or
+not. The `is_one_factor(f, g)` function will test whether or not $f$ is a one-factor
+of $g$ or not by constructing a graph from the edges of $f$ and testing whether
+this graph has the same vertex set as $g$ or not.
+
+```{r}
+is_one_factor <- function(f, g) {
+  all(V(graph_from_edgelist(ends(g, f)))==V(g))
+} 
+```
+
+Using this function we can test, for example, whether $f1$ is a one-factor of
+$g$ or not.
+
+```{r}
+is_one_factor(f1, g)
+```
+
+## One-factorisations
+
+A one-factorisation is a decomposition of the edge-set of a graph into
+one-factors.
+
+We can create a one-factorisation that includes $f1$ as one of its one-factors
+by creating another four one-factors ($f2$, $f3$, $f4$, and $f5$ below).
+
+```{r}
+f2 <- c(3, 6, 15)
+f3 <- c(5, 8, 10)
+f4 <- c(2, 9, 13)
+f5 <- c(4, 7, 12)
+
+E(g)[f2]$factor <- "f2"
+E(g)[f3]$factor <- "f3"
+E(g)[f4]$factor <- "f4"
+E(g)[f5]$factor <- "f5"
+```
+
+We can test that all of these are, indeed, one-factors.
+
+```{r}
+all(sapply(list(f2, f3, f4, f5), function(x) is_one_factor(x, g)))
+```
+
+Colouring the edges according to which factor they belong to makes it easy to
+confirm that the one-factors together constitute a one-factorisation.
+
+```{r}
+gg1 <- ggraph(g, layout = 'kk') + 
+  geom_node_text(aes(label = name), size = 4) +
+  geom_edge_link(aes(label = name, color = factor), show.legend = FALSE, angle_calc = 'along', label_dodge = unit(2.5, 'mm'), label_push = unit(-6.0, 'mm'), start_cap = circle(4, 'mm'), end_cap = circle(4, 'mm'), label_colour = "blue") +
+  theme_graph(foreground = 'steelblue', fg_text_colour = 'white')
+
+print(gg1)
+```
+
+We can also plot the factors as separate graphs.
+
+```{r, fig.width = 12, fig.height = 8}
+gg1 + facet_edges(~factor)
+```
+
+```{r}
+F1 <- list(f1, f2, f3, f4, f5)
+F1
+```
+
+```{r}
+is_one_factorisation <- function(of, g) {
+  length(F1) == vcount(g) - 1 && all(sapply(of, is_one_factor, g)) && length(difference(E(g), E(g)[unlist(of)])) == 0
+}
+```
+
+```{r}
+is_one_factorisation(F1, g)
+```
+
+## Heuristics
+
+```{r}
+f1 <- c(1, 11)
+f2 <- c(3, 6, 15)
+f3 <- c(10)
+f4 <- c(2, 9, 13)
+
+pof <- list(f1, f2, f3, f4)
+```
+
+
+### Heuristic $H_{1}$
+
+1.  Choose any vertex $x$ such that $x$ does not occur in every partial
+    one-factor of $F$ (such a vertex is said to be a **live point**).
+
+2.  Choose any partial one-factor $f_i$ such that $x$ does not occur in
+    $f_i$.
+
+3.  Choose any $y \neq x$ such that there is no partial one-factor $f_j$
+    for which $(f_j,\{x,y\}) \in F$ (we say that $x$ and $y$ *do not
+    occur together*).
+
+4.  **if** $y$ does not occur in $f_i$, **then**
+
+5.  $\hspace{1cm}$ Replace $F$ with $F \cup \{(f_i,\{x,y\})\}$.
+
+6.  **Else** there is a pair in $F$ of the form
+    $(f_i,\{z,y\}) \hspace{0.5cm} (z \neq x)$
+
+7.  $\hspace{1cm}$ Replace $F$ with $F \cup \{(f_i,\{x,y\})\} \backslash
+     \{(f_i,\{z,y\})\}$.
+
+### Heutistic $H_{2}$
+
+1.  Choose any partial one-factor $f_i$ which does not occur in exactly
+    $n/2$ pairs in $F$ (such a partial one-factor is said to be
+    ***live***).
+
+2.  Choose any $x$ and $y$ such that $x$ and $y$ do not occur together
+    in $f_i$.
+
+3.  **if** $x$ and $y$ do not occur together, **then**
+
+4.  $\hspace{1cm}$ Replace $F$ with $F \cup \{(f_i,\{x,y\})\}$.
+
+5.  **Else** there is a pair in $F$ of the form
+    $(f_j,\{x,y\}) \hspace{0.5cm} (j \neq i)$
+
+6.  $\hspace{1cm}$ Replace $F$ with $F \cup \{(f_i,\{x,y\})\} \backslash
+     \{(f_j,\{x,y\})\}$.
+
+#### Example
+
+Suppose we are in the process of trying to find a one-factorisation for
+$K_6$, and have generated a partial one-factorisation represented by the
+set $F$.
+$$F=\{(f_1,\{4,6\}),(f_1,\{3,5\}),(f_2,\{5,6\}),(f_3\{1,6\}), (f_3\{3,4\}),(f_4,\{2,3\}),(f_4,\{4,5\})\}$$
+Now apply $H_1$:
+
+1.  Choose $x=2$. Live, because it doesn’t appear in $f_1,f_2,f_3$ or
+    $f_5$.
+
+2.  Of these four partial one factors, choose $f_1$.
+
+3.  2 only occurs together with 3 (in $f_4$), so pick $y=5$.
+
+4.  5 already appears in $f_1$ so $\{z,y\}=\{3,5\}$. So replace $F$ by
+    $F \cup \{(f_1,\{2,5\}) \backslash (f_1,\{3,5\})\}$
+
+So we have extracted one edge from the one-factorisation and replaced it
+with another edge, leaving the cost unchanged.
+If in 3. we had picked 1 then according to the heuristic we should
+replace $F$ with $F \cup (f_1,\{2,1\})$, increasing $|F|$ by one, and so
+decreasing the cost by the same. Because the cost cannot increase $H_1$
+is a suitable heuristic for use in a hill-climbing algorithm.
+
+Now apply $H_2$ to the new one-factorisation $F_1=F \cup (f_1,\{2,1\})$
+
+1.  We can pick any of $f_2, f_3, f_4, f_5$, because all are live.
+    Choose $f_2$.
+
+2.  Choose $x=2, y=3$, because neither appear in $f_2$.
+
+3.  2 and 3 occur together in $f_4$. So replace $F_1$ with
+    $F_1 \cup \{(f_2,\{2,3\}) \backslash (f_4,\{2,3\})\}$
+
+Again the cost remains unchanged by this procedure, and if in 2. we had
+chosen $x=1,y=4$ instead then we would have replaced $F_1$ with
+$F_1 \cup \{(f_2,\{1,4\})\}$ decreasing the cost by one. As with $H_1$,
+the cost cannot increase, which makes $H_2$ a suitable heuristic.
+The hill-climbing algorithm for constructing one-factorisations which
+was first given in [9] has a very simple form.
+
+1.  **While** $c(F) \neq 0$, **do**
+
+2.  choose $r=1$ or $r=2$ with equal probability
+
+3.  perform $H_r$
+
+
+## Hill-climbing
+
+There is a function `hill.climbing.search` in the FSelector package.
+
+```{r}
+library(rpart)
+data(iris)
+evaluator <- function(subset) {
+#k-fold cross validation
+k <- 5
+splits <- runif(nrow(iris))
+results = sapply(1:k, function(i) {
+test.idx <- (splits >= (i - 1) / k) & (splits < i / k)
+train.idx <- !test.idx
+test <- iris[test.idx, , drop=FALSE]
+train <- iris[train.idx, , drop=FALSE]
+tree <- rpart(as.simple.formula(subset, "Species"), train)
+error.rate = sum(test$Species != predict(tree, test, type="c")) / nrow(test)
+return(1 - error.rate)
+})
+print(subset)
+print(mean(results))
+return(mean(results))
+}
+
+library(FSelector)
+subset <- hill.climbing.search(names(iris)[-5], evaluator)
+f <- as.simple.formula(subset, "Species")
+print(f)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
