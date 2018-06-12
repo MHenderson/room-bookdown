@@ -1,25 +1,4 @@
----
-title: "Hill-Climbing for One-Factorisations"
-author: "Matthew Henderson"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-output:
-  html_document:
-    code_folding: show
-    fig_caption: yes
-    theme: paper
-    toc: yes
-    toc_float: yes
-  pdf_document:
-    toc: yes
----
-
-```{r setup2, include=FALSE}
-knitr::opts_chunk$set(
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE
-)
-```
+# Hill-Climbing for One-Factorisations
 
 http://kateto.net/netscix2016
 
@@ -258,7 +237,7 @@ was first given in [9] has a very simple form.
 
 There is a function `hill.climbing.search` in the FSelector package.
 
-```{r}
+```{r eval = FALSE}
 library(rpart)
 data(iris)
 evaluator <- function(subset) {

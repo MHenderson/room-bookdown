@@ -1,9 +1,4 @@
----
-title: "Balanced Room Squares"
-author: "Matthew Henderson"
-date: "15/03/2017"
-output: html_document
----
+# Balanced Room Squares
 
 BIBDs and BRBs
 --------------

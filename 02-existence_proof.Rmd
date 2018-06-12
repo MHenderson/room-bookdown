@@ -1,16 +1,4 @@
----
-title: "Proving the existence of Room squares"
-author: "Matthew Henderson"
-date: "13/03/2017"
-output: html_document
----
-
-```{r setup3, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-Introduction
-------------
+# Existence
 
 The theorem which will ultimately be established in section 4 relies
 upon a fundamental theorem in number theory – in fact **the**

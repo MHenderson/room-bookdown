@@ -3,4 +3,3 @@ language:
   ui:
     chapter_name: "Chapter "
 delete_merged_file: true
-rmd_files: ["index.Rmd", "17_03_12_introduction.Rmd", "17_03_13_graph_theoretic.Rmd"]
