@@ -1,21 +1,4 @@
----
-title: "Introduction"
-author: "Matthew Henderson"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-output:
-  pdf_document:
-    toc: yes
-  html_document:
-    code_folding: hide
-    fig_caption: yes
-    theme: paper
-    toc: yes
-    toc_float: yes
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Introduction
 
 Kirkman’s Schoolgirl Problem
 ----------------------------
