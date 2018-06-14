@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Room Squares</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Room Squares" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="mhenderson/room" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Room Squares" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Matthew Henderson">
+
+
+<meta name="date" content="2018-06-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="a-graph-theoretic-approach-to-constructing-room-squares.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Room Squares</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Kirkman’s Schoolgirl Problem</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#tournaments"><i class="fa fa-check"></i><b>1.1</b> Tournaments</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#t.g.-room-1902-86"><i class="fa fa-check"></i><b>1.2</b> T.G. Room, (1902-86)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-galois-field"><i class="fa fa-check"></i><b>1.3</b> The Galois Field</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#example"><i class="fa fa-check"></i><b>1.3.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="existence.html"><a href="existence.html"><i class="fa fa-check"></i><b>2</b> Existence</a><ul>
+<li class="chapter" data-level="2.1" data-path="existence.html"><a href="existence.html#starters-adders-and-cyclic-room-squares"><i class="fa fa-check"></i><b>2.1</b> Starters, Adders and Cyclic Room Squares</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="existence.html"><a href="existence.html#finding-a-starter"><i class="fa fa-check"></i><b>2.1.1</b> Finding a starter</a></li>
+<li class="chapter" data-level="2.1.2" data-path="existence.html"><a href="existence.html#finding-an-adder"><i class="fa fa-check"></i><b>2.1.2</b> Finding an adder</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="existence.html"><a href="existence.html#strong-starters"><i class="fa fa-check"></i><b>2.2</b> Strong Starters</a></li>
+<li class="chapter" data-level="2.3" data-path="existence.html"><a href="existence.html#the-mullin-nemeth-starters"><i class="fa fa-check"></i><b>2.3</b> The Mullin-Nemeth Starters</a></li>
+<li class="chapter" data-level="2.4" data-path="existence.html"><a href="existence.html#the-trouble-with-fermat-numbers"><i class="fa fa-check"></i><b>2.4</b> The Trouble with Fermat Numbers</a></li>
+<li class="chapter" data-level="2.5" data-path="existence.html"><a href="existence.html#a-multiplication-theorem"><i class="fa fa-check"></i><b>2.5</b> A Multiplication Theorem</a></li>
+<li class="chapter" data-level="2.6" data-path="existence.html"><a href="existence.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+<li class="chapter" data-level="2.7" data-path="existence.html"><a href="existence.html#n-tuplication-of-room-squares"><i class="fa fa-check"></i><b>2.7</b> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html"><i class="fa fa-check"></i><b>3</b> A graph theoretic approach to constructing Room squares</a><ul>
+<li class="chapter" data-level="3.1" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#graph-factorisations"><i class="fa fa-check"></i><b>3.1</b> Graph factorisations</a></li>
+<li class="chapter" data-level="3.2" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#hill-climbing-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2</b> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-one-factorisations"><i class="fa fa-check"></i><b>3.2.1</b> An algorithm for One-Factorisations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2.2</b> An Algorithm for Room Squares</a></li>
+<li class="chapter" data-level="3.2.3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#the-room-square-generator"><i class="fa fa-check"></i><b>3.2.3</b> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html"><i class="fa fa-check"></i><b>4</b> Balanced Room Squares</a><ul>
+<li class="chapter" data-level="4.1" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#bibds-and-brbs"><i class="fa fa-check"></i><b>4.1</b> BIBDs and BRBs</a></li>
+<li class="chapter" data-level="4.2" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#complete-balanced-howell-rotations"><i class="fa fa-check"></i><b>4.2</b> Complete Balanced Howell Rotations</a></li>
+<li class="chapter" data-level="4.3" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#starters-and-adders-for-brs-and-cbhr"><i class="fa fa-check"></i><b>4.3</b> Starters and Adders for BRS and CBHR</a></li>
+<li class="chapter" data-level="4.4" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#a-multiplicative-construction-for-brs"><i class="fa fa-check"></i><b>4.4</b> A Multiplicative Construction for BRS</a></li>
+<li class="chapter" data-level="4.5" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#symmetric-skew-balanced-starters"><i class="fa fa-check"></i><b>4.5</b> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html"><i class="fa fa-check"></i><b>5</b> Hill-Climbing for One-Factorisations</a><ul>
+<li class="chapter" data-level="5.1" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#one-factors"><i class="fa fa-check"></i><b>5.1</b> One-factors</a></li>
+<li class="chapter" data-level="5.2" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#one-factorisations"><i class="fa fa-check"></i><b>5.2</b> One-factorisations</a></li>
+<li class="chapter" data-level="5.3" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heuristics"><i class="fa fa-check"></i><b>5.3</b> Heuristics</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heuristic-h_1"><i class="fa fa-check"></i><b>5.3.1</b> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heutistic-h_2"><i class="fa fa-check"></i><b>5.3.2</b> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#hill-climbing"><i class="fa fa-check"></i><b>5.4</b> Hill-climbing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Room Squares</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="existence" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Existence</h1>
+<p>The theorem which will ultimately be established in section 4 relies
+upon a fundamental theorem in number theory – in fact <strong>the</strong>
+fundamental theorem. The Fundamental Theorem of Arithmetic states that
+every positive integer, except 1, can be expressed uniquely as a product
+of primes.</p>
+<p>Proof of this theorem can be found in [11, section 2.10].</p>
+<p>The proof which established the existence of Room squares will rely upon
+various other theorems which collectively establish the existence of all
+Room squares with prime side, except 3 and 5. Then multiplication
+theorems will be developed to establish the existence of composite Room
+squares (those whose side is the product of two or more primes). Clearly
+if the prime Room squares can be proven to exist, and hence composite
+Room squares, the fundamental theorem will allow us to state that all
+Room squares exist with odd positive integer side. Apart from a few
+exceptional cases, this is basically what we wil be able to do.</p>
+<div id="starters-adders-and-cyclic-room-squares" class="section level2">
+<h2><span class="header-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</h2>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>0</strong></td>
+<td align="center">80</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">25</td>
+<td align="center"></td>
+<td align="center">16</td>
+<td align="center">34</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>1</strong></td>
+<td align="center">45</td>
+<td align="center">81</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">36</td>
+<td align="center"></td>
+<td align="center">20</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>2</strong></td>
+<td align="center">31</td>
+<td align="center">56</td>
+<td align="center">82</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">40</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>3</strong></td>
+<td align="center"></td>
+<td align="center">42</td>
+<td align="center">60</td>
+<td align="center">83</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">51</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>4</strong></td>
+<td align="center">62</td>
+<td align="center"></td>
+<td align="center">53</td>
+<td align="center">01</td>
+<td align="center">84</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>5</strong></td>
+<td align="center"></td>
+<td align="center">03</td>
+<td align="center"></td>
+<td align="center">64</td>
+<td align="center">12</td>
+<td align="center">85</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>6</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">14</td>
+<td align="center"></td>
+<td align="center">05</td>
+<td align="center">23</td>
+<td align="center">86</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 16 Cyclic Room square</strong></p>
+<p>The Room square in Figure 16 has a special property. The pairs in any
+element of the array are obtained by simply adding 1 (mod 7) to the pair
+in the element immediately above and to the left; along with the
+condition that <span class="math display">\[\infty+1 = \infty\]</span> This special property means that
+the entire square can be determined by the pairs in the first row, with
+successive rows being developed in a cyclical manner according the
+simple addition rule. We call squares like the one in Figure 16 <em>cyclic</em>
+Room squares.<br />
+<br />
+Also notice that <span class="math inline">\(\{\infty,i\}\)</span> occurs in position <span class="math inline">\((i,i)\)</span>. A square
+with this property is said to be <em>standardised</em>. It is important to
+realise that any Room square can be standardised. As mentioned
+previously neither interchanging the rows or columns nor permuting the
+symbol-set on which the Room square is based has any effect of the
+``Room&quot;-ness of that square.<br />
+<br />
+The significance of cyclic Room squares is that the problem of
+constructing a Room square is (potentially) reduced to that of finding
+an appropriate first row. These rows cannot be chosen arbitrarily, both
+the pairs used and the positions in which they appear need to satisfy
+certain criteria, but when they do exist a corresponding Room square
+always exists. So proving the existence of this subclass of Room squares
+is a matter only of proving the existence of these special first rows.</p>
+<div id="finding-a-starter" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Finding a starter</h3>
+<p>Suppose we wish to construct another Room square of the same size as
+Figure 16 based on the same symbols. This new square will also be
+standardized so we need only determine the three pairs that accompany
+<span class="math inline">\(\{0,\infty\}\)</span> in the first row (the starter), and the positions they
+occupy.<br />
+<br />
+The set we will use to build our starter will be {1,2,…,6}.<br />
+<br />
+Each member of this set must occur exactly once in the pairs of the
+starter – in order to satisfy the row condition for a Room square.
+Because of the cyclical construction the condition is automatically true
+for successive rows if true for the first.<br />
+<br />
+Consider the existence in Figure 16 of an arbitrary pair <span class="math inline">\(\{a,b\}\)</span>. We
+know one of the following must be true.<br />
+<br />
+Either:
+<span class="math display">\[\{2+i,5+i\}=\{a,b\} \hspace{0.5cm} \mathrm{or} \hspace{0.5cm} \{1+i,6+i\}=\{a,b\} \hspace{0.5cm} 
+\mathrm{or} \hspace{0.5cm} \{3+i,4+i\}=\{a,b\} \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=0,1,2,...,6\]</span>
+Say <span class="math inline">\(a-b=1\)</span>. Then <span class="math inline">\(\{2+i,5+i\}=\{a,b\}\)</span> could never be true because
+<span class="math inline">\((2+i)-(5+i)=-3(\)</span>mod $ 7)=4$ and <span class="math inline">\((5+i)-(2+i)=3\)</span>. Similarly, the
+differences in <span class="math inline">\(\{1,6\}\)</span> are <span class="math inline">\(\pm5\)</span> so <span class="math inline">\(\{a,b\}\)</span> couldn’t be generated
+from <span class="math inline">\(\{1,6\}\)</span>.<br />
+<br />
+However, <span class="math inline">\((4+i)-(3+i)=1\)</span> so <span class="math inline">\(\{a,b\}\)</span> will inevitably be generated by
+<span class="math inline">\(\{3,4\}\)</span> for some value of <span class="math inline">\(i=0,1,...,6\)</span>.<br />
+e.g. <span class="math inline">\(\{2,3\}=\{3+6,4+6\}\)</span><br />
+<br />
+Because <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> separately take on all values from
+<span class="math inline">\(\{0,1,2,...,6\}\)</span>, their differences will similarly take on all these
+values (except 0 because there are no pairs of the form <span class="math inline">\(\{a,a\}\)</span>) and
+so an essential property for the starter must be that the six
+differences generated by its three pairs contain all of
+<span class="math inline">\(\{1,2,...,6\}\)</span>.<br />
+<br />
+When a starter satisfies this property, and the condition that the pairs
+contain in their union all of <span class="math inline">\(\{1,2,...,6\}\)</span>, it is clear that it will
+inevitably generate the correct pairs which populate a 7x7 Room square.
+There are three pairs in the starter, each generates seven unique pairs
+under cyclical construction, which along with the seven pairs generated
+by <span class="math inline">\(\{0,\infty\}\)</span> counts for all the 28 unordered pairs from
+<span class="math inline">\(\{\infty,0,1,...,6\}\)</span>.<br />
+A starter for larger Room squares of course has to obey the same
+criterion. We include a general definition based on [8]:<br />
+(1,0)<span>450</span><br />
+<em>Definition:</em> If <span class="math inline">\(G\)</span> is an additive Abelian group of order <span class="math inline">\(g\)</span>, then a
+<em>starter</em> in <span class="math inline">\(G\)</span> is a set of unordered pairs:
+<span class="math display">\[S=\{\{s_i,t_i\}:1 \leq i \leq (g-1)/2\}\]</span> which satisfies these
+properties:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{s_i:1 \leq i \leq (g-1)/2\} \cup \{t_i : 1 \leq i \leq (g-1)/2\} = G \backslash \{0\}\)</span></p></li>
+<li><p><span class="math inline">\(\{\pm (s_i - t_i ) : 1 \leq i \leq (g-1)/2 \} = G \backslash \{0\}\)</span></p></li>
+</ol>
+<p>(1,0)<span>450</span><br />
+<br />
+Whenever we have any <span class="math inline">\(t\)</span> sets <span class="math inline">\(D_1,...,D_t\)</span> each of size <span class="math inline">\(k\)</span> in which
+each non-zero member of an additive abelian group can be represented as
+a difference between members of the <span class="math inline">\(D_i \lambda\)</span> times, we say those
+sets form a <strong><em>difference system</em></strong>.<br />
+Much use will be made of difference systems throughout this work.<br />
+Notice that the definition of a starter presumes standardization, and
+therefore that <span class="math inline">\(\{\infty,i\}\)</span> is in position <span class="math inline">\((i,i)\)</span>.<br />
+The following pairs form a starter in <span class="math inline">\(G=\{0,1,2,...,6\}\)</span> (an additive
+abelian group with order <span class="math inline">\(g=7\)</span>.)
+<span class="math display">\[\{1,3\} \hspace{1cm} \{2,6\} \hspace{1cm} \{4,5\}\]</span> Property 1 is
+satisfied because
+<span class="math inline">\(\{1,3\} \cup \{2,6\} \cup \{4,5\} = G \backslash \{0\}\)</span><br />
+Property 2 is also satisfied because
+<span class="math display">\[\{1-3=5,3-1=2,2-6=3,6-2=4,4-5=6,5-4=1\}=\{1,2,3,4,5,6\}=G\backslash \{0\}\]</span>
+Hence</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">13</th>
+<th align="center">26</th>
+<th align="center">45</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">24</td>
+<td align="center">30</td>
+<td align="center">56</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center">35</td>
+<td align="center">41</td>
+<td align="center">60</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">46</td>
+<td align="center">52</td>
+<td align="center">01</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td align="center">50</td>
+<td align="center">63</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center">61</td>
+<td align="center">04</td>
+<td align="center">23</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+<td align="center">02</td>
+<td align="center">15</td>
+<td align="center">34</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1</strong></p>
+<p>are all the unordered pairs from <span class="math inline">\(\{\infty,0,1,...6\}\)</span> sorted into seven
+rows that contain each of <span class="math inline">\(\{\infty,0,1,...,6\}\)</span> exactly once. ALl that
+remains is to determine the columns.</p>
+</div>
+<div id="finding-an-adder" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Finding an adder</h3>
+<p>In constructing the starter we made use of the fact that each row has to
+contain each symbol exactly once and all unordered pairs from the symbol
+set have to occur exactly once in the whole array. The remaining
+condition – namely, that each symbol must occur once in each column – is
+now employed to finish the construction.<br />
+<br />
+Again, because of the cyclical nature of Room squares generated from
+starters we can be sure that if one column contains each member of the
+symbol set, all columns will.<br />
+<br />
+Also, because we have decided to construct a standardized Room Square we
+know that column <span class="math inline">\(i\)</span> contains <span class="math inline">\(\{\infty,i\}\)</span>. So the final column
+(column 6) contains <span class="math inline">\(\{\infty,6\}\)</span>, and depending on where we place the
+starter pairs it will also include:
+<span class="math display">\[\{1,3\}+x \hspace{1cm} \{2,6\}+y \hspace{1cm} \{4,5\}+z\]</span> For some
+distinct values of <span class="math inline">\(x,y\)</span> and <span class="math inline">\(z\)</span> (only one pair allowed per box).<br />
+Considering that the new pairs to form column 6 must contain in their
+union each of <span class="math inline">\(\{0,1,2,...,5\}\)</span> we build the following table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center"><span class="math inline">\(13+x\)</span></th>
+<th align="center"><span class="math inline">\(y\)</span></th>
+<th align="center"><span class="math inline">\(26+y\)</span></th>
+<th align="center"><span class="math inline">\(z\)</span></th>
+<th align="center"><span class="math inline">\(45+z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(0\)</span></td>
+<td align="center">13</td>
+<td align="center">0</td>
+<td align="center">26</td>
+<td align="center">0</td>
+<td align="center">45</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center">24</td>
+<td align="center">1</td>
+<td align="center">30</td>
+<td align="center">1</td>
+<td align="center">56</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(2\)</span></td>
+<td align="center">35</td>
+<td align="center">2</td>
+<td align="center">41</td>
+<td align="center">2</td>
+<td align="center">60</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(3\)</span></td>
+<td align="center">46</td>
+<td align="center">3</td>
+<td align="center">52</td>
+<td align="center">3</td>
+<td align="center">01</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(4\)</span></td>
+<td align="center">50</td>
+<td align="center">4</td>
+<td align="center">63</td>
+<td align="center">4</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(5\)</span></td>
+<td align="center">61</td>
+<td align="center">5</td>
+<td align="center">04</td>
+<td align="center">5</td>
+<td align="center">23</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2</strong></p>
+<p>Our task is simply to determine three unique values for <span class="math inline">\(x,y\)</span> and <span class="math inline">\(z\)</span>
+such that <span class="math inline">\(13+x,26+y\)</span> and <span class="math inline">\(45+z\)</span> contain in their union each of
+<span class="math inline">\(\{0,1,2,...,5\}\)</span>. These values will then determine the positions to
+place 13, 26 and 45 in row 1.<br />
+<br />
+Choosing 4 from the first column corresponds to having 50 appear in the
+final column of the Room Square and forces the selection of <span class="math inline">\(y=2\)</span> from
+the next column of the table, (41 being the only pair not containing any
+of the already used 5,6 or 0). 23 is the only possible choice from the
+final column, accompanied by a value of <span class="math inline">\(z=5\)</span>. These three numbers are
+known as an <em>adder</em> corresponding to the starter 13,26,45. This is not
+necessarily the only adder.<br />
+<br />
+If 50 is to be generated in the final column of the Room square by the
+pair 13 in the first row, then 13 must go in column <span class="math inline">\(7-4=3\)</span>. Similarly
+26 has to be put in column <span class="math inline">\(7-2=5\)</span> and 45 in <span class="math inline">\(7-5=2\)</span>.<br />
+We can now construct our cyclic room square.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">45</th>
+<th align="center">13</th>
+<th align="center">-</th>
+<th align="center">26</th>
+<th align="center">-</th>
+<th align="center">-</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">56</td>
+<td align="center">24</td>
+<td align="center">-</td>
+<td align="center">30</td>
+<td align="center">-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center">60</td>
+<td align="center">35</td>
+<td align="center">-</td>
+<td align="center">41</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">52</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">01</td>
+<td align="center">46</td>
+<td align="center">-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">63</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td align="center">12</td>
+<td align="center">50</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">61</td>
+<td align="center">-</td>
+<td align="center">04</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center">23</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">34</td>
+<td align="center">02</td>
+<td align="center">-</td>
+<td align="center">15</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 17</strong></p>
+<p>In general, we define an adder by considering the elements which must
+accompany <span class="math inline">\(\{\infty,0\}\)</span> in column 0. Therefore an adder is defined in
+the following way:<br />
+(1,0)<span>450</span><br />
+An <em>adder</em> for a starter <span class="math inline">\(S=\{\{s_i,t_i\}: 1 \leq i \leq (g-1)/2 \}\)</span> is
+a set of <span class="math inline">\((g-1)/2\)</span> distinct non-zero elements <span class="math inline">\(a_1,a_2,...,a_{(g-1)/2}\)</span>
+of <span class="math inline">\(G\)</span> such that:
+<span class="math inline">\(s_1 + a_1,t_1 + a_1,s_2 + a_2,...,s_{(g-1)/2} + a_{(g-1)/2}, t_{(g-1)/2}+a_{(g-1)/2}\)</span>
+are precisely all the non-zero elements of <span class="math inline">\(G\)</span>.<br />
+(1,0)<span>450</span><br />
+The <em>starter-adder</em> method employed in the above example was introduced
+in 1968[^4] by Stanton and Mullin [23], who used it to construct Room
+squares of side 11. They also went on to apply the method to larger
+squares and gave the first real suggestions that the number of Room
+squares is infinite.<br />
+<br />
+Two simple Lemmas given by Stanton and Mullin demonstrated that the
+problem of finding starters for larger Room squares was straightforward.
+In fact they can be guaranteed always to exist, and the only difficulty
+comes from finding a corresponding adder, which is not guaranteed to
+exist.</p>
+<div id="lemma-3.2.1" class="section level4">
+<h4><span class="header-section-number">2.1.2.1</span> Lemma 3.2.1</h4>
+<p><br />
+In an additive abelian group <span class="math inline">\(G\)</span> of order <span class="math inline">\(g=2n-1\)</span>, then pairs
+<span class="math display">\[\{n-1,n\},\{n-2,n+1\},\{n-3,n+2\},\{n-4,n+3\},...\{1,2n-2\}\]</span> are a
+starter for a Room square of side <span class="math inline">\(2n-1\)</span>.<br />
+<br />
+<em>Example 3.2</em><br />
+A Room square of side <span class="math inline">\(2n-1=19\)</span>.<br />
+<span class="math inline">\(n=10, G=Z_{19}\)</span><br />
+<br />
+The set of pairs<br />
+<span class="math inline">\(S_{19} = \{\{9,10\},\{8,11\}, \{7,12\}, \{6,13\}, \{5,14\}, \{4,15\}, \{3,16\}, \{2,17\}, \{1,18\}\}\)</span><br />
+is a starter.<br />
+<br />
+Indeed, the differences are<br />
+<span class="math inline">\(\{\pm(10-9),\pm(11-8),\pm(12-7),\pm(13-6),\pm(14-5),\pm(3-16),\pm(2-17),\pm(18-1)\}\)</span><br />
+<span class="math inline">\(=\{1,18,3,16,5,14,7,12,9,10,8,11,6,13,4,15,2,17\}=G \backslash \{0\}\)</span></p>
+</div>
+<div id="lemma-3.2.2" class="section level4">
+<h4><span class="header-section-number">2.1.2.2</span> Lemma 3.2.2</h4>
+<p><br />
+In the Galois field of order <span class="math inline">\(k-1\)</span>, with primitive root <span class="math inline">\(a\)</span> the
+following pairs form a starter for a Room square of side <span class="math inline">\(k\)</span>.
+<span class="math display">\[\{a,a^n\},\{a^2,a^{n+1}\},\{a^3,a^{n+2}\},...,\{a^{n-1},a^{2n-2}\}\]</span>
+<em>Example 3.3</em><br />
+A Room square of side <span class="math inline">\(2n-1=23\)</span>. <span class="math inline">\(n=12\)</span>. <span class="math inline">\(a=5\)</span>.<br />
+The set of pairs
+<span class="math display">\[S_{23}=\{\{5,5^{12}\},\{5^2,5^{13}\},\{5^3,5^{14}\},...,\{5^{11},5^{22}\}\}\]</span>
+<span class="math display">\[=\{\{5,18\},\{2,21\},\{10,13\},\{4,19\},\{20,3\},\{8,15\},\{17,6\},\{16,7\},\{11,12\},\{9,14\},\{22,1\}\}\]</span>
+is a starter.<br />
+<br />
+On closer inspection the two types of starters are identical[^5] , with
+a general element being of the form <span class="math display">\[\{j,-j\}\]</span> Starters of this form
+are called <em>patterned</em> starters.<br />
+<br />
+Stanton and Mullin went on to show that using the method outlined in
+Example 2.1 they could find adders corresponding to the patterned
+starters for <span class="math inline">\(k=7,11,13,15,17\)</span>. They had problems with 9 (but were able
+to construct one using a different method) and finding it too laborious
+for <span class="math inline">\(k&gt;19\)</span> they developed an algorithm which, when implemented in
+Fortran, was able to find patterned starters with adders for all odd <span class="math inline">\(k\)</span>
+up to 49, with no further gaps. Suggesting the possibility (which they
+conjectured) that there are Room squares for all odd side greater than
+5.<br />
+<br />
+They also found an interesting result regarding the number of Room
+Squares which could be obtained from patterned starters, summarised in
+Table 3.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Value of <span class="math inline">\(k\)</span></th>
+<th align="center">Number of PRS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">13</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">44</td>
+</tr>
+<tr class="even">
+<td align="center">17</td>
+<td align="center">416</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">The programme was turned off after the production of 967 PRS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3</strong></p>
+<p>Stanton &amp; Mullin’s results suggest that the number of PRS (patterned
+Room squares) increases very rapidly. Which, bearing in mind that the
+PRS are a sub-class of CRS (cyclic Room squares), which are in turn a
+sub-class of Room squares, implies that there are vast numbers of Room
+squares of large order.<br />
+<br />
+Before introducing a class of starters for which the existence of a
+corresponding adder is guaranteed we quickly confirm that when a starter
+and adder exist then a Room square will always result. This seems
+obvious from the method outlined in the previous section, but now we
+prove it explicitly.</p>
+</div>
+<div id="theorem-3.2.1" class="section level4">
+<h4><span class="header-section-number">2.1.2.3</span> Theorem 3.2.1</h4>
+<p>[17]<br />
+If an Abelian group <span class="math inline">\(G\)</span> of odd order <span class="math inline">\(2n-1\)</span> admits a starter and an
+adder, then there exists a Room square of order <span class="math inline">\(2n\)</span>.<br />
+<br />
+<em>Proof</em><br />
+A square is constructed on the set <span class="math inline">\(G \cup \{\infty\}\)</span>, where <span class="math inline">\(G\)</span> is an
+additive Abelian group of order <span class="math inline">\(2n-1\)</span>.
+<span class="math display">\[G=\{g_0=0,g_1,g_2,...,g_{2n-2}\}\]</span> The columns and rows of the square
+are labelled as follows</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(g_0\)</span></th>
+<th align="center"><span class="math inline">\(g_1\)</span></th>
+<th align="center"><span class="math inline">\(g_2\)</span></th>
+<th align="center">…</th>
+<th align="center"><span class="math inline">\(g_{2n-1}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(g_0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(g_1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(g_2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(g_0\)</span></p>
+<p><strong>Figure 18</strong></p>
+<p>If a starter <span class="math inline">\(\{\{s_1,t_1\},\{s_2,t_2\}...\{s_{n-1},t_{n-1}\}\}\)</span> and an
+adder <span class="math inline">\(\{a_1,a_2,...,a_{n-1}\}\)</span> can be ontained from <span class="math inline">\(G\)</span> and if the
+square is populated by pairs of elements from <span class="math inline">\(G\)</span> according to the
+following rules:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{\infty,g_i\}\)</span> goes in <span class="math inline">\((g_i,g_i)\)</span></p></li>
+<li><p>While <span class="math inline">\(\{s_i+g_i,t_i+g_i\}\)</span> goes in <span class="math inline">\((g_i,g_i-a_i)\)</span></p></li>
+</ol>
+<p>for all <span class="math inline">\(g_i \in G\)</span>. The remaining square will be a Room square on
+<span class="math inline">\(G \cup \{\infty\}\)</span>.<br />
+<em>Proof</em></p>
+<ol style="list-style-type: decimal">
+<li><p>Row <span class="math inline">\(g_0=0\)</span>, contains the pairs <span class="math inline">\(\{s_i,t_i\}:1 \leq i \leq n-1\)</span>,
+which are the elements of the starter, hence all of
+<span class="math inline">\(G \backslash \{0\}\)</span>. These pairs are accompanied by <span class="math inline">\(\{\infty,0\}\)</span>,
+so row 0 contains all of <span class="math inline">\(G \cup \{\infty\}\)</span>. Subsequent rows simple
+contain a permutation of the same elements, hence the <em>row property</em>
+of Room squares is satisfied for all rows.</p></li>
+<li><p>As mentioned before, the starter forms a difference system in
+<span class="math inline">\(G \backslash \{0\}\)</span>, so all unordered pairs of this set occur along
+with all unordered pairs of the form
+<span class="math inline">\(\{\infty,g_i\}: 1 \leq i \leq n-1\)</span>, hence <em>all unordered pairs
+from</em> <span class="math inline">\(G \cup \{\infty\}\)</span> <em>occur</em> in the square exactly once.</p></li>
+<li><p>All pairs of the form <span class="math inline">\(\{s_i+a_i,t_i+a_i\}\)</span> go in <span class="math inline">\((a_i,0)\)</span>,
+i.e. column 0. According to the definition of a starter these pairs are
+all of <span class="math inline">\(G \backslash \{0\}\)</span>, and we know that <span class="math inline">\(\{\infty,0\}\)</span> is also
+in column 0. So the first column, and hence all others, contains all
+of <span class="math inline">\(G \cup \{\infty\}\)</span>, thus satisfying the <em>column property</em> of
+Room squares.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="strong-starters" class="section level2">
+<h2><span class="header-section-number">2.2</span> Strong Starters</h2>
+<p>The next state in proving the existence of Room squares came about, not
+by continuing to try to find adders for starters that were already known
+(the patterned starters, for example), but when Mullin &amp; Nemeth in [17],
+discovered a class of starters that generated their own adders.</p>
+<div id="theorem-3.3.1" class="section level4">
+<h4><span class="header-section-number">2.2.0.1</span> Theorem 3.3.1</h4>
+<p>[17]<br />
+<em>Suppose a starter</em>
+<span class="math inline">\(\{\{s_1,t_1\},\{s_2,t_2\},...,\{s_{(g-1)/2},t_{(g-1)/2}\}\}\)</span> <em>exists,
+such that the sums of each pair</em><br />
+<span class="math inline">\((s_1+t_1,s_2+t_2, etc...)\)</span> <em>are all distinct and non-zero, then that
+starter is said to be strong, and</em>
+<span class="math display">\[A(S)=\{a_i = -(s_i+t_i):1 \leq i \leq (g-1)/2\}\]</span> <em>is an adder for a
+starter.<br />
+<br />
+Proof</em></p>
+<ol style="list-style-type: lower-roman">
+<li><p><em>The <span class="math inline">\(a_i\)</span> are all distinct and non-zero</em><br />
+All the <span class="math inline">\((s_i+t_i)\)</span> are, by definition, distinct and non-zero.
+Therefore all the <span class="math inline">\(a_i=-(s_i+t_i)\)</span> are distinct and non-zero.</p></li>
+<li><p><span class="math inline">\(s_1 + a_1, t_1 + a_1, s_2 + a_2,..., s_{(g-1)/2}, t_{(g-1)/2}+a_{(g-1)/2}\)</span>
+<em>are precisely all the non-zero elements of</em> <span class="math inline">\(G\)</span>.</p></li>
+</ol>
+<pre><code>&lt;span&gt;l&lt;/span&gt; $s_1+a_1=s_1-(s_1+t_1)=-t_1=t_{(g-1)/2}$\
+$t_1+a_1=t_1-(s_1+t_1)=-s_1=s_{(g-1)/2}$\
+\
+$s_{(g-1)/2} + a_{(g-1)/2} = -t_{(g-1)/2} = t_1$\
+$t_{(g-1)/2} + a_{(g-1)/2} = -s_{(g-1)/2} = s_1$\
+
+Are all the non-zero elements of $G$ in reverse order.</code></pre>
+<p>(Notice that the patterned starter is not strong, on the contrary, the
+sums of its pairs are all identical.)<br />
+<br />
+<em>Example 3.3.1</em><br />
+The pairs <span class="math inline">\((5,7)(11,6)(2,8)(9,12)(10,1)(3,4)\)</span>, constitute a strong
+starter for a Room square of side 13, based on <span class="math inline">\(G=Z_{13}\)</span><br />
+<br />
+<em>Proof</em><br />
+Firstly, the pairs satisfy the conditions for being a starter, as the
+union of all pairs is equal to <span class="math inline">\(G \backslash \{0\}\)</span>, and similarly the
+differences are all of <span class="math inline">\(G\backslash \{0\}\)</span>.<br />
+Secondly the sums of the pairs, respectively 12,4,10,8,11,7, are all
+distinct and non-zero.<br />
+Therefore an adder is <span class="math inline">\(\{-12,-4,-10,-8,-11,-7\}=\{1,9,3,5,2,6\}\)</span><br />
+So the following is a legitimate first row for a cyclic Room square of
+order 14.</p>
+<p><span class="math inline">\(\infty,0\)</span> – – – 11,6 – – 3,4 9,12 – 2,8 1,10 5,7
+———— — — — —— — — —– —— — —– —— —–</p>
+<p>Mullin and Nemeth originally discovered strong starters for Room squares
+embedded within another type of combinatorial design, known as a Steiner
+triple system. With these they were able to prove that Room squares
+exist for all sides <span class="math inline">\(v=1\)</span> mod 6. Rather than examine this approach we
+move on to a type of starter which provides its own adder.</p>
+</div>
+</div>
+<div id="the-mullin-nemeth-starters" class="section level2">
+<h2><span class="header-section-number">2.3</span> The Mullin-Nemeth Starters</h2>
+<p>If <span class="math inline">\(x\)</span> is a primitive element in <span class="math inline">\(G=GF(p^n)\)</span>, then the elements
+<span class="math inline">\(x^1,x^2,...,x^{p^n-1}=1\)</span> are, by definition, all of
+<span class="math inline">\(G \backslash \{0\}\)</span>. Alternatively, we can write <span class="math inline">\(G \backslash \{0\}=\{x^0=1,x^1,..., x^{p^n-2}\}\)</span>.<br />
+<br />
+<em>Example 3.4.1</em><br />
+The field <span class="math inline">\(GF(23)\)</span> has a primitive root <span class="math inline">\(x=5\)</span>, because<br />
+<span class="math inline">\(5^0=1,\)</span> <span class="math inline">\(5^1=5,\)</span> <span class="math inline">\(5^2=2,\)</span> <span class="math inline">\(5^3=10,\)</span> <span class="math inline">\(5^4=4,\)</span> <span class="math inline">\(5^5=20,\)</span> <span class="math inline">\(5^6=8,\)</span>
+<span class="math inline">\(5^7=17,\)</span> <span class="math inline">\(5^8=16,\)</span> <span class="math inline">\(5^9=11,\)</span> <span class="math inline">\(5^{10}=9,\)</span> <span class="math inline">\(5^{11}=22,\)</span> <span class="math inline">\(5^{12}=18,\)</span>
+<span class="math inline">\(5^{13}=21,\)</span> <span class="math inline">\(5^{14}=13,\)</span> <span class="math inline">\(5^{15}=19,\)</span> <span class="math inline">\(5^{16}=3,\)</span> <span class="math inline">\(5^{17}=15,\)</span>
+<span class="math inline">\(5^{18}=6,\)</span> <span class="math inline">\(5^{19}=7,\)</span> <span class="math inline">\(5^{20}=12,\)</span> <span class="math inline">\(5^{21}=14\)</span> are all the non-zero
+elements of <span class="math inline">\(GF(23)\)</span>.<br />
+<br />
+Mullin &amp; Nemeth in [17] used the theory of primitive elements to create
+strong starters in the additive group of (nearly) any Galois Field of
+prime power order. Which, because Theorems 3.2.1 and 3.3.1 were already
+known, was equivalent to proving the existence of Room squares for
+(nearly) all orders <span class="math inline">\(p^n+1\)</span>. Before introducing the general construction
+for these starters, we illustrate the basic method with a couple of
+examples of particular cases.<br />
+<br />
+<em>Example 3.4.2</em><br />
+We can create a strong starter from Example 2.5 simply by pairing the
+elements in the order in which they were generated.<br />
+i.e.
+<span class="math inline">\(S=\{\{1,5\},\{2,10\},\{4,20\},\{8,17\},\{16,11\},\{9,22\},\{18,21\},\{13,19\},\{3,15\},\{6,7\},\{12,14\}\}\)</span><br />
+is a strong starter.<br />
+<em>Proof</em><br />
+Obviously each member of <span class="math inline">\(GF(23)\)</span> occurs once, because of the definition
+of a primitive root.<br />
+The differences
+<span class="math display">\[\{\pm 4, \pm 8, \pm 7, \pm 9, \pm 10, \pm 5, \pm 3, \pm 6, \pm 11, \pm 1, \pm 2\}\]</span>
+are similarly all of <span class="math inline">\(GF(23)\)</span>, so <span class="math inline">\(S\)</span> is a starter. The sums
+<span class="math display">\[\{6,12,1,2,4,8,16,9,18,13,3\}\]</span> are all unique, and therefore <span class="math inline">\(S\)</span> is
+strong and <span class="math display">\[A=\{17,11,22,21,19,15,7,14,5,10,20\}\]</span> is an adder for
+<span class="math inline">\(S\)</span>.<br />
+So, the following row will generate a Room square of order 24 under
+cyclic construction.</p>
+<p><span>-1.66cm</span></p>
+<p><span class="math inline">\(\infty,0\)</span> 4,20 8,17 12,14 16,11 - 1,5 - 9,22 13,19 - - 2,10 6,7 - - 18,21 - 3,15 - - - -
+———— —— —— ——- ——- — —– — —— ——- — — —— —– — — ——- — —— — — — —</p>
+<p><br />
+This is an example of the simplest case of the general theorem of
+Mullith &amp; Nemeth, where the Galois field is <span class="math inline">\(Z_p\)</span> (the integers mod
+<span class="math inline">\(p\)</span>), with <span class="math inline">\(p=23=3(\)</span> mod <span class="math inline">\(4)\)</span> a prime.<br />
+</p>
+<div id="theorem-3.4.1-1" class="section level4">
+<h4><span class="header-section-number">2.3.0.1</span> Theorem 3.4.1 [1]</h4>
+<p><br />
+<em>If <span class="math inline">\(p=4m+3\)</span> is prime, <span class="math inline">\(m \geq 1\)</span>, then</em>
+<span class="math display">\[S=\{\{x^0,x^1\},\{x^2,x^3\},...,\{x^{4m},x^{4m+1}\}\}\]</span> <em>is a strong
+starter in <span class="math inline">\(Z_p\)</span>, and hence a Room square of order <span class="math inline">\(p+1\)</span> exists.</em><br />
+<br />
+Example 3.4.2 took <span class="math inline">\(m=5\)</span> and <span class="math inline">\(x=5\)</span>.<br />
+<br />
+A slightly more general version of Theorem 3.4.1, which we prove
+instead, involves any field of prime power order where <span class="math inline">\(p^n=2t+1\)</span>, with
+<span class="math inline">\(t&gt;1\)</span> and odd. Of course, when <span class="math inline">\(p^n\)</span> is not prime, the field will no
+longer be the integers mod <span class="math inline">\(p\)</span>, instead the primitive element will be an
+irreducible polynomial whose coefficients belong to <span class="math inline">\(Z_p\)</span>.</p>
+</div>
+<div id="theorem-3.4.2-16" class="section level4">
+<h4><span class="header-section-number">2.3.0.2</span> Theorem 3.4.2 [16]</h4>
+<p><br />
+If <span class="math inline">\(p^n=2t+1=3(\)</span>mod <span class="math inline">\(4)\)</span> then
+<span class="math display">\[S=\{\{x^0,x^1\},\{x^2,x^3\},...,\{x^{2t-2},x^{2t-1}\}\}\]</span> is a strong
+starter in <span class="math inline">\(GF(p^n),(p^n \neq 3)\)</span><br />
+<br />
+<em>Proof</em><br />
+<span class="math inline">\(x\)</span> is a primitive element, so the elements in the starter are all the
+non-zero members of <span class="math inline">\(GF(P^n)\)</span>.<br />
+The differences are, respectively
+<span class="math display">\[\pm x^0(1-x), \pm x^2 (1-x), ... , \pm x^{2t-2}(1-x)\]</span> <span class="math inline">\((1-x)\)</span> is a
+non-zero (<span class="math inline">\(x=1\)</span> is not primitive) member of <span class="math inline">\(GF(p^n)\)</span>. So in order to
+show that these differences are all the <span class="math inline">\(2t\)</span> non-zero members of
+<span class="math inline">\(GF(p^n)\)</span> we merely need to prove that the <span class="math inline">\(2t\)</span> differences are all
+distinct and non-zero.<br />
+All the differences can be written <span class="math inline">\(\pm x^{2i}(1-x), 0 \leq i \leq t-1\)</span><br />
+<span class="math inline">\((1-x) \neq 0\)</span><br />
+<span class="math inline">\(x^{2i}(1-x)=x^{2j}(1-x)\)</span><br />
+<span class="math inline">\(\Rightarrow x^{2i}=x^{2j} \Rightarrow i=j\)</span>,<br />
+because <span class="math inline">\(0 \leq 2i,2j \leq 2t-2 &lt; p^{n-1}\)</span>, and the primitive element,
+by definition, produces each element of <span class="math inline">\(GF(p^n)\)</span> exactly once as the
+indices range from 0 to <span class="math inline">\(p^{n-1}\)</span>.<br />
+Similarly <span class="math inline">\(-x^{2i}(1-x)=-x^{2j}(1-x)\)</span> only when <span class="math inline">\(i=j\)</span>.<br />
+So all the positive differences are unique, similarly the negative.<br />
+However, there remains a possibility for repetition when the signs are
+opposite: <span class="math display">\[x^{2i}(1-x)=-x^{2j}(1-x) \hspace{1cm}...(1)\]</span> Either <span class="math inline">\(i=j\)</span>
+or <span class="math inline">\(i \neq j\)</span><br />
+Let <span class="math inline">\(i=j,\)</span> <span class="math inline">\((1)\)</span> becomes <span class="math inline">\(x^{2i}+x^{2i}=0, \Rightarrow 2x^{2i}=0\)</span>, bit
+<span class="math inline">\(i\)</span> takes values <span class="math inline">\(0...t-1\)</span>, so <span class="math inline">\(x^2=0\)</span> when <span class="math inline">\(i=1\)</span>, contradicting the
+order of the primitive element.<br />
+In the <span class="math inline">\(i \neq j\)</span> case, we assume (without loss of generality) that
+<span class="math inline">\(i&lt;j\)</span> and write</p>
+<p><span class="math inline">\(x^{2i} = -x^{2j}\)</span><br />
+as <span class="math inline">\(x^{2i}(1+x^{2j-2i})=0\)</span><br />
+<span class="math inline">\(\Rightarrow x^{2j-2i}=-1\)</span></p>
+<p>but in <span class="math inline">\(GF(2t+1)\)</span>, <span class="math inline">\(x^{\frac{1}{2}(q-1)}=x^t=-1\)</span> <span class="math display">\[2j-2i=t\]</span> but this is
+a contradiction as we insisted that <span class="math inline">\(t\)</span> be odd. So <span class="math inline">\(S\)</span> is a starter.<br />
+<br />
+To prove that <span class="math inline">\(S\)</span> is strong we simply note that the sums can be written:</p>
+<p><span class="math inline">\(x^0(1+x)\)</span>, <span class="math inline">\(x^2(1+x)\)</span>, …, <span class="math inline">\(x^{2t-2}(1+x)\)</span></p>
+<p><span class="math inline">\(1+x=0 \Rightarrow x = -1\)</span> is only true when <span class="math inline">\(p^n=3\)</span>. So
+<span class="math inline">\((1+x) \neq 0\)</span>.<br />
+So <span class="math inline">\(x^{2i}(1+x)=x^{2j}(1+x) \Rightarrow x^{2i}=x^{2j}\)</span><br />
+We have already shown that <span class="math display">\[x^{2i}=x^{2j}\]</span> is only true for <span class="math inline">\(i=j\)</span>. So
+all the sums are unique, and the starter is strong.<br />
+<br />
+Hence, by theorems 2.1 and 2.2, Room squares exist for all <span class="math inline">\(p^n=3(\)</span>mod
+<span class="math inline">\(4)\)</span>, and in the case when <span class="math inline">\(p^n=3(\)</span>mod <span class="math inline">\(4)\)</span> is prime, these Room squares
+are based on <span class="math inline">\(Z_p\)</span>.<br />
+<br />
+The most generalised case of Mullin &amp; Nemeth’s theorem proves the
+existence of Room squares for all prime powers <span class="math inline">\(p^n=2^kt+1\)</span> where <span class="math inline">\(k&gt;1\)</span>
+and <span class="math inline">\(t&gt;1\)</span> is odd (<span class="math inline">\(k\)</span> and <span class="math inline">\(t\)</span>, both positive integers), and reduces to
+Theorem 3.4.2 when <span class="math inline">\(k=1\)</span>.</p>
+</div>
+<div id="theorem-3.4.3-16" class="section level4">
+<h4><span class="header-section-number">2.3.0.3</span> Theorem 3.4.3 [16]</h4>
+<p>A strong starter exists in <span class="math inline">\(GF(p^n)\)</span>, where <span class="math inline">\(p^n=2^kt+1\)</span> (with <span class="math inline">\(k&gt;1\)</span> and
+<span class="math inline">\(t&gt;1\)</span> is odd).<br />
+<br />
+<em>Proof</em><br />
+Let <span class="math inline">\(d=2^{k-1}\)</span><br />
+Then the strong starter in question looks like this: $$ S={</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\((x^0,x^d)\)</span></td>
+<td align="center"><span class="math inline">\((x^{2d},x^{3d})\)</span></td>
+<td align="center">$  …  $</td>
+<td align="center"><span class="math inline">\((x^{(2t-2)d},x^{(2t-1)d})\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\((x^1,x^{d+1})\)</span></td>
+<td align="center"><span class="math inline">\(\hspace{0.5cm}(x^{2d+1},x^{3d+1})\)</span></td>
+<td align="center">$  …  $</td>
+<td align="center"><span class="math inline">\((x^{(2t-2)d+1},x^{(2t-1)d+1})\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$  …  $</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\((x^{d-1},x^{2d-1})\)</span></td>
+<td align="center"><span class="math inline">\(\hspace{0.5cm}(x^{3d-1},x^{4d-1})\)</span></td>
+<td align="center">$  …  $</td>
+<td align="center"><span class="math inline">\((x^{(2t-1)d-1},x^{2td-1})\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>} $$ Where the pairs have been placed in an array to emphasise that,
+when read vertically, this is an exhaustive list of all the non-zero
+elements of <span class="math inline">\(GH(p^n)\)</span>, ordered according to powers. Of course, in the
+<span class="math inline">\(k=1,d=1\)</span> case this starter reduces to the one quoted in Theorem 3.4.2.<br />
+To prove that <span class="math inline">\(S\)</span> is a starter we need also to show, as usual, that the
+differences between pairs are all of <span class="math inline">\(GF(p^n)\)</span>, and to show that the
+starter is strong we need to show that the sums of pairs are all
+distinct and non-zero.<br />
+The differences can be written in the following scheme:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(x^0(1-x^d)\)</span>,</td>
+<td align="center"><span class="math inline">\(x^{2d}(1-x^d)\)</span>,</td>
+<td align="center">…,</td>
+<td align="center"><span class="math inline">\(x^{(2t-2)d}(1-x^d)\)</span>,</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(x^1(1-x^d)\)</span>,</td>
+<td align="center"><span class="math inline">\(x^{2d+1}(1-x^d)\)</span>,</td>
+<td align="center">…,</td>
+<td align="center"><span class="math inline">\(x^{(2t-2)d+1}(1-x^d)\)</span>,</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">…</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(x^{d-1}(1-x^d)\)</span>,</td>
+<td align="center"><span class="math inline">\(x^{3d-1}(1-x^d)\)</span>,</td>
+<td align="center">…,</td>
+<td align="center"><span class="math inline">\(x^{(2t-1)d-1}(1-x^d)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The order of <span class="math inline">\(x\)</span> is <span class="math inline">\(p^n-1=2^kt=2^{k-1}2t=2td &gt; d\)</span>, (meaning <span class="math inline">\(x^{2td}=1\)</span>
+and <span class="math inline">\(x^\alpha \neq 1\)</span> when <span class="math inline">\(1 \leq \alpha &lt; 2dt\)</span>) and so <span class="math inline">\(x^d \neq 1\)</span>,
+so <span class="math inline">\((1-x^d) \neq 0\)</span>.<br />
+We can write the differences in a general form:</p>
+<p><span class="math inline">\(\pm x^{2id+j}(1-x^d) \hspace{0.5cm}\)</span> where
+<span class="math inline">\(\hspace{0.5cm} 0 \leq i \leq t-1, \hspace{0.5cm} 0 \leq j \leq d-1\)</span></p>
+<p><span>: l :</span><span class="math inline">\(\rightarrow\)</span> If there were repetition, either of the
+form <span class="math inline">\(D=D\)</span> or <span class="math inline">\(-D=-D\)</span>, where <span class="math inline">\(D=x^{2id+j}(1-x^d)\)</span>,<br />
+then the following must hold:<br />
+<br />
+Cancelling by <span class="math inline">\((1-x^d)\)</span>, legitimate because <span class="math inline">\((1-x^d) \neq 0\)</span> gives:<br />
+<br />
+dividing through by <span class="math inline">\(x^{2Id+j}\)</span> leaves<br />
+<br />
+<br />
+But if <span class="math inline">\(i \neq I\)</span>, then the LHS has an index which is an integer
+multiple of <span class="math inline">\(d\)</span>. The index in the RHS,<br />
+however, can never be an integer multiple of <span class="math inline">\(d\)</span> because <span class="math inline">\(J\)</span> and <span class="math inline">\(j\)</span>
+range over the integers <span class="math inline">\(0...d-1\)</span>.<br />
+So the only possibility for equality is when both indices are zero, i.e.
+<span class="math inline">\(i=I\)</span> and <span class="math inline">\(j=J\)</span>.<br />
+</p>
+<p>As in the previous proof we have to deal with the possibility of
+repetition for differences of opposite sign. For coincidence we require:
+<span class="math display">\[x^{2id+j}=-x^{2ID+J}\]</span> <span class="math display">\[x^{2id+j}+x^{2Id+J}=0\]</span> We assume that
+<span class="math inline">\(2id+j&lt;2Id+J\)</span> and rewrite this expression as:
+<span class="math display">\[x^{2id+j}(1+x^{(2I-2i)d+(J-j)})=0\]</span> Which implies that
+<span class="math inline">\(x^{(2I-2i)d+(J-j)}=-1\)</span><br />
+But in <span class="math inline">\(GF(q),x^{\frac{1}{2}(q-1)}=-1\)</span>. Where, in this case <span class="math inline">\(q-1=2^kt\)</span>,
+so <span class="math inline">\(\frac{1}{2}(q-1)=2^{k-1}t=dt\)</span>. <span class="math display">\[\therefore x^{dt} = -1\]</span>
+<span class="math display">\[\Rightarrow (2I-2i)d+(J-j)=dt\]</span></p>
+<p><span class="math inline">\(\Rightarrow (J-j)\)</span> is an integer multiple of <span class="math inline">\(d\)</span> or zero.</p>
+<p>But <span class="math inline">\(J\)</span> and <span class="math inline">\(j\)</span> both take only the values <span class="math inline">\(0...d-1\)</span>, so <span class="math inline">\((J-j)\)</span> is in
+the interval <span class="math inline">\([1-d,d-1]\)</span> and hence must be zero, leaving <span class="math display">\[(2I-2i)d=dt\]</span>
+<span class="math display">\[2I-2i=t\]</span> But <span class="math inline">\(t\)</span> is strictly odd, and so we have reached a
+contradiction, hence the differences are all unique, belong to <span class="math inline">\(GF(p^n)\)</span>
+and there are <span class="math inline">\(2td\)</span> of them, hence each member of <span class="math inline">\(GF(p^n)\)</span> occurs
+exactly once as a difference. So <span class="math inline">\(S\)</span> is a starter.<br />
+To prove that the starter is strong we write the sums as</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(x^0(1-x^d)\)</span>,</td>
+<td align="center"><span class="math inline">\(x^{2d}(1-x^d)\)</span>,</td>
+<td align="center">…,</td>
+<td align="center"><span class="math inline">\(x^{(2t-2)d}(1-x^d)\)</span>,</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(x^1(1-x^d)\)</span>,</td>
+<td align="center"><span class="math inline">\(x^{2d+1}(1-x^d)\)</span>,</td>
+<td align="center">…,</td>
+<td align="center"><span class="math inline">\(x^{(2t-2)d+1}(1-x^d)\)</span>,</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">…</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(x^{d-1}(1-x^d)\)</span>,</td>
+<td align="center"><span class="math inline">\(x^{3d-1}(1-x^d)\)</span>,</td>
+<td align="center">…,</td>
+<td align="center"><span class="math inline">\(x^{(2t-1)d-1}(1-x^d)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>and notice that <span class="math inline">\(x^d=-1 \Rightarrow d=dt\)</span> (because
+<span class="math inline">\(x^{dt}=-1) \Rightarrow t=1\)</span>, but instead we insisted that <span class="math inline">\(t\)</span> be
+strictly greater than one (this being the reason why). So
+<span class="math inline">\((1+x^d) \neq 0\)</span> and the above argument (denoted by <span class="math inline">\(\rightarrow\)</span>)
+involving <span class="math inline">\((1-x^d)\)</span> can be invoked, replacing <span class="math inline">\((1-x^d)\)</span> by <span class="math inline">\((1+x^d)\)</span>. So
+<span class="math inline">\(S\)</span> is a strong starter, and the general theorem of Mullin &amp; Nemeth is
+proven, guaranteeing the existence of a vast class of Room Squares.</p>
+</div>
+</div>
+<div id="the-trouble-with-fermat-numbers" class="section level2">
+<h2><span class="header-section-number">2.4</span> The Trouble with Fermat Numbers</h2>
+<p>Unfortunately, in establishing the Mullin &amp; Nemeth starters we were
+forced to exclude a similarly vast, potentially infinite, class of Room
+squares by insisting that <span class="math inline">\(t\)</span> be strictly greater than one. These
+exceptional Room squares have side <span class="math inline">\(2^k+1\)</span>.<br />
+<br />
+Rectifying this problem is essential if we are to prove the existence of
+Room squares. As mentioned previously, the proof relies on a
+multiplication theorem, so proving that all the ’prime’ Room squares
+exist is vital. Although the theorem of Mullin &amp; Nemeth will take care
+of all squares with prime power side, the multiplication theorem is
+necessary for proving the existence of those whose side can be
+decomposed into prime factors different from each other. In fact, the
+multiplication theorem means that we can ignore the Mullin &amp; Nemeth
+construction except in the prime case, resorting to multiplication to
+recover the prime power squares. Similarly we are only concerned with
+recovering the exceptional squares with side <span class="math inline">\(2^k+1\)</span>, when <span class="math inline">\(2^k+1\)</span> is
+prime.<br />
+<br />
+Primes of this form are known as <strong>Fermat Numbers</strong> or <strong>Fermat
+Primes</strong>, after Pierre de Fermat who, 360 years ago conjectured that
+numbers of the form <span class="math inline">\(2^k+1\)</span> are always prime when <span class="math inline">\(k\)</span> is a power of two.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(F_m=2^{2^m}+1\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(F_0=2^1+1=3\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(F_1=2^2+1=5\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(F_2=2^4+1=17\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(F_3=2^8+1=257\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(F_4=2^{16}+1=65537\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>After the first four of Fermat’s numbers, all of which were known to him
+to be prime. Nearly one hundred years later Euler calculated the
+following, <span class="math display">\[F_5 = 2^{32}+1=4294967297=641\times 6700417\]</span> and in doing
+so disproved Fermat’s conjecture.<br />
+<br />
+Since Euler’s time, <span class="math inline">\(F_6\)</span>, <span class="math inline">\(F_7\)</span> and <span class="math inline">\(F_8\)</span> have all been factorised[^6]
+. It is also known, although most of the factorisations remain unknown,
+that <span class="math inline">\(F_m\)</span> is composite for <span class="math inline">\(m=[9...23]\)</span>. <span class="math inline">\(F_{24}\)</span>, a number with over 5
+million digits, remains in doubt.<br />
+<br />
+Whether there be an infinite number of Fermat primes or whether, as
+empirically seems to be the case, there are only finitely many (possibly
+just five) such primes, in order for the proof of the existence of Room
+squares for all odd side greater than 7 to be complete these Fermat
+prime Room squares must be included.<br />
+<br />
+When the problem of Fermat Room squares was tackled first in the early
+1970s, W.D.Wallis used a Theorem of J.D.Horton’s which adapted a famous
+result of E.H.Moore’s from the theory of Steiner triple systems.<br />
+<br />
+Moore, in 1893, was able to prove that if Steiner triple systems of
+orders <span class="math inline">\(v_1\)</span>, <span class="math inline">\(v_2\)</span> and <span class="math inline">\(v_3\)</span> exist, where the <span class="math inline">\(v_2\)</span> system is a
+sub-system of the <span class="math inline">\(v_3\)</span> system, then an STS of order <span class="math inline">\(v_1(v_2-v_3)+v_3\)</span>
+also exists. Horton[12] adapted this result to other combinatorial
+objects including Room squares and Wallis[25] was able to use this
+Moore-type construction method to include all of the Fermat primes,
+except <span class="math inline">\(F_3=257\)</span>[^7] .<br />
+<br />
+<em>Example 3.5.1</em><br />
+If Room squares with side <span class="math inline">\(v_1\)</span>, <span class="math inline">\(v_2\)</span> and <span class="math inline">\(v_3\)</span> exist, where the square
+of side <span class="math inline">\(v_2\)</span> is a subsquare of the square with side <span class="math inline">\(v_3\)</span>, then a Room
+square of side <span class="math inline">\(F_4=65537\)</span> exists. Room squares of side 7 and 11 exist,
+according to the theory of Mullin &amp; Nemeth. Applying Horton’s theorem
+once, with <span class="math inline">\(v_3=0\)</span> gives a new square of side <span class="math inline">\(v_1v_2=77\)</span> (note that
+Horton’s theorem reduces to the multiplication theorem when <span class="math inline">\(v_3=0\)</span>).<br />
+<br />
+The trivial Room square of side one exists, and the Mullin &amp; Nemeth
+starters will provide a Room square of size 13. So we can apply Horton’s
+theorem once again to gain a Room square of side 989 because:
+<span class="math display">\[989=13(77-1)+1\]</span> Finally we can use Mullin &amp; Nemeth to produce a Room
+square of side 67, and a final application of Horton’s theorem gives:
+<span class="math display">\[65537=67(989-11)+11\]</span> The proof of Horton’s theorem and also an
+explanation of Wallis’s application of that theorem to solving the
+Fermat prime problem is excluded because another solution was
+subsequently found. A year after Wallis had published his solution to
+the Fermat problem, Chong and Chan published their (independent)
+discovery of the strong starters which are known as the Mullin &amp; Nemeth
+starters. Also included in their paper was an alternative solution to
+the same problem, but their solution continued to involve the
+starter-adder method. This theorem we prove instead.</p>
+<div id="theorem-3.5.1-6" class="section level4">
+<h4><span class="header-section-number">2.4.0.1</span> Theorem 3.5.1 [6]</h4>
+<p><br />
+For every Galois field of order <span class="math inline">\((2^{2^m}+1)\)</span>, where <span class="math inline">\(m \geq 2\)</span>, there
+exists a Room square of order <span class="math inline">\((2^{2^m}+2)\)</span>.<br />
+<br />
+<em>Proof</em><br />
+The following pairs in <span class="math inline">\(Z_p\)</span> (where <span class="math inline">\(p=2^{2^d}+1\)</span> and <span class="math inline">\(d=2^{m-1})\)</span>
+constitute a strong starter.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{i+(r-1)2^d,i2^d-(r-1\}\)</span></p></li>
+<li><p><span class="math inline">\(\{(2^d-i)2^d+r,(2^{d-1}-r)2^d+2^{d-1}-i+1\}\)</span></p></li>
+<li><p><span class="math inline">\(\{2^{d-1}+r-1)2^d+2^{d-1}+i,(2^{d-1}+i-1)2^d+2^{d-1}-(r-1)\}\)</span></p></li>
+<li><p><span class="math inline">\(\{(2^{d-1}-i)2^d+2^{d-1}+r,(2^d-r+1)2^d-i+1\}\)</span></p></li>
+</ol>
+<p>Where <span class="math inline">\(1 \leq r \leq 2^{d-2}\)</span> and <span class="math inline">\(1 \leq i \leq 2^{d-1}\)</span>, so rather
+than just 4 pairs there are <span class="math inline">\(4 \cdot 2^{d-2} \cdot 2^{d-1}=2^{2d-1}\)</span>
+pairs arranged in four different classes. Before completing the proof we
+pause for an example just to illustrate the real simplicity of these
+apparently complicated pairs.<br />
+<br />
+<em>Example 3.5.2</em><br />
+Suppose <span class="math inline">\(p=2^{2\cdot 2}+1=17=F_2\)</span>, then <span class="math inline">\(d=2^1 \Rightarrow m=2\)</span><br />
+<span class="math inline">\(r=1,1 \leq i \leq 2\)</span> and the following pairs should be a strong
+starter.<br />
+</p>
+<p><span>-1.15cm</span></p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left"><span class="math inline">\(i=1,r=1\)</span></th>
+<th align="left"><span class="math inline">\(i=2,r=1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="left"><span class="math inline">\(\{1+0 \cdot 2^2,1 \cdot 2^2 - 0\} = \{1,4\}\)</span></td>
+<td align="left"><span class="math inline">\(\{2+0 \cdot 2^2,2 \cdot 2^2 -0\} = \{2,8\}\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="left"><span class="math inline">\(\{(2^2-1)2^2+1,(2^1-1)2^2+2^1-1+1\}=\{13,6\}\)</span></td>
+<td align="left"><span class="math inline">\(\{(2^2-2)2^2+1,(2^1-1)2^2+2^1-2+1\}=\{9,5\}\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="left"><span class="math inline">\(\{(2^1+1-1)2^2+2^1+1,(2^1+1-1)2^2+2^1-(1-1)\}\)</span></td>
+<td align="left"><span class="math inline">\(\{(2^1+1-1)2^2+2^1+2,(2^1+2-1)2^2+2^1-(1-1)\}\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left"><span class="math inline">\(=\{11,10\}\)</span></td>
+<td align="left"><span class="math inline">\(=\{12,14\}\)</span></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="left"><span class="math inline">\(\{(2^1-1)2^2+2^1+1,(2^2-1+1)2^2-1+1\}\)</span></td>
+<td align="left"><span class="math inline">\(\{(2^1-2)2^2+2^1+1,(2^2-1+1)2^2-2+1\}\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left"><span class="math inline">\(=\{7,16\}\)</span></td>
+<td align="left"><span class="math inline">\(=\{3,15\}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 4</strong></p>
+<p>The pairs generated by this method contain each non-zero member of
+<span class="math inline">\(Z_{17}\)</span> exactly once in their union satisfying the first property of a
+starter.<br />
+The differences are
+<span class="math inline">\(\{\pm 3,\pm 7,\pm 1,\pm 8, \pm 6, \pm 4, \pm 2, \pm 5\}=Z_{17} \backslash \{0\}\)</span>,
+satisfying the other necessary property of a starter.<br />
+The sums 5,2,4,6,10,14,9,1 are all unique, hence the starter is strong
+and the set<br />
+<span class="math inline">\(\{-5,-2,-4,-6,-10,-14,-9,-1\}=\{12,15,13,11,3,8,16\}\)</span> is an adder. So
+the following first row will generate a Room square under cyclic
+construction:</p>
+<p><span class="math inline">\(\infty,0\)</span> 3,15 13,6 - 11,10 1,4 7,16 - - 12,14 2,8 - - - 9,5 - -
+———— —— —— — ——- —– —— — — ——- —– — — — —– — —</p>
+<p>In order to prove that the pairs <span class="math inline">\(1...4\)</span> are a strong starter from any
+<span class="math inline">\(Z_p\)</span> we need to prove the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>The union of all the pairs contains each non-zero member of <span class="math inline">\(Z_p\)</span>
+exactly once.</p></li>
+<li><p>The differences are all the non-zero members of <span class="math inline">\(Z_p\)</span> exactly once.</p></li>
+<li><p>The sums are all distinct and non-zero.</p></li>
+</ol>
+<p>This is a formidable task, one that would take many pages to prove in
+full detail. So instead we sketch an outline of the proof, explicitly
+proving a few specific cases.<br />
+<br />
+First we prove (a) completely.<br />
+The non-zero members of <span class="math inline">\(Z_P\)</span>, namely <span class="math inline">\(\{1...2^{2d}\}\)</span>, can be
+represented uniquely by:
+<span class="math display">\[C(u,v) = u2^d+v \hspace{0.5cm} \mathrm{where} \hspace{0.5cm} 1 \leq v \leq 2^d
+\hspace{0.25cm} \mathrm{and} \hspace{0.25cm} 0 \leq u \leq 2^d-1\]</span>
+<em>Proof</em><br />
+Indeed if <span class="math display">\[u_12^d+v_1=u_22^d+v_2\]</span> then <span class="math display">\[(u_1-u_2)2^d=(v_2-v_1)\]</span> The
+RHS takes integer values in the interval <span class="math inline">\([-(2^d-1),2^d-1]\)</span>, which is
+symmetric about the origin and smaller than <span class="math inline">\(2^d\)</span> on both sides. Whereas
+the LHS takes integer multiple steps of size <span class="math inline">\(2^d\)</span>, so the equality can
+only hold in the case when both sides equal zero. Which implies
+<span class="math inline">\(u_1=u_2\)</span>, <span class="math inline">\(v_1=v_2\)</span> and <span class="math inline">\(C(u,v)\)</span> is unique representation the non-zero
+members of <span class="math inline">\(Z_p\)</span>. <span class="math inline">\(u\)</span> takes <span class="math inline">\(2^d\)</span> values and <span class="math inline">\(v\)</span> takes <span class="math inline">\(2^d\)</span> values so
+there are <span class="math inline">\(2^{2d}\)</span> unique non-zero members of <span class="math inline">\(Z_p\)</span> represented in this
+way, so each member of <span class="math inline">\(Z_p\)</span> is represented.<br />
+The left and right hand members of each pair can be characterised by a
+range of values of <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> in the following manner.<br />
+Take, for instance, the left hand member of pair 1. <span class="math display">\[i+(r-1)2^d\]</span> Here
+<span class="math inline">\(v=i\)</span> and so <span class="math inline">\(1 \leq v \leq 2^{d-1}\)</span>, while <span class="math inline">\(u=(r-1)\)</span>, so
+<span class="math inline">\(0 \leq u \leq 2^{d-2}-1\)</span>. The full list of intervals for each member of
+each pair is tabulated below.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Pair</td>
+<td align="center">Member</td>
+<td align="center"><span class="math inline">\(u\)</span></td>
+<td align="center"><span class="math inline">\(V\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">1.</td>
+<td align="center">L</td>
+<td align="center"><span class="math inline">\([0,2^{d-2}-1]\)</span></td>
+<td align="center"><span class="math inline">\([1,2^{d-1}]\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">R</td>
+<td align="center"><span class="math inline">\([0,2^{d-1}-1]\)</span></td>
+<td align="center"><span class="math inline">\([3 \cdot 2^{d-2}+1,2^{d}]\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">2.</td>
+<td align="center">L</td>
+<td align="center"><span class="math inline">\([2^{d-1},2^{d}-1]\)</span></td>
+<td align="center"><span class="math inline">\([1,2^{d-2}]\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">R</td>
+<td align="center"><span class="math inline">\([2^{d-2},2^{d-1}-1]\)</span></td>
+<td align="center"><span class="math inline">\([1,2^{d-1}]\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">3.</td>
+<td align="center">L</td>
+<td align="center"><span class="math inline">\([2^{d-1},3 \cdot 2^{d-2}-1]\)</span></td>
+<td align="center"><span class="math inline">\([1+2^{d-1},2^{d}]\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">R</td>
+<td align="center"><span class="math inline">\([2^{d-1},2^{d}-1]\)</span></td>
+<td align="center"><span class="math inline">\([1+ 2^{d-2},2^{d-1}]\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">4.</td>
+<td align="center">L</td>
+<td align="center"><span class="math inline">\([0,2^{d-1}-1]\)</span></td>
+<td align="center"><span class="math inline">\([1+ 2^{d-1},3 \cdot 2^{d-2}]\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">R</td>
+<td align="center"><span class="math inline">\([3 \cdot 2^{d-2},2^{d}-1]\)</span></td>
+<td align="center"><span class="math inline">\([1+2^{d-1},2^{d}]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 5</strong></p>
+<p>It was mentioned earlier that there were <span class="math inline">\(2^{2d-1}\)</span> pairs, each of which
+has two members, so there are <span class="math inline">\(2^{2d}\)</span> elements altogether in the pairs
+of the starter, which is the same as the number of elements in <span class="math inline">\(Z_p\)</span>.
+Because <span class="math inline">\(C(u,v)\)</span> is a unique representation for each member of <span class="math inline">\(Z_p\)</span>,
+for an element of <span class="math inline">\(Z_p\)</span> to occur more than once in the starter requires
+repetition of both <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span>. This cannot happen because when two
+intervals overlap (as they do in the values of <span class="math inline">\(v\)</span> for 1L and 2R).<br />
+<br />
+To prove (b) we need to show that the differences between two pairs of
+type 1 are all unique, similarly between two pairs of types 2,3 and 4.
+Moreover we need to show that there can be no repetition in differences
+between a pair of type 1 and a pair of type 2, also type 1 with types 3
+in 4. Similarly for 2,3 and 4. All together there are ten cases to
+prove, tabulated below, where a pair of numbers represents the two types
+of pairs from the starter.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">(i)</th>
+<th align="center">11</th>
+<th align="left">(ii)</th>
+<th align="center">12</th>
+<th align="left">(iii)</th>
+<th align="center">13</th>
+<th align="left">(iv)</th>
+<th align="center">14</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(v)</td>
+<td align="center">22</td>
+<td align="left">(vi)</td>
+<td align="center">23</td>
+<td align="left">(vii)</td>
+<td align="center">24</td>
+<td align="left"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">(viii)</td>
+<td align="center">33</td>
+<td align="left">(ix)</td>
+<td align="center">34</td>
+<td align="left"></td>
+<td align="center"></td>
+<td align="left"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">(x)</td>
+<td align="center">44</td>
+<td align="left"></td>
+<td align="center"></td>
+<td align="left"></td>
+<td align="center"></td>
+<td align="left"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 6</strong></p>
+<p>To illustrate, we prove (v), in other words that differences ebtween two
+different pairs, both of type 2 are always unique.<br />
+Type 2 have the form: <span class="math inline">\(\{(2^d-i)2^d+r, (2^{d-1}-r)2^d+2^{d-1}-i+1\}\)</span>.
+Therefore, a difference between the elements of a pair of type 2 has the
+form: <span class="math display">\[\pm \{(2^d-i)2^d+r-(2^{d-1}-r)2^d-2^{d-1}+i-1\}\]</span> If two
+different pairs had the same difference we could write:
+<span class="math display">\[(2^d-i)2^d+r-(2^{d-1}-r)2^d-2^{d-1}+i-1
+\equiv \pm \{(2^d-j)2^d +s-(2^{d-1}-s)2^d-2^{d-1}+j-1\}(\mathrm{mod} \hspace{0.1cm} p)\]</span>
+for some <span class="math inline">\(i \neq j, r \neq s\)</span>. There are two cases to prove, firstly
+consider the one involving the + sign.
+<span class="math display">\[(2^d-i)2^d+r-(2^{d-1}-r)2^d-2^{d-1}+i-1 \equiv (2^d-j)2^d + s -(2^{d-1}-s)2^d - 2^{d-1} + j -1 (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[\cancel{(2^d}-i)2^d+r-(\cancel{2^{d-1}}-r)2^d-\cancel{2^{d-1}}+i\cancel{-1} \equiv \cancel{(2^d}-j)2^d + s -(\cancel{2^{d-1}}-s)2^d - \cancel{2^{d-1}} + j \cancel{-1} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+In this case we have been helped out with some very convenient
+cancelling, leaving just:
+<span class="math display">\[-i2^d+r+r \cdot 2^d + i \equiv -j \cdot 2^d + s + s \cdot 2^d + j \hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(-i+j)2^d + i -j \equiv (s-r)(1+2^d) \hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(j-i)(2^d -1) \equiv (s-r)(1+2^d) \hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math inline">\(\times (2^d+1)\)</span>
+<span class="math display">\[(j-i)(2^{2d} -1) \equiv (s-r)(1+2 \cdot 2^d + 2^{2d}) \hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math inline">\(2^{2d}+1=p\)</span> <span class="math inline">\(\hspace{0.5cm}\therefore\)</span> <span class="math inline">\(2^{2d}-1 \equiv -2\)</span> (mod <span class="math inline">\(p\)</span>)
+<span class="math display">\[-2(j-i)\equiv (s-r)2 \cdot 2^d \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(i-j)\equiv (s-r) 2^d \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p) \hspace{2cm} ...(\mathrm{A})\]</span>
+<span class="math inline">\(1 \leq i, j \leq 2^{d-1}\)</span><br />
+<span class="math inline">\(\therefore (i-j)\)</span> lies in the interval <span class="math inline">\([-(2^{d-1}-1),2^{d-1}-1]\)</span>,
+which is symmetric about the origin, with length
+<span class="math inline">\(2 \cdot 2^{d-1}-2=2^d-2 &lt; p = 2^{2d}+1\)</span>.<br />
+<span class="math inline">\(1 \leq s,r \leq 2^{d-2}\)</span><br />
+<span class="math inline">\(\therefore(s-r)2^d\)</span> lies in the interval
+<span class="math inline">\([-(2^{d-2}-1)2^d,(2^{d-2}-1)2^d]\)</span>, again symmetric about the origin
+with length <span class="math inline">\(2^{2d}-2^{d+1} &lt; p\)</span>.<br />
+So for A to hold requires that <span class="math display">\[(i-j)=(s-r)2^d\]</span> But the LHS has an
+interval with length <span class="math inline">\(2^d-2 &lt; 2^d\)</span> whereas the RHS is some positive or
+negative integer multiple of <span class="math inline">\(2^d\)</span>, so the two could only be equal when
+<span class="math inline">\(i=j,r=s\)</span> contradicting the original hypothesis.<br />
+<br />
+There is still the negative case to deal with:
+<span class="math display">\[(2^d-i)2^d+r-(2^{d-1}-r)2^d-2^{d-1}+i-1 \equiv
+-(2^d-j)2^d-s+(2^{d-1}-s)2^d+2^{d-1}-j+1\hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(2^d-i)2^d-(2^{d}-j)2^d+i+j \equiv
+-s+(2^{d-1}-s)2^d + (2^{d-1} -r)2^d -r + 2 \cdot 2^{d-1} + 2 \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[2 \cdot 2^{2d} + (1-2^{d})(i+j) \equiv
+-(s+r)(1+2^d)+2^{2d}+1+2^d+1 \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math inline">\(2^{2d}+1=p \therefore 2^{2d} \equiv -1 \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\)</span>
+<span class="math display">\[-2+(1-2^d)(i+j) \equiv -(s+r)(1+2^d)+1+2^d \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(1-2^d)(i+j) \equiv -(s+r)(1+2^d)+3+2^d \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+Now multiply throughout by <span class="math inline">\((1+2^d)\)</span>, noting that:<br />
+<span class="math inline">\((1+2^d)(1-2^d) \equiv 2(\hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p),(1+2^d)(1+2^d) =1+2 \cdot 2^d + 2^{2d} \equiv 2^{d+1}\hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\)</span><br />
+and
+<span class="math inline">\((1+2^d)(3+2^d)=3+4 \cdot 2^d+2^{2d} \equiv 2^{d+2}+2 \hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\)</span><br />
+<span class="math display">\[2(i+j)\equiv -2^{d+1}(s+r)+2^{d+2}+2\hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(i+j)\equiv -2^{d}(s+r)+2^{d+1}+1\hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[2^d(s+r)\equiv 2 \cdot 2^{d}-(i+j)+1\hspace{0.1cm} (\mathrm{mod} \hspace{0.1cm} p) \hspace{1cm}... (\mathrm{B})\]</span>
+<span class="math inline">\(1 \leq s, r \leq 2^{d-2}\)</span><br />
+<span class="math inline">\(\therefore 2 \cdot 2^d \leq 2^d(s+r) \leq 2^d2^{d-1}\)</span><br />
+The LHS lies in the interval <span class="math inline">\([2^{d+1},2^{2d-1}]\)</span>, which itself is
+located somewhere in the interval <span class="math inline">\([0,p]\)</span>.<br />
+<span class="math inline">\(1 \leq i, j \leq 2^{d-1}\)</span><br />
+<span class="math inline">\(\therefore 2 \leq i + j \leq 2^d\)</span><br />
+<span class="math inline">\(2^d \leq 2 \cdot 2^d -(i+j) \leq 2^{d+1} - 2\)</span><br />
+So the RHS lies in the interval <span class="math inline">\([2^d+1,2^{d+1}-1]\)</span>, again this is
+located with <span class="math inline">\([0,p]\)</span>.<br />
+So for B to be satisfied requires that <span class="math display">\[2^d(s+r)=2 \cdot 2^d-(i+j)+1\]</span>
+But the RHS and LHS intervals are disjoint so this can never happen.<br />
+So the absence of repetition in the differences of two different pairs
+both of type 2 is proven. All cases involving different pairs of the
+same type are proven in this way {cases (i),(v),(viii),(x)}.<br />
+<br />
+Finally we demonstrate how the other 6 cases are proven, those involving
+pairs of different types.<br />
+Inevitably the approach is very similar.<br />
+<br />
+Consider a pair of type 1 and another pair of type 4 (case iv). If there
+were a repetition of differences between pairs of this type we could
+write:
+<span class="math display">\[i+(r-1)2^d-i2^d+(r-1) \equiv \pm \{(2^{d-1}-j)2^d+2^{d-1}+s-(2^d-s+1)2^d+j-1\}
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span> Consider the + sign,
+then
+<span class="math display">\[i-i2^d-(2^{d-1}-j)2^d-j \equiv -(r-1)2^d-(r-1)+s-(2^d-s+1)2^d+2^{d-1}-1
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(1-2^d)(i-j)-2^{2d-1} \equiv -(2^d+1)(r-s)-2^{2d}+2^{d-1}
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math inline">\(2^{2d} \equiv -1\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\)</span><br />
+<span class="math display">\[(1-2d)(i-j) \equiv -(2^d+1)(r-s)+2^{d-1} + 2^{2d-1} + 1
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span> <span class="math inline">\(\times 2\)</span><br />
+<span class="math display">\[2(1-2d)(i-j) \equiv -2(2^d+1)(r-s)+2^{d} + 2^{2d} + 2
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[2(1-2d)(i-j) \equiv -2(2^d+1)(r-s)+2^{d}+1
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span> <span class="math inline">\(\times(2^d+1)\)</span><br />
+<span class="math display">\[4(i-j) \equiv -2 \cdot 2^{d+1}(r-s)+2^{d+1}
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[(i-j) \equiv -2^{d}(r-s)+2^{d-1}
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span>
+<span class="math display">\[2^d(r-s) \equiv 2^{d-1}-(i-j)
+\hspace{0.3cm} (\mathrm{mod} \hspace{0.1cm} p)\]</span> In this instance the
+LHS has interval <span class="math inline">\([2^d-2^{2d-2},2^{2d-2}-2^d]\)</span>. while the interval of
+the RHS is <span class="math inline">\([1,2^d-1]\)</span>. Both are smaller than <span class="math inline">\(p\)</span> in length, so for
+equality requires <span class="math display">\[2^d(r-s) = 2^{d-1}-(i-j)\]</span> But this can never be
+true because the left side is always either zero or an integer multiple
+of <span class="math inline">\(2^d\)</span>, whereas the interval of the right is <span class="math inline">\([1,2^d-1]\)</span>.<br />
+<br />
+All other cases are dealt with in a very similar manner, and the proof
+of (c), namely that all sums are unique, is not very different.</p>
+</div>
+</div>
+<div id="a-multiplication-theorem" class="section level2">
+<h2><span class="header-section-number">2.5</span> A Multiplication Theorem</h2>
+<p>Having a theorem which enables new Room squares to be composed from old
+Room squares is of vital importance to the proof of the existence of
+Room squares. With such a theorem, in conjunction with the Mullin-Nemeth
+starters, we will be able to construct Room squares of almost any order.
+The exceptions will be due to the non-existence of orders 4 and 6. The
+multiplication theorem that will be proven is:</p>
+<div id="theorem-3.6.1" class="section level4">
+<h4><span class="header-section-number">2.5.0.1</span> Theorem 3.6.1</h4>
+<p><br />
+<em>If Room squares of side m and side n exist then a Room square of side
+mn also exists.</em><br />
+<br />
+This theorem was proposed initially in [5] but later a counter-example
+to this method was found [15]. The proof here is based upon [1], which
+in turn is based upon the proof in [22].<br />
+<br />
+<em>Proof</em><br />
+<span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are two Room squares. <span class="math inline">\(M\)</span> is of side <span class="math inline">\(m\)</span> and based on
+<span class="math inline">\(\{0,1,2,...,m\}\)</span>, while <span class="math inline">\(N\)</span> is of side <span class="math inline">\(n\)</span> and based on
+<span class="math inline">\(\{0,1,2,...,n\}\)</span>.<br />
+<br />
+The join of two Latin squares <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is the array whose
+<span class="math inline">\((i,j)^{\mathrm{th}}\)</span> entry contains the ordered pair formed from the
+<span class="math inline">\((i,j)^{\mathrm{th}}\)</span> entry of <span class="math inline">\(A\)</span> taking the left position and the
+<span class="math inline">\((i,j)^{\mathrm{th}}\)</span> entry of <span class="math inline">\(B\)</span> taking the right. If the join of two
+Latin squares contains <span class="math inline">\(n^2\)</span> unique ordered pairs, the two Latin squares
+<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be orthogonal.<br />
+<br />
+<span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> are two mutually Latin squares (MOLS) based on
+<span class="math inline">\(\{1,2,3,...,n\}\)</span>.<br />
+We construct the new Room square <span class="math inline">\(R=MN\)</span> by replacing each element of <span class="math inline">\(M\)</span>
+by an <span class="math inline">\(n \times n\)</span> array according to the following flow diagram where
+<span class="math inline">\((i,j)\)</span> is a pair from <span class="math inline">\(M\)</span>.</p>
+<p><strong>Figure 19</strong></p>
+<p>This procedure has replaced each pair in <span class="math inline">\(m\)</span> by an <span class="math inline">\(n \times n\)</span> array,
+resulting in an <span class="math inline">\(mn \times mn\)</span> array. This array is based upon
+<span class="math inline">\(\{0,n+1,n+2,...,n+mn\}\)</span>, and we now prove that it has the properties of
+a Room square, namely:</p>
+<ol style="list-style-type: decimal">
+<li><p>Each element of the array is either empty or contains an unordered
+pair.</p></li>
+<li><p>Each row and column contains each of <span class="math inline">\(\{0,n+1,n+2,...,n+mn\}\)</span>
+exactly once.</p></li>
+<li><p>Each pair from <span class="math inline">\(\{0,n+1,n+2,...,n+mn\}\)</span> occurs exactly once in the
+array.</p></li>
+</ol>
+<p>The first property is easily satisfied. The procedure followed did
+nothing but replace empty elements and unordered pairs with arrays
+containing nothing more than empty elements or pairs.<br />
+<br />
+The second is similarly straightforward. Consider an arbitrary row of
+the new square <span class="math inline">\(R\)</span>, call it <span class="math inline">\(i\)</span>. This row arose from applying
+prescriptions (i),(ii), and (iii) to some row of <span class="math inline">\(M\)</span>. This row of <span class="math inline">\(M\)</span>
+contained the elements <span class="math inline">\(0...m\)</span> exactly once. One of these elements, call
+it <span class="math inline">\(a\)</span>, was paired with 0. So in <span class="math inline">\(i\)</span> from (ii) occur the numbers
+<span class="math inline">\((0;1+an...m+an)\)</span> exactly once. In the join of two MOLS the numbers
+<span class="math inline">\(1...n\)</span> occur twice per row, once in <span class="math inline">\(L_1\)</span> once in <span class="math inline">\(L_2\)</span>. These are
+replaced by <span class="math inline">\((1+un...n+un)\)</span> and <span class="math inline">\((1+vn...n+vn)\)</span> as <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> take on
+all values <span class="math inline">\(1,2,...,m\)</span> excluding<br />
+Together these two prescriptions produce the elements
+<span class="math display">\[\{0;1+n,2+n,...,n+mn\}\]</span> exactly once per row and column.<br />
+<br />
+To prove condition 3 is true we show that <span class="math inline">\(R\)</span> contains the correct
+number of pairs and that<br />
+these pairs are distinct. Because we have shown 2 to be correct these
+pairs must be the right<br />
+Any Room square, of side <span class="math inline">\(n\)</span>, contains <span class="math inline">\(\frac{1}{2}(n+1)\)</span> pairs per row,
+therefore <span class="math inline">\(\frac{1}{2}n(n+1)\)</span> pairs over<br />
+Room square of side <span class="math inline">\(mn\)</span> ought to contain <span class="math inline">\(\frac{1}{2}mn(mn+1)\)</span> pairs.<br />
+In <span class="math inline">\(M\)</span> there were <span class="math inline">\(m\)</span> instances of <span class="math inline">\(\{0,k\}\)</span>, each of these was replaced
+by a Room square of side<br />
+<span class="math inline">\(\frac{1}{2}n(n+1) \cdot m\)</span> pairs were contributed by (ii) to <span class="math inline">\(R\)</span>.<br />
+In <span class="math inline">\(M\)</span> there were <span class="math inline">\(\frac{1}{2}(m+1)-1 = \frac{1}{2} (m-1)\)</span> pairs per row
+of the form <span class="math inline">\(\{u,v\}\)</span>, therefore <span class="math inline">\(\frac{1}{2}m(m\)</span><br />
+of these pairs throughout <span class="math inline">\(M\)</span>. These were replaced by MOLS of side <span class="math inline">\(n\)</span>,
+containing <span class="math inline">\(n^2\)</span> pairs<br />
+each. So <span class="math inline">\(\frac{1}{2}m(m-1) \cdot n^2\)</span> pairs were contributed to <span class="math inline">\(R\)</span>
+from (iii).<br />
+(i) contributed no pairs to <span class="math inline">\(R\)</span>.
+<span class="math display">\[\frac{1}{2} mn (n+1) + \frac{1}{2}m(m-1)n^2\]</span>
+<span class="math display">\[=\frac{1}{2}mn\{(n+1)+n(m-1)\}\]</span> <span class="math display">\[=\frac{1}{2}mn(mn+1)\]</span> So the
+number of pairs in <span class="math inline">\(R\)</span> is correct.<br />
+<br />
+To show that all the pairs are distinct consider <span class="math inline">\(P(i,j)\)</span> which
+represents those pairs generated<br />
+from the element <span class="math inline">\((i,j)\)</span> of <span class="math inline">\(M\)</span>. The pairs within <span class="math inline">\(P(i,j)\)</span> are always
+distinct because they are<br />
+the pairs in a Room square or a join of 2 MOLS.<br />
+<br />
+However we also need to show that <span class="math inline">\(P(i,j)\)</span> and <span class="math inline">\(P(h,k)\)</span> have no pairs in
+common when <span class="math inline">\(i,j \neq h,k\)</span>. There are 3 cases to consider. Both sets of
+pairs are chosen from the join of 2 M<br />
+both sets are from Room squares, or one set from each.<br />
+<br />
+If both sets of pairs were generated from the join of two MOLS then the
+pairs have the form<span class="math display">\[\{un+l_1,vn+l_2\}\]</span> If this pair occurs in both
+<span class="math inline">\(P(i,j)\)</span> and <span class="math inline">\(P(h,k)\)</span> then <span class="math inline">\((l_1,l_2)\)</span> occurs in two different places
+in<br />
+joins of two MOLS which is a contradiction.<br />
+<br />
+The case where both sets of pairs are generated by Room squares is
+easily dealt with, because<br />
+the Room squares used to construct <span class="math inline">\(R\)</span> are based on different sets, so
+two could never contain<br />
+same pair.</p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">2.6</span> Summary</h2>
+<p>So far we have shown that all Room squares whose side can be expressed
+as a prime power<br />
+<span class="math inline">\(p^n=2^kt+1\)</span> can be constructed by using the Mullin-Nemeth starters. The
+Fermat Primes<br />
+shown to be an exception to the Mullin-Nemeth construction, but this was
+overcome by<br />
+introducing the theorem of Chong and Chan which provides a strong
+starter form all Room squares of side <span class="math inline">\((2^{2^m}+1)\)</span>, encompassing the
+Fermat primes. So we have proven that all Room squares exist whose side
+is a prime number, other than 3 or 5. The multiplication theorem<br />
+enables us to state that all Room squares exist whose side can be
+factored as <span class="math inline">\(p_1p_2p_3...p_n\)</span><br />
+<span class="math inline">\(p_i \geq 7\)</span>.<br />
+<br />
+The non-existence of Room squares with sides 3 and 5, prevents us from
+constructing those<br />
+squares whose sides have a factor of 3 or 5. Within this class of exempt
+Room squares the Mullin &amp; Nemeth starters will take care of the prime
+power sides. But for those whose side is not a prime power a final
+theorem, due to W.D. Wallis is needed to complete the proof.</p>
+</div>
+<div id="n-tuplication-of-room-squares" class="section level2">
+<h2><span class="header-section-number">2.7</span> n-tuplication of Room squares</h2>
+<div id="theorem-3.8.125" class="section level4">
+<h4><span class="header-section-number">2.7.0.1</span> Theorem 3.8.1[25]</h4>
+<p><br />
+If <span class="math inline">\(r\)</span> and <span class="math inline">\(n\)</span> are odd integers such that <span class="math inline">\(r \geq n\)</span>, and if there is a
+Room square <span class="math inline">\(R\)</span> of side <span class="math inline">\(r\)</span>, then there is a Room square of side <span class="math inline">\(rn\)</span>.<br />
+<br />
+<em>Example 3.8.1</em><br />
+Before proving this theorem, we look at an example of triplication in
+order to introduce thisfairly complicated construction.<br />
+The approach taken is to take a Room square of side 7, create 9 arrays
+very similar in structure tothis Room square, and then arrange these 9
+arrays into a 21x21 side array which is very<br />
+Room square.<br />
+Suppose we wished to triplicate the following Room square.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">-</th>
+<th align="center">-</th>
+<th align="center">25</th>
+<th align="center">-</th>
+<th align="center">16</th>
+<th align="center">34</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">45</td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">36</td>
+<td align="center">-</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center">31</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">40</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">-</td>
+<td align="center">42</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">51</td>
+</tr>
+<tr class="even">
+<td align="center">62</td>
+<td align="center">-</td>
+<td align="center">53</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">-</td>
+<td align="center">03</td>
+<td align="center">-</td>
+<td align="center">64</td>
+<td align="center">12</td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">14</td>
+<td align="center">-</td>
+<td align="center">05</td>
+<td align="center">23</td>
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 20</strong></p>
+<p>Unfortunately, this row has simply too many elements. There should be
+only 11 pairs, not<br />
+and the new Room-ish square would be based on a set of 24 elements not
+22 as we require.Wallis’s original idea had been to somehow merge the
+three <span class="math inline">\(\infty _\mathrm{i}\)</span> into one element, but he eventually decided
+instead to go back to the original square and strip out the diagonal
+elements.Building a Room square is then a matter of arranging the
+following arrays, sometimes called frames,</p>
+<p>$R_{ij} = $</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th align="center"><span class="math inline">\(2_\mathrm{i}5_\mathrm{j}\)</span></th>
+<th></th>
+<th align="center"><span class="math inline">\(1_\mathrm{i}6_\mathrm{j}\)</span></th>
+<th align="center"><span class="math inline">\(3_\mathrm{i}4_\mathrm{j}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(4_\mathrm{i}5_\mathrm{j}\)</span></td>
+<td></td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(3_\mathrm{i}6_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2_\mathrm{i}0_\mathrm{j}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3_\mathrm{i}1_\mathrm{j}\)</span></td>
+<td><span class="math inline">\(5_\mathrm{i}6_\mathrm{j}\)</span></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(4_\mathrm{i}0_\mathrm{j}\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(4_\mathrm{i}2_\mathrm{j}\)</span></td>
+<td><span class="math inline">\(6_\mathrm{i}0_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5_\mathrm{i}1_\mathrm{j}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(6_\mathrm{i}2_\mathrm{j}\)</span></td>
+<td></td>
+<td><span class="math inline">\(5_\mathrm{i}3_\mathrm{j}\)</span></td>
+<td align="center"><span class="math inline">\(0_\mathrm{i}1_\mathrm{j}\)</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(0_\mathrm{i}3_\mathrm{j}\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(6_\mathrm{i}4_\mathrm{j}\)</span></td>
+<td><span class="math inline">\(1_\mathrm{i}2_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><span class="math inline">\(1_\mathrm{i}4_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(0_\mathrm{i}5_\mathrm{j}\)</span></td>
+<td align="center"><span class="math inline">\(2_\mathrm{i}3_\mathrm{j}\)</span></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 21</strong></p>
+<p>into a 21x21 array, and subsequently finding some way to fill in the
+missing two pairs from<br />
+row of the new square, with the aim of producing a Room square based on
+<span class="math display">\[S = \{\infty,0_1,1_1,...,6_1,0_2,1_2,...,6_2,0_3,1_3,...,6_3\}\]</span>
+Inevitably this approach leads to new problems.<br />
+<br />
+Firstly consider how to arrange the frames appropriately. Suppose we put
+<span class="math inline">\(R_{12}\)</span> next to <span class="math inline">\(R_{13}\)</span>,<br />
+the left hand members of pairs in each row of <span class="math inline">\(R_{12}\)</span> will be repeated
+in the same row of the<br />
+21x21 square due to the placing of <span class="math inline">\(R_{13}\)</span>. The same would be true for
+any <span class="math inline">\(R_{ij}\)</span> next to any <span class="math inline">\(R_{ik}\)</span>,<br />
+next to <span class="math inline">\(R_{kj}\)</span>. So for that reason, in the super-array of <span class="math inline">\(R_{ij}\)</span>s we
+require in each super-row that<br />
+each value 1,2 and 3 and similarly that <span class="math inline">\(j\)</span> takes on all these values.
+To satisfy the column<br />
+for our new Room square we also require that no <span class="math inline">\(R_{ij}\)</span> occurs above or
+below an <span class="math inline">\(R_{ik}\)</span> or <span class="math inline">\(R_{kj}\)</span>, and<br />
+that reason we must also insist that for any super-column of <span class="math inline">\(R_{ij}\)</span>s,
+<span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> independently<br />
+values 1..3, so that each member of <span class="math inline">\(S \backslash \{\infty\}\)</span> occurs
+once in the corresponding 7 columns of<br />
+finished Room square – (except for the missing
+<span class="math inline">\(\{x_i: 0 \leq x \leq 6\}\)</span> from all columns <span class="math inline">\(x_i\)</span>).<br />
+<br />
+Furthermore, as we are aiming for an array in which all the unordered
+pairs from <span class="math inline">\(S\)</span> occur<br />
+once if we also insist that each value of <span class="math inline">\(i\)</span> is paired with each value
+of <span class="math inline">\(j\)</span> exactly once in<br />
+super-array then we should obtain most of these pairs. In fact, because
+<span class="math inline">\(R_{ij} \cup R_{ji}\)</span> contains<br />
+unordered pairs from <span class="math inline">\(\{9_i,o_j,1_i,1_j,...,6_i,6_j\}\)</span>, except those of
+the form <span class="math inline">\(\{x_i,x_j\}\)</span> <span class="math inline">\(1 \leq i,j \leq 3\)</span><br />
+shall obtain all the unordered pairs of <span class="math inline">\(S\)</span> except those of the form
+<span class="math display">\[\{\infty,x_1\},\{\infty,x_2\},\{\infty,x_3\},\{x_1,x_2\},\{x_1,x_3\},\{x_2,x_3\}, 0 \leq x \leq 6\]</span><br />
+The ideal solution to this problem (because it solves the problem of
+missing pairs as well as completing rows/columns) would be to place
+pairs of the form <span class="math inline">\(\{\infty, x_j\}\)</span> and <span class="math inline">\(\{x_i, x_j\}\)</span> at the
+intersection of rows <span class="math inline">\(x_j\)</span> and column <span class="math inline">\(x_j\)</span>, but of course this
+intersection is a single box, and we don’t want two pairs in one box.
+Wallis’s solution to this problem was to permute the columns of some of
+the <span class="math inline">\(R_{ij}\)</span>s from one super-column of the array of frames with the
+intention of arranging it so that the elements <span class="math inline">\(x_i\)</span> <span class="math inline">\(x_j\)</span> would be
+vacant from some column <span class="math inline">\(y \neq x_j\)</span>. This enables us to put the
+<span class="math inline">\(\{\infty, x_j\}\)</span> in column <span class="math inline">\(x_j\)</span> and the <span class="math inline">\(\{x_i,x_j\}\)</span> in column <span class="math inline">\(y\)</span>.<br />
+<br />
+<em>Example,</em><br />
+The elements missing from row <span class="math inline">\(0_1,\)</span> $ , 0_1, 0_2, 0_3$, are also
+missing from column <span class="math inline">\(0_1\)</span> (due to the removal of the pair <span class="math inline">\(\{\infty,0\}\)</span>
+from the original Room square to create the frame). There is no problem
+in putting <span class="math inline">\(\{\infty,0_1\}\)</span> in position <span class="math inline">\((0_1,0_1)\)</span>, but if we want to
+put <span class="math inline">\(\{0_2,0_3\}\)</span> in row <span class="math inline">\(0_1\)</span> it must go in some other column of block
+<span class="math inline">\(R_{11}\)</span>, while remaining in column <span class="math inline">\(1_1\)</span> of blocks <span class="math inline">\(R_{23}\)</span> and
+<span class="math inline">\(R_{32}\)</span>, this can be achieved through a column permutation applied only
+to <span class="math inline">\(R_{23}\)</span> and <span class="math inline">\(R_{32}\)</span>.<br />
+<br />
+Notice that it would be of little use to swap columns <span class="math inline">\(0_1\)</span> and <span class="math inline">\(4_1\)</span> of
+blocks <span class="math inline">\(R_{23}\)</span> and <span class="math inline">\(R_{32}\)</span>, as the fourth column is occupied already
+in the first row of block <span class="math inline">\(R_{11}\)</span>. But we could swap <span class="math inline">\(0_1\)</span> with any of
+<span class="math inline">\(1_1,2_1,3_1\)</span> or <span class="math inline">\(5_1\)</span> because all these columns are empty in row <span class="math inline">\(0_1\)</span>.
+Clearly the essential property we require of any column permutation that
+we decide to use, call it <span class="math inline">\(\theta\)</span>, is that <span class="math inline">\((x,x\theta)\)</span> is unoccupied
+in the original Room square.</p>
+</div>
+<div id="lemma-3.8.1" class="section level4">
+<h4><span class="header-section-number">2.7.0.2</span> Lemma 3.8.1</h4>
+<p><br />
+Given a Room square <span class="math inline">\(R\)</span> of side <span class="math inline">\(r\)</span>, where <span class="math inline">\(r=2s+1\)</span>, there are <span class="math inline">\(s\)</span>
+permutations <span class="math inline">\(\phi_1,\phi_2,...,\phi_s\)</span> of <span class="math inline">\(\{1,2,...,r\}\)</span> with the
+properties that <span class="math inline">\(k\phi_i=k\phi_j\)</span> never occurs unless <span class="math inline">\(i=j\)</span>, and that
+cell <span class="math inline">\((k,k\phi_i)\)</span> is empty for <span class="math inline">\(1 \leq k \leq r, 1 \leq i\leq s\)</span>.<br />
+<br />
+<em>Proof</em><br />
+We define a matrix <span class="math inline">\(M\)</span> in the following manner:<br />
+If position <span class="math inline">\((k,l)\)</span> is <em>empty</em> in <span class="math inline">\(R\)</span> then the <span class="math inline">\((k,l)\)</span> position of <span class="math inline">\(M\)</span>
+is 1, otherwise it is 0.<br />
+Because <span class="math inline">\(M\)</span> is a matrix of 0s and 1s, whose every row and column sum is
+equal to <span class="math inline">\(s\)</span>, it can be decomposed into <span class="math inline">\(s\)</span> matrices, each of which
+having exactly one 1 in each row and column[^8]. <span class="math display">\[M=P_1+P_2+...+P_s\]</span>
+These matrices ,when interpreted in the following or similar manner, are
+known as<br />
+<strong>permutation matrices</strong>:<br />
+Define <span class="math inline">\(\phi_i\)</span> as the permutation corresponding to matrix <span class="math inline">\(P_i\)</span> such
+that if <span class="math inline">\((k,l)\)</span> is 1 in <span class="math inline">\(P_i\)</span> then <span class="math inline">\(k\phi _i=l\)</span>.<br />
+The definition of <span class="math inline">\(M\)</span> ensures that the <span class="math inline">\((k,k\phi _i)\)</span>, so <span class="math inline">\(M\)</span> would have
+an entry equal to 2 or more, contradicting the definition.<br />
+<br />
+<em>Example</em> cont…,<br />
+The matrix <span class="math inline">\(M\)</span> associated with the square from Figure 19 is:</p>
+<p><span class="math display">\[\begin{gathered}
+M=
+  \begin{bmatrix}
+  0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1\\
+  1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}\end{gathered}\]</span></p>
+<p><br />
+Which can be decomposed (not uniquely) into these permutation matrices:</p>
+<p><span class="math display">\[\begin{gathered}
+M= P_1 + P_2 + P_3 = 
+  \begin{bmatrix}
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}
+  +
+  \begin{bmatrix}
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}
+  +
+  \begin{bmatrix}
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}\end{gathered}\]</span></p>
+<p><br />
+The permutations associated with these matrices are, in cycle notation:
+<span class="math display">\[\phi _1 = (1235674), \phi _2 = (1524637), \phi _3 = (1345726)\]</span> If we
+choose to apply <span class="math inline">\(\phi _1\)</span> to the columns of blocks <span class="math inline">\(R_{23}\)</span> and <span class="math inline">\(R{32}\)</span>
+we get:</p>
+<p><span>|c|c|c|c|c|c|c|c|</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Col/</td>
+</tr>
+<tr class="even">
+<td align="center">Row</td>
+</tr>
+</tbody>
+</table>
+<p>&amp; <span class="math inline">\(0_1\)</span> &amp; <span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_1\)</span> &amp; <span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(5_1\)</span> &amp; <span class="math inline">\(6_1\)</span><br />
+<span class="math inline">\(0_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(2_15_1\)</span> &amp; &amp; <span class="math inline">\(1_16_1\)</span> &amp; <span class="math inline">\(3_14_1\)</span><br />
+<span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(4_15_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(3_16_1\)</span> &amp; &amp; <span class="math inline">\(2_10_1\)</span><br />
+<span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_11_1\)</span> &amp; <span class="math inline">\(5_16_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(4_10_1\)</span> &amp;<br />
+<span class="math inline">\(3_1\)</span> &amp; &amp; <span class="math inline">\(4_12_1\)</span> &amp; <span class="math inline">\(6_10_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(5_11_1\)</span><br />
+<span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(6_12_1\)</span> &amp; &amp; <span class="math inline">\(5_13_1\)</span> &amp; <span class="math inline">\(0_11_1\)</span> &amp; &amp; &amp;<br />
+<span class="math inline">\(5_1\)</span> &amp; &amp; <span class="math inline">\(0_13_1\)</span> &amp; &amp; <span class="math inline">\(6_14_1\)</span> &amp; <span class="math inline">\(1_12_1\)</span> &amp; &amp;<br />
+<span class="math inline">\(6_1\)</span> &amp; &amp; &amp; <span class="math inline">\(1_14_1\)</span> &amp; &amp; <span class="math inline">\(0_15_1\)</span> &amp; <span class="math inline">\(2_13_1\)</span> &amp;<br />
+<span class="math inline">\(0_2\)</span> &amp; <span class="math inline">\(2_35_2\)</span> &amp; &amp; &amp; <span class="math inline">\(3_34_2\)</span> &amp; &amp; &amp; <span class="math inline">\(1_36_2\)</span><br />
+<span class="math inline">\(1_2\)</span> &amp; &amp; <span class="math inline">\(4_35_2\)</span> &amp; &amp; <span class="math inline">\(2_30_2\)</span> &amp; &amp; <span class="math inline">\(3_36_2\)</span> &amp;<br />
+<span class="math inline">\(2_2\)</span> &amp; &amp; <span class="math inline">\(3_31_2\)</span> &amp; <span class="math inline">\(5_36_2\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(4_30_2\)</span><br />
+<span class="math inline">\(3_2\)</span> &amp; &amp; &amp; <span class="math inline">\(4_32_2\)</span> &amp; <span class="math inline">\(5_31_2\)</span> &amp; <span class="math inline">\(6_30_2\)</span>&amp; &amp;<br />
+<span class="math inline">\(4_2\)</span> &amp; <span class="math inline">\(0_31_2\)</span> &amp; <span class="math inline">\(6_32_2\)</span> &amp; &amp; &amp; <span class="math inline">\(5_33_2\)</span> &amp; &amp;<br />
+<span class="math inline">\(5_2\)</span> &amp; <span class="math inline">\(6_34_2\)</span> &amp; &amp; <span class="math inline">\(0_33_2\)</span> &amp; &amp; &amp; <span class="math inline">\(1_32_2\)</span> &amp;<br />
+<span class="math inline">\(6_2\)</span> &amp; &amp; &amp; &amp; &amp; <span class="math inline">\(1_34_2\)</span> &amp; <span class="math inline">\(0_35_2\)</span> &amp; <span class="math inline">\(2_33_2\)</span><br />
+<span class="math inline">\(0_3\)</span> &amp; <span class="math inline">\(2_25_3\)</span> &amp; &amp; &amp; <span class="math inline">\(3_24_3\)</span> &amp; &amp; &amp; <span class="math inline">\(1_26_3\)</span><br />
+<span class="math inline">\(1_3\)</span> &amp; &amp; <span class="math inline">\(4_25_3\)</span> &amp; &amp; <span class="math inline">\(2_20_3\)</span> &amp; &amp; <span class="math inline">\(3_26_3\)</span> &amp;<br />
+<span class="math inline">\(2_3\)</span> &amp; &amp; <span class="math inline">\(3_21_3\)</span> &amp; <span class="math inline">\(5_26_3\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(4_20_3\)</span><br />
+<span class="math inline">\(3_3\)</span> &amp; &amp; &amp; <span class="math inline">\(4_22_3\)</span> &amp; <span class="math inline">\(5_21_3\)</span> &amp; <span class="math inline">\(6_20_3\)</span> &amp; &amp;<br />
+<span class="math inline">\(4_3\)</span> &amp; <span class="math inline">\(0_21_3\)</span> &amp; <span class="math inline">\(6_22_3\)</span> &amp; &amp; &amp; <span class="math inline">\(5_23_3\)</span> &amp; &amp;<br />
+<span class="math inline">\(5_3\)</span> &amp; <span class="math inline">\(6_24_3\)</span> &amp; &amp; <span class="math inline">\(0_23_3\)</span> &amp; &amp; &amp; <span class="math inline">\(1_22_3\)</span> &amp;<br />
+<span class="math inline">\(6_3\)</span> &amp; &amp; &amp; &amp; &amp; <span class="math inline">\(1_24_3\)</span> &amp; <span class="math inline">\(0_25_3\)</span> &amp; <span class="math inline">\(2_23_3\)</span><br />
+</p>
+<p><strong>Figure 24</strong></p>
+<p>Which leaves us free to put <span class="math inline">\(\{\infty, x_1\}\)</span> into <span class="math inline">\((x_1,x_1)\)</span> and
+<span class="math inline">\(\{x_2,x_3\}\)</span> into <span class="math inline">\((x_1,(x\phi _1)_1)\)</span><br />
+e.g. <span class="math inline">\(\{1_2,1_3\}\)</span> can go into <span class="math inline">\((2_1,(2\phi _1)_1)=(2_1,3_1)\)</span>. The
+permutation chosen ensures that cell <span class="math inline">\((2,3)\)</span> of the original square is
+empty.<br />
+<br />
+Filling in the rest of block <span class="math inline">\(R11\)</span> gives:</p>
+<p><span>|c|c|c|c|c|c|c|c|</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Col/</td>
+</tr>
+<tr class="even">
+<td align="center">Row</td>
+</tr>
+</tbody>
+</table>
+<p>&amp; <span class="math inline">\(0_1\)</span> &amp; <span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_1\)</span> &amp; <span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(5_1\)</span> &amp; <span class="math inline">\(6_1\)</span><br />
+<span class="math inline">\(0_1\)</span> &amp; <span class="math inline">\(\infty,0_1\)</span> &amp; <span class="math inline">\(0_20_3\)</span> &amp; &amp; <span class="math inline">\(2_15_1\)</span> &amp; &amp; <span class="math inline">\(1_16_1\)</span> &amp; <span class="math inline">\(3_14_1\)</span><br />
+<span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(4_15_1\)</span> &amp; <span class="math inline">\(\infty, 1_1\)</span> &amp; <span class="math inline">\(1_21_3\)</span> &amp; &amp; <span class="math inline">\(3_16_1\)</span> &amp; &amp; <span class="math inline">\(2_10_1\)</span><br />
+<span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_11_1\)</span> &amp; <span class="math inline">\(5_16_1\)</span> &amp; <span class="math inline">\(\infty,2_1\)</span> &amp; &amp; <span class="math inline">\(2_22_3\)</span> &amp; <span class="math inline">\(4_10_1\)</span> &amp;<br />
+<span class="math inline">\(3_1\)</span> &amp; <span class="math inline">\(3_23_3\)</span> &amp; <span class="math inline">\(4_12_1\)</span> &amp; <span class="math inline">\(6_10_1\)</span> &amp; <span class="math inline">\(\infty,3_1\)</span> &amp; &amp; &amp; <span class="math inline">\(5_11_1\)</span><br />
+<span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(6_12_1\)</span> &amp; &amp; <span class="math inline">\(5_13_1\)</span> &amp; <span class="math inline">\(0_11_1\)</span> &amp; <span class="math inline">\(\infty,4_1\)</span> &amp; <span class="math inline">\(4_24_3\)</span> &amp;<br />
+<span class="math inline">\(5_1\)</span> &amp; &amp; <span class="math inline">\(0_13_1\)</span> &amp; &amp; <span class="math inline">\(6_14_1\)</span> &amp; <span class="math inline">\(1_12_1\)</span> &amp; <span class="math inline">\(\infty,5_1\)</span> &amp; <span class="math inline">\(5_25_3\)</span><br />
+<span class="math inline">\(6_1\)</span> &amp; &amp; &amp; <span class="math inline">\(1_14_1\)</span> &amp; <span class="math inline">\(6_26_3\)</span> &amp; <span class="math inline">\(0_15_1\)</span> &amp; <span class="math inline">\(2_13_1\)</span> &amp; <span class="math inline">\(\infty,6_1\)</span><br />
+</p>
+<p><strong>Figure 25</strong></p>
+<p>Notice that this satisfies the row and column properties of a Room
+square for the first seven rows and columns.<br />
+<br />
+Next we move onto the second diagonal block, because missing from row
+and column <span class="math inline">\(x_2\)</span> are the elements <span class="math inline">\(\infty, x_1,x_2,x_3\)</span>. However this
+time we try to find a home for pairs of the form <span class="math inline">\(\{\infty,x_2\}\)</span> and
+<span class="math inline">\(\{x_1,x_3\}\)</span>.<br />
+<br />
+We can put pairs of the form <span class="math inline">\(\{x_1,x_3\}\)</span> down the diagonal and permute
+the columns of block <span class="math inline">\(R_{22}\)</span> with a permutation from Lemma 3.8.1 to
+ensure that column <span class="math inline">\((x\phi _2)_2\)</span> has no <span class="math inline">\(x_2\)</span>, allowing us to put
+<span class="math inline">\(\{\infty,x_2\}\)</span> in that column.<br />
+<br />
+For instance, using <span class="math inline">\(\phi _2\)</span> we can complete block <span class="math inline">\(R_{13}\)</span>, and the
+corresponding seven rows and columns, by putting:</p>
+<p><span class="math inline">\(\{x_1,x_3\}\)</span> in <span class="math inline">\(x_2,x_2\)</span><br />
+and <span class="math inline">\(\{\infty,x_2\}\)</span> in <span class="math inline">\(x_2,(x \phi _2)_2\)</span><br />
+</p>
+<p>Taking the same approach with the third diagonal block we permute
+columns in <span class="math inline">\(R_{33}\)</span> using <span class="math inline">\(\phi _3\)</span>[^9] and fill-in by putting:</p>
+<p><span class="math inline">\(\{x_1,x_2\}\)</span> in <span class="math inline">\(x_3,x_3\)</span><br />
+and <span class="math inline">\(\{\infty,x_3\}\)</span> in <span class="math inline">\(x_3,(x \phi _3)_3\)</span><br />
+</p>
+<p>Which results in a Room square of side 21 based on:
+<span class="math display">\[S = \{\infty,0_1,1_1,...,6_1,0_2,1_2,...,6_2,0_3,1_3,...,6_3\}\]</span> This
+square is straightforwardly transformed to a Room square based on
+<span class="math inline">\(\{\infty,0,1,...,20\}\)</span>, Figure 26, by using: <span class="math display">\[x_i=x+7(i-1)\]</span> We could
+have done this from the beginning, but it is perhaps simpler to keep
+track of the missing elements by maintaining the subscript notation.<br />
+<br />
+The preceding triplication was slightly contrived because the
+arrangement of frames at the beginning was so chosen because it
+satisfied a property as yet unexplained. This property being that the
+<span class="math inline">\(R_{ij}\)</span> and <span class="math inline">\(R_{ji}\)</span> occur in the same super-column of the array as
+frames. Clearly this must be so in order that permutations, when applied
+to both or neither of <span class="math inline">\(R_{ij}\)</span> and <span class="math inline">\(R_{ji}\)</span>, preserve the contents of
+the columns as far as is required.<br />
+<br />
+That an arrangement of frames with this property can be guaranteed to
+exist for any odd integer is fundamental to the generalised theorem.</p>
+</div>
+<div id="lemma-3.8.2" class="section level4">
+<h4><span class="header-section-number">2.7.0.3</span> Lemma 3.8.2</h4>
+<p><br />
+For all odd <span class="math inline">\(n\)</span> there exists an array with these properties:</p>
+<ol style="list-style-type: decimal">
+<li><p>the entries of the array consist of all the ordered pairs of the set
+<span class="math inline">\(N=\{1,2,...,n\}\)</span> once each.</p></li>
+<li><p>the entries of a given row or column contain between them every
+member of <span class="math inline">\(N\)</span> once as a left member and once as a right member.</p></li>
+<li><p>if <span class="math inline">\((x,y)\)</span> occurs in a given column of the array <span class="math inline">\((y,x)\)</span> also occurs
+in that column.</p></li>
+</ol>
+<p><em>Proof</em><br />
+<span class="math inline">\(A_n\)</span> is an <span class="math inline">\(n \times n\)</span> array whose <span class="math inline">\((i,j)\)</span> entry is the ordered pair
+<span class="math inline">\((j-i+1,i+j-1)\)</span> with both elements being reduced modulo <span class="math inline">\(n\)</span> to lie on
+the interval <span class="math inline">\([1,n]\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>There are clearly <span class="math inline">\(n^2\)</span> ordered pairs obtainable from <span class="math inline">\(N\)</span>. <span class="math inline">\(A_n\)</span> has
+<span class="math inline">\(n^2\)</span> cells, so it is only necessary to show that each cell contains
+a unique pair. For that reason consider any two pairs from different
+cells, <span class="math inline">\((x_1,y_1)\)</span> and <span class="math inline">\((x_2,y_2)\)</span>, for these to be equal requires
+both,</p>
+<p><span class="math inline">\(x_1=x_2\)</span> and <span class="math inline">\(y_1=y_2\)</span></p>
+<p>Now, <span class="math inline">\(x_1 = x_2\)</span> <span class="math display">\[\Rightarrow j_1-i_1 + 1 = j_2-i_2+1\]</span> While,
+<span class="math inline">\(y_1=y_2\)</span> <span class="math display">\[\Rightarrow i_1+j_1 - 1 = i_2+j_2-1\]</span> Together these
+imply, <span class="math display">\[j_1-i_1=j_2-i_2 \hspace{1cm}(1)\]</span>
+<span class="math display">\[i_1+j_1=i_2+j_2 \hspace{1cm}(2)\]</span> (2) gives, <span class="math inline">\(j_2=i_1+j_1-i_2\)</span>,
+which on substitution in (1) gives, <span class="math display">\[j_1-i_1=i_1+j_1-2i_2\]</span>
+<span class="math display">\[\Rightarrow 2i_1-2i_2=0\]</span> <span class="math display">\[\therefore i_1=i_2\]</span> Substituting this
+into either expression gives <span class="math inline">\(j_1 = j_2\)</span>.<br />
+Thereby contradicting the assumption that the pairs occurred in
+different cells. Hence every cell contains a unique pair, so all the
+ordered pairs from <span class="math inline">\(N\)</span> occur exactly once in <span class="math inline">\(A_n\)</span>.</p></li>
+<li><p>Consider row <span class="math inline">\(i\)</span> of <span class="math inline">\(A_n\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(j=1\)</span></th>
+<th align="center"><span class="math inline">\(j=2\)</span></th>
+<th align="center">…</th>
+<th align="center"><span class="math inline">\(j=-1\)</span></th>
+<th align="center"><span class="math inline">\(j=0\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\((2-i,i)\)</span></td>
+<td align="center"><span class="math inline">\((3-i,i+1)\)</span></td>
+<td align="center">…</td>
+<td align="center"><span class="math inline">\((-i,i-2)\)</span></td>
+<td align="center"><span class="math inline">\((1-i,i-1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Left hand members are <span class="math inline">\(\{2-i,3-i,...,1-i\}\)</span>, while the right hand
+members are <span class="math inline">\(\{i,i+1,...,i-1\}\)</span>. Both sets contain <span class="math inline">\(n\)</span> unique
+integers on the interval <span class="math inline">\([1,n]\)</span> and hence both sets must be <span class="math inline">\(N\)</span>,
+Similarly, consider column <span class="math inline">\(j\)</span>, the left hand positions are occupied
+by <span class="math inline">\(\{j,j-1,...,j+2,j+1\}\)</span>, while the right contain
+<span class="math inline">\(\{j,j+1,...,j-2,j-1\}\)</span>. For the same reasons both these sets are
+equal to <span class="math inline">\(N\)</span>.</p></li>
+<li><p>Consider a pair <span class="math inline">\((x,y)\)</span>, from the definition of <span class="math inline">\(A_n\)</span>,<br />
+<span class="math inline">\(x=j-i+1\)</span><br />
+<span class="math inline">\(y=i+j-1\)</span><br />
+<span class="math inline">\(x+y=j-i+1+i+j-1=2j\)</span><br />
+<span class="math inline">\(\therefore j= \frac{1}{2} (x+y)\)</span><br />
+So if <span class="math inline">\((x,y)\)</span> is in column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span> then so is <span class="math inline">\((y,x)\)</span>, since
+<span class="math inline">\(\frac{1}{2}(x+y)=\frac{1}{2}(y+x)\)</span>.</p></li>
+</ol>
+<p>We can now present the general result.</p>
+</div>
+<div id="theorem-3.8.1-25" class="section level4">
+<h4><span class="header-section-number">2.7.0.4</span> Theorem 3.8.1 [25]</h4>
+<p><br />
+If <span class="math inline">\(r\)</span> and <span class="math inline">\(n\)</span> are odd integers such that <span class="math inline">\(r \geq n\)</span>, and if there is a
+Room square <span class="math inline">\(R\)</span> of side <span class="math inline">\(r\)</span>, then there is a Room square of side <span class="math inline">\(rn\)</span>.<br />
+<br />
+<em>Proof</em><br />
+Let <span class="math inline">\(r=2d+1\)</span> and <span class="math inline">\(n=2t+1\)</span>.<br />
+For a given <span class="math inline">\(i\)</span> select <span class="math inline">\(n\)</span> permutations as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\phi _{jk} = \phi _{jl}\)</span> if, and only if, <span class="math inline">\((k,l)\)</span>, and <span class="math inline">\((l,k)\)</span>
+appear in column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span>.</p></li>
+<li><p>If cell <span class="math inline">\((j,j)\)</span> of <span class="math inline">\(A_n\)</span> contains <span class="math inline">\((x,y)\)</span> then
+<span class="math inline">\(\phi _{jx}=\phi _{jy}=id\)</span> (the identity permutation).</p></li>
+<li><p>All the <span class="math inline">\(\phi _{jk} (\neq id)\)</span> are selected from the permutations
+associated with <span class="math inline">\(R\)</span>, according to Lemma 3.8.1</p></li>
+</ol>
+<p>Now a Room square of side <span class="math inline">\(rn\)</span> is constructed by replacing each entry
+<span class="math inline">\((k,l)\)</span> of <span class="math inline">\(A_n\)</span> by <span class="math inline">\(R_{kl} \phi _{jk}\)</span> (the array <span class="math inline">\(R_{kl}\)</span> under the
+column permutation <span class="math inline">\(\phi _{jk}\)</span>), where <span class="math inline">\((k,l)\)</span> is in column <span class="math inline">\(j\)</span> of
+<span class="math inline">\(A_n\)</span>.<br />
+<br />
+The resulting array has each element of,
+<span class="math display">\[S = \{0_1,1_1,...,(r-1)_1,0_2,1_2,...,(r-1)_2,0_n,1_n,...,(r-1)_n\}\]</span>
+appearing exactly once in each row and column, except that <span class="math inline">\(x_j\)</span> is
+missing from row and column <span class="math inline">\(x_j,\)</span>
+<span class="math inline">\(1 \leq j \leq n \hspace{0.4cm} 0 \leq x \leq (r-1)\)</span>, and <span class="math inline">\(x_k\)</span> and
+<span class="math inline">\(x_l\)</span> are missing from column <span class="math inline">\((x \phi _{jk})_j\)</span> for each entry <span class="math inline">\((k,l)\)</span>
+in column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span>.<br />
+<br />
+The array also contains every unordered pair from <span class="math inline">\(S\)</span> exactly once,
+except those of the form <span class="math inline">\(\{x_k,x_l\}\)</span>.<br />
+Now, for each <span class="math inline">\(k\)</span>, if <span class="math inline">\((k,l)\)</span> is an entry of column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span> put
+<span class="math inline">\(\{x_k,x_l\}\)</span> in <span class="math inline">\((x_j,(x \phi _{jk})_j)\)</span>, using <span class="math inline">\(\{\infty, x_j\}\)</span>
+instead of <span class="math inline">\(\{x_j,x_j\}\)</span> in every case.<br />
+<br />
+The completed array contains each of <span class="math inline">\(\{\infty\} \cup S\)</span> exactly once
+per row and column and every unordered pair from the same set exactly
+once.<br />
+<br />
+Finally, map <span class="math inline">\(\{\infty\} \cup S\)</span> onto <span class="math inline">\(\{\infty \} \cup Z_{rn}\)</span> by
+replacing every <span class="math inline">\(x_i\)</span> by <span class="math inline">\(x+r(i-1)\)</span>. The finished array is a Room square
+of side <span class="math inline">\(rn\)</span>.<br />
+<br />
+<em>Example</em><br />
+Looking back at the previous example of triplication.</p>
+<p>$A_3 = $</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center">1,1</td>
+<td align="center">2,2</td>
+<td align="center">3,3</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="center">3,2</td>
+<td align="center">1,3</td>
+<td align="center">2,1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="center">2,3</td>
+<td align="center">3,1</td>
+<td align="center">1,2</td>
+</tr>
+</tbody>
+</table>
+<p>Now, in column 1 (3,2) and (2,3) both appear, so
+<span class="math display">\[\phi _{13} = \phi _{12}\]</span> While in column 2 occur both (1,3) and
+(3,1), so <span class="math display">\[\phi _{21} = \phi _{23}\]</span> Furthermore, both (2,1) and (1,2)
+appear in the third column, so <span class="math display">\[\phi _{32} = \phi _{31}\]</span> The diagonal
+pairs are (1,1),(1,3),(1,2) so
+<span class="math inline">\(\phi _{11}=\phi _{21}=\phi _{23}=\phi _{31}=\phi _{32}=id\)</span><br />
+The remaining permutations,
+<span class="math inline">\(\phi _{12},\phi _{13},\phi _{22},\phi _{33}\)</span> are chosen according to
+the Lemma 3.8.1 and the following array is the Room square in Fig 26
+once the missing pairs have been placed and the transformation to
+<span class="math inline">\(\{\infty, 0, 1, ..., 20\}\)</span> made.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(R_{11}\phi _{11}\)</span></th>
+<th align="center"><span class="math inline">\(R_{22}\phi _{22}\)</span></th>
+<th align="center"><span class="math inline">\(R_{33}\phi _{33}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R_{32}\phi _{13}\)</span></td>
+<td align="center"><span class="math inline">\(R_{13}\phi _{21}\)</span></td>
+<td align="center"><span class="math inline">\(R_{21}\phi _{32}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R_{23}\phi _{12}\)</span></td>
+<td align="center"><span class="math inline">\(R_{31}\phi _{23}\)</span></td>
+<td align="center"><span class="math inline">\(R_{12}\phi _{31}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(R_{11}id\)</span></th>
+<th align="center"><span class="math inline">\(R_{22}\phi _{2}\)</span></th>
+<th align="center"><span class="math inline">\(R_{33}\phi _{3}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R_{32}\phi _{1}\)</span></td>
+<td align="center"><span class="math inline">\(R_{13}id\)</span></td>
+<td align="center"><span class="math inline">\(R_{21}id\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R_{23}\phi _{1}\)</span></td>
+<td align="center"><span class="math inline">\(R_{31}id\)</span></td>
+<td align="center"><span class="math inline">\(R_{12}id\)</span></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-graph-theoretic-approach-to-constructing-room-squares.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-existence_proof.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

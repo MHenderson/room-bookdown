@@ -1,0 +1,3208 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Room Squares</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Room Squares" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="mhenderson/room" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Room Squares" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Matthew Henderson">
+
+
+<meta name="date" content="2018-06-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="a-graph-theoretic-approach-to-constructing-room-squares.html">
+<link rel="next" href="hill-climbing-for-one-factorisations.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Room Squares</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Kirkman’s Schoolgirl Problem</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#tournaments"><i class="fa fa-check"></i><b>1.1</b> Tournaments</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#t.g.-room-1902-86"><i class="fa fa-check"></i><b>1.2</b> T.G. Room, (1902-86)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-galois-field"><i class="fa fa-check"></i><b>1.3</b> The Galois Field</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#example"><i class="fa fa-check"></i><b>1.3.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="existence.html"><a href="existence.html"><i class="fa fa-check"></i><b>2</b> Existence</a><ul>
+<li class="chapter" data-level="2.1" data-path="existence.html"><a href="existence.html#starters-adders-and-cyclic-room-squares"><i class="fa fa-check"></i><b>2.1</b> Starters, Adders and Cyclic Room Squares</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="existence.html"><a href="existence.html#finding-a-starter"><i class="fa fa-check"></i><b>2.1.1</b> Finding a starter</a></li>
+<li class="chapter" data-level="2.1.2" data-path="existence.html"><a href="existence.html#finding-an-adder"><i class="fa fa-check"></i><b>2.1.2</b> Finding an adder</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="existence.html"><a href="existence.html#strong-starters"><i class="fa fa-check"></i><b>2.2</b> Strong Starters</a></li>
+<li class="chapter" data-level="2.3" data-path="existence.html"><a href="existence.html#the-mullin-nemeth-starters"><i class="fa fa-check"></i><b>2.3</b> The Mullin-Nemeth Starters</a></li>
+<li class="chapter" data-level="2.4" data-path="existence.html"><a href="existence.html#the-trouble-with-fermat-numbers"><i class="fa fa-check"></i><b>2.4</b> The Trouble with Fermat Numbers</a></li>
+<li class="chapter" data-level="2.5" data-path="existence.html"><a href="existence.html#a-multiplication-theorem"><i class="fa fa-check"></i><b>2.5</b> A Multiplication Theorem</a></li>
+<li class="chapter" data-level="2.6" data-path="existence.html"><a href="existence.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
+<li class="chapter" data-level="2.7" data-path="existence.html"><a href="existence.html#n-tuplication-of-room-squares"><i class="fa fa-check"></i><b>2.7</b> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html"><i class="fa fa-check"></i><b>3</b> A graph theoretic approach to constructing Room squares</a><ul>
+<li class="chapter" data-level="3.1" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#graph-factorisations"><i class="fa fa-check"></i><b>3.1</b> Graph factorisations</a></li>
+<li class="chapter" data-level="3.2" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#hill-climbing-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2</b> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-one-factorisations"><i class="fa fa-check"></i><b>3.2.1</b> An algorithm for One-Factorisations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2.2</b> An Algorithm for Room Squares</a></li>
+<li class="chapter" data-level="3.2.3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#the-room-square-generator"><i class="fa fa-check"></i><b>3.2.3</b> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html"><i class="fa fa-check"></i><b>4</b> Balanced Room Squares</a><ul>
+<li class="chapter" data-level="4.1" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#bibds-and-brbs"><i class="fa fa-check"></i><b>4.1</b> BIBDs and BRBs</a></li>
+<li class="chapter" data-level="4.2" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#complete-balanced-howell-rotations"><i class="fa fa-check"></i><b>4.2</b> Complete Balanced Howell Rotations</a></li>
+<li class="chapter" data-level="4.3" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#starters-and-adders-for-brs-and-cbhr"><i class="fa fa-check"></i><b>4.3</b> Starters and Adders for BRS and CBHR</a></li>
+<li class="chapter" data-level="4.4" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#a-multiplicative-construction-for-brs"><i class="fa fa-check"></i><b>4.4</b> A Multiplicative Construction for BRS</a></li>
+<li class="chapter" data-level="4.5" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html#symmetric-skew-balanced-starters"><i class="fa fa-check"></i><b>4.5</b> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html"><i class="fa fa-check"></i><b>5</b> Hill-Climbing for One-Factorisations</a><ul>
+<li class="chapter" data-level="5.1" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#one-factors"><i class="fa fa-check"></i><b>5.1</b> One-factors</a></li>
+<li class="chapter" data-level="5.2" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#one-factorisations"><i class="fa fa-check"></i><b>5.2</b> One-factorisations</a></li>
+<li class="chapter" data-level="5.3" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heuristics"><i class="fa fa-check"></i><b>5.3</b> Heuristics</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heuristic-h_1"><i class="fa fa-check"></i><b>5.3.1</b> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heutistic-h_2"><i class="fa fa-check"></i><b>5.3.2</b> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#hill-climbing"><i class="fa fa-check"></i><b>5.4</b> Hill-climbing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Room Squares</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="balanced-room-squares" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Balanced Room Squares</h1>
+<div id="bibds-and-brbs" class="section level2">
+<h2><span class="header-section-number">4.1</span> BIBDs and BRBs</h2>
+<p>A <strong><em>balanced incomplete block design (BIBD)</em></strong> is an arrangement of
+elements (varieties) from a set <span class="math inline">\(S\)</span> of size <span class="math inline">\(v\)</span>, into <span class="math inline">\(b\)</span> subsets
+(blocks) each of size <span class="math inline">\(k\)</span> such that each variety occurs in <span class="math inline">\(r\)</span> blocks
+and any particular pair of distinct varieties occurs in <span class="math inline">\(\lambda\)</span>
+blocks.</p>
+<div id="example-5.1.1" class="section level4">
+<h4><span class="header-section-number">4.1.0.1</span> Example 5.1.1</h4>
+<p><span class="math display">\[\{a,b,c\},\{a,b,d\},\{a,c,e\},\{a,d,f\},\{a,e,f\},\{b,c,f\},\{b,d,e\},\{b,e,f\},\{c,d,e\},\{c,d,f\}\]</span>
+This is a BIBD with parameters: <span class="math inline">\(v = 6\)</span>, <span class="math inline">\(b = 10\)</span>, <span class="math inline">\(k = 3\)</span>, <span class="math inline">\(r = 5\)</span>,
+<span class="math inline">\(\lambda = 2\)</span>.</p>
+<p>In any <span class="math inline">\(BIBD(v, b, r, k, \lambda)\)</span> there are <span class="math inline">\(b\)</span> blocks each containing <span class="math inline">\(k\)</span>
+elements, so <span class="math inline">\(bk\)</span> elements in total. Also, each of the <span class="math inline">\(v\)</span> elements
+occurs <span class="math inline">\(r\)</span> times, so there are <span class="math inline">\(rv\)</span> elements in total. Therefore:
+<span class="math display">\[bk = vr\]</span> Also in a particular block, any element makes a pair with
+<span class="math inline">\(k - 1\)</span> other elements, and each element occurs in <span class="math inline">\(r\)</span> blocks, so there
+are <span class="math inline">\(r(k - 1)\)</span> pairs involving that element. Also, by definition, that
+element is paired with each of the other <span class="math inline">\(v - 1\)</span> members of <span class="math inline">\(S\)</span> <span class="math inline">\(\lambda\)</span>
+times, so: <span class="math display">\[\lambda (v - 1) = r(k - 1)\]</span> The second expression rearranges
+to give <span class="math inline">\(r = \lambda (v - 1)/(k - 1)\)</span>, which can be substituted into the first
+expression to give <span class="math inline">\(b=v\lambda (v - 1)/k(k - 1)\)</span>. So <span class="math inline">\(b\)</span> amd <span class="math inline">\(r\)</span> are both
+determined by the values of <span class="math inline">\(v\)</span>, <span class="math inline">\(k\)</span> and <span class="math inline">\(\lambda\)</span>. For this reason we
+need only quote those three parameters when referring to a particular
+block design. The example was a <span class="math inline">\(BIBD(6, 3, 2)\)</span> (or <span class="math inline">\((6, 3, 2)\)</span>design).</p>
+<p>In any Room square, the pairs <span class="math inline">\(\{x,y\}\)</span> are unordered. If we replace
+these pairs by one of the ordered pairs <span class="math inline">\((x,y)\)</span> or <span class="math inline">\((y,x)\)</span> we call the
+resulting array an <strong><em>ordered Room square (ORS)</em></strong>.</p>
+<p>Consider the following ordered Room square:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">62</th>
+<th align="center">54</th>
+<th></th>
+<th align="center">31</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">03</td>
+<td>65</td>
+<td align="center"></td>
+<td>42</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td>14</td>
+<td align="center">06</td>
+<td></td>
+<td>53</td>
+</tr>
+<tr class="odd">
+<td align="center">64</td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">25</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">05</td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td>36</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<td align="center">32</td>
+<td align="center"></td>
+<td align="center">16</td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 5\)</span></td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td align="center">51</td>
+<td align="center">43</td>
+<td align="center"></td>
+<td>20</td>
+<td align="center"></td>
+<td></td>
+<td><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 27</strong></p>
+<p>Suppose we extract the blocks of a design (not necessarily a BIBD) from
+this square in one of the two following ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>As <em>half-columns</em>. This means taking all left hand members of pairs
+from a particular column as the members of one block, and all right
+hand members as another block.</p></li>
+<li><p>By <em>half-rows</em>. Take all left members from a particular row as one
+block, and all right members as another block.</p></li>
+</ol>
+<p>Notice that for this example, both methods generate exactly the same
+blocks.
+<span class="math display">\[\{\infty,6,5,3\},\{0,2,4,1\},\{\infty,0,6,4\},\{1,3,5,2\},\{\infty,1,0,5\},\{2,4,6,3\},\{6, \infty,2,1\},\]</span>
+<span class="math display">\[\{4,3,5,0\},\{0,\infty,3,2\},\{5,4,6,1\},\{3,1,\infty,4\},\{2,6,5,0\},\{5,4,2,\infty\},\{1, 3,0,6\}\]</span>
+Certainly this design seems to have the appropriate parameters to
+qualify as a BIBD. The original Room square was based on 8 elements,
+hence <span class="math inline">\(v=8\)</span>. Also, the Room square’s seven rows each produced 2 blocks
+of 4 elements, hence <span class="math inline">\(b=14\)</span> and <span class="math inline">\(k=4\)</span>. Finally, each element occurred
+once in each row of the Room square, therefore in half the total number
+of blocks, hence <span class="math inline">\(r=7\)</span>. <span class="math display">\[bk=4\cdot 14 = 7 \cdot 8 = vr\]</span> So this design
+is a BIBD, provided: <span class="math display">\[\lambda = \frac{r(k-1)}{v-1} = \frac{7(3)}{7}=3\]</span>
+In other words, provided each pair of elements occurs in precisely 3
+blocks.</p>
+<p>By definition a <strong><em>balanced Room square [<span class="math inline">\(BRS(n)\)</span>]</em></strong> is an ordered Room
+square based on <span class="math inline">\(n\)</span> elements whose corresponding block design, derived
+as above, is a BIBD.</p>
+</div>
+</div>
+<div id="complete-balanced-howell-rotations" class="section level2">
+<h2><span class="header-section-number">4.2</span> Complete Balanced Howell Rotations</h2>
+<p>Edwin C. Howell is an enigmatic figure in the history of mathematics.
+The rotations named after him are designs for the scheduling of Bridge
+tournaments.</p>
+<p>In a duplicate bridge tournament players compete in partnerships, two
+partnerships at a table. At the beginning of a round each table is given
+one from a certain number of duplicate boards each of which contains a
+pack of cards dealt evenly into four pockets. The boards are labelled
+north-south-east-west, and are aligned on the table so that one
+partnership plays north-south and the other east-west. After the game is
+finished the cards are returned to the pockets as they were dealt and
+the duplicate board is returned, to be used again in subsequent
+matches.</p>
+<p>If one partnership plays directly against another at the same table, the
+two partnerships are said to <em>oppose</em> each other. If two partnerships
+play in the same direction on the same board in different rounds, they
+are said to <em>compete</em>.</p>
+<p>In scoring, not only is the performance of teams in opposition
+considered, but also the performance of partnerships which compete.</p>
+<p>A good tournament design would have the properties that each partnership
+opposed each other partnership at the same table exactly once and also
+that each partnership competed against each other partnership at the
+same number of times.</p>
+<p>A ****complete balanced Howell rotation [<span class="math inline">\(CBHR(n)\)</span>]****[^10] is an array
+(based on <span class="math inline">\(n\)</span> elements) of side <span class="math inline">\(s\)</span>, where <span class="math inline">\(s=n\)</span> for <span class="math inline">\(n\)</span> odd, and
+<span class="math inline">\(s=n-1\)</span> for <span class="math inline">\(n\)</span> even, which satisfies the following properties:</p>
+<ol style="list-style-type: decimal">
+<li><p>Each of the <span class="math inline">\(s^2\)</span> cells is empty or contains an ordered pair of
+distinct elements.</p></li>
+<li><p>Each of the <span class="math inline">\(n\)</span> elements appears exactly once in each row and each
+column. (If <span class="math inline">\(n\)</span> is odd, then one row and one column is excepted)</p></li>
+<li><p>Each unordered pair of distinct elements occurs in exactly one cell
+of the array.</p></li>
+<li><p>Each pair of distinct elements appears together in a block[^11]
+exactly <span class="math inline">\(\left \lfloor{n/2}\right \rfloor -1\)</span> times, where
+$$ means the integral part of <span class="math inline">\(x\)</span>.</p></li>
+</ol>
+<p>To interpret a CBHR as a duplicate bridge tournament schedule, we
+represent the partnerships by elements, the boards ny rows and the
+rounds of the tournament by columns.</p>
+<p>Then an ordered pair <span class="math inline">\((x,y)\)</span> in position <span class="math inline">\((i,j)\)</span> of the array
+corresponds to partnership <span class="math inline">\(x\)</span> opposing partnership <span class="math inline">\(y\)</span> on board <span class="math inline">\(i\)</span> in
+round <span class="math inline">\(j\)</span>. We adopt the convention that <span class="math inline">\(x\)</span> plays NS, <span class="math inline">\(y\)</span> EW. The third
+property in the definition of a CBHR ensures that all partnerships are
+in opposition exactly once, while the fourth (with blocks of the
+associated BIBD representing partnerships in competition) ensures that
+each partnership competes against each other partnership the same number
+of times.</p>
+<p>Notice that when <span class="math inline">\(n\)</span> is even the definition of a CBHR is precisely that
+of a balanced Room square. So the BRS above is also a <span class="math inline">\(CBHR(8)\)</span>. The
+reason for maintaining both definitions is that a CBHR is, according to
+conditions 2 and 4, allowed to have odd order. Also, an important
+construction for <span class="math inline">\(BRS(4n)\)</span>, which will be introduced, involves two
+<span class="math inline">\(CBHR(2n-1)\)</span>s.</p>
+<p>Unlike Room squares the question of the existence of balanced Room
+squares is far from resolved, but various proofs have shown there to be
+many infinite classes of these designs. The details of some of these
+proofs are given below.</p>
+<p>Interestingly the existence problem for balanced Room squares (then
+known exclusively as CBHR) was brought to the attention of
+mathematicians, in 1955 by Parker and Mood, the very same year as T.G.
+Room published his original article. Either this problem has proved to
+be very much more difficult, or has aroused significantly less interest.
+The first general result, that of Hwang (1970), coming only a few years
+before the corresponding problem for Room squares was settled (1973).</p>
+<p>In order to discuss these results the first step is to make the
+necessary adaptation of the starter-adder approach.</p>
+</div>
+<div id="starters-and-adders-for-brs-and-cbhr" class="section level2">
+<h2><span class="header-section-number">4.3</span> Starters and Adders for BRS and CBHR</h2>
+<p>In deriving the definitions of a starter and adder for a Room square,
+the terminology of difference systems was introduced. We saw that a
+requirement of the starter was that each non-zero member of the relevant
+Galois field occurred exactly once as a difference between the members
+of some pair. This was so that each pair occurred exactly once in the
+Room square<br />
+<br />
+BIBDs can be constructed from difference systems in much the same way,
+but with the difference that each element in the BIBD occurs occurs with
+each other element <span class="math inline">\(\lambda\)</span> times, not necessarily just once.<br />
+<br />
+<em>Example</em><br />
+A BIBD on <span class="math inline">\(GF(7)\)</span> can be constructed from the sets
+<span class="math inline">\(\{6,5,3\}\{2,4,1\}\)</span>.<br />
+<br />
+<span class="math inline">\(\{0,6,4\},\{1,0,5\},\{2,1,6\},\{3,2,0\},\{4,3,1\},\{5,4,2\}\)</span> are the
+blocks obtained from the left hand set.<br />
+<span class="math inline">\(\{3,5,2\},\{4,6,3\},\{5,0,4\},\{6,1,5\},\{0,2,6\},\{1,3,0\}\)</span> are the
+blocks obtained from the right hand set.<br />
+<br />
+Because the two sets are both triples, under cyclic construction the
+block design obtained will necessarily have <span class="math inline">\(k=r=3\)</span>.<br />
+<br />
+The left hand set has each non-zero member of <span class="math inline">\(GF(7)\)</span> occurring exactly
+once as a difference between its members. So, taken with its translates
+(those blocks obtained from it under cyclic development), this set
+should form a BIBD with <span class="math inline">\(r=3\)</span> and <span class="math inline">\(\lambda=1\)</span>. Similarly the right hand
+block forms a BIBD with <span class="math inline">\(r=3\)</span> and <span class="math inline">\(\lambda=1\)</span>, and the two sets taken
+together as difference system therefore generate a BIBD with <span class="math inline">\(r=6\)</span> and
+<span class="math inline">\(\lambda =2\)</span>.<br />
+<br />
+If we add the ideal element <span class="math inline">\(\infty\)</span> to the left hand set and all its
+translates, and 0 to the right hand set (developing it cyclically along
+with the other members) then we obtain a new BIBD with <span class="math inline">\(r=7\)</span> and
+<span class="math inline">\(\lambda = 3\)</span>, whose blocks are:
+<span class="math display">\[\{\infty,6,5,3\},\{\infty,0,6,4\},\{\infty,1,0,5\},\{\infty,2,1,6\},\{\infty,3,2,0\},\{\infty,4,3,1\},\{\infty,5,4,2\}\]</span>
+<span class="math display">\[\{0,2,4,1\},\{1,3,5,2\},\{2,4,6,3\},\{3,5,0,4\},\{4,6,1,5\},\{5,0,2,6\},\{6,1,3,0\}\]</span>
+Which is precisely the BIBD obtained from the Room square at the
+beginning of this chapter. If the block design associated with a BRS, or
+a CBHR, is obtained by taking the left hand member of the pairs in the
+first row as one block and the left hand members in subsequent rows as
+the translates, and all right members of pairs as the remaining blocks
+of a BIBD, then clearly those two blocks, the left hand and the right
+hand, which belong to the starter must form a difference system.<br />
+<br />
+The set of pairs <span class="math inline">\((x_1,y_1),(x_2,y_2),...,(x_{n-1},y_{n-1})\)</span> is a
+<strong><em>balanced starter</em></strong> in <span class="math inline">\(G=GF(2n-1)\)</span> if</p>
+<ol style="list-style-type: decimal">
+<li><p>the unordered pairs <span class="math inline">\(\{x_i,y_i\}\)</span> form a starter in <span class="math inline">\(G\)</span>, and</p></li>
+<li><p>the blocks <span class="math inline">\(\{x_1,x_2,...,x_{n-1}\}\)</span> and <span class="math inline">\(\{y_1,y_2,...,y_{n-1}\}\)</span>
+form a difference system.</p></li>
+</ol>
+<p>A balanced starter is <strong><em>strong</em></strong> if
+<span class="math inline">\(x_1+y_1,x_2+y_2,...,x_{n-1}+y_{n-1}\)</span> are all distinct mod<span class="math inline">\((2n-1)\)</span>.</p>
+<div id="theorem-5.3.1" class="section level4">
+<h4><span class="header-section-number">4.3.0.1</span> Theorem 5.3.1</h4>
+<p>Given a strong balanced starter on <span class="math inline">\(G=GF(2n-1)\)</span>, then a <span class="math inline">\(CBHR(2n-1)\)</span>
+exists.<br />
+<em>Proof</em><br />
+Assign the pair <span class="math inline">\((x_i+g,y_i+g)\)</span> to cell <span class="math inline">\((g,x_i+y_i+g)\)</span> for all
+<span class="math inline">\(g \in G\)</span>. Condition (i) along with the strong-ness of the starter
+ensures that every <span class="math inline">\(g \in G\)</span> occurs in every row and column exactly once
+except <span class="math inline">\(g\)</span> does not occur in row or column <span class="math inline">\(g\)</span> for all <span class="math inline">\(g \in G\)</span> [due to
+the absence in cell (0,0) of the pair <span class="math inline">\(\{\infty,0\}\)</span>]. Condition (i)
+also ensures that each unordered pair of <span class="math inline">\(G\)</span> occurs exactly once in the
+array, replace the unordered pairs with ordered pairs.<br />
+That the block design obtained is balanced follows from condition (ii).<br />
+Notice that each of the 2 blocks generates <span class="math inline">\((n-1)(n-2)\)</span> differences and
+these represent each of <span class="math inline">\(2n-2\)</span> members of <span class="math inline">\(G \backslash \{0\}\)</span>,
+<span class="math inline">\(\lambda\)</span> times. Therefore <span class="math inline">\(2(n-1)(n-2) = \lambda (2n-2),\)</span>
+$ = n-2$.</p>
+</div>
+<div id="theorem-5.3.2" class="section level4">
+<h4><span class="header-section-number">4.3.0.2</span> Theorem 5.3.2</h4>
+<p>Given a strong balanced starter on <span class="math inline">\(G=GF(2n-1)\)</span>, then a <span class="math inline">\(BRS(2n)\)</span>
+exists.<br />
+<em>Proof</em><br />
+Assign the pair <span class="math inline">\((x_i+g,y_i+g)\)</span> to cell <span class="math inline">\((g,x_i+y_i+g)\)</span> for all
+<span class="math inline">\(g \in G\)</span>, and (provided <span class="math inline">\(n\)</span> is even), also assign the pair <span class="math inline">\((\infty,g)\)</span>
+to cell <span class="math inline">\((g,g)\)</span> for all <span class="math inline">\(g \in G\)</span>.<br />
+Again, condition (i) and the strong-ness of the starter ensure that an
+ORS based on <span class="math inline">\(G \cup \{\infty\}\)</span> is obtained. The block design
+associated with this array has initial blocks,
+<span class="math display">\[\{\infty\} \cup \{x_1,x_2,...,x_{n-1}\}\]</span>
+<span class="math display">\[\{0\} \cup \{y_1,y_2,...,y_{n-1}\}\]</span> Adjoining 0 to
+<span class="math inline">\(\{y_1,y_2,...,y_{n-1}\}\)</span> creates each non-zero member of <span class="math inline">\(G\)</span> as a
+difference once more, either as <span class="math inline">\(y_i-0\)</span> or <span class="math inline">\(0-y_i\)</span>.<br />
+Adjoining <span class="math inline">\(\infty\)</span> to <span class="math inline">\(\{x_1,x_2,..,x_{n-1}\}\)</span> creates <span class="math inline">\(n-1\)</span> pairs
+involving <span class="math inline">\(\infty\)</span> in this block, hence <span class="math inline">\(\infty\)</span> makes a pair with each
+member of <span class="math inline">\(G\)</span> <span class="math inline">\(n-1\)</span> times.<br />
+So the design is balanced with a concurrence number of <span class="math inline">\(n-1\)</span>.<br />
+<br />
+It is a simple matter to derive the remaining parameters of the BIBD
+associated with either array.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(v\)</span></th>
+<th align="center"><span class="math inline">\(b\)</span></th>
+<th align="center"><span class="math inline">\(r\)</span></th>
+<th align="center"><span class="math inline">\(k\)</span></th>
+<th align="center"><span class="math inline">\(\lambda\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(CBHR(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(2n-1\)</span></td>
+<td align="center"><span class="math inline">\(2(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(2(n-1)\)</span></td>
+<td align="center"><span class="math inline">\(n-1\)</span></td>
+<td align="center"><span class="math inline">\(n-2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(CBHR(2n)/BRS(2n)\)</span></td>
+<td align="center"><span class="math inline">\(2n\)</span></td>
+<td align="center"><span class="math inline">\(2(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(n\)</span></td>
+<td align="center"><span class="math inline">\(n-1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 7 BIBD parameters for BRS and CBHR</strong></p>
+<p>The block design of a balanced Room square is <em>self-complementary</em>. This
+means that if a block <span class="math inline">\(D\)</span> belongs to the design, then its complement
+<span class="math inline">\(\overline{D}\)</span> also appears. If the left hand pairs in row <span class="math inline">\(x\)</span> form one
+block then the right hand pairs in the same row are also a block, and
+the two blocks are complementary. Alternatively we can say that, in a
+self-complementary BIBD, the complementary design (obtained by replacing
+all blocks with their complements) is identical to the design itself.<br />
+Schellenberg proved an interesting result regarding self-complementary
+BIBDs.</p>
+</div>
+<div id="theorem-5.3.3" class="section level4">
+<h4><span class="header-section-number">4.3.0.3</span> Theorem 5.3.3</h4>
+<p>[21] In a self-complementary BIBD with parameters of the form,<br />
+<span class="math inline">\((2n,2(2n-1)t,(2n-1)t,n,(n-1)t)\)</span>, every triple of elements is contained
+in <span class="math inline">\(t(n-2)/2\)</span> blocks.<br />
+<br />
+<em>Proof</em><br />
+Suppose <span class="math inline">\(B\)</span> is a self-complementary BIBD with parameters of the form
+above, based on a set of elements <span class="math inline">\(V\)</span>. Denote by <span class="math inline">\(S_{i...j}\)</span> the set of
+blocks which contain <span class="math inline">\(u\)</span> but not <span class="math inline">\(v\)</span> or <span class="math inline">\(w\)</span>. Because the design is
+self-complementary to each block of this set there corresponds a unique
+block which contains <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> but not <span class="math inline">\(u\)</span>. The set of these blocks is
+<span class="math inline">\(S_{vw}-S_u\)</span> and clearly: <span class="math display">\[|S_u - \{S_v \cup S_w\}| = |S_{vw} - S_u|\]</span>
+Now,<br />
+<span class="math inline">\(|S_u-\{S_v \cup S_w\}| = |S_u| - |S_{uv}| -|S_{uw}| + |S_{uvw}|\)</span> and,<br />
+<span class="math inline">\(|S_{vw} - S_u| = |S_{vw}| - |S_{uvw}|\)</span>
+<span class="math display">\[\therefore |S_u| - |S_{uv}| -|S_{uw}| + |S_{uvw}| = |S_{vw}| - |S_{uvw}|\]</span>
+<span class="math display">\[2|S_{uvw}| = |S_{vw}| + |S_{uv}| + |S_{uw}| - |S_{U}|\]</span> Because <span class="math inline">\(B\)</span> is
+a <span class="math inline">\(BIBD\)</span>, each pair of elements occur together in <span class="math inline">\(\lambda = (n-1)t\)</span>
+blocks and each element occurs in <span class="math inline">\(r=(2n-1)t\)</span> blocks. So,
+<span class="math display">\[|S_{vw}| = |S_{uv}| = |S_{uw}| = (n-1)t\]</span> and <span class="math display">\[|S_u| = (2n-1)t\]</span>
+Therefore, <span class="math display">\[2|S_{uvw}|=3(n-1)t-(2n-1)t=(n-2)t\]</span> and so,
+<span class="math display">\[|S_{uvw}| = \frac{(n-2)t}{2}\]</span> Since <span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> are arbitrary
+this implies that each triple occurs in <span class="math inline">\((n-2)t/2\)</span> blocks. <span class="math inline">\(\square\)</span><br />
+<br />
+The implication of this result for balanced Room squares is that,
+because <span class="math inline">\(t=1\)</span> for a <span class="math inline">\(BRS\)</span>[^12] and we require the LHS of this expression
+to be an integer, <span class="math inline">\(n\)</span> is necessarily even. So writing <span class="math inline">\(n=2m\)</span>, we know
+the order of a <span class="math inline">\(BRS\)</span> is always of the form <span class="math inline">\(4m\)</span>.</p>
+</div>
+<div id="corollary-5.3.1" class="section level4">
+<h4><span class="header-section-number">4.3.0.4</span> Corollary 5.3.1</h4>
+<p>A <span class="math inline">\(BRS(n)\)</span> can only exist for <span class="math inline">\(n \equiv 0\)</span> mod 4.<br />
+<br />
+We now present Hwang’s starter-adder construction for balanced Room
+squares.</p>
+</div>
+<div id="theorem-5.3.4" class="section level4">
+<h4><span class="header-section-number">4.3.0.5</span> Theorem 5.3.4</h4>
+<p>[14] There exists a <span class="math inline">\(BRS\)</span> of order <span class="math inline">\(q+1\)</span>, where $q=p^r $ 3(mod 4)
+is a prime power strictly greater than 3.<br />
+<br />
+<em>Proof</em><br />
+We show that the pairs
+<span class="math display">\[X = \left \{(x^{2i+1},x^{2i}): 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+form a balanced starter, where <span class="math inline">\(x\)</span> is a primitive element in <span class="math inline">\(GF(q)\)</span>,
+and the set
+<span class="math display">\[A(X) = \left \{-x^{2i}(1+x): 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+is a corresponding adder.<br />
+Looking back at Theorem 2.4(?), we have already shown that the unordered
+pairs
+<span class="math display">\[\left \{\{x^{2i},x^{2i+1}\}: 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+are those of a starter with adder <span class="math inline">\(A(X)\)</span>. So it remains to show that the
+starter is balanced which involves proving that the two blocks
+<span class="math display">\[B_1 = \{0,x,x^3,...,x^{q-2}\} \hspace{0.5cm} \mathrm{and} \hspace{0.5cm} B_2 = \{\infty,x^0,x^2,...,x^{q-3}\}\]</span>
+generate a <span class="math inline">\(BIBD\)</span>. This result is due to R.C. Bose and makes use of the
+properties of the squares and non-squares of <span class="math inline">\(GF(q)\)</span> where <span class="math inline">\(q\)</span> is an odd
+prime.<br />
+Let <span class="math inline">\(R\)</span> and <span class="math inline">\(N\)</span> denote the sets of non-zero square and non-squares in
+<span class="math inline">\(GF(q)\)</span>, respectively. <span class="math display">\[R=\{x^2,x^4,...,x^{q-1}\}\]</span>
+<span class="math display">\[N=\{x^1,x^3,...,x^{q-2}\}\]</span> These sets both contain precisely
+<span class="math inline">\(\frac{1}{2}(q-1)\)</span> elements.<br />
+So, <span class="math display">\[B_1 = \{0\} \cup N,\]</span> and because <span class="math inline">\(x^{q-1} = 1 = x^0\)</span>,<br />
+<span class="math display">\[B_2 = \{\infty\} \cup R\]</span> Also, if <span class="math inline">\(a\)</span> is square then <span class="math inline">\(-a\)</span> is a
+non-square[^13], which implies that <span class="math inline">\(R=-N\)</span>.<br />
+<br />
+To show that the blocks with their translates form a <span class="math inline">\(BIBD\)</span> it is
+necessary to show that the differences between members of <span class="math inline">\(B_1\)</span> and <span class="math inline">\(R\)</span>
+generate all the non-zero members of <span class="math inline">\(GF(q)\)</span> some number of times, then
+by adjoining the element <span class="math inline">\(\infty\)</span> to <span class="math inline">\(R\)</span> and its translates will
+generate a <span class="math inline">\(BIBD\)</span>.<br />
+Firstly, suppose that 1, which belongs to <span class="math inline">\(R\)</span>, can be expressed as a
+difference between members of <span class="math inline">\(R\)</span> in a certain number of different ways,
+<span class="math display">\[1 = x^{2a_1}-x^{2b_1}=...x^{2a_r}-x^{2b_r}\]</span> Were this true, any
+member of <span class="math inline">\(R\)</span> could be written as a difference in the same number of
+ways.<br />
+Multiply through by any <span class="math inline">\(x^{2s} \in R\)</span>.
+<span class="math display">\[x^{2s} = x^{2(a_1+s)}-x^{2(b_1+s)}=...=x^{2(a_r+s)}-x^{2(b_r+s)}\]</span> But
+now suppose that any element of <span class="math inline">\(R\)</span> can be expressed as a difference
+between members of <span class="math inline">\(R\)</span> in a certain number of ways, i.e. assume this
+second expression holds. Then by dividing through by <span class="math inline">\(x^{2s}\)</span>, we
+recover the first expression and hence for each representation of 1
+there is a corresponding representation of <span class="math inline">\(x^{2s}\)</span>, and vice versa. So
+there are an equal number of representations of every member of <span class="math inline">\(R\)</span> as a
+difference of members of <span class="math inline">\(R\)</span>. The remaining non-zero members of <span class="math inline">\(GF(q)\)</span>,
+are all those <span class="math inline">\(q \notin R\)</span> where <span class="math inline">\(-q \in R\)</span>, but each representation of
+<span class="math inline">\(-r\)</span> gives a corresponding representation of <span class="math inline">\(r\)</span>: <span class="math display">\[-r=x^{2a}-x^{2b}\]</span>
+<span class="math display">\[r = x^{2b} - x^{2a}\]</span> So every element of <span class="math inline">\(-r\)</span> has the same number of
+representations as a difference between members of <span class="math inline">\(R\)</span> as <span class="math inline">\(R\)</span> does.<br />
+<br />
+We know that <span class="math inline">\(R\)</span> has <span class="math inline">\(\frac{1}{2}(q-1)\)</span> elements, therefore there are<br />
+<span class="math inline">\(\frac{1}{2}(q-1) \cdot \frac{1}{2} (q-3) = \frac{1}{4}(q-1)(q-3)\)</span>
+differences between those elements, and if each of these differences
+generates each of the <span class="math inline">\(q-1\)</span> non-zero members of <span class="math inline">\(GF(q)\)</span>, <span class="math inline">\(\lambda\)</span> times
+then: <span class="math display">\[\lambda(q-1)=\frac{1}{4}(q-1)(q-3)\]</span>
+<span class="math display">\[\lambda=\frac{1}{4}(q-3)\]</span> Also, because <span class="math inline">\(N=-R\)</span>, we can say that all
+the non-zero members of <span class="math inline">\(GF(q)\)</span> arise as differences between members of
+<span class="math inline">\(N\)</span>. Further, <span class="math inline">\(B_1\)</span> also gives the differences
+<span class="math inline">\(0-n,n-0 \hspace{0.5cm} n\in N\)</span>, which are all the non-zero members of
+<span class="math inline">\(GF(q)\)</span>, once again. So in total every non-zero member of <span class="math inline">\(GF(q)\)</span> occurs
+as a difference between elements of <span class="math inline">\(B_1\)</span> and <span class="math inline">\(R\)</span>,
+<span class="math inline">\(2 \cdot \frac{1}{4} (q-3) + 1 = \frac{1}{2} (q-1)\)</span> times.<br />
+Because <span class="math inline">\(R\)</span> and its translates each contain $ (q-1)$
+elements, each member of <span class="math inline">\(GF(q)\)</span> occurs $ (q-1)$ times in all
+those blocks. Therefore, adjoining <span class="math inline">\(\infty\)</span> to each block generates
+blocks of size $ (q-1)$, with <span class="math inline">\(\infty\)</span> making a pair with
+each member of <span class="math inline">\(GF(q)\)</span>, $ (q-1)$ times.<br />
+So we can say that <span class="math inline">\(B_1\)</span>, <span class="math inline">\(B_2\)</span> and their translates for a
+<span class="math inline">\(BIBD(q+1,\frac{1}{2}(q+1), \frac{1}{2}(q-1))\)</span>.<br />
+Therefore Hwang’s starter is balanced. <span class="math inline">\(\square\)</span><br />
+<br />
+The <span class="math inline">\(BRS\)</span> in Figure 27 was obtained from Hwang’s starter, hence its
+block design was a <span class="math inline">\(BIBD\)</span>.<br />
+<br />
+<em>Example 5.3.1</em><br />
+A balanced starter in <span class="math inline">\(GF(19)\)</span> is:
+<span class="math display">\[X = \{(2,1),(8,4),(13,16),(14,7),(18,9),(15,17),(3,11),(12,6),(10,5)\}\]</span>
+Which has a corresponding adder: <span class="math display">\[A(X) = \{16,7,9,17,11,6,5,1,4\}\]</span> So
+the following row is an appropriate choice for a <span class="math inline">\(BRS(20)\)</span>:</p>
+<p><span class="math inline">\(\infty,0\)</span> - 14,7 2,1 15,7 - - - 18,9 - 13,16 - 8,4 - 3,11 10,5 - - 12,6
+———— — —— —– —— — — — —— — ——- — —– — —— —— — — ——</p>
+</div>
+</div>
+<div id="a-multiplicative-construction-for-brs" class="section level2">
+<h2><span class="header-section-number">4.4</span> A Multiplicative Construction for BRS</h2>
+<p>Although the Hwang starter-adder construction establishes the existence
+of an infinite class of <span class="math inline">\(BRS\)</span>, like Mullin &amp; Nemeth’s construction for
+Room squares, exceptions still remain.<br />
+<br />
+Particularly all those <span class="math inline">\(BRS\)</span> of order <span class="math inline">\(q+1\)</span> where q is not a prime
+power, yet is congruent 3 modulo 4. For example, the existence of
+<span class="math inline">\(BRS(16)\)</span> is not established yet, because 15 is not a prime power. One
+approach to resolving this problem would be to establish a
+multiplication theorem like those established for Room squares. The
+following doubling construction for <span class="math inline">\(BRS\)</span> (due to Schellenberg), for
+example, enables to construction of a <span class="math inline">\(BRS(16)\)</span> from two <span class="math inline">\(BRS(8)\)</span>.<br />
+<br />
+Significantly, used along with Hwang’s starter-adder construction, it
+establishes the existence of another infinite class of <span class="math inline">\(BRS\)</span>, those of
+order <span class="math inline">\(2(q+1)\)</span>, where <span class="math inline">\(q\)</span> is subject to the conditions of Theorem 3.5.<br />
+<br />
+Before presenting the doubling construction a few definitions need to be
+made, and another result regarding self-complementary block designs
+established.<br />
+<br />
+The <strong><em>reduced</em></strong> Room square <span class="math inline">\(\hat{R}\)</span>, is obtained by taking a
+standardised Room square <span class="math inline">\(R\)</span> and removing the pairs involving <span class="math inline">\(\infty\)</span>,
+i.e. the diagonal pairs.<br />
+<br />
+Two <span class="math inline">\(ORS\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> (both of side <span class="math inline">\(a\)</span>) are said to be a <strong><em>Latin
+pair</em></strong> if on forming the join of <span class="math inline">\(\hat{R}\)</span> and <span class="math inline">\(\hat{S}\)</span>, and placing
+the pair <span class="math inline">\((i,i)\)</span> in cell <span class="math inline">\((i,i)\)</span> for <span class="math inline">\(0 \leq i \leq q-1\)</span> the join of two
+<span class="math inline">\(MOLS\)</span> is obtained, denoted by <span class="math inline">\(R \odot S\)</span>.<br />
+<br />
+A <strong><em>common traversal</em></strong> of <span class="math inline">\(R \odot S\)</span> is a set of <span class="math inline">\(q\)</span> cells, one from
+each row and each column, whose <span class="math inline">\(n\)</span> ordered pairs have <span class="math inline">\(n\)</span> distinct
+first elements and <span class="math inline">\(n\)</span> distinct second elements.<br />
+<br />
+Suppose we have a set of varieties <span class="math inline">\(V = \{1,2,3,...\}\)</span>, then by a set
+<span class="math inline">\(V&#39;\)</span>, we mean <span class="math inline">\(V&#39;=\{1&#39;,2&#39;,3&#39;,...\}\)</span>.</p>
+<div id="lemma-5.4.1" class="section level4">
+<h4><span class="header-section-number">4.4.0.1</span> Lemma 5.4.1</h4>
+<p>[21] If
+<span class="math display">\[\bigcup\limits_{i=1}^{2k-1} \left \{C_i,\bar{C_i} \right \} \hspace{0.5cm} \mathrm{and} \hspace{0.5cm} 
+\bigcup\limits_{i=1}^{2k-1} \left \{D_i,\bar{D_i} \right \}\]</span> are the
+blocks of two self-complementary <span class="math inline">\(BIBD\)</span>s, both defined on a set of
+elements <span class="math inline">\(V\)</span>, where <span class="math inline">\(\bar{C}\)</span> denotes the complement of <span class="math inline">\(C\)</span>, with
+parameters <span class="math inline">\((2k,2(2k-1),2k-1,k,k-1)\)</span> then.
+<span class="math display">\[\bigcup\limits_{i=1}^{2k-1} \left \{C_i \cup D&#39;_i, \bar{C_i} \cup \bar{D&#39;_i}, C_i \cup \bar{D&#39;_i},
+\bar{C_i} \cup D&#39;_i  \right \} \cup \{V,V&#39;\}\]</span> is the set of blocks of a
+self-complementary <span class="math inline">\(BIBD\)</span>, defined on the set of elements <span class="math inline">\(V \cup V&#39;\)</span>,
+with parameters <span class="math inline">\((4k,2(4k-1),4k-1,2k,2k-1)\)</span>.<br />
+<br />
+<em>Proof</em><br />
+Consider an arbitrary pair <span class="math inline">\(\{a,b\}\)</span> in the new <span class="math inline">\(BIBD\)</span> where
+<span class="math inline">\(a,b \in V\)</span>. The concurrence number of the original <span class="math inline">\(BIBD\)</span> was <span class="math inline">\(k-1\)</span>, so
+this pair occurred <span class="math inline">\(k-1\)</span> times in the blocks
+<span class="math inline">\(\bigcup\limits_{i=1}^{2k-1} \left \{C_i,\bar{C_i} \right \}\)</span>, but these
+blocks clearly appear twice each in the new <span class="math inline">\(BIBD\)</span>. Also the pair
+<span class="math inline">\(\{a,b\}\)</span> occurs once in the block <span class="math inline">\(V\)</span>, so the pair <span class="math inline">\(\{a,b\}\)</span> occurs
+<span class="math inline">\(2(k-1)+1 = 2k-1\)</span> times. The same would be true for any pair <span class="math inline">\(\{a,b\}\)</span>
+when <span class="math inline">\(a,b \in V&#39;\)</span>.<br />
+<br />
+Now consider an arbitrary pair <span class="math inline">\(\{a,b\}\)</span> when <span class="math inline">\(a \in V\)</span>, and <span class="math inline">\(b \in V&#39;\)</span>.
+From the definition of complementary blocks <span class="math inline">\(a\)</span> occurs either <span class="math inline">\(C\)</span> or
+<span class="math inline">\(\bar{C}\)</span> and <span class="math inline">\(b\)</span> in either <span class="math inline">\(D&#39;\)</span> or <span class="math inline">\(\bar{D&#39;}\)</span>, for some value of <span class="math inline">\(i\)</span>,
+and because all pair combinations between <span class="math inline">\(C\)</span>-blocks and <span class="math inline">\(D&#39;\)</span>-blocks are
+formed in the new design and because <span class="math inline">\(i\)</span> takes <span class="math inline">\(2k-1\)</span> values in the new
+design so the pair makes <span class="math inline">\(2k-1\)</span> appearances.<br />
+<br />
+Hence the new block design is a <span class="math inline">\(BIBD\)</span> with <span class="math inline">\(\lambda =2k-1\)</span>. <span class="math inline">\(\square\)</span></p>
+</div>
+<div id="theorem-5.4.1" class="section level4">
+<h4><span class="header-section-number">4.4.0.2</span> Theorem 5.4.1</h4>
+<p>Suppose we have two <span class="math inline">\(BRS(q+1)\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> based on <span class="math inline">\(G = GF(q)\)</span>, with
+the following properties:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are a <em>Latin pair</em> such that,</p></li>
+<li><p><span class="math inline">\(R \odot S\)</span> has a pair of disjoint <em>common transversals</em> <span class="math inline">\(T_1\)</span> and
+<span class="math inline">\(T_2\)</span> (with <span class="math inline">\(T_2\)</span> in <span class="math inline">\(R\)</span>), which do not intersect the main diagonal,
+and</p></li>
+<li><p>the block designs obtained from <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span>, call them <span class="math inline">\(D(R)\)</span> and
+<span class="math inline">\(D(S)\)</span> respectively, have the property that if <span class="math inline">\(\{\infty\} \cup B_i\)</span>
+and <span class="math inline">\(\{i\} \cup C_i\)</span> are the blocks of <span class="math inline">\(D(R)\)</span> obtained from row <span class="math inline">\(i\)</span>,
+then <span class="math inline">\(\{i\} \cup B_i\)</span> and <span class="math inline">\(\{\infty\} \cup C_i\)</span> are the blocks of
+<span class="math inline">\(D(S)\)</span> obtained from row <span class="math inline">\(i\)</span>.</p></li>
+</ol>
+<p>Then a <span class="math inline">\(BRS(2(q+1))\)</span> exists.<br />
+<br />
+<em>Proof</em><br />
+Define <span class="math inline">\(A\)</span> to be the array obtained from the superposition of <span class="math inline">\(\hat{R}\)</span>
+and <span class="math inline">\(\hat{S&#39;}\)</span>. Where <span class="math inline">\(\hat{S&#39;}\)</span> is obtained by replacing the elements
+of <span class="math inline">\(G\)</span> in <span class="math inline">\(\hat{S}\)</span> (the reduced RS) by the corresponding elements of
+<span class="math inline">\(G&#39;\)</span> and replacing <span class="math inline">\(\infty\)</span> by <span class="math inline">\(\infty&#39;\)</span>. <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> were <span class="math inline">\(BRS\)</span> so each
+column and row of <span class="math inline">\(A\)</span> contains each member of
+<span class="math inline">\(G \cup G&#39; \cup \{\infty,\infty&#39;\}\)</span>, except those elements <span class="math inline">\(i,i&#39;,\infty\)</span>
+and <span class="math inline">\(\infty&#39;\)</span> which are missing from row and column <span class="math inline">\(i\)</span> due to the
+reduction process. Further, <span class="math inline">\(A\)</span> contains every pair
+<span class="math inline">\(\{i,j\},\{i&#39;,j&#39;\} \hspace{0.25cm} i,j \in G,i \neq j\)</span> exactly once.<br />
+Define <span class="math inline">\(B\)</span> as the array obtained from <span class="math inline">\(R \odot S\)</span> when each pair <span class="math inline">\((i,j)\)</span>
+is replaced by <span class="math inline">\((i,j&#39;)\)</span>.<br />
+<br />
+Now, <span class="math inline">\(D\)</span> is defined as the array obtained from <span class="math inline">\(B\)</span> according to this
+procedure:<br />
+If cell <span class="math inline">\((m,n), m\neq n\)</span> of <span class="math inline">\(R\)</span> is not empty, replace <span class="math inline">\((i,j&#39;)\)</span> in cell
+<span class="math inline">\((m,n)\)</span> of <span class="math inline">\(B\)</span> by <span class="math inline">\((j&#39;,i)\)</span>. Because <span class="math inline">\(R \odot S\)</span> is a pair of superposed
+orthogonal latin squares <span class="math inline">\(D\)</span> contains each member of <span class="math inline">\(G \cup G&#39;\)</span> exactly
+once in each row and column. Also, the way in which we have repalced
+elements ensures that every unordered pair <span class="math inline">\(\{i,j&#39;\}\)</span> for all
+<span class="math inline">\(i,j \in G\)</span> occurs exactly once in <span class="math inline">\(D\)</span>.<br />
+<br />
+Next, construct <span class="math inline">\(C\)</span> by arranging the arrays <span class="math inline">\(A\)</span> and <span class="math inline">\(D\)</span> according to the
+following layout, in which <span class="math inline">\(\phi\)</span> is the <span class="math inline">\(q \times q\)</span> array with every
+cell empty, <span class="math inline">\(\theta\)</span> the <span class="math inline">\(1 \times q\)</span> array of empty cells and
+<span class="math inline">\(\theta ^T\)</span> the transpose of <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math inline">\(C=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(A\)</span></th>
+<th align="center"><span class="math inline">\(\phi\)</span></th>
+<th align="center"><span class="math inline">\(\theta ^T\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\phi\)</span></td>
+<td align="center"><span class="math inline">\(D\)</span></td>
+<td align="center"><span class="math inline">\(\theta ^T\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\theta\)</span></td>
+<td align="center"><span class="math inline">\(\theta\)</span></td>
+<td align="center"><span class="math inline">\(\infty&#39;,\infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The rows and columns of this new array are labelled
+<span class="math inline">\(0,1,2,...,q-1,0&#39;,1&#39;,2&#39;,...,(q-1)&#39;,l\)</span>. So that the pair
+<span class="math inline">\((\infty &#39;, \infty)\)</span> is in cell <span class="math inline">\((l,l)\)</span>.<br />
+<br />
+Let</p>
+<p><span class="math inline">\(T&#39;_p = \{ (i&#39;_m,j&#39;_m) | (i_m,j_m)\)</span> <em>is a cell transversal</em> <span class="math inline">\(T_p \}\)</span></p>
+<p>be the set of cells of <span class="math inline">\(C\)</span>, corresponding to transversal
+<span class="math inline">\(T_p \hspace{0.25cm}(p=1,2)\)</span> of <span class="math inline">\(R \odot S\)</span>.<br />
+<br />
+Construct a new array <span class="math inline">\(F\)</span>, based on <span class="math inline">\(C\)</span> according to the following
+prescription:<br />
+<br />
+Consider cell <span class="math inline">\((i&#39;_m,j&#39;_m) \in T&#39;_1\)</span>. If cell <span class="math inline">\((i_m,j_m)\)</span> is not empty
+in <span class="math inline">\(R\)</span> then <span class="math inline">\((i&#39;_m,j&#39;_m)\)</span> of <span class="math inline">\(C\)</span> contains a pair <span class="math inline">\((k&#39;,n)\)</span>, otherwise it
+contains a pair <span class="math inline">\((n,k&#39;)\)</span>. [In either case
+<span class="math inline">\(k,nm \in G \hspace{0.25cm} k \neq n\)</span> (the transversal does not
+intersect the diagonal)]. Remove whichever pair appears in cell
+<span class="math inline">\((i&#39;_m,j&#39;_m)\)</span> and put it in cell <span class="math inline">\((i&#39;_m,l)\)</span>. Also place <span class="math inline">\((\infty&#39;,k&#39;)\)</span>,
+<span class="math inline">\((\infty,n)\)</span> in cells <span class="math inline">\((k,j&#39;_m),(n,j&#39;_m)\)</span> respectively.<br />
+If <span class="math inline">\((i&#39;_m,j&#39;_m) \in T&#39;_2\)</span> then a pair <span class="math inline">\((k&#39;,n)\)</span> appears in cell
+<span class="math inline">\((i&#39;_m,j&#39;_m)\)</span>. Again remove it, but this time put it in <span class="math inline">\((l,j&#39;_m)\)</span>. In
+addition pairs <span class="math inline">\((k&#39;,\infty),(\infty &#39;,n)\)</span> go in cells
+<span class="math inline">\((i&#39;_m,k),(i&#39;_m,n)\)</span> respectively.<br />
+<br />
+<span class="math inline">\(F\)</span> is a <span class="math inline">\(BRS\)</span> because,</p>
+<ul>
+<li><p><span class="math inline">\(A\)</span> and <span class="math inline">\(D\)</span> between them intially contain all the unordered pairs
+<span class="math inline">\(\{i,j\},\{i&#39;,j&#39;\}\)</span> <span class="math inline">\(i,j \in G, i\neq j\)</span> and <span class="math inline">\(\{i,j&#39;\}\)</span> for all
+<span class="math inline">\(i,j \in G\)</span>. So <span class="math inline">\(F\)</span> has an ordered pair corresponding to each of
+these.</p></li>
+<li><p>The procedure in the preceding paragraph contributes the remaining
+ordered pairs<br />
+<span class="math inline">\((\infty &#39;,k&#39;),(\infty,n),(k&#39;,\infty),(\infty &#39;,n)\)</span> for all
+<span class="math inline">\(k,n \in G \hspace{0.25cm} k \neq n\)</span> in such a way that the elements
+missing from the first <span class="math inline">\(q\)</span> rows and columns are suitably placed, and
+<span class="math inline">\(\infty\)</span> and <span class="math inline">\(\infty &#39;\)</span> are placed in each row and column of <span class="math inline">\(F\)</span>.
+Hence each row and column of <span class="math inline">\(F\)</span> contains every member of
+<span class="math inline">\(\{\infty, \infty &#39;\} \cup G \cup G&#39;\)</span> exactly once.</p></li>
+</ul>
+<p>The block design obtained from the rows of <span class="math inline">\(F\)</span> has blocks:</p>
+$
+.
+
+<p>}
+0 i q-1
+$</p>
+<p>from rows 0,1,…,<span class="math inline">\(q-1\)</span> blocks</p>
+$
+.
+
+<p>}
+0 i q-1
+$</p>
+<p>from rows <span class="math inline">\(0&#39;,1&#39;,...,(q-1)&#39;\)</span>, and the blocks
+<span class="math display">\[\{\infty\} \cup F, \{\infty &#39;\} \cup G&#39;\]</span> obtained from row <span class="math inline">\(l\)</span>.<br />
+According to condition 3 of Theorem 3.6 and Lemma 3.1, these blocks for
+a <span class="math inline">\(BIBD\)</span>. <span class="math inline">\(\square\)</span><br />
+<br />
+<em>Example 5.4.1</em><br />
+Consider the following <span class="math inline">\(BRS(8)\)</span>s</p>
+<p><span class="math inline">\(R=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th></th>
+<th align="center">13</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">30</td>
+<td>56</td>
+<td align="center"></td>
+<td>24</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td>41</td>
+<td align="center">60</td>
+<td></td>
+<td>35</td>
+</tr>
+<tr class="odd">
+<td align="center">46</td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">52</td>
+<td>01</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">50</td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td>63</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center"></td>
+<td align="center">61</td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 5\)</span></td>
+<td>04</td>
+</tr>
+<tr class="even">
+<td align="center">15</td>
+<td align="center">34</td>
+<td align="center"></td>
+<td>02</td>
+<td align="center"></td>
+<td></td>
+<td><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{0.5cm} S=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th></th>
+<th></th>
+<th align="center">64</th>
+<th></th>
+<th align="center">32</th>
+<th align="center">51</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">62</td>
+<td><span class="math inline">\(\infty 1\)</span></td>
+<td></td>
+<td align="center"></td>
+<td>05</td>
+<td align="center"></td>
+<td align="center">43</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td>03</td>
+<td><span class="math inline">\(\infty 2\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center">16</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td>65</td>
+<td>14</td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center">31</td>
+<td></td>
+<td>06</td>
+<td align="center">25</td>
+<td><span class="math inline">\(\infty 4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td>42</td>
+<td></td>
+<td align="center">10</td>
+<td>36</td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td></td>
+<td>53</td>
+<td align="center"></td>
+<td>21</td>
+<td align="center">40</td>
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{3.5cm}\)</span> <strong>Figure 28</strong> <span class="math inline">\(\hspace{6cm}\)</span> <strong>Figure 29</strong><br />
+<br />
+These <span class="math inline">\(BRS\)</span> satisfy all three properties required by Theorem 3.6. (We
+shall see why later).<br />
+Suppose we take the following two disjoint common transversals as <span class="math inline">\(T_1\)</span>
+(lighter grey shading) and <span class="math inline">\(T_2\)</span> (darker grey shading).</p>
+<p><span class="math inline">\(R \odot S=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">00</th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th align="center">64</th>
+<th align="center">13</th>
+<th align="center">32</th>
+<th align="center">51</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">62</td>
+<td align="center">11</td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center">05</td>
+<td align="center">24</td>
+<td align="center">43</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td align="center">03</td>
+<td align="center">22</td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center">16</td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td align="center">46</td>
+<td align="center">65</td>
+<td align="center">14</td>
+<td align="center">33</td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center">31</td>
+<td align="center">50</td>
+<td align="center">06</td>
+<td align="center">25</td>
+<td align="center">44</td>
+<td align="center">63</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center">42</td>
+<td align="center">61</td>
+<td align="center">10</td>
+<td align="center">36</td>
+<td align="center">55</td>
+<td align="center">04</td>
+</tr>
+<tr class="even">
+<td align="center">15</td>
+<td align="center">34</td>
+<td align="center">53</td>
+<td align="center">02</td>
+<td align="center">21</td>
+<td align="center">40</td>
+<td align="center">66</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 30</strong></p>
+<p>Next we obtain <span class="math inline">\(A\)</span> from the superposition of <span class="math inline">\(\hat{R}\)</span> and <span class="math inline">\(\hat{S&#39;}\)</span>:</p>
+<p>$A = $</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th align="center"><span class="math inline">\(6&#39;4&#39;\)</span></th>
+<th align="center">13</th>
+<th align="center"><span class="math inline">\(3&#39;2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;1&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(6&#39;2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(0&#39;5&#39;\)</span></td>
+<td align="center">24</td>
+<td align="center"><span class="math inline">\(4&#39;3&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(5&#39;4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(1&#39;6&#39;\)</span></td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td align="center"><span class="math inline">\(6&#39;5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(2&#39;0&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3&#39;1&#39;\)</span></td>
+<td align="center">50</td>
+<td align="center"><span class="math inline">\(0&#39;6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">63</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td align="center"><span class="math inline">\(4&#39;2&#39;\)</span></td>
+<td align="center">61</td>
+<td align="center"><span class="math inline">\(1&#39;0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">04</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td align="center">34</td>
+<td align="center"><span class="math inline">\(5&#39;3&#39;\)</span></td>
+<td align="center">02</td>
+<td align="center"><span class="math inline">\(2&#39;1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 31</strong></p>
+<p>Then we construct <span class="math inline">\(B\)</span>, and after swapping the order of certain pairs,
+obtain <span class="math inline">\(D\)</span>:</p>
+<p><span class="math inline">\(B=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(00&#39;\)</span></th>
+<th align="center"><span class="math inline">\(26&#39;\)</span></th>
+<th align="center"><span class="math inline">\(45&#39;\)</span></th>
+<th align="center"><span class="math inline">\(64&#39;\)</span></th>
+<th align="center"><span class="math inline">\(13&#39;\)</span></th>
+<th align="center"><span class="math inline">\(32&#39;\)</span></th>
+<th align="center"><span class="math inline">\(51&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(30&#39;\)</span></td>
+<td align="center"><span class="math inline">\(56&#39;\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(24&#39;\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(41&#39;\)</span></td>
+<td align="center"><span class="math inline">\(60&#39;\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(35&#39;\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(46&#39;\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(52&#39;\)</span></td>
+<td align="center"><span class="math inline">\(01&#39;\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(50&#39;\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(63&#39;\)</span></td>
+<td align="center"><span class="math inline">\(12&#39;\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(23&#39;\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(61&#39;\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(04&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(15&#39;\)</span></td>
+<td align="center"><span class="math inline">\(34&#39;\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(02&#39;\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{0.5cm} \Rightarrow D=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(00&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;2\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;4\)</span></th>
+<th align="center"><span class="math inline">\(64&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;1\)</span></th>
+<th align="center"><span class="math inline">\(32&#39;\)</span></th>
+<th align="center"><span class="math inline">\(51&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{3.5cm}\)</span> <strong>Figure 32</strong> <span class="math inline">\(\hspace{6cm}\)</span> <strong>Figure 33</strong><br />
+<br />
+<span class="math inline">\(C\)</span> is obtained by arranging <span class="math inline">\(A\)</span> and <span class="math inline">\(D\)</span> thus:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center"><span class="math inline">\(0&#39;\)</span></th>
+<th align="center"><span class="math inline">\(1&#39;\)</span></th>
+<th align="center"><span class="math inline">\(2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;\)</span></th>
+<th align="center"><span class="math inline">\(4&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;\)</span></th>
+<th align="center"><span class="math inline">\(l\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td align="center"></td>
+<td align="center">26</td>
+<td align="center">45</td>
+<td align="center"><span class="math inline">\(6&#39;4&#39;\)</span></td>
+<td align="center">13</td>
+<td align="center"><span class="math inline">\(3&#39;2&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;1&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td align="center"><span class="math inline">\(6&#39;2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(0&#39;5&#39;\)</span></td>
+<td align="center">24</td>
+<td align="center"><span class="math inline">\(4&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td align="center"><span class="math inline">\(5&#39;4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(1&#39;6&#39;\)</span></td>
+<td align="center">35</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="center">46</td>
+<td align="center"><span class="math inline">\(6&#39;5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(2&#39;0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="center"><span class="math inline">\(3&#39;1&#39;\)</span></td>
+<td align="center">50</td>
+<td align="center"><span class="math inline">\(0&#39;6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">63</td>
+<td align="center">12</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td align="center">23</td>
+<td align="center"><span class="math inline">\(4&#39;2&#39;\)</span></td>
+<td align="center">61</td>
+<td align="center"><span class="math inline">\(1&#39;0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">04</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td align="center">15</td>
+<td align="center">34</td>
+<td align="center"><span class="math inline">\(5&#39;3&#39;\)</span></td>
+<td align="center">02</td>
+<td align="center"><span class="math inline">\(2&#39;1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(32&#39;\)</span></td>
+<td align="center"><span class="math inline">\(51&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(1&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(l\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 34</strong></p>
+<p>Finally we construct <span class="math inline">\(F\)</span> according to the 2 presciptions in the final
+part of the construction. Which involves first replacing some of the
+pairs in those cells of <span class="math inline">\(C\)</span> corresponding to <span class="math inline">\(D\)</span>.<br />
+Consider
+<span class="math display">\[T&#39;_1 = \{(2&#39;,6&#39;),(3&#39;,0&#39;),(4&#39;,1&#39;),(5&#39;,2&#39;),(6&#39;,3&#39;),(0&#39;,4&#39;),(1&#39;,5&#39;)\}\]</span>
+In <span class="math inline">\(R\)</span>, the cells <span class="math inline">\((2,6),(3,0),(4,1),(5,2),(6,3),(0,4)\)</span> and <span class="math inline">\((1,5)\)</span> were
+all non-empty, so <span class="math inline">\(C\)</span> contains pairs of the form <span class="math inline">\((k&#39;,n)\)</span> in all cells
+<span class="math inline">\((2&#39;,6&#39;),(3&#39;,0&#39;)\)</span>, … All of these are removed and replaced in the
+final column of the same row. And, for each pair <span class="math inline">\((k&#39;,n)\)</span>, corresponding
+pairs of the form <span class="math inline">\((\infty &#39;, k&#39;), (\infty,n)\)</span> are put in cells
+<span class="math inline">\((k,j&#39;_m),(n,j&#39;_m)\)</span>, respectively.<br />
+e.g.<br />
+<span class="math inline">\((5&#39;,3)\)</span> appears in position <span class="math inline">\((2&#39;,6&#39;)\)</span> of <span class="math inline">\(C\)</span>. So in <span class="math inline">\(F\)</span>, <span class="math inline">\((5&#39;,3)\)</span>
+appears in <span class="math inline">\((2&#39;,l)\)</span> and the additional pairs <span class="math inline">\((\infty,3)\)</span> and
+<span class="math inline">\((\infty &#39;,5&#39;)\)</span> appear in column <span class="math inline">\(6&#39;\)</span>, in rows 3 and 5 respectively.<br />
+<br />
+All of which makes the final columns appear like so:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(0&#39;\)</span></th>
+<th align="center"><span class="math inline">\(1&#39;\)</span></th>
+<th align="center"><span class="math inline">\(2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;\)</span></th>
+<th align="center"><span class="math inline">\(4&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;\)</span></th>
+<th align="center"><span class="math inline">\(l\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 1&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 3 &#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="center">$4 $</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 4 &#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td align="center"></td>
+<td align="center">$5 $</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 5 &#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td align="center"><span class="math inline">\(\infty &#39; 6 &#39;\)</span></td>
+<td align="center"></td>
+<td align="center">$6 $</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(32&#39;\)</span></td>
+<td align="center"><span class="math inline">\(51&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2&#39;\)</span></td>
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(3&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(l\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 35</strong></p>
+<p>Now consider:
+<span class="math display">\[T&#39;_2 = \{(4&#39;,5&#39;),(5&#39;,6&#39;),(6&#39;,0&#39;),(0&#39;,1&#39;),(1&#39;,2&#39;),(2&#39;,3&#39;),(3&#39;,4&#39;)\}\]</span>
+In each cell <span class="math inline">\((i&#39;_m,j&#39;_m)\)</span> of <span class="math inline">\(C\)</span>, where <span class="math inline">\((i&#39;_m,j&#39;_m) \in T&#39;_2\)</span>, occurs
+a pair <span class="math inline">\((k&#39;,n)\)</span>, we remove this and place it in cell <span class="math inline">\((l,j&#39;_m)\)</span>, also
+putting pairs <span class="math inline">\((k&#39;,\infty),(\infty &#39;,n)\)</span> in cells <span class="math inline">\((i&#39;_m,k),(i&#39;_m,n)\)</span>.<br />
+e.g.<br />
+<span class="math inline">\((3&#39;,6)\)</span> appears in <span class="math inline">\((4&#39;,5&#39;)\)</span>, so <span class="math inline">\((3&#39;,6)\)</span> goes in <span class="math inline">\((l,5&#39;)\)</span> and
+<span class="math inline">\((3&#39;,\infty), (\infty &#39;, 6)\)</span> go in <span class="math inline">\((4&#39;,3),(4&#39;,6)\)</span> respectively.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center"><span class="math inline">\(0&#39;\)</span></th>
+<th align="center"><span class="math inline">\(1&#39;\)</span></th>
+<th align="center"><span class="math inline">\(2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;\)</span></th>
+<th align="center"><span class="math inline">\(4&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;\)</span></th>
+<th align="center"><span class="math inline">\(l\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39; \infty\)</span></td>
+<td align="center"><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(32&#39;\)</span></td>
+<td align="center"><span class="math inline">\(51&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 3\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 5\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 6\)</span></td>
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(\infty &#39; 0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(4&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(l\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 36</strong></p>
+<p>So the following array, the completed <span class="math inline">\(F\)</span>, is a <span class="math inline">\(BRS(16)\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th align="center"><span class="math inline">\(6&#39;4&#39;\)</span></th>
+<th align="center">13</th>
+<th align="center"><span class="math inline">\(3&#39;2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;1&#39;\)</span></th>
+<th></th>
+<th align="center"><span class="math inline">\(\infty &#39; 0&#39;\)</span></th>
+<th></th>
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(6&#39;2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(0&#39;5&#39;\)</span></td>
+<td align="center">24</td>
+<td align="center"><span class="math inline">\(4&#39;3&#39;\)</span></td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty &#39; 1&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 1\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(5&#39;4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(1&#39;6&#39;\)</span></td>
+<td align="center">35</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(\infty 2\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td align="center"><span class="math inline">\(6&#39;5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(2&#39;0&#39;\)</span></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty &#39; 3&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(\infty 3\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3&#39;1&#39;\)</span></td>
+<td align="center">50</td>
+<td align="center"><span class="math inline">\(0&#39;6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">63</td>
+<td align="center">12</td>
+<td><span class="math inline">\(\infty 4\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td><span class="math inline">\(\infty &#39; 4&#39;\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td align="center"><span class="math inline">\(4&#39;2&#39;\)</span></td>
+<td align="center">61</td>
+<td align="center"><span class="math inline">\(1&#39;0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">04</td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\infty &#39; 5&#39;\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td align="center">34</td>
+<td align="center"><span class="math inline">\(5&#39;3&#39;\)</span></td>
+<td align="center">02</td>
+<td align="center"><span class="math inline">\(2&#39;1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty&#39; 6&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 6\)</span></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39; \infty\)</span></td>
+<td><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(32&#39;\)</span></td>
+<td><span class="math inline">\(51&#39;\)</span></td>
+<td><span class="math inline">\(3&#39;1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 3\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td><span class="math inline">\(05&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(43&#39;\)</span></td>
+<td><span class="math inline">\(4&#39;2\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"><span class="math inline">\(1&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(0&#39;6\)</span></td>
+<td><span class="math inline">\(16&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 5\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(1&#39;0\)</span></td>
+<td><span class="math inline">\(20&#39;\)</span></td>
+<td><span class="math inline">\(6&#39;4\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 6\)</span></td>
+<td><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td><span class="math inline">\(44&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(2&#39;1\)</span></td>
+<td><span class="math inline">\(0&#39;5\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\infty &#39; 0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(4&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td><span class="math inline">\(36&#39;\)</span></td>
+<td><span class="math inline">\(55&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(1&#39;6\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"><span class="math inline">\(\infty &#39; 1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39; \infty\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(21&#39;\)</span></td>
+<td><span class="math inline">\(40&#39;\)</span></td>
+<td><span class="math inline">\(66&#39;\)</span></td>
+<td><span class="math inline">\(2&#39;0\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td><span class="math inline">\(2&#39;5\)</span></td>
+<td><span class="math inline">\(3&#39;6\)</span></td>
+<td><span class="math inline">\(4&#39;0\)</span></td>
+<td><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 37</strong></p>
+<p>Schellenberg applied his multiplicative construction to the <span class="math inline">\(BRS\)</span>
+generated by Hwang’s starter-adder construction, and in doing so was
+able to establish the following Theorem:</p>
+</div>
+<div id="theorem-5.4.2" class="section level4">
+<h4><span class="header-section-number">4.4.0.3</span> Theorem 5.4.2</h4>
+<p>[21] For <span class="math inline">\(q \equiv 3\)</span>(mod 4), with <span class="math inline">\(q\)</span> a prime power strictly greater
+than 3, there exists a <span class="math inline">\(BRS(2(q+1))\)</span>.<br />
+<br />
+<em>Proof</em><br />
+Construct <span class="math inline">\(R\)</span> from the following balanced starter,
+<span class="math display">\[X = \left \{ (x^{2i},x^{2i+1}):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+with adder,
+<span class="math display">\[A(X) = \left \{ -x^{2i}(1+x):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+Clearly this is just the Hwang starter-adder of Theorem 5.3.4, although
+the elements in the starter pairs have swapped order. Now, construct <span class="math inline">\(S\)</span>
+from the balanced starter,
+<span class="math display">\[Y = \left \{ (x^{2i-1},x^{2i}):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+<span class="math display">\[A(Y) = \left \{ -x^{2i-1}(1+x):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+<span class="math inline">\(Y\)</span> has been obtained simply by swapping the pairs of <span class="math inline">\(X\)</span> and
+multiplying them by <span class="math inline">\(x^{-1}\)</span>. Therefore, that <span class="math inline">\(Y\)</span> is a balanced starter
+follows from the fact that <span class="math inline">\(X\)</span> is balanced, as was established in
+Theorem 3.5.<br />
+It remains to show that <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> satisfy conditions 1,2 and 3 of
+Theorem 3.6:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are a Latin pair: The positions of the starter pais in
+the first row of each square are determined by the adder, so
+<span class="math inline">\(A(X) \cap A(Y) = \varnothing\)</span>[^14] ensures that each cell of the
+first row, hence subsequent rows, of <span class="math inline">\(R \odot S\)</span> contains only one
+pair.<br />
+<br />
+That <span class="math inline">\(R \odot S\)</span> is a pair of superposed Latin squares requires that
+for the pairs in any row, the left hand members take all values
+0…<span class="math inline">\(q-1\)</span>, and the right members also take values 0…<span class="math inline">\(q-1\)</span>.<br />
+Clearly this property holds for all rows if it holds for the first.
+The pairs in the first row of <span class="math inline">\(R \odot S\)</span> are:
+<span class="math display">\[\{(0,0)\} \cup \left \{ (x^{2i-1},x^{2i}),(x^{2i},x^{2i+1}) \middle| 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+So all <span class="math inline">\((q-1)/2\)</span> non-squares and all <span class="math inline">\((q-1)/2\)</span> squares occur as left
+hand members of pairs, and similarly as right hand members. So
+<span class="math inline">\(R \odot S\)</span> is a pair of superposed Latin squares.<br />
+For these Latin squares to be orthogonal requires that there is no
+repetition of ordered pairs. For a repetition to occur would require
+some repetition of ordered differences among the starter pairs.<br />
+Either:
+<span class="math display">\[x^{2i-1} - x^{2i} = x^{2i} - x^{2i+1} \hspace{0.2cm} \mathrm{or} \hspace{0.2cm}
+x^{2i} - x^{2i-1} = x^{2i+1} - x^{2i} \hspace{0.2cm} \mathrm{i.e.}\]</span>
+<span class="math display">\[\pm (x^{2i-1} + x^{2i+1}) = \pm (x^{2i} + x^{2i})\]</span>
+<span class="math display">\[x^{-1} + x = 2 \Rightarrow x = 1\]</span> Clearly false, so ordered
+differences are unique.</p></li>
+<li><p><span class="math inline">\(R \odot S\)</span> has a pair of disjoint <em>common transversals</em>:<br />
+For any fixed non-zero <span class="math inline">\(j\)</span> the cells <span class="math inline">\((i,i+j)\)</span>, <span class="math inline">\(0 \leq i \leq q-1\)</span>
+form a common transversal which does not intersect the diagonal.</p></li>
+<li><p>The block designs for <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are balanced:<br />
+The starters <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are balanced starters hence the block
+designs for <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are <span class="math inline">\(BIBD\)</span>s. <span class="math inline">\(\square\)</span></p></li>
+</ol>
+<p>So the Schellenberg multiplication construction establishes the
+existence of some new orders <span class="math inline">\(q+1\)</span> where <span class="math inline">\(q\)</span> is not necessarily a prime
+power.<br />
+e.g.<br />
+the orders in bold are now established which had not been under Hwang’s
+construction:</p>
+<p><span>|c|c|c|c|c|c|c|c|c|c|c|c|c|</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Hwang <span class="math inline">\(BRS\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(p^r + 1: p^r \equiv 3\)</span>(mod 4)</td>
+</tr>
+</tbody>
+</table>
+<p>&amp; 8 &amp; 12 &amp; &amp; 20 &amp; 24 &amp; 28 &amp; 32 &amp; &amp; &amp; 44 &amp; 48 &amp; …<br />
+</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Schellenberg</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(2(p^r + 1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>&amp; <strong>16</strong> &amp; 24 &amp; 32 &amp; <strong>40</strong> &amp; 48 &amp; <strong>56</strong> &amp; <strong>64</strong> &amp; 72 &amp; 80 &amp; <strong>88</strong> &amp;
+<strong>96</strong> &amp; …<br />
+</p>
+<p><strong>Table 8</strong></p>
+<p>Even with both these theorems, there are obviously missing orders. The
+first exception, 36 occurs, for example, because 35 is not a prime power
+and because 17 is not congruent to 3 mod 4.<br />
+<br />
+Schellenberg applied the multiplicative construction to the case when
+<span class="math inline">\(p^r \equiv 1\)</span>(mod 4) [then, of course, <span class="math inline">\(2(p^r+1) \equiv 0\)</span>(mod 4) as is
+required] and was able to obtain further results. Although, as an
+interesting parallel to the Mullin-Nemeth construction, he also had
+problems with the Fermat primes and again they were treated separately.
+Rather than look at his approach we consider the later approach by Du,
+Yu, Hwang and Kang amongst others.</p>
+</div>
+</div>
+<div id="symmetric-skew-balanced-starters" class="section level2">
+<h2><span class="header-section-number">4.5</span> Symmetric Skew Balanced Starters</h2>
+<p>If <span class="math inline">\((x_1,y_1),(x_2,y_2), ...,(x_{(q-1)/2},y_{(q-1)/2})\)</span> are the pairs of
+a balanced starter in <span class="math inline">\(GF(q)\)</span> then we say that starter is <strong><em>skew</em></strong> if
+<span class="math inline">\(\pm(x_1+y_1), \pm(x_2+y_2), ..., \pm(x_{(q-1)/2},y_{(q-1)/2})\)</span> are all
+distinct mod <span class="math inline">\(q\)</span>.<br />
+Notice that a skew starter is necessarily a strong starter (all sums are
+distinct).<br />
+A balanced starter is <strong><em>symmetric</em></strong> if
+<span class="math inline">\(\{x_1,x_2,...,x_{(q-1)/2}\}=\{-x_1,-x_2,...,x_{(q-1)/2}\}\)</span><br />
+<br />
+In [13] it was claimed that Schellenberg’s multiplication theorem could
+be applied to two <span class="math inline">\(CBHR(2n-1)\)</span>s, both obtained from <span class="math inline">\(SSBS\)</span>, to construct
+a <span class="math inline">\(BRS(4n)\)</span>. It was then shown that <span class="math inline">\(SSBS\)</span> exist for all prime powers
+<span class="math inline">\(2n-1=8k+5&gt;5\)</span>, and so the existence of <span class="math inline">\(BRS(4n)\)</span> for these values was
+believed to be established.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">k</th>
+<th align="center">1</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">12</th>
+<th align="center">13</th>
+<th align="center">16</th>
+<th align="center">18</th>
+<th align="center">19</th>
+<th align="center">…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(4n\)</span></td>
+<td align="center">28</td>
+<td align="center">60</td>
+<td align="center">76</td>
+<td align="center">108</td>
+<td align="center">124</td>
+<td align="center">204</td>
+<td align="center">220</td>
+<td align="center">268</td>
+<td align="center">300</td>
+<td align="center">316</td>
+<td align="center">…</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 9</strong></p>
+<p>Recently, Anderson[2], has noticed a flaw in this approach and corrected
+it.<br />
+Suppose we wished to apply Schellenberg’s construction to two
+<span class="math inline">\(CBHR(2n-1)\)</span>s, call them <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, then it would be necessary to make
+a slight alteration to Theorem 3.6 to accomodate the missing diagonal
+pairs, i.e. <span class="math inline">\(\{\infty,i\}\)</span> from row <span class="math inline">\(i\)</span>.<br />
+<br />
+<strong>Theorem 5.5.1</strong> Suppose we have two <span class="math inline">\(CBHR(2n-1)\)</span>, <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> based on
+<span class="math inline">\(G=GF(2n-1)\)</span>, with the following properties:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> are a <em>Latin pair</em> such that,</p></li>
+<li><p><span class="math inline">\(P \odot Q\)</span> has a pair of disjoint <em>common transversals</em> <span class="math inline">\(T_1\)</span> and
+<span class="math inline">\(T_2\)</span> (with <span class="math inline">\(T_2\)</span> in <span class="math inline">\(P\)</span>), which do not intersect that main
+diagonal, and</p></li>
+<li><p>the block designs obtained from <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, call them <span class="math inline">\(D(P)\)</span> and
+<span class="math inline">\(D(Q)\)</span> respectively, have the property that if <span class="math inline">\(B_i\)</span> and <span class="math inline">\(C_i\)</span> are
+the blocks from <span class="math inline">\(D(P)\)</span> obtained from row <span class="math inline">\(i\)</span>, then <span class="math inline">\(B_i\)</span> and <span class="math inline">\(C_i\)</span>
+are also the blocks of <span class="math inline">\(D(Q)\)</span> obtained from row <span class="math inline">\(i\)</span>.</p></li>
+</ol>
+<p>Then a <span class="math inline">\(BRS(4n)\)</span> exists.<br />
+<br />
+<em>Proof</em><br />
+As for Theorem 3.6<br />
+It was then claimed that the two <span class="math inline">\(CBHR(2n-1)\)</span>s obtained from a <span class="math inline">\(SSBS\)</span>
+and its transpose satisfy the three conditions of Theorem 3.8. Hence
+implying the existence of a <span class="math inline">\(BRS(4n)\)</span>.<br />
+However, recently a counter-example has been found.</p>
+<div id="lemma-5.5.1" class="section level4">
+<h4><span class="header-section-number">4.5.0.1</span> Lemma 5.5.1</h4>
+<p>[2] If <span class="math inline">\(p=8k+5\)</span> is a prime, <span class="math inline">\(p &gt; 5\)</span>, then the pairs
+<span class="math display">\[(x^{4i},-x{4i+1}),(x^{4i+2},x^{4i+1})\hspace{0.5cm} 0 \leq i \leq 2k\]</span>
+form a <span class="math inline">\(SSBS\)</span> in <span class="math inline">\(GF(p)\)</span>, provided <span class="math inline">\(x^2-1\)</span> is a square mod <span class="math inline">\(p\)</span>.<br />
+<br />
+<em>Proof</em></p>
+<ol style="list-style-type: decimal">
+<li><p>The elements in the starter pairs are a complete replication of
+<span class="math inline">\(GF(p) \backslash \{0\}\)</span>.<br />
+<span class="math inline">\(x^{\frac{1}{2} (q-1)} = x^{4k+2} = -1\)</span>, therefore we can write the
+pairs as,
+<span class="math display">\[(X^{4i},x^{4(k+i)+3}),(x^{4i+2},x^{4i+1}) \hspace{0.5cm} 0 \leq i \leq 2k\]</span>
+All the members of these pairs are clearly unique and there are
+<span class="math inline">\(4(2k+1)=8k+4\)</span> of them, hence they must all of
+<span class="math inline">\((GF(p) \backslash \{0\}\)</span>.</p></li>
+<li><p>The differences are similarly a complete replication of
+<span class="math inline">\(GF(p) \backslash \{0\}\)</span>.<br />
+The differences are <span class="math inline">\(\pm x^{4i}(x+1), \pm x^{4i+1}(x-1)\)</span>, which can
+be written as
+<span class="math display">\[x^{4i}(x+1), x^{4(i+k)+2}(x+1),x^{4i+1}(x-1),x^{4(i+k)+3}(x-1)\]</span>
+Which are all unique provided <span class="math inline">\((x+1)\)</span> and <span class="math inline">\((x-1)\)</span> have the same
+quadratic character (meaning either both of neither are squares).
+This is true because <span class="math inline">\((x+1)(1-x) = x^2-1\)</span> is a square.</p></li>
+<li><p>The starter is <strong><em>skew</em></strong>, (the positive and negative sums are all
+distinct).<br />
+The sums are <span class="math inline">\(\pm x^{4i}(1-x), \pm x^{4i+1}(x+1)\)</span> which again are
+all unique, provided <span class="math inline">\((1-x)\)</span> and <span class="math inline">\((x+1)\)</span> have the same quadratic
+character. True, because <span class="math inline">\((1-x)(x+1) = -(x^2-1) = x^{4k+2}(x^2-1)\)</span>,
+is a square.</p></li>
+<li><p>The starter is <strong><em>symmetric</em></strong>.<br />
+Indeed, <span class="math inline">\(-x^{4i} = x^{4(i+k)+2}\)</span>, generates the same elements as
+<span class="math inline">\(x^{4i+2}\)</span> shifted by <span class="math inline">\(k\)</span> places.</p></li>
+<li><p>The associated block design is balanced.<br />
+The blocks in the first row are,<br />
+<span class="math inline">\(\{\infty\} \cup R\)</span>, due to the left hand members (where <span class="math inline">\(R\)</span> is the
+set of squares).<br />
+<span class="math inline">\(\{0\} \cup N\)</span>, due to the right hand members (where <span class="math inline">\(N\)</span> is the set
+of non-squares).<br />
+We can show that these blocks along with their translates form a
+<span class="math inline">\(BIBD\)</span>.<br />
+<br />
+Using an argument from Theorem 5.2.4, we can say that all elements
+of <span class="math inline">\(R\)</span> are generated as differences of <span class="math inline">\(R\)</span> from the same number of
+times (say <span class="math inline">\(\lambda _1\)</span> times). Also, a similar argument allows us
+to say that all the elements of <span class="math inline">\(N\)</span> are generated as differences of
+<span class="math inline">\(R\)</span> the same number of times (say <span class="math inline">\(\lambda _2\)</span>). Now, of course
+<span class="math inline">\(N = xR\)</span>. So we can say that to each difference of members of <span class="math inline">\(R\)</span>
+which generates a square there is a difference of <span class="math inline">\(N\)</span> which
+generates a non-square. Therefore every <span class="math inline">\(r \in R\)</span> occurs as a
+difference in <span class="math inline">\(N, \lambda _1\)</span> times. For the same reason every
+<span class="math inline">\(n \in N\)</span> occurs as a difference between members of <span class="math inline">\(N, \lambda _2\)</span>
+times. Therefore, each element of <span class="math inline">\(GF(p) \backslash \{0\}\)</span> occurs
+<span class="math inline">\(\lambda _1 + \lambda _2\)</span> times as a difference in <span class="math inline">\(R\)</span> or <span class="math inline">\(N\)</span>.<br />
+<br />
+Now, <span class="math inline">\(|R| = |N| = 4k+2\)</span>. So each of the two sets, <span class="math inline">\(R\)</span> and <span class="math inline">\(N\)</span>, gives
+<span class="math inline">\((4k+2)(4k+1)\)</span> differences. Furthermore there are <span class="math inline">\(8k+4\)</span> elements of
+<span class="math inline">\(GF(p) \backslash \{0\}\)</span>, and each occurs as a difference
+<span class="math inline">\(\lambda _1 + \lambda _2\)</span> times. So,
+<span class="math display">\[(2(4k+2)(4k+1) = (\lambda _1 + \lambda _2)(8k+4)\]</span>
+<span class="math display">\[\therefore \lambda _1 + \lambda _2 = 4k+1\]</span> Adjoining 0 to <span class="math inline">\(N\)</span>
+creates each member of <span class="math inline">\(GF(p) \backslash \{0\}\)</span> once again, as
+either <span class="math inline">\(0-n\)</span> or <span class="math inline">\(n-0\)</span>.<br />
+Adjoining <span class="math inline">\(\infty\)</span> to <span class="math inline">\(R\)</span>, makes <span class="math inline">\(|R| = 4k+2\)</span> pairs involving
+<span class="math inline">\(\infty\)</span>. Therefore, <span class="math inline">\(\{\infty\} \cup R\)</span> and <span class="math inline">\(\{0\} \cup N\)</span> and
+their translates have between them each pair from
+<span class="math inline">\(\{\infty\{ \cup GF(p)\)</span> occurring <span class="math inline">\(4k+2\)</span> times. Hence the block
+design is balanced.</p></li>
+</ol>
+<p><em>Example 5.5.1</em><br />
+Let <span class="math inline">\(P\)</span> be the <span class="math inline">\(CBHR(2n-1)\)</span> obtained from the <span class="math inline">\(SSBS\)</span> in Lemma 3.2 when
+<span class="math inline">\(p=13\)</span> <span class="math display">\[(1,11),(3,7),(4,2),(9,8),(10,5),(12,6)\]</span> By the <strong><em>transpose</em></strong>
+<span class="math inline">\(X^T\)</span> of a starter <span class="math inline">\(X\)</span> we mean those pairs in the first column of the
+square generated by <span class="math inline">\(X\)</span>.<br />
+In this case, for example, <span class="math inline">\((1,11)\)</span> goes in cell (0,12) therefore will
+be a pair in the first column <span class="math inline">\((1+i,11+i)\)</span> in position <span class="math inline">\((0+i,12+i)\)</span>,
+such that <span class="math inline">\(12+i = 0\)</span> mod 13,</p>
+<p>(2,12) goes in (1,0) hence belongs to the transpose of this starter</p>
+<p>In general a starter-pair <span class="math inline">\((a,b)\)</span> goes in <span class="math inline">\((0,a+b)\)</span>, so the
+corresponding transpose-pair will be <span class="math inline">\((a-a-b,b-a-b) = (-b,-a)\)</span>. So the
+transpose of the above starter is:
+<span class="math display">\[(2,12),(6,10),(11,9),(5,4),(8,3),(7,1)\]</span> If we now apply the
+Schellenberg construction as suggested in [13] we obtain <span class="math inline">\(P \odot Q\)</span>:</p>
+<p><span>-0.45cm</span><span>-0.45cm</span></p>
+<p>$P Q = $</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">0,0</th>
+<th align="center">2,12</th>
+<th align="center">10,5</th>
+<th align="center">6,10</th>
+<th align="center">9,8</th>
+<th align="center">12,6</th>
+<th align="center">4,2</th>
+<th align="center">11,9</th>
+<th align="center">7,1</th>
+<th align="center">5,4</th>
+<th align="center">3,7</th>
+<th align="center">8,3</th>
+<th align="center">1,11</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2,12</td>
+<td align="center">1,1</td>
+<td align="center">3,0</td>
+<td align="center">11,6</td>
+<td align="center">7,11</td>
+<td align="center">10,9</td>
+<td align="center">0,7</td>
+<td align="center">5,3</td>
+<td align="center">12,10</td>
+<td align="center">8,2</td>
+<td align="center">6,5</td>
+<td align="center">4,8</td>
+<td align="center">9,4</td>
+</tr>
+<tr class="even">
+<td align="center">10,5</td>
+<td align="center">3,0</td>
+<td align="center">2,2</td>
+<td align="center">4,1</td>
+<td align="center">12,7</td>
+<td align="center">8,12</td>
+<td align="center">11,10</td>
+<td align="center">1,8</td>
+<td align="center">6,4</td>
+<td align="center">0,11</td>
+<td align="center">9,3</td>
+<td align="center">7,6</td>
+<td align="center">5,9</td>
+</tr>
+<tr class="odd">
+<td align="center">6,10</td>
+<td align="center">11,6</td>
+<td align="center">4,1</td>
+<td align="center">3,3</td>
+<td align="center">5,2</td>
+<td align="center">0,8</td>
+<td align="center">9,0</td>
+<td align="center">12,11</td>
+<td align="center">2,9</td>
+<td align="center">7,5</td>
+<td align="center">1,12</td>
+<td align="center">10,4</td>
+<td align="center">8,7</td>
+</tr>
+<tr class="even">
+<td align="center">9,8</td>
+<td align="center">7,11</td>
+<td align="center">12,7</td>
+<td align="center">5,2</td>
+<td align="center">4,4</td>
+<td align="center">6,3</td>
+<td align="center">1,9</td>
+<td align="center">10,1</td>
+<td align="center">0,12</td>
+<td align="center">3,10</td>
+<td align="center">8,6</td>
+<td align="center">2,0</td>
+<td align="center">11,5</td>
+</tr>
+<tr class="odd">
+<td align="center">12,6</td>
+<td align="center">10,9</td>
+<td align="center">8,12</td>
+<td align="center">0,8</td>
+<td align="center">6,3</td>
+<td align="center">5,5</td>
+<td align="center">7,4</td>
+<td align="center">2,10</td>
+<td align="center">11,2</td>
+<td align="center">1,0</td>
+<td align="center">4,11</td>
+<td align="center">9,7</td>
+<td align="center">3,1</td>
+</tr>
+<tr class="even">
+<td align="center">4,2</td>
+<td align="center">0,7</td>
+<td align="center">11,10</td>
+<td align="center">9,0</td>
+<td align="center">1,9</td>
+<td align="center">7,4</td>
+<td align="center">6,6</td>
+<td align="center">8,5</td>
+<td align="center">3,11</td>
+<td align="center">12,3</td>
+<td align="center">2,1</td>
+<td align="center">5,12</td>
+<td align="center">10,8</td>
+</tr>
+<tr class="odd">
+<td align="center">11,9</td>
+<td align="center">5,3</td>
+<td align="center">1,8</td>
+<td align="center">12,11</td>
+<td align="center">10,1</td>
+<td align="center">2,10</td>
+<td align="center">8,5</td>
+<td align="center">7,7</td>
+<td align="center">9,6</td>
+<td align="center">4,12</td>
+<td align="center">0,4</td>
+<td align="center">3,2</td>
+<td align="center">6,0</td>
+</tr>
+<tr class="even">
+<td align="center">7,1</td>
+<td align="center">12,10</td>
+<td align="center">6,4</td>
+<td align="center">2,9</td>
+<td align="center">0,12</td>
+<td align="center">11,2</td>
+<td align="center">3,11</td>
+<td align="center">9,6</td>
+<td align="center">8,8</td>
+<td align="center">10,7</td>
+<td align="center">5,0</td>
+<td align="center">1,5</td>
+<td align="center">4,3</td>
+</tr>
+<tr class="odd">
+<td align="center">5,4</td>
+<td align="center">8,2</td>
+<td align="center">0,11</td>
+<td align="center">7,5</td>
+<td align="center">3,10</td>
+<td align="center">1,0</td>
+<td align="center">12,3</td>
+<td align="center">4,12</td>
+<td align="center">10,7</td>
+<td align="center">9,9</td>
+<td align="center">11,8</td>
+<td align="center">6,1</td>
+<td align="center">2,6</td>
+</tr>
+<tr class="even">
+<td align="center">3,7</td>
+<td align="center">6,5</td>
+<td align="center">9,3</td>
+<td align="center">1,12</td>
+<td align="center">8,6</td>
+<td align="center">4,11</td>
+<td align="center">2,1</td>
+<td align="center">0,4</td>
+<td align="center">5,0</td>
+<td align="center">11,8</td>
+<td align="center">10,10</td>
+<td align="center">12,9</td>
+<td align="center">7,2</td>
+</tr>
+<tr class="odd">
+<td align="center">8,3</td>
+<td align="center">4,8</td>
+<td align="center">7,6</td>
+<td align="center">10,4</td>
+<td align="center">2,0</td>
+<td align="center">9,7</td>
+<td align="center">5,12</td>
+<td align="center">3,2</td>
+<td align="center">1,5</td>
+<td align="center">6,1</td>
+<td align="center">12,9</td>
+<td align="center">11,11</td>
+<td align="center">0,10</td>
+</tr>
+<tr class="even">
+<td align="center">1,11</td>
+<td align="center">9,4</td>
+<td align="center">5,9</td>
+<td align="center">8,7</td>
+<td align="center">11,5</td>
+<td align="center">3,1</td>
+<td align="center">10,8</td>
+<td align="center">6,0</td>
+<td align="center">4,3</td>
+<td align="center">2,6</td>
+<td align="center">7,2</td>
+<td align="center">0,10</td>
+<td align="center">12,12</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 38</strong></p>
+<p>Although this is the join of two Latin squares, the repetition of
+ordered pairs means that they are not orthogonal. An immediate solution
+might be to reverse the order of half the repeated pairs, but this
+approach ruins the join of Latin squares property.<br />
+Anderson, has developed a theorem to overcome this property. We present
+a slight adaptation of this theorem:</p>
+</div>
+<div id="theorem-5.5.2" class="section level4">
+<h4><span class="header-section-number">4.5.0.2</span> Theorem 5.5.2</h4>
+<p>[2] Let <span class="math inline">\(p=8k+5\)</span> be a prime, <span class="math inline">\(p&gt;5\)</span>. Then a <span class="math inline">\(BRS\)</span> of side <span class="math inline">\(2p+1\)</span> exists.<br />
+<br />
+<em>Proof</em><br />
+Suppose we take <span class="math inline">\(P \odot Q\)</span>, and label elements of the pairs from <span class="math inline">\(P\)</span>
+with subscript 1 and all those from <span class="math inline">\(Q\)</span> with subscript 2. Then remove
+the diagonal pairs <span class="math inline">\((a,a)\)</span>, and call this new array <span class="math inline">\(A\)</span>.<br />
+<span class="math inline">\(A\)</span> contains all the unordered pairs <span class="math inline">\(\{a_1,b_1\},\{a_2,b_2\}\)</span> exactly
+once.<br />
+The first row of <span class="math inline">\(A\)</span> contains the ordered pairs,</p>
+<p><span class="math inline">\((x_1^{4i},-x_1^{4i+1}),(x_1^{4i+2},-x_1^{4i+1})\)</span> due to <span class="math inline">\(P\)</span>, and<br />
+<span class="math inline">\((x_2^{4i+1},-x_2^{4i}),(x_2^{4i+1},-x_2^{4i+2})\)</span> due to <span class="math inline">\(Q\)</span><br />
+</p>
+<p>So all the squares subscript 1 appear as left hand members of pairs as
+do all the non-squares subscript 2. Also, all the non-squares appear
+with subscript 1 in the right hand positions and all the squares with
+subscript 2.<br />
+<br />
+If we denote the set of squares with subscript 1 by <span class="math inline">\(R_1\)</span>, and with
+subscript 2 by <span class="math inline">\(R_2\)</span>. And similarly denote the sets of non-squares as
+<span class="math inline">\(N_1\)</span> and <span class="math inline">\(N_2\)</span>. Then in <span class="math inline">\(A\)</span>,</p>
+<p><span class="math inline">\(R_1 \cup N_2\)</span> occupies the left hand positions<br />
+while <span class="math inline">\(N_1 \cup R_2\)</span> occupies the right<br />
+</p>
+<p>Now define <span class="math inline">\(B\)</span> as the array of side <span class="math inline">\(p\)</span> whose first row contains the
+pairs:
+<span class="math display">\[(x_2^{4i},-x_1^{4i+1}),(x_1^{4i+2},x_2^{4i+1}),(-x_2^{4i},x_1^{4i+1}),(-x_1^{4i+2},-x_2^{4i+1})\]</span>
+So in <span class="math inline">\(B\)</span> the left hand positions are occupied by <span class="math inline">\(R_2 \cup R_1\)</span>, while
+the right are occupied by <span class="math inline">\(N_1 \cup N_2\)</span>.<br />
+In order that all unordered pairs <span class="math inline">\(\{a_1,b_2\}\)</span> occur once in <span class="math inline">\(B\)</span>
+requires that in the first row all the members of <span class="math inline">\(GF(p)\)</span> occur once as
+a difference in one of two ways:</p>
+<p>Either as <span class="math inline">\(a_1-b_2\)</span> which are called <span class="math inline">\((1,2)\)</span> <strong><em>mixed differences</em></strong><br />
+Or as <span class="math inline">\(b_2 -a_1\)</span>, called (2,1) mixed differences.<br />
+</p>
+<p>Consider <span class="math inline">\((2,1)\)</span> mixed differences in the first row, they are:<br />
+<span class="math inline">\(x^{4i} + x^{4i+1} = x^{4i}(1+x)\)</span><br />
+<span class="math inline">\(-x^{4i}-x^{4i+1}=-x^{4i}(1+x)\)</span><br />
+<span class="math inline">\(x^{4i+1} - x^{4i+2} = x^{4i+1}(1-x)\)</span><br />
+<span class="math inline">\(-x^{4i+1} + x^{4i+2} = -x^{4i+1}(1-x)\)</span><br />
+i.e. <span class="math inline">\(\pm x^{4i}(1+x), \pm x^{4i+1}(1-x)\)</span><br />
+Again, these are all of <span class="math inline">\(GF(p)\)</span> provided that <span class="math inline">\(x^2- 1\)</span> is a square.<br />
+<br />
+Now arrange <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> in the following familiar manner to construct an
+array of side <span class="math inline">\(2p+1\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(A\)</span></th>
+<th align="center"><span class="math inline">\(\phi\)</span></th>
+<th align="center"><span class="math inline">\(\theta ^T\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\phi\)</span></td>
+<td align="center"><span class="math inline">\(B\)</span></td>
+<td align="center"><span class="math inline">\(\theta ^T\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\theta\)</span></td>
+<td align="center"><span class="math inline">\(\theta\)</span></td>
+<td align="center"><span class="math inline">\(\infty _1, \infty _2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Next place the missing pairs in a manner similar to the original
+construction of Schellenberg. Take a pair <span class="math inline">\((a_1,b_2\)</span> from the first row
+of <span class="math inline">\(B\)</span> in position <span class="math inline">\((0_2,h_2)\)</span> and consider the cells in transversal
+<span class="math inline">\(T_1\)</span> of <span class="math inline">\(B\)</span>, where
+<span class="math display">\[T_1 = \left \{((0+g)_2,(h+g)_2) \hspace{0.2cm} \middle| \hspace{0.2cm} g \in Z_p \right \}\]</span>
+If cell <span class="math inline">\((i_2,j_2)\)</span> in <span class="math inline">\(T_1\)</span> contains <span class="math inline">\((n_1,k_2)\)</span>,</p>
+<ul>
+<li><p>put <span class="math inline">\((n_1,k_2)\)</span> in cell <span class="math inline">\((i_2,\infty)\)</span></p></li>
+<li><p>also put <span class="math inline">\((\infty _1,k_2)\)</span> in <span class="math inline">\((k_1,j_2)\)</span> and <span class="math inline">\((\infty _2,n_1)\)</span> in
+<span class="math inline">\((n_1,j_2)\)</span></p></li>
+</ul>
+<p>Now consider the transversal <span class="math inline">\(T_2\)</span> of <span class="math inline">\(B\)</span>, where <span class="math inline">\((u_1,v_2)\)</span> is a pair
+in <span class="math inline">\((0_2,l_2)\)</span> and,
+<span class="math display">\[T_2 = \left \{((0+g)_2,(l+g)_2) \hspace{0.2cm} \middle| \hspace{0.2cm} g \in Z_p \right \}\]</span>
+If cell <span class="math inline">\((i_2,j_2)\)</span> in <span class="math inline">\(T_2\)</span> contains <span class="math inline">\((h_1,m_2)\)</span>,</p>
+<ul>
+<li><p>put <span class="math inline">\((h_1,m_2)\)</span> in cell <span class="math inline">\((\infty,j_2)\)</span></p></li>
+<li><p>also put <span class="math inline">\((\infty _2,m_2)\)</span> in <span class="math inline">\((0_2,m_1)\)</span> and <span class="math inline">\((h_1,\infty _1)\)</span> in
+<span class="math inline">\((0_2,h_1)\)</span></p></li>
+</ul>
+<p>Finally put <span class="math inline">\((i_1,i_2)\)</span> in <span class="math inline">\((i_2,i_2)\)</span> for <span class="math inline">\(0 \leq i \leq p-1\)</span>, and put
+<span class="math inline">\((\infty _1, \infty _2)\)</span> in cell <span class="math inline">\((\infty, \infty )\)</span>.<br />
+<br />
+<em>Example</em><br />
+Continuing from before,<br />
+<br />
+</p>
+<p><span>-1.5cm</span><span>-1.5cm</span></p>
+<p><span class="math inline">\(A=\)</span> <span class="math inline">\(\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} \hline  &amp; 0_1 &amp; 1_1 &amp; 2_1 &amp; 3_1 &amp; 4_1 &amp; 5_1 &amp; 6_1 &amp; 7_1 &amp; 8_1 &amp; 9_1 &amp; 10_1 &amp; 11_1 &amp; 12_1\\\hline 0_1 &amp; &amp; 2_2 12_2 &amp; 10_1 5_1 &amp; 6_2 10_2 &amp; 9_1 8_1 &amp; 12_1 6_1 &amp; 4_1 2_1 &amp; 11_2 9_2 &amp; 7_2 1_2 &amp; 5_2 4_2 &amp; 3_1 7_1 &amp; 8_2 3_2 &amp; 1_1 11_1\\\hline 1_1 &amp; 2_1 12_1 &amp; &amp; 3_2 0_2 &amp; 11_1 6_1 &amp; 7_2 11_2 &amp; 10_1 9_1 &amp; 0_1 7_1 &amp; 5_1 3_1 &amp; 12_2 10_2 &amp; 8_2 2_2 &amp; 6_2 5_2 &amp; 4_1 8_1 &amp; 9_2 4_2\\\hline 2_1 &amp; 10_2 5_2 &amp; 3_1 0_1 &amp; &amp; 4_2 1_2 &amp; 12_1 7_1 &amp; 8_2 12_2 &amp; 11_1 10_1 &amp; 1_1 8_1 &amp; 6_1 4_1 &amp; 0_2 11_2 &amp; 9_2 3_2 &amp; 7_2 6_2 &amp; 5_1 9_1\\\hline 3_1 &amp; 6_1 10_1 &amp; 11_2 6_2 &amp; 4_1 1_1 &amp; &amp; 5_2 2_2 &amp; 0_1 8_1 &amp; 9_2 0_2 &amp; 12_1 11_1 &amp; 2_1 9_1 &amp; 7_1 5_1 &amp; 1_1 12_2 &amp; 10_2 4_2 &amp; 8_2 7_2\\\hline 4_1 &amp; 9_2 8_2 &amp; 7_1 11_1 &amp; 12_2 7_2 &amp; 5_1 2_1 &amp; &amp; 6_2 3_2 &amp; 1_1 9_1 &amp; 10_2 1_2 &amp; 0_1 12_1 &amp; 3_1 10_1 &amp; 8_1 6_1 &amp; 2_2 0_2 &amp; 11_2 5_2\\\hline 5_1 &amp; 12_2 6_2 &amp; 10_2 9_2 &amp; 8_1 12_1 &amp; 0_2 8_2 &amp; 6_1 3_1 &amp; &amp; 7_1 4_1 &amp; 2_1 10_1 &amp; 11_2 2_2 &amp; 1_1 0_1 &amp; 4_1 11_1 &amp; 9_1 7_1 &amp; 3_2 1_2\\\hline 6_1 &amp; 4_2 2_2 &amp; 0_2 7_2 &amp; 11_2 10_2 &amp; 9_1 0_1 &amp; 1_2 9_2 &amp; 7_1 4_1 &amp; &amp; 8_2 5_2 &amp; 3_1 11_1 &amp; 12_2 3_2 &amp; 2_1 1_1 &amp; 5_1 12_1 &amp; 10_1 8_1\\\hline 7_1 &amp; 11_1 9_1 &amp; 5_2 3_2 &amp; 1_2 8_2 &amp; 12_2 11_2 &amp; 10_1 1_1 &amp; 2_2 10_2 &amp; 8_1 5_1 &amp; &amp; 9_2 6_2 &amp; 4_1 12_1 &amp; 0_2 4_2 &amp; 3_1 2_1 &amp; 6_1 0_1\\\hline 8_1 &amp; 7_1 1_1 &amp; 12_1 10_1 &amp; 6_2 4_2 &amp; 2_2 9_2 &amp; 0_1 12_1 &amp; 11_2 2_2 &amp; 3_1 11_1 &amp; 9_1 6_1 &amp; &amp; 10_2 7_2 &amp; 5_1 0_1 &amp; 1_2 5_2 &amp; 4_1 3_1\\\hline 9_1 &amp; 5_1 4_1 &amp; 8_1 2_1 &amp; 0_1 11_1 &amp; 7_2 5_2 &amp; 3_2 10_2 &amp; 1_2 0_2 &amp; 12_1 3_1 &amp; 4_2 12_2 &amp; 10_1 7_1 &amp; &amp; 11_2 8_2 &amp; 6_1 1_1 &amp; 2_2 6_2\\\hline 10_1 &amp; 3_2 7_2 &amp; 6_1 5_1 &amp; 9_1 3_1 &amp; 1_1 12_1 &amp; 8_2 6_2 &amp; 4_2 11_2 &amp; 2_2 1_2 &amp; 0_1 4_1 &amp; 5_2 0_2 &amp; 11_1 8_1 &amp; &amp; 12_2 9_2 &amp; 7_1 2_1\\\hline 11_1 &amp; 8_1 3_1 &amp; 4_2 8_2 &amp; 7_1 6_1 &amp; 10_1 4_1 &amp; 2_1 0_1 &amp; 9_2 7_2 &amp; 5_2 12_2 &amp; 3_2 2_2 &amp; 1_1 5_1 &amp; 6_2 1_2 &amp; 12_1 9_1 &amp; &amp; 0_2 10_2\\\hline 12_1 &amp; 1_2 11_2 &amp; 9_1 4_1 &amp; 5_2 9_2 &amp; 8_1 7_1 &amp; 11_1 5_1 &amp; 3_1 1_1 &amp; 10_2 8_2 &amp; 6_2 0_2 &amp; 4_2 3_2 &amp; 2_1 6_1 &amp; 7_2 2_2 &amp; 0_1 10_1 &amp; \\\hline \end{array}\)</span></p>
+<p><strong>Figure 39</strong></p>
+<p><span>-1.5cm</span><span>-1.5cm</span></p>
+<p><span class="math inline">\(B=\)</span> <span class="math inline">\(\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} \hline  &amp; 0_2 &amp; 1_2 &amp; 2_2 &amp; 3_2 &amp; 4_2 &amp; 5_2 &amp; 6_2 &amp; 7_2 &amp; 8_2 &amp; 9_2 &amp; 10_2&amp; 11_ 2&amp; 12_2\\\hline 0_2 &amp; &amp; 12_2 2_1 &amp; 10_1 5_2 &amp; 10_2 6_1 &amp; 9_2 8_1 &amp; 12_1 6_2 &amp; 4_1 2_2 &amp; 9_1 11_2 &amp; 1_1 7_2 &amp; 4_2 5_1 &amp; 3_2 7_1 &amp; 3_1 8_2 &amp; 1_2 11_1\\\hline 1_2 &amp; 2_2 12_1 &amp; &amp; 0_2 3_1 &amp; 11_1 6_2 &amp; 11_2 7_1 &amp; 10_2 9_1 &amp; 0_1 7_2 &amp; 5_1 3_2 &amp; 10_1 12_2 &amp; 2_1 8_2 &amp; 5_2 6_1 &amp; 4_2 8_1 &amp; 4_1 9_2 \\\hline 2_2 &amp; 5_1 10_2 &amp; 3_2 0_1 &amp; &amp; 1_2 4_1 &amp; 12_1 7_2 &amp; 12_2 8_1 &amp; 11_2 10_1 &amp; 1_1 8_2 &amp; 6_1 4_2 &amp; 11_1 0_2 &amp; 3_1 9_2 &amp; 6_2 7_1 &amp; 5_2 9_1\\\hline 3_2 &amp; 6_2 10_1 &amp; 6_1 11_2 &amp; 4_2 1_1 &amp; &amp; 2_2 5_1 &amp; 0_1 8_2 &amp; 0_2 9_1 &amp; 12_2 11_1 &amp; 2_1 9_2 &amp; 7_1 5_2 &amp; 12_1 1_2&amp; 4_1 10_2 &amp; 7_2 8_1 \\\hline 4_2 &amp; 8_2 9_1 &amp; 7_2 11_1 &amp; 7_1 12_2 &amp; 5_2 2_1 &amp; &amp; 3_2 6_1 &amp; 1_1 9_2 &amp; 1_2 10_1 &amp; 0_2 12_1 &amp; 3_1 10_2 &amp; 8_1 6_2 &amp; 0_1 2_2 &amp; 5_1 11_2 \\\hline 5_2 &amp; 6_1 12_2 &amp; 9_2 10_1 &amp; 8_2 12_1 &amp; 8_1 0_2 &amp; 6_2 3_1 &amp; &amp; 4_2 7_1 &amp; 2_1 10_2 &amp; 2_2 11_1 &amp; 1_2 0_1 &amp; 4_1 11_2 &amp; 9_1 7_2 &amp; 1_1 3_2 \\\hline 6_2 &amp; 2_1 4_2 &amp; 7_1 0_2 &amp; 10_2 11_1 &amp; 9_2 0_1 &amp; 9_1 1_2 &amp; 7_2 4_1 &amp; &amp; 5_2 8_1 &amp; 3_1 11_2 &amp; 3_2 12_1 &amp; 2_2 1_1 &amp; 5_1 12_2 &amp; 10_1 8_2\\\hline 7_2 &amp; 11_1 9_2 &amp; 3_1 5_2 &amp; 8_1 1_2 &amp; 11_2 12_1 &amp; 10_2 1_1 &amp; 10_1 2_2 &amp; 8_2 5_1 &amp; &amp; 6_2 9_1 &amp; 4_1 12_2 &amp; 4_2 0_1 &amp; 3_2 2_1 &amp; 6_1 0_1\\\hline 8_2 &amp; 7_1 1_2 &amp; 12_1 10_2 &amp; 4_1 6_2 &amp; 9_1 2_2 &amp;12_2 0_1 &amp; 11_2 2_1 &amp; 11_1 3_2 &amp; 9_2 6_1 &amp; &amp; 7_2 10_1 &amp; 5_1 0_2 &amp; 5_2 1_1 &amp; 4_2 3_1\\\hline 9_2 &amp; 5_2 4_1 &amp; 8_1 2_2 &amp; 0_1 11_2 &amp; 5_1 7_2 &amp; 10_1 3_2 &amp; 0_2 1_1 &amp; 12_2 3_1 &amp; 12_1 4_2 &amp; 10_2 7_1 &amp; &amp; 8_2 11_1 &amp; 6_1 1_2 &amp; 6_2 2_1\\\hline 10_2 &amp; 7_2 3_1 &amp; 6_2 5_1 &amp; 9_1 3_2 &amp; 1_1 12_2 &amp; 6_1 8_2 &amp; 11_1 4_2 &amp; 1_2 2_1 &amp; 0_2 4_1 &amp; 0_1 5_2 &amp; 11_2 8_1 &amp; &amp; 9_2 12_1 &amp; 7_1 2_2\\\hline 11_2 &amp; 8_1 3_2 &amp; 8_2 4_1 &amp; 7_2 6_1 &amp; 10_1 4_2 &amp; 2_1 0_2 &amp; 7_1 9_2 &amp; 12_1 5_2 &amp; 2_2 3_1 &amp; 1_2 5_1 &amp; 1_1 6_2 &amp; 12_2 9_1 &amp; &amp; 10_2 0_1\\\hline 12_2 &amp; 11_2 1_1 &amp; 9_1 4_2 &amp; 9_2 5_1 &amp; 8_2 7_1 &amp; 11_1 5_2 &amp; 3_1 1_2 &amp; 8_1 10_2 &amp; 0_1 6_2 &amp; 3_2 4_1 &amp; 2_2 6_1 &amp; 2_1 7_2 &amp; 0_2 10_1 &amp; \\\hline \end{array}\)</span></p>
+<p><strong>Figure 40</strong></p>
+<p>Now, assemble the large array and apply the construction using the
+following transversals,
+<span class="math display">\[T_1 = \{((0+g)_2,(5+g)_2)\hspace{0.2cm}|\hspace{0.2cm}g \in Z_{13}\}\]</span>
+<span class="math display">\[T_2 = \{((0+g)_2,(11+g)_2)\hspace{0.2cm}|\hspace{0.2cm}g \in Z_{13}\}\]</span>
+The obtained array is the <span class="math inline">\(BRS(28)\)</span> in Figure 41.<br />
+<br />
+The finished array (Figure 41) is an <span class="math inline">\(ORS\)</span> because it contains one
+ordered pair corresponding to each unordered pair from the set
+<span class="math inline">\(\{\infty _1, \infty _2, 0_1,...,p-1_1,0_2,...,p-1_2\}\)</span>, with each
+member of the same set occurring exactly once in each row and column. To
+prove that this <span class="math inline">\(ORS\)</span> is a <span class="math inline">\(BRS\)</span> we need to show that the block design
+obtained from the rows in the usual way is balanced.<br />
+<br />
+Consider the blocks obtained from the first <span class="math inline">\(p\)</span> rows. We have shown
+already that the first row of <span class="math inline">\(A\)</span> conssted of two blocks, left and right
+where<br />
+<span class="math inline">\(\hspace{1cm}\)</span> Left block: <span class="math inline">\(R_1 \cup N_2\)</span><br />
+<span class="math inline">\(\hspace{1cm}\)</span> Right block: <span class="math inline">\(N_1 \cup R_2\)</span><br />
+The last stage of the construction put the pairs <span class="math inline">\(\{\infty _2, 0_1\}\)</span>
+and <span class="math inline">\(\{\infty _1,0_2\}\)</span> in row <span class="math inline">\(0_1\)</span> of the finished array. So the
+blocks obtained from the first <span class="math inline">\(p\)</span> rows are:
+<span class="math display">\[R_1 \cup N_2 \cup \{\infty _2, \infty _1 \}\]</span>
+<span class="math display">\[N_1 \cup R_2 \cup \{0 _1, 0 _2 \}\]</span> and their translates.<br />
+By similar reasoning the blocks obtained from the next <span class="math inline">\(p\)</span> rows are:
+<span class="math display">\[R_2 \cup R_1 \cup \{0 _1, \infty _2 \}\]</span>
+<span class="math display">\[N_1 \cup N_2 \cup \{0 _2, \infty _1 \}\]</span> and their translates. Finally
+the row labelled <span class="math inline">\(\infty\)</span> contributes a further two blocks to the
+design: <span class="math inline">\(\hspace{1cm} \{0_1,\infty _1\} \cup R_1 \cup N_1\)</span> obtained from
+the left hand members of pairs, and<br />
+<span class="math inline">\(\hspace{1cm} \{0_2,\infty _2\} \cup R_2 \cup N_2\)</span> obtained from the
+right hand members.<br />
+Fortunately, Schellenberg has shown that these blocks do indeed form a
+<span class="math inline">\(BIBD\)</span> with parameters,<br />
+<span class="math inline">\((2(p+1_,p+1,p)\)</span>.<br />
+<br />
+To show this we consider another result due to Bose. He showed that the
+blocks<br />
+<span class="math inline">\(\{\infty,x^0,x^2,...,x^{q-3}\}\{0,x^0,x^2,...,x^{q-3}\}\)</span> form a
+difference system in <span class="math inline">\(GF(q)\)</span> with <span class="math inline">\(\lambda = (q-1)/2\)</span>. This result
+implies that the blocks
+<span class="math inline">\(\{\infty, x^1,x^3,...,x^{q-2}\}\{0,x^1,x^3,...,x^{q-2}\}\)</span> also form a
+difference system with the same concurrence number.</p>
+</div>
+<div id="lemma-5.5.2" class="section level4">
+<h4><span class="header-section-number">4.5.0.3</span> Lemma 5.5.2</h4>
+<p>[4] If <span class="math inline">\(q = p^n \equiv 1\)</span>(mod 4) is a prime power, then if we write down
+the non-zero elements of <span class="math inline">\(GF(q)\)</span> which are squares:
+<span class="math display">\[x^0,x^2,x^4,...,x^{q-3}\]</span> Every non-square element of <span class="math inline">\(GF(q)\)</span> occurs
+exactly <span class="math inline">\((q-1)/4\)</span> times as a difference between these elements and every
+square occurs <span class="math inline">\((q-5)/4\)</span> times.<br />
+<br />
+<em>Proof</em><br />
+We can write the differences in the following way: $$</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\((x^2-1)\)</span></td>
+<td align="center"><span class="math inline">\(x^{2}(x^{2}-1)\)</span></td>
+<td align="center">$  …  $</td>
+<td align="center"><span class="math inline">\(x^{q-3}(x^{2}-1)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\((x^4-1)\)</span></td>
+<td align="center"><span class="math inline">\(x^{2}(x^{4}-1)\)</span></td>
+<td align="center">$  …  $</td>
+<td align="center"><span class="math inline">\(x^{q-3}(x^{4}-1)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">$  …  $</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\((x^{q-3}-1)\hspace{0.25cm}\)</span></td>
+<td align="center"><span class="math inline">\(\hspace{0.25cm}x^{2}(x^{q-3}-1)\)</span></td>
+<td align="center">$  …  $</td>
+<td align="center"><span class="math inline">\(x^{q-3}(x^{q-3}-1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[ Where the first column has been obtained by substracting $x^0$ from
+every other square. The second column by taking $x^2$ from every other
+square, the third by taking $x^4$ and so on.\
+\
+Because the differences in every column except the first have an even
+power of $x$ multiplied by some member of the first column it is clear
+that the quadratic nature of these terms is determined by whether or not
+the elements in the first column are square or not.\
+\
+Therefore to complete the proof we need to show that among the $(q-3)/2$
+elements, \]</span>x<sup>2-1,x</sup>4-1,…,x<sup>{q-3}-1<span class="math display">\[ every square occurs $(q-5)/4$
+times and every non-square $(q-1)/4$ times. We can further simplify the
+problem if we write,
+\]</span>x</sup>{2i}-1=(x<sup>i+1)(x</sup>i-1)=(x<sup>i-1)</sup>2<span class="math display">\[ Then $x^{2i}-1$
+is a square or non-square depending on whether:
+\]</span>z_i = <span class="math display">\[ is a square or not. So it remains only to
+count the occurrences of squares/non-squares in the set:
+\]</span>Z={z_1,z_2,…,z_{(q-3)/2}}<span class="math display">\[ Suppose we consider instead the set,
+\]</span>A = {z_1,z_2,…,z_{q-2}}<span class="math display">\[ which clearly has $q-2$ members. We can
+show that each member is a unique member of $GF(q)$, because if two
+different elements $z_i$ and $z_j$ were the same we would have:
+\]</span> ( q)<span class="math display">\[
+\]</span>(x<sup>j-1)(x</sup>i+1) (x<sup>j+1)(x</sup>i-1)( q)<span class="math display">\[
+\]</span>x<sup>jx</sup>i+x<sup>j-x</sup>i-1 x<sup>jx</sup>i - x^j + x^i -1( q)<span class="math display">\[
+\]</span>x^j x^i ( q)<span class="math display">\[ but
+$1 \leq i, j \leq q-2$, therefore the above is only satisfied if
+$x^j = x^i, \therefore i=j$, which contradicts the assumption that the
+two elements were different.\
+Further, if $z_i \equiv -1\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} q)$
+then $x^i+1 = -x^i+1$, which implies $x^i=0$. So $-1 \notin A$. Recall
+that when $q \equiv 1\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} 4)$, $-1$
+is a square.\
+Also, if $z_i \equiv -1\hspace{0.1cm}(\mathrm{mod}\hspace{0.1cm} q)$
+then $x^i+1=x^i-1$, so $1 \notin A$. 1 is a square.\
+Finally, $x^{q-1/2}=-1$, therefore $z_{q-1/2}=0$.\
+Clearly, then $A=GF(q) \backslash \{1,-1\}$, and
+$A \backslash \{z_{q-1/2}\}
+= GF(q) \backslash \{0,1,-1\}$, so $A \backslash \{z_{q-1/2}\}$ contains
+$(q-1)/2$ non-squares and $(q-5)/2$ squares.
+\]</span>A {z_{(q-1)/2}}={z_1,z_2,…,z_{(q-3)/2},z_{(q+1)/2},z_{(q+3)/2},…,z_{q-2}}<span class="math display">\[
+But,
+\]</span>z_{{(q+1)/2}+k} = 
+=  =   k = 1,2,…,(q-3)/2$$
+So <span class="math inline">\(z_{\{(q+1)/2\}+k}\)</span> and <span class="math inline">\(z_k\)</span> <span class="math inline">\([ k = 1,2,...,(q-3)/2]\)</span> are both
+squares or both non-squares, hence <span class="math inline">\(Z=\{z_1,z_2,...,z_{(q-3)/2}\}\)</span>
+contains exactly <span class="math inline">\((q-1)/4\)</span> non-squares and <span class="math inline">\((q-5)/4\)</span> squares. So the
+lemma is proven.</p>
+</div>
+<div id="corollary-5.5.2" class="section level4">
+<h4><span class="header-section-number">4.5.0.4</span> Corollary 5.5.2</h4>
+<p>If <span class="math inline">\(q = p^n \equiv 1\)</span>(mod 4) is a prime power, then if we write down the
+non-zero elements of <span class="math inline">\(GF(q)\)</span> which are non-squares:
+<span class="math display">\[x^1,x^3,x^5,...,x^{q-2}\]</span> Every square element of <span class="math inline">\(GF(q)\)</span> occurs
+exactly <span class="math inline">\((q-1)/4\)</span> times as a difference between these elements and every
+non-square occurs <span class="math inline">\((q-5)/4\)</span> times.<br />
+<br />
+<em>Proof</em><br />
+As for the previous theorem except that each difference is multiplied by
+<span class="math inline">\(x\)</span>, so squares become non-squares and non-squares, squares.</p>
+</div>
+<div id="theorem-5.5.3" class="section level4">
+<h4><span class="header-section-number">4.5.0.5</span> Theorem 5.5.3</h4>
+<p>[4] The blocks
+<span class="math display">\[\{\infty,x^0,x^2,...,x^{q-3}\}\{0,x^0,x^2,...,x^{q-3}\}\]</span> along with
+their translates, form a <span class="math inline">\(BIBD\)</span> with <span class="math inline">\(\lambda = (q-1)/2\)</span> in <span class="math inline">\(GF(q)\)</span>,
+when <span class="math inline">\(q = p^n \equiv 1\)</span>(mod 4).<br />
+<br />
+<em>Proof</em><br />
+From the Lemma we have shown that in the set
+<span class="math display">\[\{x^0,x^2,x^4,...,x^{q-3}\}\]</span> each square occurs as a difference
+<span class="math inline">\((q-5)/4\)</span> times, and each non-square <span class="math inline">\((q-1)/4\)</span> times. The right hand
+block also contributes the differences
+<span class="math display">\[x^0-0,0-x^0,1-x^2,x^2-1,...,x^{q-3}-0,0-x^{q-3}\]</span>
+<span class="math display">\[\pm x^0, \pm x^2, ... ,\pm x^{q-3}\]</span> And because <span class="math inline">\(-1\)</span> is a square,
+each square of <span class="math inline">\(GF(q)\)</span> occurs a further twice due to these differences.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(\{\infty,x^0,x^2,...,x^{q-3}\}\)</span></th>
+<th align="center"><span class="math inline">\(\{0,x^0,x^2,...,x^{q-3}\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Squares</td>
+<td align="center"><span class="math inline">\((q-5)/4\)</span></td>
+<td align="center"><span class="math inline">\(\{(q-5)/4\}+2\)</span></td>
+<td align="center"><span class="math inline">\((q-1)/2\)</span></td>
+</tr>
+<tr class="even">
+<td>Non-squares</td>
+<td align="center"><span class="math inline">\((q-1)/4\)</span></td>
+<td align="center"><span class="math inline">\((q-1)/4\)</span></td>
+<td align="center"><span class="math inline">\((q-1)/2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 10</strong></p>
+<p>Adjoining <span class="math inline">\(\infty\)</span> to a block of size <span class="math inline">\((q-1)/2\)</span> creates <span class="math inline">\((q-1)/2\)</span> pairs
+involving <span class="math inline">\(\infty\)</span>. Therefore in <span class="math inline">\(\{\infty,x^0,x^2,...,x^{q-3}\}\)</span> and
+the translates obtained from this block <span class="math inline">\(\infty\)</span> makes a pair with each
+member of <span class="math inline">\(GF(q)\)</span>, <span class="math inline">\((q-1)/2\)</span> times.<br />
+Therefore the block design obtained from these two blocks is balanced,
+and the concurrence number is <span class="math inline">\(\lambda = (q-1)/2\)</span>.<br />
+<br />
+Although we don’t need the following result, it now follows
+straightforwardly from Corollary 5.4.2.</p>
+</div>
+<div id="corollory-5.5.3" class="section level4">
+<h4><span class="header-section-number">4.5.0.6</span> Corollory 5.5.3</h4>
+[4] The blocks,
+<span class="math display">\[\{\infty,x^1,x^3,...,x^{q-2}\}\{0,x^1,x^3,...,x^{q-2}\}\]</span> along with
+their translates, form a <span class="math inline">\(BIBD\)</span> with <span class="math inline">\(\lambda = (q-1)/2\)</span> in <span class="math inline">\(GF(q)\)</span>,
+when <span class="math inline">\(q = p^n \equiv 1\)</span>(mod 4).<br />
+<br />
+Now returning to the Anderson construction:<br />
+Let: <span class="math display">\[S = R_1 \cup N_2 \cup \{\infty _2, \infty _1\}\]</span>
+<span class="math display">\[T = N_1 \cup R_2 \cup \{0_1, 0_2\}\]</span>
+<span class="math display">\[U = N_1 \cup N_2 \cup \{0 _2, \infty _1\}\]</span>
+<span class="math display">\[V = R_2 \cup R_1 \cup \{0_1, \infty _2\}\]</span> Now consider the pairs
+<span class="math inline">\(\{a_1,b_1\}\)</span> such that <span class="math inline">\(a,b \in GF(q) \cup \{\infty\}\)</span>. We know, due to
+the Bose result, that the blocks<br />
+<span class="math inline">\(\{\infty _1\} \cup R_1\)</span> and <span class="math inline">\(0 _1\} \cup R_1\)</span> along with their
+translates contain each pair <span class="math inline">\(\{a_1,b_1\}\)</span>, <span class="math inline">\((q-1)/2\)</span> times,<br />
+also<br />
+<span class="math inline">\(\{\infty _1\} \cup N_1\)</span> and <span class="math inline">\(0 _1\} \cup N_1\)</span> and translates contain
+each pair <span class="math inline">\(\{a_1,b_1\}\)</span>, <span class="math inline">\((q-1)/2\)</span> times.<br />
+But,
+<span class="math display">\[\{\infty _1\} \cup R_1 \subset R_1 \cup N_2 \cup \{\infty _1, \infty _2\}\]</span>
+<span class="math display">\[\{\infty _1\} \cup N_1 \subset N_1 \cup R_2 \cup \{0_1, 0_2\}\]</span>
+Therefore <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span>, along with their translates, contain each pair
+<span class="math inline">\(\{a_1,b_1\}, 2\cdot (q-1)/2 = q-1\)</span>, times. Finally each pair
+<span class="math inline">\(\{a_1,b_1\}\)</span> occurs once more in the set
+<span class="math inline">\(\{\infty _1,0_1\} \cup R_1 \cup N_1\)</span>. So in the entire block design
+each pair <span class="math inline">\(\{a_1,b_1\}\)</span> occurs <span class="math inline">\(q\)</span> times.<br />
+The same reasoning can be applied to show that the pairs <span class="math inline">\(\{a_2,b_2\}\)</span>
+for <span class="math inline">\(a,b \in GF(q) \cup \{\infty\}\)</span> also occur <span class="math inline">\(q\)</span> times in the block
+design.<br />
+It remains to show that the mixed pairs of the form <span class="math inline">\(\{a_1,b_2\}\)</span>, where
+<span class="math inline">\(a,b \in GF(q) \cup \{\infty\}\)</span>, also occur <span class="math inline">\(q\)</span> times in the block
+design. Again we consider (1,2) mixed differences.<br />
+For a pair <span class="math inline">\(\{a_1,a_2\}\)</span> to occur in the block design requires a mixed
+difference of 0 in either <span class="math inline">\(S\)</span>, <span class="math inline">\(T\)</span>, <span class="math inline">\(U\)</span> or <span class="math inline">\(V\)</span>.<br />
+In <span class="math inline">\(T\)</span>, <span class="math inline">\(0_1-0_2 = 0\)</span>, gives one occurrence, while in <span class="math inline">\(U\)</span><br />
+$ .
+
+} $ gives <span class="math inline">\((q-1)/2\)</span> occurrences of 0, and similarly <span class="math inline">\(V\)</span>,<br />
+<br />
+$ .
+
+<p>} $ gives another <span class="math inline">\((q-1)/2\)</span> occurrences of 0 as a mixed
+difference.<br />
+<br />
+Therefore, 0 occurs as mixed difference in <span class="math inline">\(S,T,U\)</span> and <span class="math inline">\(V\)</span>
+<span class="math inline">\((2\cdot (q-1)/2)+1=q\)</span> times, therefore each pair of the form
+<span class="math inline">\(\{a_1,a_2\}\)</span>, occurs <span class="math inline">\(q\)</span> times in the block design.<br />
+<br />
+Next, consider pairs of the form <span class="math inline">\(\{\infty _1, b_2\}\)</span>. In <span class="math inline">\(S\)</span> and <span class="math inline">\(U\)</span>,
+<span class="math inline">\(\infty _1\)</span> makes a pair with each of the <span class="math inline">\((q-1)/2\)</span> members of <span class="math inline">\(N_2\)</span>.
+Therefore in the blocks consisting of <span class="math inline">\(S\)</span>, <span class="math inline">\(U\)</span> and their translates,
+<span class="math inline">\(\infty _1\)</span> makes a pair with each element <span class="math inline">\(b_2\)</span> [for all <span class="math inline">\(b \in GF(q)\)</span>]
+<span class="math inline">\(2 \cdot (q-1)/2 = q-1\)</span> times. Also in <span class="math inline">\(U\)</span>, <span class="math inline">\(\infty _1\)</span> is paired with
+<span class="math inline">\(0_2\)</span>, so <span class="math inline">\(\infty _1\)</span> makes a pair with each <span class="math inline">\(b_2\)</span> once more. So there
+are <span class="math inline">\(q\)</span> pairs <span class="math inline">\(\{\infty _1,b_2\}\)</span> for each element <span class="math inline">\(b_2\)</span> in the block
+design.<br />
+<br />
+By identical reasoning we can say that <span class="math inline">\(\infty _2\)</span> makes a pair with
+each <span class="math inline">\(b_1\)</span>, for all <span class="math inline">\(b \in GF(q)\)</span>, <span class="math inline">\((q-1)/2\)</span> times in <span class="math inline">\(S\)</span> and its
+translates. Also <span class="math inline">\(\{\infty _2,b_1\}\)</span> [for all <span class="math inline">\(b \in GF(q)\)</span>] occurs
+<span class="math inline">\((q+1)/2\)</span> times due to <span class="math inline">\(V\)</span> and its translates.<br />
+Therefore the pairs <span class="math inline">\(\{\infty _2, b_1 \}\)</span> each occur <span class="math inline">\(q\)</span> times in the
+block design, for all <span class="math inline">\(b \in GF(q)\)</span>.<br />
+<br />
+Next we confirm that all the pairs <span class="math inline">\(\{a_1,b_2\}\)</span> <span class="math inline">\(a,b \in GF(q)\)</span> each
+occur <span class="math inline">\(q\)</span> times in the block design. In order to do this we need to show
+that the non-zero members of <span class="math inline">\(GF(q)\)</span> each occur <span class="math inline">\(q\)</span> times as a mixed
+difference <span class="math inline">\(a_1 - b_2\)</span>.<br />
+We have shown that for <span class="math inline">\(q \equiv 1(\)</span>mod 4)</p>
+<ol style="list-style-type: decimal">
+<li><p>every square, non-square occurs as a difference of two squares of
+<span class="math inline">\(GF(q)\)</span>, <span class="math inline">\(s-1\)</span>, <span class="math inline">\(s\)</span> times respectively. <span class="math inline">\(s = (q-1)/4\)</span>.</p></li>
+<li><p>every square, non-square occurs as a difference of non-two squares
+of <span class="math inline">\(GF(q)\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(s-1\)</span> times respectively.</p></li>
+</ol>
+<p>Consider first the mixed differences <span class="math inline">\(a_1-b_2 = c\)</span>, where <span class="math inline">\(c\)</span> is a
+square.<br />
+<span class="math inline">\(U\)</span> contains <span class="math inline">\(N_1 \cup N_2\)</span>, so according to <span class="math inline">\(B\)</span> every square occurs as
+a (1,2) difference <span class="math inline">\((q-1)/4\)</span> times in <span class="math inline">\(U\)</span>. Also according to <span class="math inline">\(B\)</span> each
+non-square occurs as a (1,2) difference between members of <span class="math inline">\(U\)</span>,
+<span class="math inline">\((q-5)/4\)</span> times. Finally, <span class="math inline">\(U\)</span> contains the element <span class="math inline">\(0_2\)</span>, so each
+non-square is generated once more.
+<span class="math inline">\(x_1^1-0_2=x^1_1,x_1^3-0_2=x_1^3,...,x_1^{q-2}-0_2=x_1^{q-2}\)</span>.<br />
+Similarly, in <span class="math inline">\(V\)</span> each non-square occurs as a mixed difference <span class="math inline">\((q-1)/4\)</span>
+times while each square occurs as a difference <span class="math inline">\((q-5)/4_1\)</span> times.<br />
+Next, consider blocks <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span>. In <span class="math inline">\(T\)</span> each square/non-square exists
+as a mixed difference once, in the following way: $$</p>
+<table style="width:50%;">
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="18%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(x_1^1\)</span>
+<span class="math inline">\(x_1^3\)</span></td>
+<td align="left"><span class="math inline">\(-0_2\)</span>
+<span class="math inline">\(-0_2\)</span></td>
+<td align="left"><span class="math inline">\(=x^1\)</span>
+<span class="math inline">\(=x^3\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(x^{q-2}_1\)</span></td>
+<td align="left"><span class="math inline">\(-0_2\)</span></td>
+<td align="left"><span class="math inline">\(=x^{q-2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<table style="width:50%;">
+<colgroup>
+<col width="19%" />
+<col width="12%" />
+<col width="18%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(x_2^0\)</span>
+<span class="math inline">\(x_2^2\)</span></td>
+<td align="left"><span class="math inline">\(-0_1\)</span>
+<span class="math inline">\(-0_1\)</span></td>
+<td align="left"><span class="math inline">\(=x^0\)</span>
+<span class="math inline">\(=x^2\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(x^{q-3}_2\)</span></td>
+<td align="left"><span class="math inline">\(-0_1\)</span></td>
+<td align="left"><span class="math inline">\(=x^{q-3}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The remaining mixed differences in <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> all involve
+differences between one square and one non-square (and vice versa). Now,
+for any <span class="math inline">\(c \in GF(q)\)</span>, <span class="math inline">\(a-b=c\)</span> has <span class="math inline">\(q\)</span> solutions. Two of these,
+<span class="math display">\[a=0-(-a)\]</span> <span class="math display">\[a=a-0\]</span> involve zero, and can be rejected because we have
+already considered all differences involving 0 in these blocks. Further,
+from <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we know there are <span class="math inline">\((q-5)/4 + (q-1)/4 = (q-3)/2\)</span>
+solutions which involve either both squares or both non-squares, and so
+there remain <span class="math display">\[(q-2)-[(q-3)/2] = (q-1)/2\]</span> solutions which involve
+elements of opposite quadratic character. Hence we can say that each
+square, non-square occurs as a difference in <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> in <span class="math inline">\((q-1)/2+1\)</span>
+ways.</p>
+<p><span>|c|c|c|</span> &amp;<br />
+&amp; c=square &amp; c = nonsquare<br />
+S &amp; &amp;<br />
+T &amp; &amp;<br />
+U &amp; &amp; +1<br />
+V &amp; +1 &amp;<br />
+&amp; q &amp; q<br />
+</p>
+<p>Which confirms that each pair <span class="math inline">\(\{a_1,b_2\}\)</span> for
+<span class="math inline">\(a,b \in GF(a) \cup \{\infty\}\)</span> appears in <span class="math inline">\(q\)</span> blocks of the block
+design.<br />
+So every pair <span class="math inline">\(\{a,b\}\)</span>,
+<span class="math inline">\(a,b \in GF(q)_1 \cup GF(q)_2 \cup \{\infty _1, \infty _2\}, a \neq b\)</span>
+appears in <span class="math inline">\(q\)</span> blocks of the block design. Hence that design is a
+<span class="math inline">\(BIBD\)</span>, with parameters <span class="math inline">\((2(q+1),q+1,q)\)</span>.<br />
+So theorem 5.5.2 is established.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="a-graph-theoretic-approach-to-constructing-room-squares.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hill-climbing-for-one-factorisations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-balanced_room_squares.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
