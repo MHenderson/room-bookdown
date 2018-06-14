@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Room Squares</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Room Squares" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="mhenderson/room" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Room Squares" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Matthew Henderson">
+
+
+<meta name="date" content="2018-06-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="existence.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Room Squares</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Kirkman’s Schoolgirl Problem</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#tournaments"><i class="fa fa-check"></i><b>1.1</b> Tournaments</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#t.g.-room-1902-86"><i class="fa fa-check"></i><b>1.2</b> T.G. Room, (1902-86)</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-galois-field"><i class="fa fa-check"></i><b>1.3</b> The Galois Field</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#example"><i class="fa fa-check"></i><b>1.3.1</b> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="existence.html"><a href="existence.html"><i class="fa fa-check"></i><b>2</b> Existence</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="existence.html"><a href="existence.html#finding-a-starter"><i class="fa fa-check"></i><b>2.0.1</b> Finding a starter</a></li>
+<li class="chapter" data-level="2.0.2" data-path="existence.html"><a href="existence.html#finding-an-adder"><i class="fa fa-check"></i><b>2.0.2</b> Finding an adder</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html"><i class="fa fa-check"></i><b>3</b> A graph theoretic approach to constructing Room squares</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-one-factorisations"><i class="fa fa-check"></i><b>3.0.1</b> An algorithm for One-Factorisations</a></li>
+<li class="chapter" data-level="3.0.2" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.0.2</b> An Algorithm for Room Squares</a></li>
+<li class="chapter" data-level="3.0.3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#the-room-square-generator"><i class="fa fa-check"></i><b>3.0.3</b> The Room Square Generator</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html"><i class="fa fa-check"></i><b>4</b> Balanced Room Squares</a></li>
+<li class="chapter" data-level="5" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html"><i class="fa fa-check"></i><b>5</b> Hill-Climbing for One-Factorisations</a><ul>
+<li class="chapter" data-level="5.1" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#one-factors"><i class="fa fa-check"></i><b>5.1</b> One-factors</a></li>
+<li class="chapter" data-level="5.2" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#one-factorisations"><i class="fa fa-check"></i><b>5.2</b> One-factorisations</a></li>
+<li class="chapter" data-level="5.3" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heuristics"><i class="fa fa-check"></i><b>5.3</b> Heuristics</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heuristic-h_1"><i class="fa fa-check"></i><b>5.3.1</b> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#heutistic-h_2"><i class="fa fa-check"></i><b>5.3.2</b> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="hill-climbing-for-one-factorisations.html"><a href="hill-climbing-for-one-factorisations.html#hill-climbing"><i class="fa fa-check"></i><b>5.4</b> Hill-climbing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Room Squares</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Room Squares</h1>
+<h4 class="author"><em>Matthew Henderson</em></h4>
+<h4 class="date"><em>2018-06-14</em></h4>
+</div>
+<div id="kirkmans-schoolgirl-problem" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Kirkman’s Schoolgirl Problem</h1>
+<p>In 1850 Thomas Penyngton Kirkman, an English mathematician from Bolton,
+published the following problem in the <em>Lady’s and Gentleman’s Diary.</em></p>
+<blockquote>
+<p><em>Fifteen young ladies of a school walk out three abreast for seven
+days in succession: it is required to arrange them daily so that no
+two shall walk abreast more than once</em></p>
+</blockquote>
+<p>In solving this problem Kirkman discovered the following square array,
+which he observed was a very “curious arrangement”.</p>
+<table style="width:49%;">
+<caption>Kirkman’s curious arrangement</caption>
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td>hi</td>
+<td>kl</td>
+<td>mn</td>
+<td>op</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>il</td>
+<td>mo</td>
+<td></td>
+<td>np</td>
+<td>hk</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>no</td>
+<td>hl</td>
+<td>mp</td>
+<td></td>
+<td></td>
+<td>ik</td>
+</tr>
+<tr class="even">
+<td>lp</td>
+<td></td>
+<td>in</td>
+<td>ko</td>
+<td>hm</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>im</td>
+<td></td>
+<td>kp</td>
+<td></td>
+<td></td>
+<td>lo</td>
+<td>hn</td>
+</tr>
+</tbody>
+</table>
+<p>The curiosity of this square is that each of the letters h, i, k, l, m, n, o, p
+occurs precisely once in every column and row, while in the entire
+square each of the letters makes a pair with every other letter exactly
+once. Kirkman was able to employ this square to solve his Schoolgirl
+Problem. To each pair in the first column he added the element 1, to
+each pair in the second column 2 and so on. In addition he introduced
+the missing triple of numbers to each row. (e.g. row one has no elements
+in any of the first three columns so the numbers 1,2 and 3 would not
+appear hence he would add the triple 123). The seven rows of unique
+triples then corresponded to seven days in which the elements,
+corresponding to schoolgirls, were paired together exactly once
+throughout the arrangement. Thereby solving the problem.</p>
+<table style="width:53%;">
+<caption>Kirkman’s Schoolgirl’s Solution</caption>
+<colgroup>
+<col width="11%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Day 1</td>
+<td align="center">123</td>
+<td align="center">hi4</td>
+<td align="center">kl5</td>
+<td align="center">mn6</td>
+<td align="center">op7</td>
+</tr>
+<tr class="even">
+<td align="center">Day 2</td>
+<td align="center">147</td>
+<td align="center">il2</td>
+<td align="center">mo3</td>
+<td align="center">np5</td>
+<td align="center">hk6</td>
+</tr>
+<tr class="odd">
+<td align="center">Day 3</td>
+<td align="center">156</td>
+<td align="center">no2</td>
+<td align="center">hl3</td>
+<td align="center">mp4</td>
+<td align="center">ik7</td>
+</tr>
+<tr class="even">
+<td align="center">Day 4</td>
+<td align="center">267</td>
+<td align="center">lo2</td>
+<td align="center">in3</td>
+<td align="center">ko4</td>
+<td align="center">hm5</td>
+</tr>
+<tr class="odd">
+<td align="center">Day 5</td>
+<td align="center">245</td>
+<td align="center">io2</td>
+<td align="center">kp3</td>
+<td align="center">lo6</td>
+<td align="center">hn7</td>
+</tr>
+<tr class="even">
+<td align="center">Day 6</td>
+<td align="center">357</td>
+<td align="center">ho2</td>
+<td align="center">km2</td>
+<td align="center">ln4</td>
+<td align="center">ip6</td>
+</tr>
+<tr class="odd">
+<td align="center">Day 7</td>
+<td align="center">346</td>
+<td align="center">ko2</td>
+<td align="center">hp2</td>
+<td align="center">io5</td>
+<td align="center">lm7</td>
+</tr>
+</tbody>
+</table>
+<p>Kirkman was a notable mathematician who is often regarded as the
+originator of the object in Figure 2, which has subsequently become
+known as a Room square (after T.G. Room).</p>
+<div id="tournaments" class="section level2">
+<h2><span class="header-section-number">1.1</span> Tournaments</h2>
+<p>Suppose the English Football Association proposed hosting a new type of
+international tournament to be staged as a one-off event in England.
+This tournament would involve eight national sides competing in a league
+that would be staged in various stadia around the country over two
+weeks. The structure of the tournament would be such that every team
+played every other team once, with the winner being the team which
+accumulated most points in the manner of a normal football league (3
+points for a win, 1 for a draw).</p>
+<p>To know which matches need playing is simple. Suppose the eight invited
+teams are:</p>
+<table style="width:33%;">
+<caption>Teams</caption>
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Argentina</td>
+<td align="center">England</td>
+</tr>
+<tr class="even">
+<td align="center">Brazil</td>
+<td align="center">France</td>
+</tr>
+<tr class="odd">
+<td align="center">Columbia</td>
+<td align="center">Germany</td>
+</tr>
+<tr class="even">
+<td align="center">Denmark</td>
+<td align="center">Holland</td>
+</tr>
+</tbody>
+</table>
+<p>If we write matches as alphabetic pairs in the obvious way, (e.g. ab
+denoting Argentina versus Brazil). The complete list of matches (the
+match set, M) is simply all unordered pairs from team set, T:
+<span class="math display">\[T = \{a, b, c, d, e, f, g, h\}.\]</span> i.e.</p>
+<p><span class="math display">\[ 
+M = \{
+  ab,ac,ad,ae,af,ag,ah,bc,bd,be,bf,bg,bh,cd,
+  ce,cf,cg,ch,de,df,dg,dh,ef,eg,eh,fg,fh,gh
+\}
+\]</span></p>
+<p>It remains to be decided where and when the matches will be played.</p>
+<p>The English F.A., for whatever reason (the financial cost of hosting
+eight teams, for example), has imposed a time limit of two weeks on the
+tournament. Realistically the treams can only manage to play on
+alternate days so it is decided to have, in effect, seven different
+“rounds” with each team competing once in each round. (Seven being
+the smallest number of rounds because each team has to play seven
+others).</p>
+<p>For reasons of fairness the F.A. also demands the condition that each
+team will play once at each stadium.
+Can such a tournament exist?
+Suppose the stadia used are the following:</p>
+<table style="width:26%;">
+<caption>Stadium</caption>
+<colgroup>
+<col width="26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Wembley</td>
+</tr>
+<tr class="even">
+<td align="center">Highbury</td>
+</tr>
+<tr class="odd">
+<td align="center">Villa Park</td>
+</tr>
+<tr class="even">
+<td align="center">Stadium of Light</td>
+</tr>
+<tr class="odd">
+<td align="center">Stamford Bridge</td>
+</tr>
+<tr class="even">
+<td align="center">Old Trafford</td>
+</tr>
+<tr class="odd">
+<td align="center">St. James Park</td>
+</tr>
+</tbody>
+</table>
+<p>Then figure 4 provides a match schedule which is suitable for such a
+tournament.</p>
+<table style="width:61%;">
+<caption>Fixture List for an International Soccer League</caption>
+<colgroup>
+<col width="12%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>1</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">ab</td>
+<td align="center">cd</td>
+<td align="center">ef</td>
+<td align="center">gh</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>2</strong></td>
+<td align="center"></td>
+<td align="center">bd</td>
+<td align="center">eg</td>
+<td align="center"></td>
+<td align="center">fh</td>
+<td align="center">ah</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>3</strong></td>
+<td align="center"></td>
+<td align="center">fg</td>
+<td align="center">ad</td>
+<td align="center">eh</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">bc</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>4</strong></td>
+<td align="center">dh</td>
+<td align="center"></td>
+<td align="center">bf</td>
+<td align="center">cg</td>
+<td align="center">ae</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>5</strong></td>
+<td align="center">be</td>
+<td align="center"></td>
+<td align="center">ch</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">bg</td>
+<td align="center">af</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>6</strong></td>
+<td align="center">ag</td>
+<td align="center">ce</td>
+<td align="center"></td>
+<td align="center">df</td>
+<td align="center"></td>
+<td align="center">bh</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>7</strong></td>
+<td align="center">cf</td>
+<td align="center">ah</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">bg</td>
+<td align="center"></td>
+<td align="center">de</td>
+</tr>
+</tbody>
+</table>
+<p>Looking along the rows, each team plays once in each round. Looking down
+columns, each stadia hosts each team exactly once. And throughout the
+tournament as a whole each pair from the original match list appears
+exactly once, hence every team opposes every other team once. Figure 4
+is another Room square of side 7. Alternatively, because the pairs are
+made from a set containing 8 elements, we say that this is a Room square
+of order 8.</p>
+</div>
+<div id="t.g.-room-1902-86" class="section level2">
+<h2><span class="header-section-number">1.2</span> T.G. Room, (1902-86)</h2>
+<p>In 1955, Thomas Gerald Room, then Professor of Mathematics at the
+University of Sydney, published a brief note in the Mathematical Gazette
+entitled <em>A new type of magic square</em>.[20] In it he presented another
+example of a square array with the same properties as Kirkman’s. This
+square, Room explained, had been discovered as “a by-product of
+another investigation”. It was preceded in the note by a particularly
+efficient statement of the properties of these squares, which have
+subsequently been known by his name.</p>
+<blockquote>
+<p>“The problem is to arrange the <span class="math inline">\(n(2n-1)\)</span> symbols <span class="math inline">\(rs\)</span> (which is the
+same as <span class="math inline">\(sr\)</span>) formed from all pairs of <span class="math inline">\(2n\)</span> digits such that in each
+row and each column there appear <span class="math inline">\(n\)</span> symbols (and <span class="math inline">\(n-1\)</span> blanks) which
+among them contain all <span class="math inline">\(2n\)</span> digits.”</p>
+</blockquote>
+<p>Room’s note went on to explain that while the trivial <span class="math inline">\(n = 1\)</span> Room square
+exists[^1] , the non-existence of those with <span class="math inline">\(n = 2\)</span> (side 2) and <span class="math inline">\(n = 3\)</span>
+(side 5) is easily proven. Room considered the <span class="math inline">\(n = 2\)</span> proof so
+straightforward that it was omitted from this note, while for the <span class="math inline">\(n = 3\)</span>
+case he made reference to a graph-theoretic proof.</p>
+<p>Consider the <span class="math inline">\(n = 2\)</span> case, we are required to place all the pairs of 4
+digits in a 3x3 array. If we choose to use the set of non-negative
+integers <span class="math inline">\(\{0, 1, 2, 3\}\)</span>, then we need to find somewhere to put each of
+the pairs <span class="math inline">\(\{01, 02, 03, 12, 13, 23\}\)</span>. That we can swap the rows and columns
+of a Room square without damaging that square’s Room-ness is
+self-evident. Therefore there is no less of generality in assuming that
+a <span class="math inline">\(3 \times 3\)</span> Room square has the pair <span class="math inline">\(\{0, 1\}\)</span> in cell <span class="math inline">\((1, 1)\)</span>.</p>
+<table style="width:7%;">
+<colgroup>
+<col width="6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">01</td>
+</tr>
+</tbody>
+</table>
+<p>If we hope to make this array a Room square we must place the pair
+<span class="math inline">\(\{2, 3\}\)</span> in the first row, while to complete the first column we must
+also place the same pair in either position <span class="math inline">\((1, 2)\)</span> or <span class="math inline">\((1, 3)\)</span>, but each
+pair is only allowed to appear once. So there is no Room square of side
+3, order 4.</p>
+<p>For the <span class="math inline">\(n = 3\)</span>, a Room square of side 5, case we consider the following
+array:</p>
+<table style="width:32%;">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">01</td>
+<td align="center">23</td>
+<td align="center">45</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">24</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+</tbody>
+</table>
+<p>There is no loss in generality in using this array because we can
+reorder rows and columns to obtain the first row in this form and then
+the first column must contain either the pairs <span class="math inline">\(\{01, 24, 35\}\)</span> or
+<span class="math inline">\(\{01, 25, 34\}\)</span> and the latter can be converted into the former by the
+permutation <span class="math inline">\((45)\)</span>[^2] which leaves the first row unchanged. We now show
+that completion of this square is impossible. The pairs
+<span class="math inline">\(\{2,5\},\{3,4\}\)</span> must appear somewhere in the array other than the
+first three rows or columns. Also they must appear in separate
+rows/columns to prevent a forced recurrence of <span class="math inline">\(\{0, 1\}\)</span>. Suppose we put
+<span class="math inline">\(\{2, 5\}\)</span> in <span class="math inline">\((4, 4)\)</span> and <span class="math inline">\(\{3, 4\}\)</span> in <span class="math inline">\((5, 5)\)</span>, then we know that cells
+<span class="math inline">\((4, 5)\)</span> and <span class="math inline">\((5, 4)\)</span> are empty, as the only pair which could legally go
+in either would be <span class="math inline">\(\{0, 1\}\)</span>.</p>
+<p>Hence we know that cells <span class="math inline">\((4, 2), (4, 3), (5, 2), (5, 3)\)</span> each contain pairs.
+Take cell <span class="math inline">\((5, 2)\)</span>, it could only contain <span class="math inline">\(\{0, 5\}\)</span> or <span class="math inline">\(\{1, 5\}\)</span>, and the
+latter becomes the former under <span class="math inline">\((01)\)</span>, so assume it contains <span class="math inline">\(\{0, 5\}\)</span>.
+We are now forced to fill in the other cells to give the array in Figure
+8.</p>
+<table style="width:35%;">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">01</td>
+<td align="center">23</td>
+<td align="center">45</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">24</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">14</td>
+<td align="center">03</td>
+<td align="center">25</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">-</td>
+<td align="center">05</td>
+<td align="center">12</td>
+<td align="center">-</td>
+<td align="center">34</td>
+</tr>
+</tbody>
+</table>
+<p>We still need to place the pairs <span class="math inline">\(\{0, 2\}\)</span> and <span class="math inline">\(\{0, 4\}\)</span>, which cannot
+be done because neither can appear in the second row and they cannot
+both appear in the third row. Hence there is no Room square of side 5,
+order 6.</p>
+<p>The real significance of Room’s note was that mathematicians soon took
+on the task of determining the spectra of Room squares (those values of
+<span class="math inline">\(n\)</span> for which Room squares exist). Research which cumulated 19 years
+later in the complete statement of the existence of Room squares, made
+by W.D. Wallis, that:</p>
+<blockquote>
+<p><em>“Room squares exist for all odd positive integer sides except 3
+and 5”</em> [24]</p>
+</blockquote>
+<p>Proving this statement, which was suspected to be true from an early
+stage, turned out to be protracted and difficult.</p>
+<p>The most significant breakthrough came in 1968 when Stanton and Mullin
+introduced the starter-adder method for constructing Room squares. This
+method reduces the problem of constructing Room squares to the problem
+of finding a certain type of initial row from which a Room square can be
+developed straightforwardly.</p>
+<p>In this work much emphasis will be placed upon the proof of the
+existence of Room squares.</p>
+</div>
+<div id="the-galois-field" class="section level2">
+<h2><span class="header-section-number">1.3</span> The Galois Field</h2>
+<p>Throughout this work much use will be made of a particular <em>finite
+field</em>, known as the Galois field, denoted by <span class="math inline">\(GF(p^n)\)</span>. Whenever <span class="math inline">\(p^n\)</span>
+is a prime (i.e. <span class="math inline">\(n=1\)</span>) the Galois field is precisely the integers under
+modulo p arithmetic, denoted <span class="math inline">\(Z_p\)</span>. The Galois field has a number of
+important properties which are used in many of the proofs that follow,
+we introduce some of these now.</p>
+<ul>
+<li>Every Galois field (every finite field in fact) has a <em>primitive
+element</em>. An element, <span class="math inline">\(x\)</span> say, is primitive in <span class="math inline">\(GF(q)\)</span> if
+<span class="math inline">\(x^0,x^1,x^2,...,x^{q-1}\)</span> are all the non-zero members of <span class="math inline">\(GF(q)\)</span>.</li>
+</ul>
+<div id="example" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Example</h3>
+<p><span class="math inline">\(x=2\)</span> is a primitive element in <span class="math inline">\(GF(11)\)</span> because,
+<span class="math display">\[x^0 = 1 \hspace{0.5cm} x^1 = 2 \hspace{0.5cm} x^2 = 4 \hspace{0.5cm} x^3 = 8 \hspace{0.5cm} x^4 = 5\]</span>
+<span class="math display">\[x^5 = 10 \hspace{0.5cm} x^6 = 9 \hspace{0.5cm} x^7 = 7 \hspace{0.5cm} x^8 = 3 \hspace{0.5cm} x^9 = 6\]</span></p>
+<ul>
+<li><p>It can be shown [3] that <span class="math inline">\(x^{q-1}=1\)</span> is always true for any <span class="math inline">\(GF(q)\)</span>
+where <span class="math inline">\(q\)</span> is odd, and <span class="math inline">\(x^i \neq 1\)</span> for any <span class="math inline">\(1 \leq i \leq q-1\)</span></p></li>
+<li><p><span class="math inline">\(x^{q-1}=1\)</span> implies that
+<span class="math inline">\((x^{\frac{1}{2}(q-1)}-1)(x^{\frac{1}{2}(q-1)}+1)=0\)</span>, therefore
+either <span class="math inline">\(x^{\frac{1}{2}(q-1)}=1\)</span> or <span class="math inline">\(x^{\frac{1}{2}(q-1)}=-1\)</span>.
+Clearly because of the previous remark, only the latter can be true.</p></li>
+<li><p>If <span class="math inline">\(b\)</span> is a non-zero residue modulo <span class="math inline">\(p\)</span>, then <span class="math inline">\(b\)</span> is a quadratic
+residue (or square) if <span class="math inline">\(x^2 \equiv b(\textrm{mod } p)\)</span> has
+solutions, otherwise <span class="math inline">\(b\)</span> is a quadratic non-residue (or non-square).
+So the non-zero squares are precisely the even powers of the
+primitive element, while the non-zero non-squares are the odd
+powers.</p></li>
+<li><p>There are precisely <span class="math inline">\(\frac{1}{2}(p-1)\)</span> squares mod <span class="math inline">\(p\)</span>, and
+<span class="math inline">\(\frac{1}{2}(p-1)\)</span> non-squares.</p></li>
+<li><p><span class="math inline">\(-1\)</span> is a square if <span class="math inline">\(q \equiv 1(\textrm{mod } 4)\)</span>, but not a square
+for <span class="math inline">\(q \equiv 3(\textrm{mod } 4)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(q \equiv 1(\textrm{mod } 4)\)</span>, then if <span class="math inline">\(x^i\)</span> is a square so is
+<span class="math inline">\(-x^i\)</span>.</p></li>
+<li><p><span class="math inline">\(q \equiv 3(\textrm{mod } 4)\)</span>, then <span class="math inline">\(x^i\)</span> is a square <span class="math inline">\(-x^i\)</span> is
+a non-square.</p></li>
+</ul></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="existence.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
