@@ -12,7 +12,7 @@ github-repo: mhenderson/room
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 
-# Kirkman’s Schoolgirl Problem
+# Introduction
 
 In 1850 Thomas Penyngton Kirkman, an English mathematician from Bolton,
 published the following problem in the *Lady’s and Gentleman’s Diary.*

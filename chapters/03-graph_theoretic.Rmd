@@ -1,4 +1,4 @@
-# A graph theoretic approach to constructing Room squares
+# Construction
 
 Graph factorisations
 --------------------
