@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="4.2 Complete Balanced Howell Rotations | Room Squares" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="mhenderson/room" />
+
+<meta name="author" content="Matthew Henderson" />
+
+<meta name="date" content="2019-05-31" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>4.2 Complete Balanced Howell Rotations | Room Squares</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#kirkmans-schoolgirl-problem"><span class="toc-section-number">1</span> Kirkman’s Schoolgirl Problem</a><ul>
+<li><a href="1-1-tournaments.html#tournaments"><span class="toc-section-number">1.1</span> Tournaments</a></li>
+<li><a href="1-2-t-g-room-1902-86.html#t.g.-room-1902-86"><span class="toc-section-number">1.2</span> T.G. Room, (1902-86)</a></li>
+<li class="has-sub"><a href="1-3-the-galois-field.html#the-galois-field"><span class="toc-section-number">1.3</span> The Galois Field</a><ul>
+<li><a href="1-3-the-galois-field.html#example"><span class="toc-section-number">1.3.1</span> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="2-existence.html#existence"><span class="toc-section-number">2</span> Existence</a><ul>
+<li class="has-sub"><a href="2-1-starters-adders-and-cyclic-room-squares.html#starters-adders-and-cyclic-room-squares"><span class="toc-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</a><ul>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-a-starter"><span class="toc-section-number">2.1.1</span> Finding a starter</a></li>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-an-adder"><span class="toc-section-number">2.1.2</span> Finding an adder</a></li>
+</ul></li>
+<li><a href="2-2-strong-starters.html#strong-starters"><span class="toc-section-number">2.2</span> Strong Starters</a></li>
+<li><a href="2-3-the-mullin-nemeth-starters.html#the-mullin-nemeth-starters"><span class="toc-section-number">2.3</span> The Mullin-Nemeth Starters</a></li>
+<li><a href="2-4-the-trouble-with-fermat-numbers.html#the-trouble-with-fermat-numbers"><span class="toc-section-number">2.4</span> The Trouble with Fermat Numbers</a></li>
+<li><a href="2-5-a-multiplication-theorem.html#a-multiplication-theorem"><span class="toc-section-number">2.5</span> A Multiplication Theorem</a></li>
+<li><a href="2-6-summary.html#summary"><span class="toc-section-number">2.6</span> Summary</a></li>
+<li><a href="2-7-n-tuplication-of-room-squares.html#n-tuplication-of-room-squares"><span class="toc-section-number">2.7</span> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html#a-graph-theoretic-approach-to-constructing-room-squares"><span class="toc-section-number">3</span> A graph theoretic approach to constructing Room squares</a><ul>
+<li><a href="3-1-graph-factorisations.html#graph-factorisations"><span class="toc-section-number">3.1</span> Graph factorisations</a></li>
+<li class="has-sub"><a href="3-2-hill-climbing-algorithm-for-room-squares.html#hill-climbing-algorithm-for-room-squares"><span class="toc-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-one-factorisations"><span class="toc-section-number">3.2.1</span> An algorithm for One-Factorisations</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-room-squares"><span class="toc-section-number">3.2.2</span> An Algorithm for Room Squares</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#the-room-square-generator"><span class="toc-section-number">3.2.3</span> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-balanced-room-squares.html#balanced-room-squares"><span class="toc-section-number">4</span> Balanced Room Squares</a><ul>
+<li><a href="4-1-bibds-and-brbs.html#bibds-and-brbs"><span class="toc-section-number">4.1</span> BIBDs and BRBs</a></li>
+<li><a href="4-2-complete-balanced-howell-rotations.html#complete-balanced-howell-rotations"><span class="toc-section-number">4.2</span> Complete Balanced Howell Rotations</a></li>
+<li><a href="4-3-starters-and-adders-for-brs-and-cbhr.html#starters-and-adders-for-brs-and-cbhr"><span class="toc-section-number">4.3</span> Starters and Adders for BRS and CBHR</a></li>
+<li><a href="4-4-a-multiplicative-construction-for-brs.html#a-multiplicative-construction-for-brs"><span class="toc-section-number">4.4</span> A Multiplicative Construction for BRS</a></li>
+<li><a href="4-5-symmetric-skew-balanced-starters.html#symmetric-skew-balanced-starters"><span class="toc-section-number">4.5</span> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-hill-climbing-for-one-factorisations.html#hill-climbing-for-one-factorisations"><span class="toc-section-number">5</span> Hill-Climbing for One-Factorisations</a><ul>
+<li><a href="5-1-one-factors.html#one-factors"><span class="toc-section-number">5.1</span> One-factors</a></li>
+<li><a href="5-2-one-factorisations.html#one-factorisations"><span class="toc-section-number">5.2</span> One-factorisations</a></li>
+<li class="has-sub"><a href="5-3-heuristics.html#heuristics"><span class="toc-section-number">5.3</span> Heuristics</a><ul>
+<li><a href="5-3-heuristics.html#heuristic-h_1"><span class="toc-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li><a href="5-3-heuristics.html#heutistic-h_2"><span class="toc-section-number">5.3.2</span> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li><a href="5-4-hill-climbing.html#hill-climbing"><span class="toc-section-number">5.4</span> Hill-climbing</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="complete-balanced-howell-rotations" class="section level2">
+<h2><span class="header-section-number">4.2</span> Complete Balanced Howell Rotations</h2>
+<p>Edwin C. Howell is an enigmatic figure in the history of mathematics.
+The rotations named after him are designs for the scheduling of Bridge
+tournaments.</p>
+<p>In a duplicate bridge tournament players compete in partnerships, two
+partnerships at a table. At the beginning of a round each table is given
+one from a certain number of duplicate boards each of which contains a
+pack of cards dealt evenly into four pockets. The boards are labelled
+north-south-east-west, and are aligned on the table so that one
+partnership plays north-south and the other east-west. After the game is
+finished the cards are returned to the pockets as they were dealt and
+the duplicate board is returned, to be used again in subsequent
+matches.</p>
+<p>If one partnership plays directly against another at the same table, the
+two partnerships are said to <em>oppose</em> each other. If two partnerships
+play in the same direction on the same board in different rounds, they
+are said to <em>compete</em>.</p>
+<p>In scoring, not only is the performance of teams in opposition
+considered, but also the performance of partnerships which compete.</p>
+<p>A good tournament design would have the properties that each partnership
+opposed each other partnership at the same table exactly once and also
+that each partnership competed against each other partnership at the
+same number of times.</p>
+<p>A ****complete balanced Howell rotation [<span class="math inline">\(CBHR(n)\)</span>]****[^10] is an array
+(based on <span class="math inline">\(n\)</span> elements) of side <span class="math inline">\(s\)</span>, where <span class="math inline">\(s=n\)</span> for <span class="math inline">\(n\)</span> odd, and
+<span class="math inline">\(s=n-1\)</span> for <span class="math inline">\(n\)</span> even, which satisfies the following properties:</p>
+<ol style="list-style-type: decimal">
+<li><p>Each of the <span class="math inline">\(s^2\)</span> cells is empty or contains an ordered pair of
+distinct elements.</p></li>
+<li><p>Each of the <span class="math inline">\(n\)</span> elements appears exactly once in each row and each
+column. (If <span class="math inline">\(n\)</span> is odd, then one row and one column is excepted)</p></li>
+<li><p>Each unordered pair of distinct elements occurs in exactly one cell
+of the array.</p></li>
+<li><p>Each pair of distinct elements appears together in a block[^11]
+exactly <span class="math inline">\(\left \lfloor{n/2}\right \rfloor -1\)</span> times, where
+$$ means the integral part of <span class="math inline">\(x\)</span>.</p></li>
+</ol>
+<p>To interpret a CBHR as a duplicate bridge tournament schedule, we
+represent the partnerships by elements, the boards ny rows and the
+rounds of the tournament by columns.</p>
+<p>Then an ordered pair <span class="math inline">\((x,y)\)</span> in position <span class="math inline">\((i,j)\)</span> of the array
+corresponds to partnership <span class="math inline">\(x\)</span> opposing partnership <span class="math inline">\(y\)</span> on board <span class="math inline">\(i\)</span> in
+round <span class="math inline">\(j\)</span>. We adopt the convention that <span class="math inline">\(x\)</span> plays NS, <span class="math inline">\(y\)</span> EW. The third
+property in the definition of a CBHR ensures that all partnerships are
+in opposition exactly once, while the fourth (with blocks of the
+associated BIBD representing partnerships in competition) ensures that
+each partnership competes against each other partnership the same number
+of times.</p>
+<p>Notice that when <span class="math inline">\(n\)</span> is even the definition of a CBHR is precisely that
+of a balanced Room square. So the BRS above is also a <span class="math inline">\(CBHR(8)\)</span>. The
+reason for maintaining both definitions is that a CBHR is, according to
+conditions 2 and 4, allowed to have odd order. Also, an important
+construction for <span class="math inline">\(BRS(4n)\)</span>, which will be introduced, involves two
+<span class="math inline">\(CBHR(2n-1)\)</span>s.</p>
+<p>Unlike Room squares the question of the existence of balanced Room
+squares is far from resolved, but various proofs have shown there to be
+many infinite classes of these designs. The details of some of these
+proofs are given below.</p>
+<p>Interestingly the existence problem for balanced Room squares (then
+known exclusively as CBHR) was brought to the attention of
+mathematicians, in 1955 by Parker and Mood, the very same year as T.G.
+Room published his original article. Either this problem has proved to
+be very much more difficult, or has aroused significantly less interest.
+The first general result, that of Hwang (1970), coming only a few years
+before the corresponding problem for Room squares was settled (1973).</p>
+<p>In order to discuss these results the first step is to make the
+necessary adaptation of the starter-adder approach.</p>
+</div>
+<p style="text-align: center;">
+<a href="4-1-bibds-and-brbs.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-3-starters-and-adders-for-brs-and-cbhr.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

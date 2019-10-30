@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="4.3 Starters and Adders for BRS and CBHR | Room Squares" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="mhenderson/room" />
+
+<meta name="author" content="Matthew Henderson" />
+
+<meta name="date" content="2019-05-31" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>4.3 Starters and Adders for BRS and CBHR | Room Squares</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#kirkmans-schoolgirl-problem"><span class="toc-section-number">1</span> Kirkman’s Schoolgirl Problem</a><ul>
+<li><a href="1-1-tournaments.html#tournaments"><span class="toc-section-number">1.1</span> Tournaments</a></li>
+<li><a href="1-2-t-g-room-1902-86.html#t.g.-room-1902-86"><span class="toc-section-number">1.2</span> T.G. Room, (1902-86)</a></li>
+<li class="has-sub"><a href="1-3-the-galois-field.html#the-galois-field"><span class="toc-section-number">1.3</span> The Galois Field</a><ul>
+<li><a href="1-3-the-galois-field.html#example"><span class="toc-section-number">1.3.1</span> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="2-existence.html#existence"><span class="toc-section-number">2</span> Existence</a><ul>
+<li class="has-sub"><a href="2-1-starters-adders-and-cyclic-room-squares.html#starters-adders-and-cyclic-room-squares"><span class="toc-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</a><ul>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-a-starter"><span class="toc-section-number">2.1.1</span> Finding a starter</a></li>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-an-adder"><span class="toc-section-number">2.1.2</span> Finding an adder</a></li>
+</ul></li>
+<li><a href="2-2-strong-starters.html#strong-starters"><span class="toc-section-number">2.2</span> Strong Starters</a></li>
+<li><a href="2-3-the-mullin-nemeth-starters.html#the-mullin-nemeth-starters"><span class="toc-section-number">2.3</span> The Mullin-Nemeth Starters</a></li>
+<li><a href="2-4-the-trouble-with-fermat-numbers.html#the-trouble-with-fermat-numbers"><span class="toc-section-number">2.4</span> The Trouble with Fermat Numbers</a></li>
+<li><a href="2-5-a-multiplication-theorem.html#a-multiplication-theorem"><span class="toc-section-number">2.5</span> A Multiplication Theorem</a></li>
+<li><a href="2-6-summary.html#summary"><span class="toc-section-number">2.6</span> Summary</a></li>
+<li><a href="2-7-n-tuplication-of-room-squares.html#n-tuplication-of-room-squares"><span class="toc-section-number">2.7</span> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html#a-graph-theoretic-approach-to-constructing-room-squares"><span class="toc-section-number">3</span> A graph theoretic approach to constructing Room squares</a><ul>
+<li><a href="3-1-graph-factorisations.html#graph-factorisations"><span class="toc-section-number">3.1</span> Graph factorisations</a></li>
+<li class="has-sub"><a href="3-2-hill-climbing-algorithm-for-room-squares.html#hill-climbing-algorithm-for-room-squares"><span class="toc-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-one-factorisations"><span class="toc-section-number">3.2.1</span> An algorithm for One-Factorisations</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-room-squares"><span class="toc-section-number">3.2.2</span> An Algorithm for Room Squares</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#the-room-square-generator"><span class="toc-section-number">3.2.3</span> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-balanced-room-squares.html#balanced-room-squares"><span class="toc-section-number">4</span> Balanced Room Squares</a><ul>
+<li><a href="4-1-bibds-and-brbs.html#bibds-and-brbs"><span class="toc-section-number">4.1</span> BIBDs and BRBs</a></li>
+<li><a href="4-2-complete-balanced-howell-rotations.html#complete-balanced-howell-rotations"><span class="toc-section-number">4.2</span> Complete Balanced Howell Rotations</a></li>
+<li><a href="4-3-starters-and-adders-for-brs-and-cbhr.html#starters-and-adders-for-brs-and-cbhr"><span class="toc-section-number">4.3</span> Starters and Adders for BRS and CBHR</a></li>
+<li><a href="4-4-a-multiplicative-construction-for-brs.html#a-multiplicative-construction-for-brs"><span class="toc-section-number">4.4</span> A Multiplicative Construction for BRS</a></li>
+<li><a href="4-5-symmetric-skew-balanced-starters.html#symmetric-skew-balanced-starters"><span class="toc-section-number">4.5</span> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-hill-climbing-for-one-factorisations.html#hill-climbing-for-one-factorisations"><span class="toc-section-number">5</span> Hill-Climbing for One-Factorisations</a><ul>
+<li><a href="5-1-one-factors.html#one-factors"><span class="toc-section-number">5.1</span> One-factors</a></li>
+<li><a href="5-2-one-factorisations.html#one-factorisations"><span class="toc-section-number">5.2</span> One-factorisations</a></li>
+<li class="has-sub"><a href="5-3-heuristics.html#heuristics"><span class="toc-section-number">5.3</span> Heuristics</a><ul>
+<li><a href="5-3-heuristics.html#heuristic-h_1"><span class="toc-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li><a href="5-3-heuristics.html#heutistic-h_2"><span class="toc-section-number">5.3.2</span> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li><a href="5-4-hill-climbing.html#hill-climbing"><span class="toc-section-number">5.4</span> Hill-climbing</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="starters-and-adders-for-brs-and-cbhr" class="section level2">
+<h2><span class="header-section-number">4.3</span> Starters and Adders for BRS and CBHR</h2>
+<p>In deriving the definitions of a starter and adder for a Room square,
+the terminology of difference systems was introduced. We saw that a
+requirement of the starter was that each non-zero member of the relevant
+Galois field occurred exactly once as a difference between the members
+of some pair. This was so that each pair occurred exactly once in the
+Room square<br />
+<br />
+BIBDs can be constructed from difference systems in much the same way,
+but with the difference that each element in the BIBD occurs occurs with
+each other element <span class="math inline">\(\lambda\)</span> times, not necessarily just once.<br />
+<br />
+<em>Example</em><br />
+A BIBD on <span class="math inline">\(GF(7)\)</span> can be constructed from the sets
+<span class="math inline">\(\{6,5,3\}\{2,4,1\}\)</span>.<br />
+<br />
+<span class="math inline">\(\{0,6,4\},\{1,0,5\},\{2,1,6\},\{3,2,0\},\{4,3,1\},\{5,4,2\}\)</span> are the
+blocks obtained from the left hand set.<br />
+<span class="math inline">\(\{3,5,2\},\{4,6,3\},\{5,0,4\},\{6,1,5\},\{0,2,6\},\{1,3,0\}\)</span> are the
+blocks obtained from the right hand set.<br />
+<br />
+Because the two sets are both triples, under cyclic construction the
+block design obtained will necessarily have <span class="math inline">\(k=r=3\)</span>.<br />
+<br />
+The left hand set has each non-zero member of <span class="math inline">\(GF(7)\)</span> occurring exactly
+once as a difference between its members. So, taken with its translates
+(those blocks obtained from it under cyclic development), this set
+should form a BIBD with <span class="math inline">\(r=3\)</span> and <span class="math inline">\(\lambda=1\)</span>. Similarly the right hand
+block forms a BIBD with <span class="math inline">\(r=3\)</span> and <span class="math inline">\(\lambda=1\)</span>, and the two sets taken
+together as difference system therefore generate a BIBD with <span class="math inline">\(r=6\)</span> and
+<span class="math inline">\(\lambda =2\)</span>.<br />
+<br />
+If we add the ideal element <span class="math inline">\(\infty\)</span> to the left hand set and all its
+translates, and 0 to the right hand set (developing it cyclically along
+with the other members) then we obtain a new BIBD with <span class="math inline">\(r=7\)</span> and
+<span class="math inline">\(\lambda = 3\)</span>, whose blocks are:
+<span class="math display">\[\{\infty,6,5,3\},\{\infty,0,6,4\},\{\infty,1,0,5\},\{\infty,2,1,6\},\{\infty,3,2,0\},\{\infty,4,3,1\},\{\infty,5,4,2\}\]</span>
+<span class="math display">\[\{0,2,4,1\},\{1,3,5,2\},\{2,4,6,3\},\{3,5,0,4\},\{4,6,1,5\},\{5,0,2,6\},\{6,1,3,0\}\]</span>
+Which is precisely the BIBD obtained from the Room square at the
+beginning of this chapter. If the block design associated with a BRS, or
+a CBHR, is obtained by taking the left hand member of the pairs in the
+first row as one block and the left hand members in subsequent rows as
+the translates, and all right members of pairs as the remaining blocks
+of a BIBD, then clearly those two blocks, the left hand and the right
+hand, which belong to the starter must form a difference system.<br />
+<br />
+The set of pairs <span class="math inline">\((x_1,y_1),(x_2,y_2),...,(x_{n-1},y_{n-1})\)</span> is a
+<strong><em>balanced starter</em></strong> in <span class="math inline">\(G=GF(2n-1)\)</span> if</p>
+<ol style="list-style-type: decimal">
+<li><p>the unordered pairs <span class="math inline">\(\{x_i,y_i\}\)</span> form a starter in <span class="math inline">\(G\)</span>, and</p></li>
+<li><p>the blocks <span class="math inline">\(\{x_1,x_2,...,x_{n-1}\}\)</span> and <span class="math inline">\(\{y_1,y_2,...,y_{n-1}\}\)</span>
+form a difference system.</p></li>
+</ol>
+<p>A balanced starter is <strong><em>strong</em></strong> if
+<span class="math inline">\(x_1+y_1,x_2+y_2,...,x_{n-1}+y_{n-1}\)</span> are all distinct mod<span class="math inline">\((2n-1)\)</span>.</p>
+<div id="theorem-5.3.1" class="section level4">
+<h4><span class="header-section-number">4.3.0.1</span> Theorem 5.3.1</h4>
+<p>Given a strong balanced starter on <span class="math inline">\(G=GF(2n-1)\)</span>, then a <span class="math inline">\(CBHR(2n-1)\)</span>
+exists.<br />
+<em>Proof</em><br />
+Assign the pair <span class="math inline">\((x_i+g,y_i+g)\)</span> to cell <span class="math inline">\((g,x_i+y_i+g)\)</span> for all
+<span class="math inline">\(g \in G\)</span>. Condition (i) along with the strong-ness of the starter
+ensures that every <span class="math inline">\(g \in G\)</span> occurs in every row and column exactly once
+except <span class="math inline">\(g\)</span> does not occur in row or column <span class="math inline">\(g\)</span> for all <span class="math inline">\(g \in G\)</span> [due to
+the absence in cell (0,0) of the pair <span class="math inline">\(\{\infty,0\}\)</span>]. Condition (i)
+also ensures that each unordered pair of <span class="math inline">\(G\)</span> occurs exactly once in the
+array, replace the unordered pairs with ordered pairs.<br />
+That the block design obtained is balanced follows from condition (ii).<br />
+Notice that each of the 2 blocks generates <span class="math inline">\((n-1)(n-2)\)</span> differences and
+these represent each of <span class="math inline">\(2n-2\)</span> members of <span class="math inline">\(G \backslash \{0\}\)</span>,
+<span class="math inline">\(\lambda\)</span> times. Therefore <span class="math inline">\(2(n-1)(n-2) = \lambda (2n-2),\)</span>
+$ = n-2$.</p>
+</div>
+<div id="theorem-5.3.2" class="section level4">
+<h4><span class="header-section-number">4.3.0.2</span> Theorem 5.3.2</h4>
+<p>Given a strong balanced starter on <span class="math inline">\(G=GF(2n-1)\)</span>, then a <span class="math inline">\(BRS(2n)\)</span>
+exists.<br />
+<em>Proof</em><br />
+Assign the pair <span class="math inline">\((x_i+g,y_i+g)\)</span> to cell <span class="math inline">\((g,x_i+y_i+g)\)</span> for all
+<span class="math inline">\(g \in G\)</span>, and (provided <span class="math inline">\(n\)</span> is even), also assign the pair <span class="math inline">\((\infty,g)\)</span>
+to cell <span class="math inline">\((g,g)\)</span> for all <span class="math inline">\(g \in G\)</span>.<br />
+Again, condition (i) and the strong-ness of the starter ensure that an
+ORS based on <span class="math inline">\(G \cup \{\infty\}\)</span> is obtained. The block design
+associated with this array has initial blocks,
+<span class="math display">\[\{\infty\} \cup \{x_1,x_2,...,x_{n-1}\}\]</span>
+<span class="math display">\[\{0\} \cup \{y_1,y_2,...,y_{n-1}\}\]</span> Adjoining 0 to
+<span class="math inline">\(\{y_1,y_2,...,y_{n-1}\}\)</span> creates each non-zero member of <span class="math inline">\(G\)</span> as a
+difference once more, either as <span class="math inline">\(y_i-0\)</span> or <span class="math inline">\(0-y_i\)</span>.<br />
+Adjoining <span class="math inline">\(\infty\)</span> to <span class="math inline">\(\{x_1,x_2,..,x_{n-1}\}\)</span> creates <span class="math inline">\(n-1\)</span> pairs
+involving <span class="math inline">\(\infty\)</span> in this block, hence <span class="math inline">\(\infty\)</span> makes a pair with each
+member of <span class="math inline">\(G\)</span> <span class="math inline">\(n-1\)</span> times.<br />
+So the design is balanced with a concurrence number of <span class="math inline">\(n-1\)</span>.<br />
+<br />
+It is a simple matter to derive the remaining parameters of the BIBD
+associated with either array.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(v\)</span></th>
+<th align="center"><span class="math inline">\(b\)</span></th>
+<th align="center"><span class="math inline">\(r\)</span></th>
+<th align="center"><span class="math inline">\(k\)</span></th>
+<th align="center"><span class="math inline">\(\lambda\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(CBHR(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(2n-1\)</span></td>
+<td align="center"><span class="math inline">\(2(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(2(n-1)\)</span></td>
+<td align="center"><span class="math inline">\(n-1\)</span></td>
+<td align="center"><span class="math inline">\(n-2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(CBHR(2n)/BRS(2n)\)</span></td>
+<td align="center"><span class="math inline">\(2n\)</span></td>
+<td align="center"><span class="math inline">\(2(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(2n-1)\)</span></td>
+<td align="center"><span class="math inline">\(n\)</span></td>
+<td align="center"><span class="math inline">\(n-1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 7 BIBD parameters for BRS and CBHR</strong></p>
+<p>The block design of a balanced Room square is <em>self-complementary</em>. This
+means that if a block <span class="math inline">\(D\)</span> belongs to the design, then its complement
+<span class="math inline">\(\overline{D}\)</span> also appears. If the left hand pairs in row <span class="math inline">\(x\)</span> form one
+block then the right hand pairs in the same row are also a block, and
+the two blocks are complementary. Alternatively we can say that, in a
+self-complementary BIBD, the complementary design (obtained by replacing
+all blocks with their complements) is identical to the design itself.<br />
+Schellenberg proved an interesting result regarding self-complementary
+BIBDs.</p>
+</div>
+<div id="theorem-5.3.3" class="section level4">
+<h4><span class="header-section-number">4.3.0.3</span> Theorem 5.3.3</h4>
+<p>[21] In a self-complementary BIBD with parameters of the form,<br />
+<span class="math inline">\((2n,2(2n-1)t,(2n-1)t,n,(n-1)t)\)</span>, every triple of elements is contained
+in <span class="math inline">\(t(n-2)/2\)</span> blocks.<br />
+<br />
+<em>Proof</em><br />
+Suppose <span class="math inline">\(B\)</span> is a self-complementary BIBD with parameters of the form
+above, based on a set of elements <span class="math inline">\(V\)</span>. Denote by <span class="math inline">\(S_{i...j}\)</span> the set of
+blocks which contain <span class="math inline">\(u\)</span> but not <span class="math inline">\(v\)</span> or <span class="math inline">\(w\)</span>. Because the design is
+self-complementary to each block of this set there corresponds a unique
+block which contains <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> but not <span class="math inline">\(u\)</span>. The set of these blocks is
+<span class="math inline">\(S_{vw}-S_u\)</span> and clearly: <span class="math display">\[|S_u - \{S_v \cup S_w\}| = |S_{vw} - S_u|\]</span>
+Now,<br />
+<span class="math inline">\(|S_u-\{S_v \cup S_w\}| = |S_u| - |S_{uv}| -|S_{uw}| + |S_{uvw}|\)</span> and,<br />
+<span class="math inline">\(|S_{vw} - S_u| = |S_{vw}| - |S_{uvw}|\)</span>
+<span class="math display">\[\therefore |S_u| - |S_{uv}| -|S_{uw}| + |S_{uvw}| = |S_{vw}| - |S_{uvw}|\]</span>
+<span class="math display">\[2|S_{uvw}| = |S_{vw}| + |S_{uv}| + |S_{uw}| - |S_{U}|\]</span> Because <span class="math inline">\(B\)</span> is
+a <span class="math inline">\(BIBD\)</span>, each pair of elements occur together in <span class="math inline">\(\lambda = (n-1)t\)</span>
+blocks and each element occurs in <span class="math inline">\(r=(2n-1)t\)</span> blocks. So,
+<span class="math display">\[|S_{vw}| = |S_{uv}| = |S_{uw}| = (n-1)t\]</span> and <span class="math display">\[|S_u| = (2n-1)t\]</span>
+Therefore, <span class="math display">\[2|S_{uvw}|=3(n-1)t-(2n-1)t=(n-2)t\]</span> and so,
+<span class="math display">\[|S_{uvw}| = \frac{(n-2)t}{2}\]</span> Since <span class="math inline">\(u\)</span>, <span class="math inline">\(v\)</span> and <span class="math inline">\(w\)</span> are arbitrary
+this implies that each triple occurs in <span class="math inline">\((n-2)t/2\)</span> blocks. <span class="math inline">\(\square\)</span><br />
+<br />
+The implication of this result for balanced Room squares is that,
+because <span class="math inline">\(t=1\)</span> for a <span class="math inline">\(BRS\)</span>[^12] and we require the LHS of this expression
+to be an integer, <span class="math inline">\(n\)</span> is necessarily even. So writing <span class="math inline">\(n=2m\)</span>, we know
+the order of a <span class="math inline">\(BRS\)</span> is always of the form <span class="math inline">\(4m\)</span>.</p>
+</div>
+<div id="corollary-5.3.1" class="section level4">
+<h4><span class="header-section-number">4.3.0.4</span> Corollary 5.3.1</h4>
+<p>A <span class="math inline">\(BRS(n)\)</span> can only exist for <span class="math inline">\(n \equiv 0\)</span> mod 4.<br />
+<br />
+We now present Hwang’s starter-adder construction for balanced Room
+squares.</p>
+</div>
+<div id="theorem-5.3.4" class="section level4">
+<h4><span class="header-section-number">4.3.0.5</span> Theorem 5.3.4</h4>
+<p>[14] There exists a <span class="math inline">\(BRS\)</span> of order <span class="math inline">\(q+1\)</span>, where $q=p^r $ 3(mod 4)
+is a prime power strictly greater than 3.<br />
+<br />
+<em>Proof</em><br />
+We show that the pairs
+<span class="math display">\[X = \left \{(x^{2i+1},x^{2i}): 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+form a balanced starter, where <span class="math inline">\(x\)</span> is a primitive element in <span class="math inline">\(GF(q)\)</span>,
+and the set
+<span class="math display">\[A(X) = \left \{-x^{2i}(1+x): 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+is a corresponding adder.<br />
+Looking back at Theorem 2.4(?), we have already shown that the unordered
+pairs
+<span class="math display">\[\left \{\{x^{2i},x^{2i+1}\}: 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+are those of a starter with adder <span class="math inline">\(A(X)\)</span>. So it remains to show that the
+starter is balanced which involves proving that the two blocks
+<span class="math display">\[B_1 = \{0,x,x^3,...,x^{q-2}\} \hspace{0.5cm} \mathrm{and} \hspace{0.5cm} B_2 = \{\infty,x^0,x^2,...,x^{q-3}\}\]</span>
+generate a <span class="math inline">\(BIBD\)</span>. This result is due to R.C. Bose and makes use of the
+properties of the squares and non-squares of <span class="math inline">\(GF(q)\)</span> where <span class="math inline">\(q\)</span> is an odd
+prime.<br />
+Let <span class="math inline">\(R\)</span> and <span class="math inline">\(N\)</span> denote the sets of non-zero square and non-squares in
+<span class="math inline">\(GF(q)\)</span>, respectively. <span class="math display">\[R=\{x^2,x^4,...,x^{q-1}\}\]</span>
+<span class="math display">\[N=\{x^1,x^3,...,x^{q-2}\}\]</span> These sets both contain precisely
+<span class="math inline">\(\frac{1}{2}(q-1)\)</span> elements.<br />
+So, <span class="math display">\[B_1 = \{0\} \cup N,\]</span> and because <span class="math inline">\(x^{q-1} = 1 = x^0\)</span>,<br />
+<span class="math display">\[B_2 = \{\infty\} \cup R\]</span> Also, if <span class="math inline">\(a\)</span> is square then <span class="math inline">\(-a\)</span> is a
+non-square[^13], which implies that <span class="math inline">\(R=-N\)</span>.<br />
+<br />
+To show that the blocks with their translates form a <span class="math inline">\(BIBD\)</span> it is
+necessary to show that the differences between members of <span class="math inline">\(B_1\)</span> and <span class="math inline">\(R\)</span>
+generate all the non-zero members of <span class="math inline">\(GF(q)\)</span> some number of times, then
+by adjoining the element <span class="math inline">\(\infty\)</span> to <span class="math inline">\(R\)</span> and its translates will
+generate a <span class="math inline">\(BIBD\)</span>.<br />
+Firstly, suppose that 1, which belongs to <span class="math inline">\(R\)</span>, can be expressed as a
+difference between members of <span class="math inline">\(R\)</span> in a certain number of different ways,
+<span class="math display">\[1 = x^{2a_1}-x^{2b_1}=...x^{2a_r}-x^{2b_r}\]</span> Were this true, any
+member of <span class="math inline">\(R\)</span> could be written as a difference in the same number of
+ways.<br />
+Multiply through by any <span class="math inline">\(x^{2s} \in R\)</span>.
+<span class="math display">\[x^{2s} = x^{2(a_1+s)}-x^{2(b_1+s)}=...=x^{2(a_r+s)}-x^{2(b_r+s)}\]</span> But
+now suppose that any element of <span class="math inline">\(R\)</span> can be expressed as a difference
+between members of <span class="math inline">\(R\)</span> in a certain number of ways, i.e. assume this
+second expression holds. Then by dividing through by <span class="math inline">\(x^{2s}\)</span>, we
+recover the first expression and hence for each representation of 1
+there is a corresponding representation of <span class="math inline">\(x^{2s}\)</span>, and vice versa. So
+there are an equal number of representations of every member of <span class="math inline">\(R\)</span> as a
+difference of members of <span class="math inline">\(R\)</span>. The remaining non-zero members of <span class="math inline">\(GF(q)\)</span>,
+are all those <span class="math inline">\(q \notin R\)</span> where <span class="math inline">\(-q \in R\)</span>, but each representation of
+<span class="math inline">\(-r\)</span> gives a corresponding representation of <span class="math inline">\(r\)</span>: <span class="math display">\[-r=x^{2a}-x^{2b}\]</span>
+<span class="math display">\[r = x^{2b} - x^{2a}\]</span> So every element of <span class="math inline">\(-r\)</span> has the same number of
+representations as a difference between members of <span class="math inline">\(R\)</span> as <span class="math inline">\(R\)</span> does.<br />
+<br />
+We know that <span class="math inline">\(R\)</span> has <span class="math inline">\(\frac{1}{2}(q-1)\)</span> elements, therefore there are<br />
+<span class="math inline">\(\frac{1}{2}(q-1) \cdot \frac{1}{2} (q-3) = \frac{1}{4}(q-1)(q-3)\)</span>
+differences between those elements, and if each of these differences
+generates each of the <span class="math inline">\(q-1\)</span> non-zero members of <span class="math inline">\(GF(q)\)</span>, <span class="math inline">\(\lambda\)</span> times
+then: <span class="math display">\[\lambda(q-1)=\frac{1}{4}(q-1)(q-3)\]</span>
+<span class="math display">\[\lambda=\frac{1}{4}(q-3)\]</span> Also, because <span class="math inline">\(N=-R\)</span>, we can say that all
+the non-zero members of <span class="math inline">\(GF(q)\)</span> arise as differences between members of
+<span class="math inline">\(N\)</span>. Further, <span class="math inline">\(B_1\)</span> also gives the differences
+<span class="math inline">\(0-n,n-0 \hspace{0.5cm} n\in N\)</span>, which are all the non-zero members of
+<span class="math inline">\(GF(q)\)</span>, once again. So in total every non-zero member of <span class="math inline">\(GF(q)\)</span> occurs
+as a difference between elements of <span class="math inline">\(B_1\)</span> and <span class="math inline">\(R\)</span>,
+<span class="math inline">\(2 \cdot \frac{1}{4} (q-3) + 1 = \frac{1}{2} (q-1)\)</span> times.<br />
+Because <span class="math inline">\(R\)</span> and its translates each contain $ (q-1)$
+elements, each member of <span class="math inline">\(GF(q)\)</span> occurs $ (q-1)$ times in all
+those blocks. Therefore, adjoining <span class="math inline">\(\infty\)</span> to each block generates
+blocks of size $ (q-1)$, with <span class="math inline">\(\infty\)</span> making a pair with
+each member of <span class="math inline">\(GF(q)\)</span>, $ (q-1)$ times.<br />
+So we can say that <span class="math inline">\(B_1\)</span>, <span class="math inline">\(B_2\)</span> and their translates for a
+<span class="math inline">\(BIBD(q+1,\frac{1}{2}(q+1), \frac{1}{2}(q-1))\)</span>.<br />
+Therefore Hwang’s starter is balanced. <span class="math inline">\(\square\)</span><br />
+<br />
+The <span class="math inline">\(BRS\)</span> in Figure 27 was obtained from Hwang’s starter, hence its
+block design was a <span class="math inline">\(BIBD\)</span>.<br />
+<br />
+<em>Example 5.3.1</em><br />
+A balanced starter in <span class="math inline">\(GF(19)\)</span> is:
+<span class="math display">\[X = \{(2,1),(8,4),(13,16),(14,7),(18,9),(15,17),(3,11),(12,6),(10,5)\}\]</span>
+Which has a corresponding adder: <span class="math display">\[A(X) = \{16,7,9,17,11,6,5,1,4\}\]</span> So
+the following row is an appropriate choice for a <span class="math inline">\(BRS(20)\)</span>:</p>
+<p><span class="math inline">\(\infty,0\)</span> - 14,7 2,1 15,7 - - - 18,9 - 13,16 - 8,4 - 3,11 10,5 - - 12,6
+———— — —— —– —— — — — —— — ——- — —– — —— —— — — ——</p>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="4-2-complete-balanced-howell-rotations.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-4-a-multiplicative-construction-for-brs.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

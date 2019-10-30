@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="3.2 Hill-Climbing Algorithm for Room Squares | Room Squares" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="mhenderson/room" />
+
+<meta name="author" content="Matthew Henderson" />
+
+<meta name="date" content="2019-05-31" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>3.2 Hill-Climbing Algorithm for Room Squares | Room Squares</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#kirkmans-schoolgirl-problem"><span class="toc-section-number">1</span> Kirkman’s Schoolgirl Problem</a><ul>
+<li><a href="1-1-tournaments.html#tournaments"><span class="toc-section-number">1.1</span> Tournaments</a></li>
+<li><a href="1-2-t-g-room-1902-86.html#t.g.-room-1902-86"><span class="toc-section-number">1.2</span> T.G. Room, (1902-86)</a></li>
+<li class="has-sub"><a href="1-3-the-galois-field.html#the-galois-field"><span class="toc-section-number">1.3</span> The Galois Field</a><ul>
+<li><a href="1-3-the-galois-field.html#example"><span class="toc-section-number">1.3.1</span> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="2-existence.html#existence"><span class="toc-section-number">2</span> Existence</a><ul>
+<li class="has-sub"><a href="2-1-starters-adders-and-cyclic-room-squares.html#starters-adders-and-cyclic-room-squares"><span class="toc-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</a><ul>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-a-starter"><span class="toc-section-number">2.1.1</span> Finding a starter</a></li>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-an-adder"><span class="toc-section-number">2.1.2</span> Finding an adder</a></li>
+</ul></li>
+<li><a href="2-2-strong-starters.html#strong-starters"><span class="toc-section-number">2.2</span> Strong Starters</a></li>
+<li><a href="2-3-the-mullin-nemeth-starters.html#the-mullin-nemeth-starters"><span class="toc-section-number">2.3</span> The Mullin-Nemeth Starters</a></li>
+<li><a href="2-4-the-trouble-with-fermat-numbers.html#the-trouble-with-fermat-numbers"><span class="toc-section-number">2.4</span> The Trouble with Fermat Numbers</a></li>
+<li><a href="2-5-a-multiplication-theorem.html#a-multiplication-theorem"><span class="toc-section-number">2.5</span> A Multiplication Theorem</a></li>
+<li><a href="2-6-summary.html#summary"><span class="toc-section-number">2.6</span> Summary</a></li>
+<li><a href="2-7-n-tuplication-of-room-squares.html#n-tuplication-of-room-squares"><span class="toc-section-number">2.7</span> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html#a-graph-theoretic-approach-to-constructing-room-squares"><span class="toc-section-number">3</span> A graph theoretic approach to constructing Room squares</a><ul>
+<li><a href="3-1-graph-factorisations.html#graph-factorisations"><span class="toc-section-number">3.1</span> Graph factorisations</a></li>
+<li class="has-sub"><a href="3-2-hill-climbing-algorithm-for-room-squares.html#hill-climbing-algorithm-for-room-squares"><span class="toc-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-one-factorisations"><span class="toc-section-number">3.2.1</span> An algorithm for One-Factorisations</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-room-squares"><span class="toc-section-number">3.2.2</span> An Algorithm for Room Squares</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#the-room-square-generator"><span class="toc-section-number">3.2.3</span> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-balanced-room-squares.html#balanced-room-squares"><span class="toc-section-number">4</span> Balanced Room Squares</a><ul>
+<li><a href="4-1-bibds-and-brbs.html#bibds-and-brbs"><span class="toc-section-number">4.1</span> BIBDs and BRBs</a></li>
+<li><a href="4-2-complete-balanced-howell-rotations.html#complete-balanced-howell-rotations"><span class="toc-section-number">4.2</span> Complete Balanced Howell Rotations</a></li>
+<li><a href="4-3-starters-and-adders-for-brs-and-cbhr.html#starters-and-adders-for-brs-and-cbhr"><span class="toc-section-number">4.3</span> Starters and Adders for BRS and CBHR</a></li>
+<li><a href="4-4-a-multiplicative-construction-for-brs.html#a-multiplicative-construction-for-brs"><span class="toc-section-number">4.4</span> A Multiplicative Construction for BRS</a></li>
+<li><a href="4-5-symmetric-skew-balanced-starters.html#symmetric-skew-balanced-starters"><span class="toc-section-number">4.5</span> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-hill-climbing-for-one-factorisations.html#hill-climbing-for-one-factorisations"><span class="toc-section-number">5</span> Hill-Climbing for One-Factorisations</a><ul>
+<li><a href="5-1-one-factors.html#one-factors"><span class="toc-section-number">5.1</span> One-factors</a></li>
+<li><a href="5-2-one-factorisations.html#one-factorisations"><span class="toc-section-number">5.2</span> One-factorisations</a></li>
+<li class="has-sub"><a href="5-3-heuristics.html#heuristics"><span class="toc-section-number">5.3</span> Heuristics</a><ul>
+<li><a href="5-3-heuristics.html#heuristic-h_1"><span class="toc-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li><a href="5-3-heuristics.html#heutistic-h_2"><span class="toc-section-number">5.3.2</span> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li><a href="5-4-hill-climbing.html#hill-climbing"><span class="toc-section-number">5.4</span> Hill-climbing</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="hill-climbing-algorithm-for-room-squares" class="section level2">
+<h2><span class="header-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</h2>
+<p>The idea behind Hill-climbing algorithms is to suppose there exists a
+<strong>neighbourhood</strong> of feasible solutions to some problem <strong>instance</strong>. With
+each <strong>feasible</strong> solution there is an associated <strong>cost</strong> (or profit) and
+finding an optimal solution becomes a matter of finding the solution with
+minimum cost (or maximum profit).</p>
+<p>A hill-climbing algorithm non-deterministically selects a solution from
+the neighbourhood system such that the cost is less than that of some
+initial solution until its procedure fails, hence finding the locally
+optimal solution.</p>
+<div id="an-algorithm-for-one-factorisations" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> An algorithm for One-Factorisations</h3>
+<p>Consider how to find a one-factorisation of the complete graph. Here the
+problem instance is simply the even integer <span class="math inline">\(n\)</span> and vertex set <span class="math inline">\(V\)</span>.<br />
+Recall:</p>
+<ul>
+<li><p>A one-factor of <span class="math inline">\(K_n\)</span> is a set of <span class="math inline">\(n/2\)</span> edges (hence <span class="math inline">\(n\)</span> is even)
+which partition <span class="math inline">\(V\)</span>.</p></li>
+<li><p>A one-factorisation of <span class="math inline">\(K_n\)</span> is a set of <span class="math inline">\(n-1\)</span> one-factors which
+partitions the edge set of <span class="math inline">\(K_n\)</span>.</p></li>
+</ul>
+<p>Suppose we choose to represent a one-factorisation by a set of
+<span class="math inline">\(\frac{n}{2}(n-1)=(n^2-n)/2\)</span> pairs each of the form <span class="math inline">\((f_i,\{x,y\})\)</span>,
+where <span class="math inline">\(x \neq y, i=1...n-1\)</span>, and the following two conditions hold.</p>
+<ol style="list-style-type: decimal">
+<li><p>Every <span class="math inline">\(\{x,y\}\)</span> occurs in a unique pair <span class="math inline">\((f_i,\{x,y\})\)</span>.</p></li>
+<li><p>For every one-factor <span class="math inline">\(f_i\)</span> and every vertex <span class="math inline">\(x\)</span>, there is a unique
+pair of the form <span class="math inline">\((f_i,\{x,y\})\)</span>.</p></li>
+</ol>
+<p>where <span class="math inline">\(f_i\)</span>s are one-factors.</p>
+<p>Then we consider a feasible solution to be a partial one-factorisation,
+again represented by pairs having the same form but this time,</p>
+<ol style="list-style-type: decimal">
+<li><p>Every <span class="math inline">\(\{x,y\}\)</span> occurs in at most one pair <span class="math inline">\(f_i,\{x,y\})\)</span>.</p></li>
+<li><p>For every one-factor <span class="math inline">\(f_i\)</span> and every vertex <span class="math inline">\(x\)</span> there is at most one
+pair of the form <span class="math inline">\((f_i,\{x,y\})\)</span>.</p></li>
+</ol>
+<p>Where the <span class="math inline">\(f_i\)</span>s are <strong>partial one-factors</strong>.</p>
+<p>Which enables a definition for the cost of a feasible solution <span class="math inline">\(F\)</span> to be
+given by: <span class="math display">\[c(F) = (n^2-n)/2-|F|\]</span> So that <span class="math inline">\(F\)</span> is a one-factorisation if
+and only if <span class="math inline">\(c(F)=0\)</span>, i.e. <span class="math inline">\(|F|=(n^2-n)/2\)</span></p>
+<p>Now suppose that we can implement some procedure <span class="math inline">\(X\)</span>, say, which either
+reduces the cost or leaves it unaffected (i.e. it never increases the
+cost) then the following “hill-climbing” algorithm, provided it
+terminates, will find a one-factorisation.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">While <span class="math inline">\(c(F) \neq 0\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left">Do <span class="math inline">\(X\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>A procedure such as <span class="math inline">\(X\)</span> is called a heuristic. The following two
+heuristics (due to Dinitz &amp; Stinson [9]) when used together are suitable
+for finding a one-factorisation.</p>
+<p>Let <span class="math inline">\(F\)</span> be a partial one-factorisation of <span class="math inline">\(K_n\)</span>:</p>
+<p>Heuristic <span class="math inline">\(H_1\)</span> [8]</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose any vertex <span class="math inline">\(x\)</span> such that <span class="math inline">\(x\)</span> does not occur in every partial
+one-factor of <span class="math inline">\(F\)</span> (such a vertex is said to be a <strong>live point</strong>).</p></li>
+<li><p>Choose any partial one-factor <span class="math inline">\(f_i\)</span> such that <span class="math inline">\(x\)</span> does not occur in
+<span class="math inline">\(f_i\)</span>.</p></li>
+<li><p>Choose any <span class="math inline">\(y \neq x\)</span> such that there is no partial one-factor <span class="math inline">\(f_j\)</span>
+for which <span class="math inline">\((f_j,\{x,y\}) \in F\)</span> (we say that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> <em>do not
+occur together</em>).</p></li>
+<li><p><strong>if</strong> <span class="math inline">\(y\)</span> does not occur in <span class="math inline">\(f_i\)</span>, <strong>then</strong></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(F\)</span> with <span class="math inline">\(F \cup \{(f_i,\{x,y\})\}\)</span>.</p></li>
+<li><p><strong>Else</strong> there is a pair in <span class="math inline">\(F\)</span> of the form
+<span class="math inline">\((f_i,\{z,y\}) \hspace{0.5cm} (z \neq x)\)</span></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(F\)</span> with <span class="math inline">\(F \cup \{(f_i,\{x,y\})\} \backslash  \{(f_i,\{z,y\})\}\)</span>.</p></li>
+</ol>
+<p>Heutistic <span class="math inline">\(H_2\)</span> [8]</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose any partial one-factor <span class="math inline">\(f_i\)</span> which does not occur in exactly
+<span class="math inline">\(n/2\)</span> pairs in <span class="math inline">\(F\)</span> (such a partial one-factor is said to be
+<strong><em>live</em></strong>).</p></li>
+<li><p>Choose any <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> such that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not occur together
+in <span class="math inline">\(f_i\)</span>.</p></li>
+<li><p><strong>if</strong> <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not occur together, <strong>then</strong></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(F\)</span> with <span class="math inline">\(F \cup \{(f_i,\{x,y\})\}\)</span>.</p></li>
+<li><p><strong>Else</strong> there is a pair in <span class="math inline">\(F\)</span> of the form
+<span class="math inline">\((f_j,\{x,y\}) \hspace{0.5cm} (j \neq i)\)</span></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(F\)</span> with <span class="math inline">\(F \cup \{(f_i,\{x,y\})\} \backslash  \{(f_j,\{x,y\})\}\)</span>.</p></li>
+</ol>
+<div id="example-1" class="section level4">
+<h4><span class="header-section-number">3.2.1.1</span> Example</h4>
+<p>Suppose we are in the process of trying to find a one-factorisation for
+<span class="math inline">\(K_6\)</span>, and have generated a partial one-factorisation represented by the
+set <span class="math inline">\(F\)</span>.
+<span class="math display">\[F=\{(f_1,\{4,6\}),(f_1,\{3,5\}),(f_2,\{5,6\}),(f_3\{1,6\}), (f_3\{3,4\}),(f_4,\{2,3\}),(f_4,\{4,5\})\}\]</span>
+Now apply <span class="math inline">\(H_1\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose <span class="math inline">\(x=2\)</span>. Live, because it doesn’t appear in <span class="math inline">\(f_1,f_2,f_3\)</span> or
+<span class="math inline">\(f_5\)</span>.</p></li>
+<li><p>Of these four partial one factors, choose <span class="math inline">\(f_1\)</span>.</p></li>
+<li><p>2 only occurs together with 3 (in <span class="math inline">\(f_4\)</span>), so pick <span class="math inline">\(y=5\)</span>.</p></li>
+<li><p>5 already appears in <span class="math inline">\(f_1\)</span> so <span class="math inline">\(\{z,y\}=\{3,5\}\)</span>. So replace <span class="math inline">\(F\)</span> by
+<span class="math inline">\(F \cup \{(f_1,\{2,5\}) \backslash (f_1,\{3,5\})\}\)</span></p></li>
+</ol>
+<p>So we have extracted one edge from the one-factorisation and replaced it
+with another edge, leaving the cost unchanged.
+If in 3. we had picked 1 then according to the heuristic we should
+replace <span class="math inline">\(F\)</span> with <span class="math inline">\(F \cup (f_1,\{2,1\})\)</span>, increasing <span class="math inline">\(|F|\)</span> by one, and so
+decreasing the cost by the same. Because the cost cannot increase <span class="math inline">\(H_1\)</span>
+is a suitable heuristic for use in a hill-climbing algorithm.</p>
+<p>Now apply <span class="math inline">\(H_2\)</span> to the new one-factorisation <span class="math inline">\(F_1=F \cup (f_1,\{2,1\})\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>We can pick any of <span class="math inline">\(f_2, f_3, f_4, f_5\)</span>, because all are live.
+Choose <span class="math inline">\(f_2\)</span>.</p></li>
+<li><p>Choose <span class="math inline">\(x=2, y=3\)</span>, because neither appear in <span class="math inline">\(f_2\)</span>.</p></li>
+<li><p>2 and 3 occur together in <span class="math inline">\(f_4\)</span>. So replace <span class="math inline">\(F_1\)</span> with
+<span class="math inline">\(F_1 \cup \{(f_2,\{2,3\}) \backslash (f_4,\{2,3\})\}\)</span></p></li>
+</ol>
+<p>Again the cost remains unchanged by this procedure, and if in 2. we had
+chosen <span class="math inline">\(x=1,y=4\)</span> instead then we would have replaced <span class="math inline">\(F_1\)</span> with
+<span class="math inline">\(F_1 \cup \{(f_2,\{1,4\})\}\)</span> decreasing the cost by one. As with <span class="math inline">\(H_1\)</span>,
+the cost cannot increase, which makes <span class="math inline">\(H_2\)</span> a suitable heuristic.
+The hill-climbing algorithm for constructing one-factorisations which
+was first given in [9] has a very simple form.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>While</strong> <span class="math inline">\(c(F) \neq 0\)</span>, <strong>do</strong></p></li>
+<li><p>choose <span class="math inline">\(r=1\)</span> or <span class="math inline">\(r=2\)</span> with equal probability</p></li>
+<li><p>perform <span class="math inline">\(H_r\)</span></p></li>
+</ol>
+</div>
+</div>
+<div id="an-algorithm-for-room-squares" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> An Algorithm for Room Squares</h3>
+<p>To generate a Room square all that remains is to produce another
+one-factorisation <span class="math inline">\(G\)</span>, say, which is orthogonal to <span class="math inline">\(F\)</span>. This will
+inevitably require slight modifications to be made to <span class="math inline">\(H_1\)</span> and <span class="math inline">\(H_2\)</span>.
+Now if an array <span class="math inline">\(R\)</span> is constructed in which the rows are labelled with
+the one-factors of <span class="math inline">\(F(f_1,f_2,...,f_{n-1})\)</span>, and the columns are
+labelled with the partial one-factors of <span class="math inline">\(G(g_1,g_2,...,g_{n-1})\)</span>. Then
+<span class="math inline">\(R\)</span> will be a Room square if the <span class="math inline">\((f_i,g_j)\)</span> cell contains <span class="math inline">\(\{x,y\}\)</span>, if
+and only if <span class="math inline">\((f_i,\{x,y\}) \in F\)</span> and <span class="math inline">\((g_j,\{x,y\}) \in G\)</span> and is empty
+otherwise.</p>
+<p>Again these two heuristics are due to Dinitz &amp; Stinson and originally
+presented in [9]. Although a necessary correction has been made as will
+become apparent.</p>
+<p><span class="math inline">\(OH_1\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Choose any live point <span class="math inline">\(x\)</span>.</p></li>
+<li><p>Choose any partial one-factor <span class="math inline">\(g_i\)</span> such that <span class="math inline">\(x\)</span> does not occur in
+<span class="math inline">\(g_i\)</span>.</p></li>
+<li><p>Choose any <span class="math inline">\(y \neq x\)</span> such that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not occur together in
+<span class="math inline">\(G\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(f_j\)</span> be the one-factor of <span class="math inline">\(F\)</span> which contains the edge
+<span class="math inline">\(\{x,y\}\)</span>.</p></li>
+<li><p><strong>if</strong> <span class="math inline">\(R(f_j,g_i)\)</span> is not empty <strong>then</strong></p></li>
+<li><p><span class="math inline">\(OH_1\)</span> fails.</p></li>
+<li><p><strong>Else if</strong> <span class="math inline">\(y\)</span> does not occur in <span class="math inline">\(g_i\)</span>, <strong>then</strong></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(G\)</span> by <span class="math inline">\(G \cup (g_i,\{x,y\})\)</span>.</p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Define <span class="math inline">\(R(f_j,g_i)=\{x,y\}\)</span>.</p></li>
+<li><p><strong>Else</strong> there is a pair in <span class="math inline">\(G\)</span> of the form
+<span class="math inline">\((g_i,\{z,y\}) \hspace{0.5cm} z \neq x\)</span>.</p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(G\)</span> by
+<span class="math inline">\(G \cup (g_i,\{x,y\}) \backslash (g_i,\{z,y\})\)</span>.</p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Define <span class="math inline">\(R(f_k,g_i)\)</span>, to be empty<span class="math inline">\(^i\)</span>, where
+<span class="math inline">\((f_k,\{z,y\}) \in F\)</span>.</p></li>
+</ol>
+<p><span class="math inline">\(OH_2\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Choose any live partial one-factor <span class="math inline">\(g_i\)</span>.</p></li>
+<li><p>Choose any <span class="math inline">\(x\)</span> and <span class="math inline">\(y \neq x\)</span> such that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not occur
+together in <span class="math inline">\(g_i\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(f_j\)</span> be the one-factor of <span class="math inline">\(F\)</span> which contains the edge
+<span class="math inline">\(\{x,y\}\)</span>.</p></li>
+<li><p><strong>if</strong> <span class="math inline">\(R(f_j,g_i)\)</span> is not empty <strong>then</strong></p></li>
+<li><p><span class="math inline">\(OH_2\)</span> fails.</p></li>
+<li><p><strong>Else if</strong> <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not occur together, <strong>then</strong></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(G\)</span> by <span class="math inline">\(G \cup (g_i,\{x,y\})\)</span>.</p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Define <span class="math inline">\(R(f_j,g_i)=\{x,y\}\)</span>.</p></li>
+<li><p><strong>Else</strong> there is a pair in <span class="math inline">\(G\)</span> of the form
+<span class="math inline">\((g_k,\{x,y\}) \hspace{0.5cm} (k \neq i\)</span>)</p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Replace <span class="math inline">\(G\)</span> by
+<span class="math inline">\(G \cup (g_i,\{x,y\}) \backslash (g_k,\{x,y\})\)</span></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Define <span class="math inline">\(R(f_j,g_i)=\{x,y\}\)</span></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Define <span class="math inline">\(R(f_j,g_k)\)</span> to be empty</p></li>
+</ol>
+<div id="example-2.2.1" class="section level4">
+<h4><span class="header-section-number">3.2.2.1</span> <em>Example 2.2.1</em></h4>
+<p>Suppose the factorisation <span class="math inline">\(F\)</span> from the earlier example has been
+completed and is represented by the set:</p>
+<p>$$ M={</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\((f_1\{1,2\}),(f_1\{3,5\}),(f_1\{4,6\}),(f_2\{1,4\}),(f_2\{2,3\}),(f_2\{5,6\}),(f_3\{1,6\})\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\((f_3\{2,5\}),(f_3\{3,4\}),(f_4\{1,3\}),(f_4\{2,6\}),(f_4\{4,5\}),(f_5\{1,5\}),(f_5\{3,6\})\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>}</p>
+<p>Notice that this is precisely the one-factorisation of <span class="math inline">\(K_6\)</span> given
+on page 9.</p>
+<p>Now suppose we have established the following one-factors in <span class="math inline">\(G\)</span>:
+<span class="math display">\[G=\{(g_1,\{1,4\}),(g_2,\{1,6\}),(g_3,\{3,6\}),(g_5\{5,6\}),(g_5\{1,2\})\}\]</span>
+At this state <span class="math inline">\(R\)</span> looks like</p>
+<p>$$R=</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(g_1\)</span></th>
+<th align="center"><span class="math inline">\(g_2\)</span></th>
+<th align="center"><span class="math inline">\(g_3\)</span></th>
+<th align="center"><span class="math inline">\(g_4\)</span></th>
+<th align="center"><span class="math inline">\(g_5\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f_1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1,2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f_2\)</span></td>
+<td align="center"><span class="math inline">\(1,4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5,6\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f_3\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1,6\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f_4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f_5\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3,6\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>$$</p>
+<p><strong>Figure 13</strong></p>
+<p>Now apply <span class="math inline">\(OH_1\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose <span class="math inline">\(x=5\)</span>, suitably live.</p></li>
+<li><p>Choose <span class="math inline">\(g_3\)</span>, in which <span class="math inline">\(5\)</span> does not occur.</p></li>
+<li><p><span class="math inline">\(5\)</span> does not occur together with <span class="math inline">\(2\)</span> in <span class="math inline">\(G\)</span>, so we are free to
+choose <span class="math inline">\(y=2\)</span>.</p></li>
+<li><p>In <span class="math inline">\(F\)</span>, <span class="math inline">\(\{2.5\} \in f_3\)</span>.</p></li>
+<li><p><span class="math inline">\(f_3,g_3\)</span> is empty in <span class="math inline">\(R\)</span>, also <span class="math inline">\(y=2 \notin g_3\)</span>.</p></li>
+<li><p>Replace <span class="math inline">\(G\)</span> with <span class="math inline">\(G \cup (g_3,\{5,2\})\)</span>.</p></li>
+<li><p>Define <span class="math inline">\(R(f_3,g_3)=\{5,2\}\)</span>.</p></li>
+</ol>
+<p>This decreases the cost by one, alternatively we might have chosen, at
+stage 3. <span class="math inline">\(y=3\)</span>, in that case.</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{3,5\} \in f_1\)</span>.</p></li>
+<li><p><span class="math inline">\(f_1,g_3\)</span> is empty in <span class="math inline">\(R\)</span>, also <span class="math inline">\(y \in g_3\)</span>, occurring in the pair
+<span class="math inline">\((g_3,\{3,6\}), z=6\)</span>.</p></li>
+<li><p>Replace <span class="math inline">\(G\)</span> with <span class="math inline">\(G \cup (g_3,\{3,5\}) \backslash (g_3,\{3,6\})\)</span>.</p></li>
+<li><p>Define <span class="math inline">\(R(f_1,g_3)=\{3,5\}\)</span>.</p></li>
+<li><p>Define <span class="math inline">\(R(f_5,g_3)\)</span> to be empty.</p></li>
+</ol>
+<p>Which leaves the cost unaffected. Suppose now that <span class="math inline">\(R\)</span> is the array
+after this second version of the application of <span class="math inline">\(OH_1\)</span>:</p>
+<p>$$R=</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(g_1\)</span></th>
+<th align="center"><span class="math inline">\(g_2\)</span></th>
+<th align="center"><span class="math inline">\(g_3\)</span></th>
+<th align="center"><span class="math inline">\(g_4\)</span></th>
+<th align="center"><span class="math inline">\(g_5\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f_1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3,5\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1,2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f_2\)</span></td>
+<td align="center"><span class="math inline">\(1,4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5,6\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f_3\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1,6\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f_4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f_5\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>$$</p>
+<p><strong>Figure 14</strong></p>
+<p>Now if we apply <span class="math inline">\(OH_2\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose <span class="math inline">\(g_4\)</span>, a live partial one-factor.</p></li>
+<li><p>Choose <span class="math inline">\(x=1, y=2\)</span>, neither of which occur in <span class="math inline">\(g_4\)</span>.</p></li>
+<li><p><span class="math inline">\((f_1,\{1,2\}) \in F\)</span>.</p></li>
+<li><p><span class="math inline">\(f_1,g_4\)</span> is empty in <span class="math inline">\(R\)</span>, also <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do occur together,
+<span class="math inline">\((g_5,\{1,2\}) \in G\)</span>.</p></li>
+<li><p>Replace <span class="math inline">\(G\)</span> with <span class="math inline">\(G \cup (g_4,\{1,2\}) \backslash (g_5,\{1,2\})\)</span></p></li>
+<li><p>Define <span class="math inline">\(R(f_1,g_4)=\{1,2\}\)</span></p></li>
+<li><p>Define <span class="math inline">\(R(f_1,g_5)\)</span> to be empty.</p></li>
+</ol>
+<p>This procedure leaves the cost unaffected and if instead we had chosen
+at <span class="math inline">\(2\)</span>. <span class="math inline">\(x=3,y=4\)</span>, then would have been required to replace <span class="math inline">\(G\)</span> with
+<span class="math inline">\(G \cup (g_4,\{3,4\})\)</span>, and put <span class="math inline">\(\{3,4\}\)</span> in cell <span class="math inline">\((f_3,g_4)\)</span> of <span class="math inline">\(R\)</span>, an
+action which reduces the cost by one. However, we know that two
+orthogonal one-factorisations of <span class="math inline">\(K_6\)</span> are equivalent to a Room square
+of side 5, which has been shown not to exist. Hence it would be futile
+to continue with this method in this particular case. Nevertheless the
+example shows how the heuristics work.</p>
+<p>There is no guarantee of success with repeated use of these heuristics,
+although Dinitz &amp; Stinson are quick to point out that the algorithm
+involving <span class="math inline">\(H_1\)</span> and <span class="math inline">\(H_2\)</span> has never[^3] failed to produce the desired
+one-factorisation. If we hope to use the <span class="math inline">\(OH_1\)</span> and <span class="math inline">\(OH_2\)</span> in a similar
+algorithm then the possibility of failure becomes a real possibility.
+Two possibilities exist, either both heuristics fail or successive use
+of them leads to an infinite loop. In order to avoid both we introduce a
+<strong><em>threshold</em></strong> function, which simply arrests the progress of the
+algorithm after a certain number of iterations of the heuristics. Dinitz
+&amp; Stinson found after experimentation that the following function is
+suitable. <span class="math display">\[T(n)=100n\]</span> Then the hill-climbing algorithm for finding a
+Room square is as follows [8]:</p>
+<ol style="list-style-type: decimal">
+<li><p>Use the previous hill climbing algorithm to construct <span class="math inline">\(F\)</span>, a
+one-factorisation of <span class="math inline">\(K_n\)</span>.</p></li>
+<li><p>Number of iterations initialised to be <span class="math inline">\(0\)</span></p></li>
+<li><p>While (number of iterations <span class="math inline">\(&lt;T(n)\)</span>) and <span class="math inline">\(c(G) \neq 0\)</span>, do</p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Choose <span class="math inline">\(r=1\)</span> or <span class="math inline">\(r=2\)</span> at random with equal
+probability</p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Perform <span class="math inline">\(OH_r\)</span></p></li>
+<li><p><span class="math inline">\(\hspace{1cm}\)</span> Increment number of iterations</p></li>
+</ol>
+</div>
+</div>
+<div id="the-room-square-generator" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> The Room Square Generator</h3>
+<p>Dinitz and Stinson choose to implement the above algorithm in Pascal,
+and ran in on an Amdahl 5850 workstation. It was very successful,
+finding many Room squares with sides ranging from 11 to 101. For each
+successful trial they had 9 or 10 failures (the program being stopped by
+the threshold function) and timings ranged from 0.09 seconds for an
+11x11 Room square, to 7.3 on average for the 25 different 101x101 Room
+squares they found.</p>
+<p>I chose to implement the hill-climbing algorithms in Visual Basic 6.0 on
+a Pentium III-450/Win 98 Desktop. Needless to say, it was slightly less
+successful – exhibiting a similar probability of success but
+unfortunately becoming very slow for Room squares bigger than 21. It
+found square of side 21 after an all-night search, but after 48 hours
+looking for one of 23x23 I decided to call the search off.</p>
+<p>Despite the failures at higher order, the Room square generator was very
+successful in finding smaller squares. It found 7x7 Room squares in as
+little as 4 seconds, and even 15x15 squares only took a few minutes.</p>
+<p>Annotated code for the Room square generator can be found along with
+some of the larger squares in Appendix I and below is a screen shot of
+the application having successfully located a 9x9 Room square in a
+little over one minute after 507 iterations of the heuristics <span class="math inline">\(OH_1\)</span> and
+<span class="math inline">\(OH_2\)</span>. The uppermost panel represents some of the one-factorisation
+generated by the algorithm involving <span class="math inline">\(H_1\)</span> and <span class="math inline">\(H_2\)</span>, while the second
+panel shows part of the orthogonal one-factorisation generated by <span class="math inline">\(OH_1\)</span>
+and <span class="math inline">\(OH_2\)</span>. The lower panel is a Room square of side 9.</p>
+<p><strong>Figure 15 Screenshot of the Room Square Generator</strong></p>
+
+</div>
+</div>
+<!-- </div> -->
+<p style="text-align: center;">
+<a href="3-1-graph-factorisations.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-balanced-room-squares.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

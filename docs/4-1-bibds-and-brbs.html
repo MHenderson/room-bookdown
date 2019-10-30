@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="4.1 BIBDs and BRBs | Room Squares" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="mhenderson/room" />
+
+<meta name="author" content="Matthew Henderson" />
+
+<meta name="date" content="2019-05-31" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>4.1 BIBDs and BRBs | Room Squares</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#kirkmans-schoolgirl-problem"><span class="toc-section-number">1</span> Kirkman’s Schoolgirl Problem</a><ul>
+<li><a href="1-1-tournaments.html#tournaments"><span class="toc-section-number">1.1</span> Tournaments</a></li>
+<li><a href="1-2-t-g-room-1902-86.html#t.g.-room-1902-86"><span class="toc-section-number">1.2</span> T.G. Room, (1902-86)</a></li>
+<li class="has-sub"><a href="1-3-the-galois-field.html#the-galois-field"><span class="toc-section-number">1.3</span> The Galois Field</a><ul>
+<li><a href="1-3-the-galois-field.html#example"><span class="toc-section-number">1.3.1</span> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="2-existence.html#existence"><span class="toc-section-number">2</span> Existence</a><ul>
+<li class="has-sub"><a href="2-1-starters-adders-and-cyclic-room-squares.html#starters-adders-and-cyclic-room-squares"><span class="toc-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</a><ul>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-a-starter"><span class="toc-section-number">2.1.1</span> Finding a starter</a></li>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-an-adder"><span class="toc-section-number">2.1.2</span> Finding an adder</a></li>
+</ul></li>
+<li><a href="2-2-strong-starters.html#strong-starters"><span class="toc-section-number">2.2</span> Strong Starters</a></li>
+<li><a href="2-3-the-mullin-nemeth-starters.html#the-mullin-nemeth-starters"><span class="toc-section-number">2.3</span> The Mullin-Nemeth Starters</a></li>
+<li><a href="2-4-the-trouble-with-fermat-numbers.html#the-trouble-with-fermat-numbers"><span class="toc-section-number">2.4</span> The Trouble with Fermat Numbers</a></li>
+<li><a href="2-5-a-multiplication-theorem.html#a-multiplication-theorem"><span class="toc-section-number">2.5</span> A Multiplication Theorem</a></li>
+<li><a href="2-6-summary.html#summary"><span class="toc-section-number">2.6</span> Summary</a></li>
+<li><a href="2-7-n-tuplication-of-room-squares.html#n-tuplication-of-room-squares"><span class="toc-section-number">2.7</span> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html#a-graph-theoretic-approach-to-constructing-room-squares"><span class="toc-section-number">3</span> A graph theoretic approach to constructing Room squares</a><ul>
+<li><a href="3-1-graph-factorisations.html#graph-factorisations"><span class="toc-section-number">3.1</span> Graph factorisations</a></li>
+<li class="has-sub"><a href="3-2-hill-climbing-algorithm-for-room-squares.html#hill-climbing-algorithm-for-room-squares"><span class="toc-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-one-factorisations"><span class="toc-section-number">3.2.1</span> An algorithm for One-Factorisations</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-room-squares"><span class="toc-section-number">3.2.2</span> An Algorithm for Room Squares</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#the-room-square-generator"><span class="toc-section-number">3.2.3</span> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-balanced-room-squares.html#balanced-room-squares"><span class="toc-section-number">4</span> Balanced Room Squares</a><ul>
+<li><a href="4-1-bibds-and-brbs.html#bibds-and-brbs"><span class="toc-section-number">4.1</span> BIBDs and BRBs</a></li>
+<li><a href="4-2-complete-balanced-howell-rotations.html#complete-balanced-howell-rotations"><span class="toc-section-number">4.2</span> Complete Balanced Howell Rotations</a></li>
+<li><a href="4-3-starters-and-adders-for-brs-and-cbhr.html#starters-and-adders-for-brs-and-cbhr"><span class="toc-section-number">4.3</span> Starters and Adders for BRS and CBHR</a></li>
+<li><a href="4-4-a-multiplicative-construction-for-brs.html#a-multiplicative-construction-for-brs"><span class="toc-section-number">4.4</span> A Multiplicative Construction for BRS</a></li>
+<li><a href="4-5-symmetric-skew-balanced-starters.html#symmetric-skew-balanced-starters"><span class="toc-section-number">4.5</span> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-hill-climbing-for-one-factorisations.html#hill-climbing-for-one-factorisations"><span class="toc-section-number">5</span> Hill-Climbing for One-Factorisations</a><ul>
+<li><a href="5-1-one-factors.html#one-factors"><span class="toc-section-number">5.1</span> One-factors</a></li>
+<li><a href="5-2-one-factorisations.html#one-factorisations"><span class="toc-section-number">5.2</span> One-factorisations</a></li>
+<li class="has-sub"><a href="5-3-heuristics.html#heuristics"><span class="toc-section-number">5.3</span> Heuristics</a><ul>
+<li><a href="5-3-heuristics.html#heuristic-h_1"><span class="toc-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li><a href="5-3-heuristics.html#heutistic-h_2"><span class="toc-section-number">5.3.2</span> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li><a href="5-4-hill-climbing.html#hill-climbing"><span class="toc-section-number">5.4</span> Hill-climbing</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="bibds-and-brbs" class="section level2">
+<h2><span class="header-section-number">4.1</span> BIBDs and BRBs</h2>
+<p>A <strong><em>balanced incomplete block design (BIBD)</em></strong> is an arrangement of
+elements (varieties) from a set <span class="math inline">\(S\)</span> of size <span class="math inline">\(v\)</span>, into <span class="math inline">\(b\)</span> subsets
+(blocks) each of size <span class="math inline">\(k\)</span> such that each variety occurs in <span class="math inline">\(r\)</span> blocks
+and any particular pair of distinct varieties occurs in <span class="math inline">\(\lambda\)</span>
+blocks.</p>
+<div id="example-5.1.1" class="section level4">
+<h4><span class="header-section-number">4.1.0.1</span> Example 5.1.1</h4>
+<p><span class="math display">\[\{a,b,c\},\{a,b,d\},\{a,c,e\},\{a,d,f\},\{a,e,f\},\{b,c,f\},\{b,d,e\},\{b,e,f\},\{c,d,e\},\{c,d,f\}\]</span>
+This is a BIBD with parameters: <span class="math inline">\(v = 6\)</span>, <span class="math inline">\(b = 10\)</span>, <span class="math inline">\(k = 3\)</span>, <span class="math inline">\(r = 5\)</span>,
+<span class="math inline">\(\lambda = 2\)</span>.</p>
+<p>In any <span class="math inline">\(BIBD(v, b, r, k, \lambda)\)</span> there are <span class="math inline">\(b\)</span> blocks each containing <span class="math inline">\(k\)</span>
+elements, so <span class="math inline">\(bk\)</span> elements in total. Also, each of the <span class="math inline">\(v\)</span> elements
+occurs <span class="math inline">\(r\)</span> times, so there are <span class="math inline">\(rv\)</span> elements in total. Therefore:
+<span class="math display">\[bk = vr\]</span> Also in a particular block, any element makes a pair with
+<span class="math inline">\(k - 1\)</span> other elements, and each element occurs in <span class="math inline">\(r\)</span> blocks, so there
+are <span class="math inline">\(r(k - 1)\)</span> pairs involving that element. Also, by definition, that
+element is paired with each of the other <span class="math inline">\(v - 1\)</span> members of <span class="math inline">\(S\)</span> <span class="math inline">\(\lambda\)</span>
+times, so: <span class="math display">\[\lambda (v - 1) = r(k - 1)\]</span> The second expression rearranges
+to give <span class="math inline">\(r = \lambda (v - 1)/(k - 1)\)</span>, which can be substituted into the first
+expression to give <span class="math inline">\(b=v\lambda (v - 1)/k(k - 1)\)</span>. So <span class="math inline">\(b\)</span> amd <span class="math inline">\(r\)</span> are both
+determined by the values of <span class="math inline">\(v\)</span>, <span class="math inline">\(k\)</span> and <span class="math inline">\(\lambda\)</span>. For this reason we
+need only quote those three parameters when referring to a particular
+block design. The example was a <span class="math inline">\(BIBD(6, 3, 2)\)</span> (or <span class="math inline">\((6, 3, 2)\)</span>design).</p>
+<p>In any Room square, the pairs <span class="math inline">\(\{x,y\}\)</span> are unordered. If we replace
+these pairs by one of the ordered pairs <span class="math inline">\((x,y)\)</span> or <span class="math inline">\((y,x)\)</span> we call the
+resulting array an <strong><em>ordered Room square (ORS)</em></strong>.</p>
+<p>Consider the following ordered Room square:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">62</th>
+<th align="center">54</th>
+<th></th>
+<th align="center">31</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">03</td>
+<td>65</td>
+<td align="center"></td>
+<td>42</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td>14</td>
+<td align="center">06</td>
+<td></td>
+<td>53</td>
+</tr>
+<tr class="odd">
+<td align="center">64</td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">25</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">05</td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td>36</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<td align="center">32</td>
+<td align="center"></td>
+<td align="center">16</td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 5\)</span></td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td align="center">51</td>
+<td align="center">43</td>
+<td align="center"></td>
+<td>20</td>
+<td align="center"></td>
+<td></td>
+<td><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 27</strong></p>
+<p>Suppose we extract the blocks of a design (not necessarily a BIBD) from
+this square in one of the two following ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>As <em>half-columns</em>. This means taking all left hand members of pairs
+from a particular column as the members of one block, and all right
+hand members as another block.</p></li>
+<li><p>By <em>half-rows</em>. Take all left members from a particular row as one
+block, and all right members as another block.</p></li>
+</ol>
+<p>Notice that for this example, both methods generate exactly the same
+blocks.
+<span class="math display">\[\{\infty,6,5,3\},\{0,2,4,1\},\{\infty,0,6,4\},\{1,3,5,2\},\{\infty,1,0,5\},\{2,4,6,3\},\{6, \infty,2,1\},\]</span>
+<span class="math display">\[\{4,3,5,0\},\{0,\infty,3,2\},\{5,4,6,1\},\{3,1,\infty,4\},\{2,6,5,0\},\{5,4,2,\infty\},\{1, 3,0,6\}\]</span>
+Certainly this design seems to have the appropriate parameters to
+qualify as a BIBD. The original Room square was based on 8 elements,
+hence <span class="math inline">\(v=8\)</span>. Also, the Room square’s seven rows each produced 2 blocks
+of 4 elements, hence <span class="math inline">\(b=14\)</span> and <span class="math inline">\(k=4\)</span>. Finally, each element occurred
+once in each row of the Room square, therefore in half the total number
+of blocks, hence <span class="math inline">\(r=7\)</span>. <span class="math display">\[bk=4\cdot 14 = 7 \cdot 8 = vr\]</span> So this design
+is a BIBD, provided: <span class="math display">\[\lambda = \frac{r(k-1)}{v-1} = \frac{7(3)}{7}=3\]</span>
+In other words, provided each pair of elements occurs in precisely 3
+blocks.</p>
+<p>By definition a <strong><em>balanced Room square [<span class="math inline">\(BRS(n)\)</span>]</em></strong> is an ordered Room
+square based on <span class="math inline">\(n\)</span> elements whose corresponding block design, derived
+as above, is a BIBD.</p>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="4-balanced-room-squares.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-2-complete-balanced-howell-rotations.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

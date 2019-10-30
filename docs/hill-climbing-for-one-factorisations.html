@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Room Squares</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Hill-Climbing for One-Factorisations | Room Squares</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Room Squares" />
+  <meta property="og:title" content="Chapter 5 Hill-Climbing for One-Factorisations | Room Squares" />
   <meta property="og:type" content="book" />
   
   
@@ -17,25 +16,26 @@
   <meta name="github-repo" content="mhenderson/room" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Room Squares" />
+  <meta name="twitter:title" content="Chapter 5 Hill-Climbing for One-Factorisations | Room Squares" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
 
-<meta name="author" content="Matthew Henderson">
+<meta name="author" content="Matthew Henderson" />
 
 
-<meta name="date" content="2018-06-14">
+<meta name="date" content="2019-10-30" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="balanced-room-squares.html">
+<link rel="prev" href="balanced-room-squares.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -52,10 +52,9 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -65,13 +64,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
   { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -131,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Room Squares</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Kirkman’s Schoolgirl Problem</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#tournaments"><i class="fa fa-check"></i><b>1.1</b> Tournaments</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#t.g.-room-1902-86"><i class="fa fa-check"></i><b>1.2</b> T.G. Room, (1902-86)</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#the-galois-field"><i class="fa fa-check"></i><b>1.3</b> The Galois Field</a><ul>
@@ -150,12 +147,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="existence.html"><a href="existence.html#summary"><i class="fa fa-check"></i><b>2.6</b> Summary</a></li>
 <li class="chapter" data-level="2.7" data-path="existence.html"><a href="existence.html#n-tuplication-of-room-squares"><i class="fa fa-check"></i><b>2.7</b> n-tuplication of Room squares</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html"><i class="fa fa-check"></i><b>3</b> A graph theoretic approach to constructing Room squares</a><ul>
-<li class="chapter" data-level="3.1" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#graph-factorisations"><i class="fa fa-check"></i><b>3.1</b> Graph factorisations</a></li>
-<li class="chapter" data-level="3.2" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#hill-climbing-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2</b> Hill-Climbing Algorithm for Room Squares</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-one-factorisations"><i class="fa fa-check"></i><b>3.2.1</b> An algorithm for One-Factorisations</a></li>
-<li class="chapter" data-level="3.2.2" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#an-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2.2</b> An Algorithm for Room Squares</a></li>
-<li class="chapter" data-level="3.2.3" data-path="a-graph-theoretic-approach-to-constructing-room-squares.html"><a href="a-graph-theoretic-approach-to-constructing-room-squares.html#the-room-square-generator"><i class="fa fa-check"></i><b>3.2.3</b> The Room Square Generator</a></li>
+<li class="chapter" data-level="3" data-path="construction.html"><a href="construction.html"><i class="fa fa-check"></i><b>3</b> Construction</a><ul>
+<li class="chapter" data-level="3.1" data-path="construction.html"><a href="construction.html#graph-factorisations"><i class="fa fa-check"></i><b>3.1</b> Graph factorisations</a></li>
+<li class="chapter" data-level="3.2" data-path="construction.html"><a href="construction.html#hill-climbing-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2</b> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="construction.html"><a href="construction.html#an-algorithm-for-one-factorisations"><i class="fa fa-check"></i><b>3.2.1</b> An algorithm for One-Factorisations</a></li>
+<li class="chapter" data-level="3.2.2" data-path="construction.html"><a href="construction.html#an-algorithm-for-room-squares"><i class="fa fa-check"></i><b>3.2.2</b> An Algorithm for Room Squares</a></li>
+<li class="chapter" data-level="3.2.3" data-path="construction.html"><a href="construction.html#the-room-square-generator"><i class="fa fa-check"></i><b>3.2.3</b> The Room Square Generator</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="balanced-room-squares.html"><a href="balanced-room-squares.html"><i class="fa fa-check"></i><b>4</b> Balanced Room Squares</a><ul>
@@ -204,45 +201,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.1</span> One-factors</h2>
 <p>We begin with a complete graph on six vertices. In <strong>igraph</strong> such a graph can
 be generated with the <code>make_full_graph()</code> function.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(igraph)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">g &lt;-<span class="st"> </span><span class="kw">make_full_graph</span>(<span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">plot</span>(g)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(igraph)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">g &lt;-<span class="st"> </span><span class="kw">make_full_graph</span>(<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">plot</span>(g)</a></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Next we give the vertices and edges names, to make them easier to refer to.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">V</span>(g)<span class="op">$</span>name &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">E</span>(g)<span class="op">$</span>name &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span></a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(ggraph)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">V</span>(g)<span class="op">$</span>name &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">E</span>(g)<span class="op">$</span>name &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">15</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(ggraph)</a></code></pre></div>
 <pre><code>## Loading required package: ggplot2</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggraph</span>(g, <span class="dt">layout =</span> <span class="st">&#39;kk&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">angle_calc =</span> <span class="st">&#39;along&#39;</span>, <span class="dt">label_dodge =</span> <span class="kw">unit</span>(<span class="fl">3.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_push =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="fl">6.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">start_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">end_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggraph</span>(g, <span class="dt">layout =</span> <span class="st">&#39;kk&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">angle_calc =</span> <span class="st">&#39;along&#39;</span>, <span class="dt">label_dodge =</span> <span class="kw">unit</span>(<span class="fl">3.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_push =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="fl">6.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">start_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">end_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</a></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>A <strong>one-factor</strong> <span class="math inline">\(f_i\)</span> is a set of edges in which each vertex appears
 exactly once.</p>
 <p>For example,</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">f1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">11</span>, <span class="dv">14</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">E</span>(g)[f1]</a></code></pre></div>
-<pre><code>## + 3/15 edges from 3cd6968 (vertex names):
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">f1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">11</span>, <span class="dv">14</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">E</span>(g)[f1]</a></code></pre></div>
+<pre><code>## + 3/15 edges from c308b31 (vertex names):
 ## [1] A--B C--E D--F</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">E</span>(g)[f1]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f1&quot;</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">ggraph</span>(g, <span class="dt">layout =</span> <span class="st">&#39;kk&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name, <span class="dt">color =</span> factor), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">angle_calc =</span> <span class="st">&#39;along&#39;</span>, <span class="dt">label_dodge =</span> <span class="kw">unit</span>(<span class="fl">2.5</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_push =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="fl">6.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">start_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">end_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">E</span>(g)[f1]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f1&quot;</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">ggraph</span>(g, <span class="dt">layout =</span> <span class="st">&#39;kk&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name, <span class="dt">color =</span> factor), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">angle_calc =</span> <span class="st">&#39;along&#39;</span>, <span class="dt">label_dodge =</span> <span class="kw">unit</span>(<span class="fl">2.5</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_push =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="fl">6.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">start_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">end_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</a></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>We need a function to test whether a set of edges constitutes a one-factor or
 not. The <code>is_one_factor(f, g)</code> function will test whether or not <span class="math inline">\(f\)</span> is a one-factor
 of <span class="math inline">\(g\)</span> or not by constructing a graph from the edges of <span class="math inline">\(f\)</span> and testing whether
 this graph has the same vertex set as <span class="math inline">\(g\)</span> or not.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">is_one_factor &lt;-<span class="st"> </span><span class="cf">function</span>(f, g) {</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="kw">all</span>(<span class="kw">V</span>(<span class="kw">graph_from_edgelist</span>(<span class="kw">ends</span>(g, f)))<span class="op">==</span><span class="kw">V</span>(g))</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">} </a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">is_one_factor &lt;-<span class="st"> </span><span class="cf">function</span>(f, g) {</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">  <span class="kw">all</span>(<span class="kw">V</span>(<span class="kw">graph_from_edgelist</span>(<span class="kw">ends</span>(g, f)))<span class="op">==</span><span class="kw">V</span>(g))</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">} </a></code></pre></div>
 <p>Using this function we can test, for example, whether <span class="math inline">\(f1\)</span> is a one-factor of
 <span class="math inline">\(g\)</span> or not.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">is_one_factor</span>(f1, g)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">is_one_factor</span>(f1, g)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="one-factorisations" class="section level2">
@@ -251,37 +248,32 @@ this graph has the same vertex set as <span class="math inline">\(g\)</span> or 
 one-factors.</p>
 <p>We can create a one-factorisation that includes <span class="math inline">\(f1\)</span> as one of its one-factors
 by creating another four one-factors (<span class="math inline">\(f2\)</span>, <span class="math inline">\(f3\)</span>, <span class="math inline">\(f4\)</span>, and <span class="math inline">\(f5\)</span> below).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">f2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">15</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">f3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">f4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">f5 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw">E</span>(g)[f2]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f2&quot;</span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="kw">E</span>(g)[f3]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f3&quot;</span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="kw">E</span>(g)[f4]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f4&quot;</span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="kw">E</span>(g)[f5]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f5&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">f2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">f3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">f4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">f5 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="kw">E</span>(g)[f2]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f2&quot;</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw">E</span>(g)[f3]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f3&quot;</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="kw">E</span>(g)[f4]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f4&quot;</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="kw">E</span>(g)[f5]<span class="op">$</span>factor &lt;-<span class="st"> &quot;f5&quot;</span></a></code></pre></div>
 <p>We can test that all of these are, indeed, one-factors.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">all</span>(<span class="kw">sapply</span>(<span class="kw">list</span>(f2, f3, f4, f5), <span class="cf">function</span>(x) <span class="kw">is_one_factor</span>(x, g)))</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">all</span>(<span class="kw">sapply</span>(<span class="kw">list</span>(f2, f3, f4, f5), <span class="cf">function</span>(x) <span class="kw">is_one_factor</span>(x, g)))</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Colouring the edges according to which factor they belong to makes it easy to
 confirm that the one-factors together constitute a one-factorisation.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">gg1 &lt;-<span class="st"> </span><span class="kw">ggraph</span>(g, <span class="dt">layout =</span> <span class="st">&#39;kk&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name, <span class="dt">color =</span> factor), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">angle_calc =</span> <span class="st">&#39;along&#39;</span>, <span class="dt">label_dodge =</span> <span class="kw">unit</span>(<span class="fl">2.5</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_push =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="fl">6.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">start_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">end_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="kw">print</span>(gg1)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">gg1 &lt;-<span class="st"> </span><span class="kw">ggraph</span>(g, <span class="dt">layout =</span> <span class="st">&#39;kk&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_node_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name), <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_edge_link</span>(<span class="kw">aes</span>(<span class="dt">label =</span> name, <span class="dt">color =</span> factor), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>, <span class="dt">angle_calc =</span> <span class="st">&#39;along&#39;</span>, <span class="dt">label_dodge =</span> <span class="kw">unit</span>(<span class="fl">2.5</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_push =</span> <span class="kw">unit</span>(<span class="op">-</span><span class="fl">6.0</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">start_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">end_cap =</span> <span class="kw">circle</span>(<span class="dv">4</span>, <span class="st">&#39;mm&#39;</span>), <span class="dt">label_colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="st">  </span><span class="kw">theme_graph</span>(<span class="dt">foreground =</span> <span class="st">&#39;steelblue&#39;</span>, <span class="dt">fg_text_colour =</span> <span class="st">&#39;white&#39;</span>)</a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="kw">print</span>(gg1)</a></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>We can also plot the factors as separate graphs.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">gg1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_edges</span>(<span class="op">~</span>factor)</a></code></pre></div>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database
-
-## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## font family not found in Windows font database</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">gg1 <span class="op">+</span><span class="st"> </span><span class="kw">facet_edges</span>(<span class="op">~</span>factor)</a></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-24-1.png" width="1152" /></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">F1 &lt;-<span class="st"> </span><span class="kw">list</span>(f1, f2, f3, f4, f5)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">F1</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">F1 &lt;-<span class="st"> </span><span class="kw">list</span>(f1, f2, f3, f4, f5)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">F1</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1]  1 11 14
 ## 
@@ -296,20 +288,20 @@ confirm that the one-factors together constitute a one-factorisation.</p>
 ## 
 ## [[5]]
 ## [1]  4  7 12</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">is_one_factorisation &lt;-<span class="st"> </span><span class="cf">function</span>(of, g) {</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">  <span class="kw">length</span>(F1) <span class="op">==</span><span class="st"> </span><span class="kw">vcount</span>(g) <span class="op">-</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">all</span>(<span class="kw">sapply</span>(of, is_one_factor, g)) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(<span class="kw">difference</span>(<span class="kw">E</span>(g), <span class="kw">E</span>(g)[<span class="kw">unlist</span>(of)])) <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">}</a></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">is_one_factorisation</span>(F1, g)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">is_one_factorisation &lt;-<span class="st"> </span><span class="cf">function</span>(of, g) {</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">  <span class="kw">length</span>(F1) <span class="op">==</span><span class="st"> </span><span class="kw">vcount</span>(g) <span class="op">-</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">all</span>(<span class="kw">sapply</span>(of, is_one_factor, g)) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(<span class="kw">difference</span>(<span class="kw">E</span>(g), <span class="kw">E</span>(g)[<span class="kw">unlist</span>(of)])) <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">is_one_factorisation</span>(F1, g)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="heuristics" class="section level2">
 <h2><span class="header-section-number">5.3</span> Heuristics</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">f1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">11</span>)</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">f2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">15</span>)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">f3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">f4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">pof &lt;-<span class="st"> </span><span class="kw">list</span>(f1, f2, f3, f4)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">f1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">11</span>)</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">f2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">15</span>)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">f3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">f4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">9</span>, <span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">pof &lt;-<span class="st"> </span><span class="kw">list</span>(f1, f2, f3, f4)</a></code></pre></div>
 <div id="heuristic-h_1" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></h3>
 <ol style="list-style-type: decimal">
@@ -387,30 +379,30 @@ was first given in [9] has a very simple form.</p>
 <div id="hill-climbing" class="section level2">
 <h2><span class="header-section-number">5.4</span> Hill-climbing</h2>
 <p>There is a function <code>hill.climbing.search</code> in the FSelector package.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">data</span>(iris)</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">evaluator &lt;-<span class="st"> </span><span class="cf">function</span>(subset) {</a>
-<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co">#k-fold cross validation</span></a>
-<a class="sourceLine" id="cb26-5" data-line-number="5">k &lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb26-6" data-line-number="6">splits &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="kw">nrow</span>(iris))</a>
-<a class="sourceLine" id="cb26-7" data-line-number="7">results =<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>k, <span class="cf">function</span>(i) {</a>
-<a class="sourceLine" id="cb26-8" data-line-number="8">test.idx &lt;-<span class="st"> </span>(splits <span class="op">&gt;=</span><span class="st"> </span>(i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>k) <span class="op">&amp;</span><span class="st"> </span>(splits <span class="op">&lt;</span><span class="st"> </span>i <span class="op">/</span><span class="st"> </span>k)</a>
-<a class="sourceLine" id="cb26-9" data-line-number="9">train.idx &lt;-<span class="st"> </span><span class="op">!</span>test.idx</a>
-<a class="sourceLine" id="cb26-10" data-line-number="10">test &lt;-<span class="st"> </span>iris[test.idx, , drop=<span class="ot">FALSE</span>]</a>
-<a class="sourceLine" id="cb26-11" data-line-number="11">train &lt;-<span class="st"> </span>iris[train.idx, , drop=<span class="ot">FALSE</span>]</a>
-<a class="sourceLine" id="cb26-12" data-line-number="12">tree &lt;-<span class="st"> </span><span class="kw">rpart</span>(<span class="kw">as.simple.formula</span>(subset, <span class="st">&quot;Species&quot;</span>), train)</a>
-<a class="sourceLine" id="cb26-13" data-line-number="13">error.rate =<span class="st"> </span><span class="kw">sum</span>(test<span class="op">$</span>Species <span class="op">!=</span><span class="st"> </span><span class="kw">predict</span>(tree, test, <span class="dt">type=</span><span class="st">&quot;c&quot;</span>)) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(test)</a>
-<a class="sourceLine" id="cb26-14" data-line-number="14"><span class="kw">return</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>error.rate)</a>
-<a class="sourceLine" id="cb26-15" data-line-number="15">})</a>
-<a class="sourceLine" id="cb26-16" data-line-number="16"><span class="kw">print</span>(subset)</a>
-<a class="sourceLine" id="cb26-17" data-line-number="17"><span class="kw">print</span>(<span class="kw">mean</span>(results))</a>
-<a class="sourceLine" id="cb26-18" data-line-number="18"><span class="kw">return</span>(<span class="kw">mean</span>(results))</a>
-<a class="sourceLine" id="cb26-19" data-line-number="19">}</a>
-<a class="sourceLine" id="cb26-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb26-21" data-line-number="21"><span class="kw">library</span>(FSelector)</a>
-<a class="sourceLine" id="cb26-22" data-line-number="22">subset &lt;-<span class="st"> </span><span class="kw">hill.climbing.search</span>(<span class="kw">names</span>(iris)[<span class="op">-</span><span class="dv">5</span>], evaluator)</a>
-<a class="sourceLine" id="cb26-23" data-line-number="23">f &lt;-<span class="st"> </span><span class="kw">as.simple.formula</span>(subset, <span class="st">&quot;Species&quot;</span>)</a>
-<a class="sourceLine" id="cb26-24" data-line-number="24"><span class="kw">print</span>(f)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">data</span>(iris)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">evaluator &lt;-<span class="st"> </span><span class="cf">function</span>(subset) {</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co">#k-fold cross validation</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">k &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">splits &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="kw">nrow</span>(iris))</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">results =<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>k, <span class="cf">function</span>(i) {</a>
+<a class="sourceLine" id="cb28-8" data-line-number="8">test.idx &lt;-<span class="st"> </span>(splits <span class="op">&gt;=</span><span class="st"> </span>(i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span>k) <span class="op">&amp;</span><span class="st"> </span>(splits <span class="op">&lt;</span><span class="st"> </span>i <span class="op">/</span><span class="st"> </span>k)</a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">train.idx &lt;-<span class="st"> </span><span class="op">!</span>test.idx</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">test &lt;-<span class="st"> </span>iris[test.idx, , drop=<span class="ot">FALSE</span>]</a>
+<a class="sourceLine" id="cb28-11" data-line-number="11">train &lt;-<span class="st"> </span>iris[train.idx, , drop=<span class="ot">FALSE</span>]</a>
+<a class="sourceLine" id="cb28-12" data-line-number="12">tree &lt;-<span class="st"> </span><span class="kw">rpart</span>(<span class="kw">as.simple.formula</span>(subset, <span class="st">&quot;Species&quot;</span>), train)</a>
+<a class="sourceLine" id="cb28-13" data-line-number="13">error.rate =<span class="st"> </span><span class="kw">sum</span>(test<span class="op">$</span>Species <span class="op">!=</span><span class="st"> </span><span class="kw">predict</span>(tree, test, <span class="dt">type=</span><span class="st">&quot;c&quot;</span>)) <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(test)</a>
+<a class="sourceLine" id="cb28-14" data-line-number="14"><span class="kw">return</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>error.rate)</a>
+<a class="sourceLine" id="cb28-15" data-line-number="15">})</a>
+<a class="sourceLine" id="cb28-16" data-line-number="16"><span class="kw">print</span>(subset)</a>
+<a class="sourceLine" id="cb28-17" data-line-number="17"><span class="kw">print</span>(<span class="kw">mean</span>(results))</a>
+<a class="sourceLine" id="cb28-18" data-line-number="18"><span class="kw">return</span>(<span class="kw">mean</span>(results))</a>
+<a class="sourceLine" id="cb28-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb28-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb28-21" data-line-number="21"><span class="kw">library</span>(FSelector)</a>
+<a class="sourceLine" id="cb28-22" data-line-number="22">subset &lt;-<span class="st"> </span><span class="kw">hill.climbing.search</span>(<span class="kw">names</span>(iris)[<span class="op">-</span><span class="dv">5</span>], evaluator)</a>
+<a class="sourceLine" id="cb28-23" data-line-number="23">f &lt;-<span class="st"> </span><span class="kw">as.simple.formula</span>(subset, <span class="st">&quot;Species&quot;</span>)</a>
+<a class="sourceLine" id="cb28-24" data-line-number="24"><span class="kw">print</span>(f)</a></code></pre></div>
 
 </div>
 </div>
@@ -440,18 +432,22 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
-"family": "sans",
-"size": 2
+"family": "serif",
+"size": 3
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-generator.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/chapters/05-generator.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
 "toc": {
@@ -467,9 +463,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

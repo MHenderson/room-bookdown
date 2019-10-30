@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="2.7 n-tuplication of Room squares | Room Squares" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="mhenderson/room" />
+
+<meta name="author" content="Matthew Henderson" />
+
+<meta name="date" content="2019-05-31" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>2.7 n-tuplication of Room squares | Room Squares</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#kirkmans-schoolgirl-problem"><span class="toc-section-number">1</span> Kirkman’s Schoolgirl Problem</a><ul>
+<li><a href="1-1-tournaments.html#tournaments"><span class="toc-section-number">1.1</span> Tournaments</a></li>
+<li><a href="1-2-t-g-room-1902-86.html#t.g.-room-1902-86"><span class="toc-section-number">1.2</span> T.G. Room, (1902-86)</a></li>
+<li class="has-sub"><a href="1-3-the-galois-field.html#the-galois-field"><span class="toc-section-number">1.3</span> The Galois Field</a><ul>
+<li><a href="1-3-the-galois-field.html#example"><span class="toc-section-number">1.3.1</span> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="2-existence.html#existence"><span class="toc-section-number">2</span> Existence</a><ul>
+<li class="has-sub"><a href="2-1-starters-adders-and-cyclic-room-squares.html#starters-adders-and-cyclic-room-squares"><span class="toc-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</a><ul>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-a-starter"><span class="toc-section-number">2.1.1</span> Finding a starter</a></li>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-an-adder"><span class="toc-section-number">2.1.2</span> Finding an adder</a></li>
+</ul></li>
+<li><a href="2-2-strong-starters.html#strong-starters"><span class="toc-section-number">2.2</span> Strong Starters</a></li>
+<li><a href="2-3-the-mullin-nemeth-starters.html#the-mullin-nemeth-starters"><span class="toc-section-number">2.3</span> The Mullin-Nemeth Starters</a></li>
+<li><a href="2-4-the-trouble-with-fermat-numbers.html#the-trouble-with-fermat-numbers"><span class="toc-section-number">2.4</span> The Trouble with Fermat Numbers</a></li>
+<li><a href="2-5-a-multiplication-theorem.html#a-multiplication-theorem"><span class="toc-section-number">2.5</span> A Multiplication Theorem</a></li>
+<li><a href="2-6-summary.html#summary"><span class="toc-section-number">2.6</span> Summary</a></li>
+<li><a href="2-7-n-tuplication-of-room-squares.html#n-tuplication-of-room-squares"><span class="toc-section-number">2.7</span> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html#a-graph-theoretic-approach-to-constructing-room-squares"><span class="toc-section-number">3</span> A graph theoretic approach to constructing Room squares</a><ul>
+<li><a href="3-1-graph-factorisations.html#graph-factorisations"><span class="toc-section-number">3.1</span> Graph factorisations</a></li>
+<li class="has-sub"><a href="3-2-hill-climbing-algorithm-for-room-squares.html#hill-climbing-algorithm-for-room-squares"><span class="toc-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-one-factorisations"><span class="toc-section-number">3.2.1</span> An algorithm for One-Factorisations</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-room-squares"><span class="toc-section-number">3.2.2</span> An Algorithm for Room Squares</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#the-room-square-generator"><span class="toc-section-number">3.2.3</span> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-balanced-room-squares.html#balanced-room-squares"><span class="toc-section-number">4</span> Balanced Room Squares</a><ul>
+<li><a href="4-1-bibds-and-brbs.html#bibds-and-brbs"><span class="toc-section-number">4.1</span> BIBDs and BRBs</a></li>
+<li><a href="4-2-complete-balanced-howell-rotations.html#complete-balanced-howell-rotations"><span class="toc-section-number">4.2</span> Complete Balanced Howell Rotations</a></li>
+<li><a href="4-3-starters-and-adders-for-brs-and-cbhr.html#starters-and-adders-for-brs-and-cbhr"><span class="toc-section-number">4.3</span> Starters and Adders for BRS and CBHR</a></li>
+<li><a href="4-4-a-multiplicative-construction-for-brs.html#a-multiplicative-construction-for-brs"><span class="toc-section-number">4.4</span> A Multiplicative Construction for BRS</a></li>
+<li><a href="4-5-symmetric-skew-balanced-starters.html#symmetric-skew-balanced-starters"><span class="toc-section-number">4.5</span> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-hill-climbing-for-one-factorisations.html#hill-climbing-for-one-factorisations"><span class="toc-section-number">5</span> Hill-Climbing for One-Factorisations</a><ul>
+<li><a href="5-1-one-factors.html#one-factors"><span class="toc-section-number">5.1</span> One-factors</a></li>
+<li><a href="5-2-one-factorisations.html#one-factorisations"><span class="toc-section-number">5.2</span> One-factorisations</a></li>
+<li class="has-sub"><a href="5-3-heuristics.html#heuristics"><span class="toc-section-number">5.3</span> Heuristics</a><ul>
+<li><a href="5-3-heuristics.html#heuristic-h_1"><span class="toc-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li><a href="5-3-heuristics.html#heutistic-h_2"><span class="toc-section-number">5.3.2</span> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li><a href="5-4-hill-climbing.html#hill-climbing"><span class="toc-section-number">5.4</span> Hill-climbing</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="n-tuplication-of-room-squares" class="section level2">
+<h2><span class="header-section-number">2.7</span> n-tuplication of Room squares</h2>
+<div id="theorem-3.8.125" class="section level4">
+<h4><span class="header-section-number">2.7.0.1</span> Theorem 3.8.1[25]</h4>
+<p><br />
+If <span class="math inline">\(r\)</span> and <span class="math inline">\(n\)</span> are odd integers such that <span class="math inline">\(r \geq n\)</span>, and if there is a
+Room square <span class="math inline">\(R\)</span> of side <span class="math inline">\(r\)</span>, then there is a Room square of side <span class="math inline">\(rn\)</span>.<br />
+<br />
+<em>Example 3.8.1</em><br />
+Before proving this theorem, we look at an example of triplication in
+order to introduce thisfairly complicated construction.<br />
+The approach taken is to take a Room square of side 7, create 9 arrays
+very similar in structure tothis Room square, and then arrange these 9
+arrays into a 21x21 side array which is very<br />
+Room square.<br />
+Suppose we wished to triplicate the following Room square.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">-</th>
+<th align="center">-</th>
+<th align="center">25</th>
+<th align="center">-</th>
+<th align="center">16</th>
+<th align="center">34</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">45</td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">36</td>
+<td align="center">-</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center">31</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">40</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">-</td>
+<td align="center">42</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">51</td>
+</tr>
+<tr class="even">
+<td align="center">62</td>
+<td align="center">-</td>
+<td align="center">53</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr class="odd">
+<td align="center">-</td>
+<td align="center">03</td>
+<td align="center">-</td>
+<td align="center">64</td>
+<td align="center">12</td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">14</td>
+<td align="center">-</td>
+<td align="center">05</td>
+<td align="center">23</td>
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 20</strong></p>
+<p>Unfortunately, this row has simply too many elements. There should be
+only 11 pairs, not<br />
+and the new Room-ish square would be based on a set of 24 elements not
+22 as we require.Wallis’s original idea had been to somehow merge the
+three <span class="math inline">\(\infty _\mathrm{i}\)</span> into one element, but he eventually decided
+instead to go back to the original square and strip out the diagonal
+elements.Building a Room square is then a matter of arranging the
+following arrays, sometimes called frames,</p>
+<p>$R_{ij} = $</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th></th>
+<th align="center"><span class="math inline">\(2_\mathrm{i}5_\mathrm{j}\)</span></th>
+<th></th>
+<th align="center"><span class="math inline">\(1_\mathrm{i}6_\mathrm{j}\)</span></th>
+<th align="center"><span class="math inline">\(3_\mathrm{i}4_\mathrm{j}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(4_\mathrm{i}5_\mathrm{j}\)</span></td>
+<td></td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(3_\mathrm{i}6_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2_\mathrm{i}0_\mathrm{j}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3_\mathrm{i}1_\mathrm{j}\)</span></td>
+<td><span class="math inline">\(5_\mathrm{i}6_\mathrm{j}\)</span></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(4_\mathrm{i}0_\mathrm{j}\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(4_\mathrm{i}2_\mathrm{j}\)</span></td>
+<td><span class="math inline">\(6_\mathrm{i}0_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5_\mathrm{i}1_\mathrm{j}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(6_\mathrm{i}2_\mathrm{j}\)</span></td>
+<td></td>
+<td><span class="math inline">\(5_\mathrm{i}3_\mathrm{j}\)</span></td>
+<td align="center"><span class="math inline">\(0_\mathrm{i}1_\mathrm{j}\)</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(0_\mathrm{i}3_\mathrm{j}\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(6_\mathrm{i}4_\mathrm{j}\)</span></td>
+<td><span class="math inline">\(1_\mathrm{i}2_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><span class="math inline">\(1_\mathrm{i}4_\mathrm{j}\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(0_\mathrm{i}5_\mathrm{j}\)</span></td>
+<td align="center"><span class="math inline">\(2_\mathrm{i}3_\mathrm{j}\)</span></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 21</strong></p>
+<p>into a 21x21 array, and subsequently finding some way to fill in the
+missing two pairs from<br />
+row of the new square, with the aim of producing a Room square based on
+<span class="math display">\[S = \{\infty,0_1,1_1,...,6_1,0_2,1_2,...,6_2,0_3,1_3,...,6_3\}\]</span>
+Inevitably this approach leads to new problems.<br />
+<br />
+Firstly consider how to arrange the frames appropriately. Suppose we put
+<span class="math inline">\(R_{12}\)</span> next to <span class="math inline">\(R_{13}\)</span>,<br />
+the left hand members of pairs in each row of <span class="math inline">\(R_{12}\)</span> will be repeated
+in the same row of the<br />
+21x21 square due to the placing of <span class="math inline">\(R_{13}\)</span>. The same would be true for
+any <span class="math inline">\(R_{ij}\)</span> next to any <span class="math inline">\(R_{ik}\)</span>,<br />
+next to <span class="math inline">\(R_{kj}\)</span>. So for that reason, in the super-array of <span class="math inline">\(R_{ij}\)</span>s we
+require in each super-row that<br />
+each value 1,2 and 3 and similarly that <span class="math inline">\(j\)</span> takes on all these values.
+To satisfy the column<br />
+for our new Room square we also require that no <span class="math inline">\(R_{ij}\)</span> occurs above or
+below an <span class="math inline">\(R_{ik}\)</span> or <span class="math inline">\(R_{kj}\)</span>, and<br />
+that reason we must also insist that for any super-column of <span class="math inline">\(R_{ij}\)</span>s,
+<span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> independently<br />
+values 1..3, so that each member of <span class="math inline">\(S \backslash \{\infty\}\)</span> occurs
+once in the corresponding 7 columns of<br />
+finished Room square – (except for the missing
+<span class="math inline">\(\{x_i: 0 \leq x \leq 6\}\)</span> from all columns <span class="math inline">\(x_i\)</span>).<br />
+<br />
+Furthermore, as we are aiming for an array in which all the unordered
+pairs from <span class="math inline">\(S\)</span> occur<br />
+once if we also insist that each value of <span class="math inline">\(i\)</span> is paired with each value
+of <span class="math inline">\(j\)</span> exactly once in<br />
+super-array then we should obtain most of these pairs. In fact, because
+<span class="math inline">\(R_{ij} \cup R_{ji}\)</span> contains<br />
+unordered pairs from <span class="math inline">\(\{9_i,o_j,1_i,1_j,...,6_i,6_j\}\)</span>, except those of
+the form <span class="math inline">\(\{x_i,x_j\}\)</span> <span class="math inline">\(1 \leq i,j \leq 3\)</span><br />
+shall obtain all the unordered pairs of <span class="math inline">\(S\)</span> except those of the form
+<span class="math display">\[\{\infty,x_1\},\{\infty,x_2\},\{\infty,x_3\},\{x_1,x_2\},\{x_1,x_3\},\{x_2,x_3\}, 0 \leq x \leq 6\]</span><br />
+The ideal solution to this problem (because it solves the problem of
+missing pairs as well as completing rows/columns) would be to place
+pairs of the form <span class="math inline">\(\{\infty, x_j\}\)</span> and <span class="math inline">\(\{x_i, x_j\}\)</span> at the
+intersection of rows <span class="math inline">\(x_j\)</span> and column <span class="math inline">\(x_j\)</span>, but of course this
+intersection is a single box, and we don’t want two pairs in one box.
+Wallis’s solution to this problem was to permute the columns of some of
+the <span class="math inline">\(R_{ij}\)</span>s from one super-column of the array of frames with the
+intention of arranging it so that the elements <span class="math inline">\(x_i\)</span> <span class="math inline">\(x_j\)</span> would be
+vacant from some column <span class="math inline">\(y \neq x_j\)</span>. This enables us to put the
+<span class="math inline">\(\{\infty, x_j\}\)</span> in column <span class="math inline">\(x_j\)</span> and the <span class="math inline">\(\{x_i,x_j\}\)</span> in column <span class="math inline">\(y\)</span>.<br />
+<br />
+<em>Example,</em><br />
+The elements missing from row <span class="math inline">\(0_1,\)</span> $ , 0_1, 0_2, 0_3$, are also
+missing from column <span class="math inline">\(0_1\)</span> (due to the removal of the pair <span class="math inline">\(\{\infty,0\}\)</span>
+from the original Room square to create the frame). There is no problem
+in putting <span class="math inline">\(\{\infty,0_1\}\)</span> in position <span class="math inline">\((0_1,0_1)\)</span>, but if we want to
+put <span class="math inline">\(\{0_2,0_3\}\)</span> in row <span class="math inline">\(0_1\)</span> it must go in some other column of block
+<span class="math inline">\(R_{11}\)</span>, while remaining in column <span class="math inline">\(1_1\)</span> of blocks <span class="math inline">\(R_{23}\)</span> and
+<span class="math inline">\(R_{32}\)</span>, this can be achieved through a column permutation applied only
+to <span class="math inline">\(R_{23}\)</span> and <span class="math inline">\(R_{32}\)</span>.<br />
+<br />
+Notice that it would be of little use to swap columns <span class="math inline">\(0_1\)</span> and <span class="math inline">\(4_1\)</span> of
+blocks <span class="math inline">\(R_{23}\)</span> and <span class="math inline">\(R_{32}\)</span>, as the fourth column is occupied already
+in the first row of block <span class="math inline">\(R_{11}\)</span>. But we could swap <span class="math inline">\(0_1\)</span> with any of
+<span class="math inline">\(1_1,2_1,3_1\)</span> or <span class="math inline">\(5_1\)</span> because all these columns are empty in row <span class="math inline">\(0_1\)</span>.
+Clearly the essential property we require of any column permutation that
+we decide to use, call it <span class="math inline">\(\theta\)</span>, is that <span class="math inline">\((x,x\theta)\)</span> is unoccupied
+in the original Room square.</p>
+</div>
+<div id="lemma-3.8.1" class="section level4">
+<h4><span class="header-section-number">2.7.0.2</span> Lemma 3.8.1</h4>
+<p><br />
+Given a Room square <span class="math inline">\(R\)</span> of side <span class="math inline">\(r\)</span>, where <span class="math inline">\(r=2s+1\)</span>, there are <span class="math inline">\(s\)</span>
+permutations <span class="math inline">\(\phi_1,\phi_2,...,\phi_s\)</span> of <span class="math inline">\(\{1,2,...,r\}\)</span> with the
+properties that <span class="math inline">\(k\phi_i=k\phi_j\)</span> never occurs unless <span class="math inline">\(i=j\)</span>, and that
+cell <span class="math inline">\((k,k\phi_i)\)</span> is empty for <span class="math inline">\(1 \leq k \leq r, 1 \leq i\leq s\)</span>.<br />
+<br />
+<em>Proof</em><br />
+We define a matrix <span class="math inline">\(M\)</span> in the following manner:<br />
+If position <span class="math inline">\((k,l)\)</span> is <em>empty</em> in <span class="math inline">\(R\)</span> then the <span class="math inline">\((k,l)\)</span> position of <span class="math inline">\(M\)</span>
+is 1, otherwise it is 0.<br />
+Because <span class="math inline">\(M\)</span> is a matrix of 0s and 1s, whose every row and column sum is
+equal to <span class="math inline">\(s\)</span>, it can be decomposed into <span class="math inline">\(s\)</span> matrices, each of which
+having exactly one 1 in each row and column[^8]. <span class="math display">\[M=P_1+P_2+...+P_s\]</span>
+These matrices ,when interpreted in the following or similar manner, are
+known as<br />
+<strong>permutation matrices</strong>:<br />
+Define <span class="math inline">\(\phi_i\)</span> as the permutation corresponding to matrix <span class="math inline">\(P_i\)</span> such
+that if <span class="math inline">\((k,l)\)</span> is 1 in <span class="math inline">\(P_i\)</span> then <span class="math inline">\(k\phi _i=l\)</span>.<br />
+The definition of <span class="math inline">\(M\)</span> ensures that the <span class="math inline">\((k,k\phi _i)\)</span>, so <span class="math inline">\(M\)</span> would have
+an entry equal to 2 or more, contradicting the definition.<br />
+<br />
+<em>Example</em> cont…,<br />
+The matrix <span class="math inline">\(M\)</span> associated with the square from Figure 19 is:</p>
+<p><span class="math display">\[\begin{gathered}
+M=
+  \begin{bmatrix}
+  0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0\\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1\\
+  1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}\end{gathered}\]</span></p>
+<p><br />
+Which can be decomposed (not uniquely) into these permutation matrices:</p>
+<p><span class="math display">\[\begin{gathered}
+M= P_1 + P_2 + P_3 = 
+  \begin{bmatrix}
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}
+  +
+  \begin{bmatrix}
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}
+  +
+  \begin{bmatrix}
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  \end{bmatrix}\end{gathered}\]</span></p>
+<p><br />
+The permutations associated with these matrices are, in cycle notation:
+<span class="math display">\[\phi _1 = (1235674), \phi _2 = (1524637), \phi _3 = (1345726)\]</span> If we
+choose to apply <span class="math inline">\(\phi _1\)</span> to the columns of blocks <span class="math inline">\(R_{23}\)</span> and <span class="math inline">\(R{32}\)</span>
+we get:</p>
+<p><span>|c|c|c|c|c|c|c|c|</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Col/</td>
+</tr>
+<tr class="even">
+<td align="center">Row</td>
+</tr>
+</tbody>
+</table>
+<p>&amp; <span class="math inline">\(0_1\)</span> &amp; <span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_1\)</span> &amp; <span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(5_1\)</span> &amp; <span class="math inline">\(6_1\)</span><br />
+<span class="math inline">\(0_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(2_15_1\)</span> &amp; &amp; <span class="math inline">\(1_16_1\)</span> &amp; <span class="math inline">\(3_14_1\)</span><br />
+<span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(4_15_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(3_16_1\)</span> &amp; &amp; <span class="math inline">\(2_10_1\)</span><br />
+<span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_11_1\)</span> &amp; <span class="math inline">\(5_16_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(4_10_1\)</span> &amp;<br />
+<span class="math inline">\(3_1\)</span> &amp; &amp; <span class="math inline">\(4_12_1\)</span> &amp; <span class="math inline">\(6_10_1\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(5_11_1\)</span><br />
+<span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(6_12_1\)</span> &amp; &amp; <span class="math inline">\(5_13_1\)</span> &amp; <span class="math inline">\(0_11_1\)</span> &amp; &amp; &amp;<br />
+<span class="math inline">\(5_1\)</span> &amp; &amp; <span class="math inline">\(0_13_1\)</span> &amp; &amp; <span class="math inline">\(6_14_1\)</span> &amp; <span class="math inline">\(1_12_1\)</span> &amp; &amp;<br />
+<span class="math inline">\(6_1\)</span> &amp; &amp; &amp; <span class="math inline">\(1_14_1\)</span> &amp; &amp; <span class="math inline">\(0_15_1\)</span> &amp; <span class="math inline">\(2_13_1\)</span> &amp;<br />
+<span class="math inline">\(0_2\)</span> &amp; <span class="math inline">\(2_35_2\)</span> &amp; &amp; &amp; <span class="math inline">\(3_34_2\)</span> &amp; &amp; &amp; <span class="math inline">\(1_36_2\)</span><br />
+<span class="math inline">\(1_2\)</span> &amp; &amp; <span class="math inline">\(4_35_2\)</span> &amp; &amp; <span class="math inline">\(2_30_2\)</span> &amp; &amp; <span class="math inline">\(3_36_2\)</span> &amp;<br />
+<span class="math inline">\(2_2\)</span> &amp; &amp; <span class="math inline">\(3_31_2\)</span> &amp; <span class="math inline">\(5_36_2\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(4_30_2\)</span><br />
+<span class="math inline">\(3_2\)</span> &amp; &amp; &amp; <span class="math inline">\(4_32_2\)</span> &amp; <span class="math inline">\(5_31_2\)</span> &amp; <span class="math inline">\(6_30_2\)</span>&amp; &amp;<br />
+<span class="math inline">\(4_2\)</span> &amp; <span class="math inline">\(0_31_2\)</span> &amp; <span class="math inline">\(6_32_2\)</span> &amp; &amp; &amp; <span class="math inline">\(5_33_2\)</span> &amp; &amp;<br />
+<span class="math inline">\(5_2\)</span> &amp; <span class="math inline">\(6_34_2\)</span> &amp; &amp; <span class="math inline">\(0_33_2\)</span> &amp; &amp; &amp; <span class="math inline">\(1_32_2\)</span> &amp;<br />
+<span class="math inline">\(6_2\)</span> &amp; &amp; &amp; &amp; &amp; <span class="math inline">\(1_34_2\)</span> &amp; <span class="math inline">\(0_35_2\)</span> &amp; <span class="math inline">\(2_33_2\)</span><br />
+<span class="math inline">\(0_3\)</span> &amp; <span class="math inline">\(2_25_3\)</span> &amp; &amp; &amp; <span class="math inline">\(3_24_3\)</span> &amp; &amp; &amp; <span class="math inline">\(1_26_3\)</span><br />
+<span class="math inline">\(1_3\)</span> &amp; &amp; <span class="math inline">\(4_25_3\)</span> &amp; &amp; <span class="math inline">\(2_20_3\)</span> &amp; &amp; <span class="math inline">\(3_26_3\)</span> &amp;<br />
+<span class="math inline">\(2_3\)</span> &amp; &amp; <span class="math inline">\(3_21_3\)</span> &amp; <span class="math inline">\(5_26_3\)</span> &amp; &amp; &amp; &amp; <span class="math inline">\(4_20_3\)</span><br />
+<span class="math inline">\(3_3\)</span> &amp; &amp; &amp; <span class="math inline">\(4_22_3\)</span> &amp; <span class="math inline">\(5_21_3\)</span> &amp; <span class="math inline">\(6_20_3\)</span> &amp; &amp;<br />
+<span class="math inline">\(4_3\)</span> &amp; <span class="math inline">\(0_21_3\)</span> &amp; <span class="math inline">\(6_22_3\)</span> &amp; &amp; &amp; <span class="math inline">\(5_23_3\)</span> &amp; &amp;<br />
+<span class="math inline">\(5_3\)</span> &amp; <span class="math inline">\(6_24_3\)</span> &amp; &amp; <span class="math inline">\(0_23_3\)</span> &amp; &amp; &amp; <span class="math inline">\(1_22_3\)</span> &amp;<br />
+<span class="math inline">\(6_3\)</span> &amp; &amp; &amp; &amp; &amp; <span class="math inline">\(1_24_3\)</span> &amp; <span class="math inline">\(0_25_3\)</span> &amp; <span class="math inline">\(2_23_3\)</span><br />
+</p>
+<p><strong>Figure 24</strong></p>
+<p>Which leaves us free to put <span class="math inline">\(\{\infty, x_1\}\)</span> into <span class="math inline">\((x_1,x_1)\)</span> and
+<span class="math inline">\(\{x_2,x_3\}\)</span> into <span class="math inline">\((x_1,(x\phi _1)_1)\)</span><br />
+e.g. <span class="math inline">\(\{1_2,1_3\}\)</span> can go into <span class="math inline">\((2_1,(2\phi _1)_1)=(2_1,3_1)\)</span>. The
+permutation chosen ensures that cell <span class="math inline">\((2,3)\)</span> of the original square is
+empty.<br />
+<br />
+Filling in the rest of block <span class="math inline">\(R11\)</span> gives:</p>
+<p><span>|c|c|c|c|c|c|c|c|</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Col/</td>
+</tr>
+<tr class="even">
+<td align="center">Row</td>
+</tr>
+</tbody>
+</table>
+<p>&amp; <span class="math inline">\(0_1\)</span> &amp; <span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_1\)</span> &amp; <span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(5_1\)</span> &amp; <span class="math inline">\(6_1\)</span><br />
+<span class="math inline">\(0_1\)</span> &amp; <span class="math inline">\(\infty,0_1\)</span> &amp; <span class="math inline">\(0_20_3\)</span> &amp; &amp; <span class="math inline">\(2_15_1\)</span> &amp; &amp; <span class="math inline">\(1_16_1\)</span> &amp; <span class="math inline">\(3_14_1\)</span><br />
+<span class="math inline">\(1_1\)</span> &amp; <span class="math inline">\(4_15_1\)</span> &amp; <span class="math inline">\(\infty, 1_1\)</span> &amp; <span class="math inline">\(1_21_3\)</span> &amp; &amp; <span class="math inline">\(3_16_1\)</span> &amp; &amp; <span class="math inline">\(2_10_1\)</span><br />
+<span class="math inline">\(2_1\)</span> &amp; <span class="math inline">\(3_11_1\)</span> &amp; <span class="math inline">\(5_16_1\)</span> &amp; <span class="math inline">\(\infty,2_1\)</span> &amp; &amp; <span class="math inline">\(2_22_3\)</span> &amp; <span class="math inline">\(4_10_1\)</span> &amp;<br />
+<span class="math inline">\(3_1\)</span> &amp; <span class="math inline">\(3_23_3\)</span> &amp; <span class="math inline">\(4_12_1\)</span> &amp; <span class="math inline">\(6_10_1\)</span> &amp; <span class="math inline">\(\infty,3_1\)</span> &amp; &amp; &amp; <span class="math inline">\(5_11_1\)</span><br />
+<span class="math inline">\(4_1\)</span> &amp; <span class="math inline">\(6_12_1\)</span> &amp; &amp; <span class="math inline">\(5_13_1\)</span> &amp; <span class="math inline">\(0_11_1\)</span> &amp; <span class="math inline">\(\infty,4_1\)</span> &amp; <span class="math inline">\(4_24_3\)</span> &amp;<br />
+<span class="math inline">\(5_1\)</span> &amp; &amp; <span class="math inline">\(0_13_1\)</span> &amp; &amp; <span class="math inline">\(6_14_1\)</span> &amp; <span class="math inline">\(1_12_1\)</span> &amp; <span class="math inline">\(\infty,5_1\)</span> &amp; <span class="math inline">\(5_25_3\)</span><br />
+<span class="math inline">\(6_1\)</span> &amp; &amp; &amp; <span class="math inline">\(1_14_1\)</span> &amp; <span class="math inline">\(6_26_3\)</span> &amp; <span class="math inline">\(0_15_1\)</span> &amp; <span class="math inline">\(2_13_1\)</span> &amp; <span class="math inline">\(\infty,6_1\)</span><br />
+</p>
+<p><strong>Figure 25</strong></p>
+<p>Notice that this satisfies the row and column properties of a Room
+square for the first seven rows and columns.<br />
+<br />
+Next we move onto the second diagonal block, because missing from row
+and column <span class="math inline">\(x_2\)</span> are the elements <span class="math inline">\(\infty, x_1,x_2,x_3\)</span>. However this
+time we try to find a home for pairs of the form <span class="math inline">\(\{\infty,x_2\}\)</span> and
+<span class="math inline">\(\{x_1,x_3\}\)</span>.<br />
+<br />
+We can put pairs of the form <span class="math inline">\(\{x_1,x_3\}\)</span> down the diagonal and permute
+the columns of block <span class="math inline">\(R_{22}\)</span> with a permutation from Lemma 3.8.1 to
+ensure that column <span class="math inline">\((x\phi _2)_2\)</span> has no <span class="math inline">\(x_2\)</span>, allowing us to put
+<span class="math inline">\(\{\infty,x_2\}\)</span> in that column.<br />
+<br />
+For instance, using <span class="math inline">\(\phi _2\)</span> we can complete block <span class="math inline">\(R_{13}\)</span>, and the
+corresponding seven rows and columns, by putting:</p>
+<p><span class="math inline">\(\{x_1,x_3\}\)</span> in <span class="math inline">\(x_2,x_2\)</span><br />
+and <span class="math inline">\(\{\infty,x_2\}\)</span> in <span class="math inline">\(x_2,(x \phi _2)_2\)</span><br />
+</p>
+<p>Taking the same approach with the third diagonal block we permute
+columns in <span class="math inline">\(R_{33}\)</span> using <span class="math inline">\(\phi _3\)</span>[^9] and fill-in by putting:</p>
+<p><span class="math inline">\(\{x_1,x_2\}\)</span> in <span class="math inline">\(x_3,x_3\)</span><br />
+and <span class="math inline">\(\{\infty,x_3\}\)</span> in <span class="math inline">\(x_3,(x \phi _3)_3\)</span><br />
+</p>
+<p>Which results in a Room square of side 21 based on:
+<span class="math display">\[S = \{\infty,0_1,1_1,...,6_1,0_2,1_2,...,6_2,0_3,1_3,...,6_3\}\]</span> This
+square is straightforwardly transformed to a Room square based on
+<span class="math inline">\(\{\infty,0,1,...,20\}\)</span>, Figure 26, by using: <span class="math display">\[x_i=x+7(i-1)\]</span> We could
+have done this from the beginning, but it is perhaps simpler to keep
+track of the missing elements by maintaining the subscript notation.<br />
+<br />
+The preceding triplication was slightly contrived because the
+arrangement of frames at the beginning was so chosen because it
+satisfied a property as yet unexplained. This property being that the
+<span class="math inline">\(R_{ij}\)</span> and <span class="math inline">\(R_{ji}\)</span> occur in the same super-column of the array as
+frames. Clearly this must be so in order that permutations, when applied
+to both or neither of <span class="math inline">\(R_{ij}\)</span> and <span class="math inline">\(R_{ji}\)</span>, preserve the contents of
+the columns as far as is required.<br />
+<br />
+That an arrangement of frames with this property can be guaranteed to
+exist for any odd integer is fundamental to the generalised theorem.</p>
+</div>
+<div id="lemma-3.8.2" class="section level4">
+<h4><span class="header-section-number">2.7.0.3</span> Lemma 3.8.2</h4>
+<p><br />
+For all odd <span class="math inline">\(n\)</span> there exists an array with these properties:</p>
+<ol style="list-style-type: decimal">
+<li><p>the entries of the array consist of all the ordered pairs of the set
+<span class="math inline">\(N=\{1,2,...,n\}\)</span> once each.</p></li>
+<li><p>the entries of a given row or column contain between them every
+member of <span class="math inline">\(N\)</span> once as a left member and once as a right member.</p></li>
+<li><p>if <span class="math inline">\((x,y)\)</span> occurs in a given column of the array <span class="math inline">\((y,x)\)</span> also occurs
+in that column.</p></li>
+</ol>
+<p><em>Proof</em><br />
+<span class="math inline">\(A_n\)</span> is an <span class="math inline">\(n \times n\)</span> array whose <span class="math inline">\((i,j)\)</span> entry is the ordered pair
+<span class="math inline">\((j-i+1,i+j-1)\)</span> with both elements being reduced modulo <span class="math inline">\(n\)</span> to lie on
+the interval <span class="math inline">\([1,n]\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>There are clearly <span class="math inline">\(n^2\)</span> ordered pairs obtainable from <span class="math inline">\(N\)</span>. <span class="math inline">\(A_n\)</span> has
+<span class="math inline">\(n^2\)</span> cells, so it is only necessary to show that each cell contains
+a unique pair. For that reason consider any two pairs from different
+cells, <span class="math inline">\((x_1,y_1)\)</span> and <span class="math inline">\((x_2,y_2)\)</span>, for these to be equal requires
+both,</p>
+<p><span class="math inline">\(x_1=x_2\)</span> and <span class="math inline">\(y_1=y_2\)</span></p>
+<p>Now, <span class="math inline">\(x_1 = x_2\)</span> <span class="math display">\[\Rightarrow j_1-i_1 + 1 = j_2-i_2+1\]</span> While,
+<span class="math inline">\(y_1=y_2\)</span> <span class="math display">\[\Rightarrow i_1+j_1 - 1 = i_2+j_2-1\]</span> Together these
+imply, <span class="math display">\[j_1-i_1=j_2-i_2 \hspace{1cm}(1)\]</span>
+<span class="math display">\[i_1+j_1=i_2+j_2 \hspace{1cm}(2)\]</span> (2) gives, <span class="math inline">\(j_2=i_1+j_1-i_2\)</span>,
+which on substitution in (1) gives, <span class="math display">\[j_1-i_1=i_1+j_1-2i_2\]</span>
+<span class="math display">\[\Rightarrow 2i_1-2i_2=0\]</span> <span class="math display">\[\therefore i_1=i_2\]</span> Substituting this
+into either expression gives <span class="math inline">\(j_1 = j_2\)</span>.<br />
+Thereby contradicting the assumption that the pairs occurred in
+different cells. Hence every cell contains a unique pair, so all the
+ordered pairs from <span class="math inline">\(N\)</span> occur exactly once in <span class="math inline">\(A_n\)</span>.</p></li>
+<li><p>Consider row <span class="math inline">\(i\)</span> of <span class="math inline">\(A_n\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(j=1\)</span></th>
+<th align="center"><span class="math inline">\(j=2\)</span></th>
+<th align="center">…</th>
+<th align="center"><span class="math inline">\(j=-1\)</span></th>
+<th align="center"><span class="math inline">\(j=0\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\((2-i,i)\)</span></td>
+<td align="center"><span class="math inline">\((3-i,i+1)\)</span></td>
+<td align="center">…</td>
+<td align="center"><span class="math inline">\((-i,i-2)\)</span></td>
+<td align="center"><span class="math inline">\((1-i,i-1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Left hand members are <span class="math inline">\(\{2-i,3-i,...,1-i\}\)</span>, while the right hand
+members are <span class="math inline">\(\{i,i+1,...,i-1\}\)</span>. Both sets contain <span class="math inline">\(n\)</span> unique
+integers on the interval <span class="math inline">\([1,n]\)</span> and hence both sets must be <span class="math inline">\(N\)</span>,
+Similarly, consider column <span class="math inline">\(j\)</span>, the left hand positions are occupied
+by <span class="math inline">\(\{j,j-1,...,j+2,j+1\}\)</span>, while the right contain
+<span class="math inline">\(\{j,j+1,...,j-2,j-1\}\)</span>. For the same reasons both these sets are
+equal to <span class="math inline">\(N\)</span>.</p></li>
+<li><p>Consider a pair <span class="math inline">\((x,y)\)</span>, from the definition of <span class="math inline">\(A_n\)</span>,<br />
+<span class="math inline">\(x=j-i+1\)</span><br />
+<span class="math inline">\(y=i+j-1\)</span><br />
+<span class="math inline">\(x+y=j-i+1+i+j-1=2j\)</span><br />
+<span class="math inline">\(\therefore j= \frac{1}{2} (x+y)\)</span><br />
+So if <span class="math inline">\((x,y)\)</span> is in column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span> then so is <span class="math inline">\((y,x)\)</span>, since
+<span class="math inline">\(\frac{1}{2}(x+y)=\frac{1}{2}(y+x)\)</span>.</p></li>
+</ol>
+<p>We can now present the general result.</p>
+</div>
+<div id="theorem-3.8.1-25" class="section level4">
+<h4><span class="header-section-number">2.7.0.4</span> Theorem 3.8.1 [25]</h4>
+<p><br />
+If <span class="math inline">\(r\)</span> and <span class="math inline">\(n\)</span> are odd integers such that <span class="math inline">\(r \geq n\)</span>, and if there is a
+Room square <span class="math inline">\(R\)</span> of side <span class="math inline">\(r\)</span>, then there is a Room square of side <span class="math inline">\(rn\)</span>.<br />
+<br />
+<em>Proof</em><br />
+Let <span class="math inline">\(r=2d+1\)</span> and <span class="math inline">\(n=2t+1\)</span>.<br />
+For a given <span class="math inline">\(i\)</span> select <span class="math inline">\(n\)</span> permutations as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\phi _{jk} = \phi _{jl}\)</span> if, and only if, <span class="math inline">\((k,l)\)</span>, and <span class="math inline">\((l,k)\)</span>
+appear in column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span>.</p></li>
+<li><p>If cell <span class="math inline">\((j,j)\)</span> of <span class="math inline">\(A_n\)</span> contains <span class="math inline">\((x,y)\)</span> then
+<span class="math inline">\(\phi _{jx}=\phi _{jy}=id\)</span> (the identity permutation).</p></li>
+<li><p>All the <span class="math inline">\(\phi _{jk} (\neq id)\)</span> are selected from the permutations
+associated with <span class="math inline">\(R\)</span>, according to Lemma 3.8.1</p></li>
+</ol>
+<p>Now a Room square of side <span class="math inline">\(rn\)</span> is constructed by replacing each entry
+<span class="math inline">\((k,l)\)</span> of <span class="math inline">\(A_n\)</span> by <span class="math inline">\(R_{kl} \phi _{jk}\)</span> (the array <span class="math inline">\(R_{kl}\)</span> under the
+column permutation <span class="math inline">\(\phi _{jk}\)</span>), where <span class="math inline">\((k,l)\)</span> is in column <span class="math inline">\(j\)</span> of
+<span class="math inline">\(A_n\)</span>.<br />
+<br />
+The resulting array has each element of,
+<span class="math display">\[S = \{0_1,1_1,...,(r-1)_1,0_2,1_2,...,(r-1)_2,0_n,1_n,...,(r-1)_n\}\]</span>
+appearing exactly once in each row and column, except that <span class="math inline">\(x_j\)</span> is
+missing from row and column <span class="math inline">\(x_j,\)</span>
+<span class="math inline">\(1 \leq j \leq n \hspace{0.4cm} 0 \leq x \leq (r-1)\)</span>, and <span class="math inline">\(x_k\)</span> and
+<span class="math inline">\(x_l\)</span> are missing from column <span class="math inline">\((x \phi _{jk})_j\)</span> for each entry <span class="math inline">\((k,l)\)</span>
+in column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span>.<br />
+<br />
+The array also contains every unordered pair from <span class="math inline">\(S\)</span> exactly once,
+except those of the form <span class="math inline">\(\{x_k,x_l\}\)</span>.<br />
+Now, for each <span class="math inline">\(k\)</span>, if <span class="math inline">\((k,l)\)</span> is an entry of column <span class="math inline">\(j\)</span> of <span class="math inline">\(A_n\)</span> put
+<span class="math inline">\(\{x_k,x_l\}\)</span> in <span class="math inline">\((x_j,(x \phi _{jk})_j)\)</span>, using <span class="math inline">\(\{\infty, x_j\}\)</span>
+instead of <span class="math inline">\(\{x_j,x_j\}\)</span> in every case.<br />
+<br />
+The completed array contains each of <span class="math inline">\(\{\infty\} \cup S\)</span> exactly once
+per row and column and every unordered pair from the same set exactly
+once.<br />
+<br />
+Finally, map <span class="math inline">\(\{\infty\} \cup S\)</span> onto <span class="math inline">\(\{\infty \} \cup Z_{rn}\)</span> by
+replacing every <span class="math inline">\(x_i\)</span> by <span class="math inline">\(x+r(i-1)\)</span>. The finished array is a Room square
+of side <span class="math inline">\(rn\)</span>.<br />
+<br />
+<em>Example</em><br />
+Looking back at the previous example of triplication.</p>
+<p>$A_3 = $</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="center">1,1</td>
+<td align="center">2,2</td>
+<td align="center">3,3</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="center">3,2</td>
+<td align="center">1,3</td>
+<td align="center">2,1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td align="center">2,3</td>
+<td align="center">3,1</td>
+<td align="center">1,2</td>
+</tr>
+</tbody>
+</table>
+<p>Now, in column 1 (3,2) and (2,3) both appear, so
+<span class="math display">\[\phi _{13} = \phi _{12}\]</span> While in column 2 occur both (1,3) and
+(3,1), so <span class="math display">\[\phi _{21} = \phi _{23}\]</span> Furthermore, both (2,1) and (1,2)
+appear in the third column, so <span class="math display">\[\phi _{32} = \phi _{31}\]</span> The diagonal
+pairs are (1,1),(1,3),(1,2) so
+<span class="math inline">\(\phi _{11}=\phi _{21}=\phi _{23}=\phi _{31}=\phi _{32}=id\)</span><br />
+The remaining permutations,
+<span class="math inline">\(\phi _{12},\phi _{13},\phi _{22},\phi _{33}\)</span> are chosen according to
+the Lemma 3.8.1 and the following array is the Room square in Fig 26
+once the missing pairs have been placed and the transformation to
+<span class="math inline">\(\{\infty, 0, 1, ..., 20\}\)</span> made.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(R_{11}\phi _{11}\)</span></th>
+<th align="center"><span class="math inline">\(R_{22}\phi _{22}\)</span></th>
+<th align="center"><span class="math inline">\(R_{33}\phi _{33}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R_{32}\phi _{13}\)</span></td>
+<td align="center"><span class="math inline">\(R_{13}\phi _{21}\)</span></td>
+<td align="center"><span class="math inline">\(R_{21}\phi _{32}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R_{23}\phi _{12}\)</span></td>
+<td align="center"><span class="math inline">\(R_{31}\phi _{23}\)</span></td>
+<td align="center"><span class="math inline">\(R_{12}\phi _{31}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(R_{11}id\)</span></th>
+<th align="center"><span class="math inline">\(R_{22}\phi _{2}\)</span></th>
+<th align="center"><span class="math inline">\(R_{33}\phi _{3}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(R_{32}\phi _{1}\)</span></td>
+<td align="center"><span class="math inline">\(R_{13}id\)</span></td>
+<td align="center"><span class="math inline">\(R_{21}id\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(R_{23}\phi _{1}\)</span></td>
+<td align="center"><span class="math inline">\(R_{31}id\)</span></td>
+<td align="center"><span class="math inline">\(R_{12}id\)</span></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<!-- </div> -->
+<p style="text-align: center;">
+<a href="2-6-summary.html"><button class="btn btn-default">Previous</button></a>
+<a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

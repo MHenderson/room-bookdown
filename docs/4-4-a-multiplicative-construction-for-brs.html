@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="4.4 A Multiplicative Construction for BRS | Room Squares" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="mhenderson/room" />
+
+<meta name="author" content="Matthew Henderson" />
+
+<meta name="date" content="2019-05-31" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>4.4 A Multiplicative Construction for BRS | Room Squares</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#kirkmans-schoolgirl-problem"><span class="toc-section-number">1</span> Kirkman’s Schoolgirl Problem</a><ul>
+<li><a href="1-1-tournaments.html#tournaments"><span class="toc-section-number">1.1</span> Tournaments</a></li>
+<li><a href="1-2-t-g-room-1902-86.html#t.g.-room-1902-86"><span class="toc-section-number">1.2</span> T.G. Room, (1902-86)</a></li>
+<li class="has-sub"><a href="1-3-the-galois-field.html#the-galois-field"><span class="toc-section-number">1.3</span> The Galois Field</a><ul>
+<li><a href="1-3-the-galois-field.html#example"><span class="toc-section-number">1.3.1</span> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="2-existence.html#existence"><span class="toc-section-number">2</span> Existence</a><ul>
+<li class="has-sub"><a href="2-1-starters-adders-and-cyclic-room-squares.html#starters-adders-and-cyclic-room-squares"><span class="toc-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</a><ul>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-a-starter"><span class="toc-section-number">2.1.1</span> Finding a starter</a></li>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-an-adder"><span class="toc-section-number">2.1.2</span> Finding an adder</a></li>
+</ul></li>
+<li><a href="2-2-strong-starters.html#strong-starters"><span class="toc-section-number">2.2</span> Strong Starters</a></li>
+<li><a href="2-3-the-mullin-nemeth-starters.html#the-mullin-nemeth-starters"><span class="toc-section-number">2.3</span> The Mullin-Nemeth Starters</a></li>
+<li><a href="2-4-the-trouble-with-fermat-numbers.html#the-trouble-with-fermat-numbers"><span class="toc-section-number">2.4</span> The Trouble with Fermat Numbers</a></li>
+<li><a href="2-5-a-multiplication-theorem.html#a-multiplication-theorem"><span class="toc-section-number">2.5</span> A Multiplication Theorem</a></li>
+<li><a href="2-6-summary.html#summary"><span class="toc-section-number">2.6</span> Summary</a></li>
+<li><a href="2-7-n-tuplication-of-room-squares.html#n-tuplication-of-room-squares"><span class="toc-section-number">2.7</span> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html#a-graph-theoretic-approach-to-constructing-room-squares"><span class="toc-section-number">3</span> A graph theoretic approach to constructing Room squares</a><ul>
+<li><a href="3-1-graph-factorisations.html#graph-factorisations"><span class="toc-section-number">3.1</span> Graph factorisations</a></li>
+<li class="has-sub"><a href="3-2-hill-climbing-algorithm-for-room-squares.html#hill-climbing-algorithm-for-room-squares"><span class="toc-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-one-factorisations"><span class="toc-section-number">3.2.1</span> An algorithm for One-Factorisations</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-room-squares"><span class="toc-section-number">3.2.2</span> An Algorithm for Room Squares</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#the-room-square-generator"><span class="toc-section-number">3.2.3</span> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-balanced-room-squares.html#balanced-room-squares"><span class="toc-section-number">4</span> Balanced Room Squares</a><ul>
+<li><a href="4-1-bibds-and-brbs.html#bibds-and-brbs"><span class="toc-section-number">4.1</span> BIBDs and BRBs</a></li>
+<li><a href="4-2-complete-balanced-howell-rotations.html#complete-balanced-howell-rotations"><span class="toc-section-number">4.2</span> Complete Balanced Howell Rotations</a></li>
+<li><a href="4-3-starters-and-adders-for-brs-and-cbhr.html#starters-and-adders-for-brs-and-cbhr"><span class="toc-section-number">4.3</span> Starters and Adders for BRS and CBHR</a></li>
+<li><a href="4-4-a-multiplicative-construction-for-brs.html#a-multiplicative-construction-for-brs"><span class="toc-section-number">4.4</span> A Multiplicative Construction for BRS</a></li>
+<li><a href="4-5-symmetric-skew-balanced-starters.html#symmetric-skew-balanced-starters"><span class="toc-section-number">4.5</span> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-hill-climbing-for-one-factorisations.html#hill-climbing-for-one-factorisations"><span class="toc-section-number">5</span> Hill-Climbing for One-Factorisations</a><ul>
+<li><a href="5-1-one-factors.html#one-factors"><span class="toc-section-number">5.1</span> One-factors</a></li>
+<li><a href="5-2-one-factorisations.html#one-factorisations"><span class="toc-section-number">5.2</span> One-factorisations</a></li>
+<li class="has-sub"><a href="5-3-heuristics.html#heuristics"><span class="toc-section-number">5.3</span> Heuristics</a><ul>
+<li><a href="5-3-heuristics.html#heuristic-h_1"><span class="toc-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li><a href="5-3-heuristics.html#heutistic-h_2"><span class="toc-section-number">5.3.2</span> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li><a href="5-4-hill-climbing.html#hill-climbing"><span class="toc-section-number">5.4</span> Hill-climbing</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="a-multiplicative-construction-for-brs" class="section level2">
+<h2><span class="header-section-number">4.4</span> A Multiplicative Construction for BRS</h2>
+<p>Although the Hwang starter-adder construction establishes the existence
+of an infinite class of <span class="math inline">\(BRS\)</span>, like Mullin &amp; Nemeth’s construction for
+Room squares, exceptions still remain.<br />
+<br />
+Particularly all those <span class="math inline">\(BRS\)</span> of order <span class="math inline">\(q+1\)</span> where q is not a prime
+power, yet is congruent 3 modulo 4. For example, the existence of
+<span class="math inline">\(BRS(16)\)</span> is not established yet, because 15 is not a prime power. One
+approach to resolving this problem would be to establish a
+multiplication theorem like those established for Room squares. The
+following doubling construction for <span class="math inline">\(BRS\)</span> (due to Schellenberg), for
+example, enables to construction of a <span class="math inline">\(BRS(16)\)</span> from two <span class="math inline">\(BRS(8)\)</span>.<br />
+<br />
+Significantly, used along with Hwang’s starter-adder construction, it
+establishes the existence of another infinite class of <span class="math inline">\(BRS\)</span>, those of
+order <span class="math inline">\(2(q+1)\)</span>, where <span class="math inline">\(q\)</span> is subject to the conditions of Theorem 3.5.<br />
+<br />
+Before presenting the doubling construction a few definitions need to be
+made, and another result regarding self-complementary block designs
+established.<br />
+<br />
+The <strong><em>reduced</em></strong> Room square <span class="math inline">\(\hat{R}\)</span>, is obtained by taking a
+standardised Room square <span class="math inline">\(R\)</span> and removing the pairs involving <span class="math inline">\(\infty\)</span>,
+i.e. the diagonal pairs.<br />
+<br />
+Two <span class="math inline">\(ORS\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> (both of side <span class="math inline">\(a\)</span>) are said to be a <strong><em>Latin
+pair</em></strong> if on forming the join of <span class="math inline">\(\hat{R}\)</span> and <span class="math inline">\(\hat{S}\)</span>, and placing
+the pair <span class="math inline">\((i,i)\)</span> in cell <span class="math inline">\((i,i)\)</span> for <span class="math inline">\(0 \leq i \leq q-1\)</span> the join of two
+<span class="math inline">\(MOLS\)</span> is obtained, denoted by <span class="math inline">\(R \odot S\)</span>.<br />
+<br />
+A <strong><em>common traversal</em></strong> of <span class="math inline">\(R \odot S\)</span> is a set of <span class="math inline">\(q\)</span> cells, one from
+each row and each column, whose <span class="math inline">\(n\)</span> ordered pairs have <span class="math inline">\(n\)</span> distinct
+first elements and <span class="math inline">\(n\)</span> distinct second elements.<br />
+<br />
+Suppose we have a set of varieties <span class="math inline">\(V = \{1,2,3,...\}\)</span>, then by a set
+<span class="math inline">\(V&#39;\)</span>, we mean <span class="math inline">\(V&#39;=\{1&#39;,2&#39;,3&#39;,...\}\)</span>.</p>
+<div id="lemma-5.4.1" class="section level4">
+<h4><span class="header-section-number">4.4.0.1</span> Lemma 5.4.1</h4>
+<p>[21] If
+<span class="math display">\[\bigcup\limits_{i=1}^{2k-1} \left \{C_i,\bar{C_i} \right \} \hspace{0.5cm} \mathrm{and} \hspace{0.5cm} 
+\bigcup\limits_{i=1}^{2k-1} \left \{D_i,\bar{D_i} \right \}\]</span> are the
+blocks of two self-complementary <span class="math inline">\(BIBD\)</span>s, both defined on a set of
+elements <span class="math inline">\(V\)</span>, where <span class="math inline">\(\bar{C}\)</span> denotes the complement of <span class="math inline">\(C\)</span>, with
+parameters <span class="math inline">\((2k,2(2k-1),2k-1,k,k-1)\)</span> then.
+<span class="math display">\[\bigcup\limits_{i=1}^{2k-1} \left \{C_i \cup D&#39;_i, \bar{C_i} \cup \bar{D&#39;_i}, C_i \cup \bar{D&#39;_i},
+\bar{C_i} \cup D&#39;_i  \right \} \cup \{V,V&#39;\}\]</span> is the set of blocks of a
+self-complementary <span class="math inline">\(BIBD\)</span>, defined on the set of elements <span class="math inline">\(V \cup V&#39;\)</span>,
+with parameters <span class="math inline">\((4k,2(4k-1),4k-1,2k,2k-1)\)</span>.<br />
+<br />
+<em>Proof</em><br />
+Consider an arbitrary pair <span class="math inline">\(\{a,b\}\)</span> in the new <span class="math inline">\(BIBD\)</span> where
+<span class="math inline">\(a,b \in V\)</span>. The concurrence number of the original <span class="math inline">\(BIBD\)</span> was <span class="math inline">\(k-1\)</span>, so
+this pair occurred <span class="math inline">\(k-1\)</span> times in the blocks
+<span class="math inline">\(\bigcup\limits_{i=1}^{2k-1} \left \{C_i,\bar{C_i} \right \}\)</span>, but these
+blocks clearly appear twice each in the new <span class="math inline">\(BIBD\)</span>. Also the pair
+<span class="math inline">\(\{a,b\}\)</span> occurs once in the block <span class="math inline">\(V\)</span>, so the pair <span class="math inline">\(\{a,b\}\)</span> occurs
+<span class="math inline">\(2(k-1)+1 = 2k-1\)</span> times. The same would be true for any pair <span class="math inline">\(\{a,b\}\)</span>
+when <span class="math inline">\(a,b \in V&#39;\)</span>.<br />
+<br />
+Now consider an arbitrary pair <span class="math inline">\(\{a,b\}\)</span> when <span class="math inline">\(a \in V\)</span>, and <span class="math inline">\(b \in V&#39;\)</span>.
+From the definition of complementary blocks <span class="math inline">\(a\)</span> occurs either <span class="math inline">\(C\)</span> or
+<span class="math inline">\(\bar{C}\)</span> and <span class="math inline">\(b\)</span> in either <span class="math inline">\(D&#39;\)</span> or <span class="math inline">\(\bar{D&#39;}\)</span>, for some value of <span class="math inline">\(i\)</span>,
+and because all pair combinations between <span class="math inline">\(C\)</span>-blocks and <span class="math inline">\(D&#39;\)</span>-blocks are
+formed in the new design and because <span class="math inline">\(i\)</span> takes <span class="math inline">\(2k-1\)</span> values in the new
+design so the pair makes <span class="math inline">\(2k-1\)</span> appearances.<br />
+<br />
+Hence the new block design is a <span class="math inline">\(BIBD\)</span> with <span class="math inline">\(\lambda =2k-1\)</span>. <span class="math inline">\(\square\)</span></p>
+</div>
+<div id="theorem-5.4.1" class="section level4">
+<h4><span class="header-section-number">4.4.0.2</span> Theorem 5.4.1</h4>
+<p>Suppose we have two <span class="math inline">\(BRS(q+1)\)</span>, <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> based on <span class="math inline">\(G = GF(q)\)</span>, with
+the following properties:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are a <em>Latin pair</em> such that,</p></li>
+<li><p><span class="math inline">\(R \odot S\)</span> has a pair of disjoint <em>common transversals</em> <span class="math inline">\(T_1\)</span> and
+<span class="math inline">\(T_2\)</span> (with <span class="math inline">\(T_2\)</span> in <span class="math inline">\(R\)</span>), which do not intersect the main diagonal,
+and</p></li>
+<li><p>the block designs obtained from <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span>, call them <span class="math inline">\(D(R)\)</span> and
+<span class="math inline">\(D(S)\)</span> respectively, have the property that if <span class="math inline">\(\{\infty\} \cup B_i\)</span>
+and <span class="math inline">\(\{i\} \cup C_i\)</span> are the blocks of <span class="math inline">\(D(R)\)</span> obtained from row <span class="math inline">\(i\)</span>,
+then <span class="math inline">\(\{i\} \cup B_i\)</span> and <span class="math inline">\(\{\infty\} \cup C_i\)</span> are the blocks of
+<span class="math inline">\(D(S)\)</span> obtained from row <span class="math inline">\(i\)</span>.</p></li>
+</ol>
+<p>Then a <span class="math inline">\(BRS(2(q+1))\)</span> exists.<br />
+<br />
+<em>Proof</em><br />
+Define <span class="math inline">\(A\)</span> to be the array obtained from the superposition of <span class="math inline">\(\hat{R}\)</span>
+and <span class="math inline">\(\hat{S&#39;}\)</span>. Where <span class="math inline">\(\hat{S&#39;}\)</span> is obtained by replacing the elements
+of <span class="math inline">\(G\)</span> in <span class="math inline">\(\hat{S}\)</span> (the reduced RS) by the corresponding elements of
+<span class="math inline">\(G&#39;\)</span> and replacing <span class="math inline">\(\infty\)</span> by <span class="math inline">\(\infty&#39;\)</span>. <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> were <span class="math inline">\(BRS\)</span> so each
+column and row of <span class="math inline">\(A\)</span> contains each member of
+<span class="math inline">\(G \cup G&#39; \cup \{\infty,\infty&#39;\}\)</span>, except those elements <span class="math inline">\(i,i&#39;,\infty\)</span>
+and <span class="math inline">\(\infty&#39;\)</span> which are missing from row and column <span class="math inline">\(i\)</span> due to the
+reduction process. Further, <span class="math inline">\(A\)</span> contains every pair
+<span class="math inline">\(\{i,j\},\{i&#39;,j&#39;\} \hspace{0.25cm} i,j \in G,i \neq j\)</span> exactly once.<br />
+Define <span class="math inline">\(B\)</span> as the array obtained from <span class="math inline">\(R \odot S\)</span> when each pair <span class="math inline">\((i,j)\)</span>
+is replaced by <span class="math inline">\((i,j&#39;)\)</span>.<br />
+<br />
+Now, <span class="math inline">\(D\)</span> is defined as the array obtained from <span class="math inline">\(B\)</span> according to this
+procedure:<br />
+If cell <span class="math inline">\((m,n), m\neq n\)</span> of <span class="math inline">\(R\)</span> is not empty, replace <span class="math inline">\((i,j&#39;)\)</span> in cell
+<span class="math inline">\((m,n)\)</span> of <span class="math inline">\(B\)</span> by <span class="math inline">\((j&#39;,i)\)</span>. Because <span class="math inline">\(R \odot S\)</span> is a pair of superposed
+orthogonal latin squares <span class="math inline">\(D\)</span> contains each member of <span class="math inline">\(G \cup G&#39;\)</span> exactly
+once in each row and column. Also, the way in which we have repalced
+elements ensures that every unordered pair <span class="math inline">\(\{i,j&#39;\}\)</span> for all
+<span class="math inline">\(i,j \in G\)</span> occurs exactly once in <span class="math inline">\(D\)</span>.<br />
+<br />
+Next, construct <span class="math inline">\(C\)</span> by arranging the arrays <span class="math inline">\(A\)</span> and <span class="math inline">\(D\)</span> according to the
+following layout, in which <span class="math inline">\(\phi\)</span> is the <span class="math inline">\(q \times q\)</span> array with every
+cell empty, <span class="math inline">\(\theta\)</span> the <span class="math inline">\(1 \times q\)</span> array of empty cells and
+<span class="math inline">\(\theta ^T\)</span> the transpose of <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math inline">\(C=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(A\)</span></th>
+<th align="center"><span class="math inline">\(\phi\)</span></th>
+<th align="center"><span class="math inline">\(\theta ^T\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\phi\)</span></td>
+<td align="center"><span class="math inline">\(D\)</span></td>
+<td align="center"><span class="math inline">\(\theta ^T\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\theta\)</span></td>
+<td align="center"><span class="math inline">\(\theta\)</span></td>
+<td align="center"><span class="math inline">\(\infty&#39;,\infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The rows and columns of this new array are labelled
+<span class="math inline">\(0,1,2,...,q-1,0&#39;,1&#39;,2&#39;,...,(q-1)&#39;,l\)</span>. So that the pair
+<span class="math inline">\((\infty &#39;, \infty)\)</span> is in cell <span class="math inline">\((l,l)\)</span>.<br />
+<br />
+Let</p>
+<p><span class="math inline">\(T&#39;_p = \{ (i&#39;_m,j&#39;_m) | (i_m,j_m)\)</span> <em>is a cell transversal</em> <span class="math inline">\(T_p \}\)</span></p>
+<p>be the set of cells of <span class="math inline">\(C\)</span>, corresponding to transversal
+<span class="math inline">\(T_p \hspace{0.25cm}(p=1,2)\)</span> of <span class="math inline">\(R \odot S\)</span>.<br />
+<br />
+Construct a new array <span class="math inline">\(F\)</span>, based on <span class="math inline">\(C\)</span> according to the following
+prescription:<br />
+<br />
+Consider cell <span class="math inline">\((i&#39;_m,j&#39;_m) \in T&#39;_1\)</span>. If cell <span class="math inline">\((i_m,j_m)\)</span> is not empty
+in <span class="math inline">\(R\)</span> then <span class="math inline">\((i&#39;_m,j&#39;_m)\)</span> of <span class="math inline">\(C\)</span> contains a pair <span class="math inline">\((k&#39;,n)\)</span>, otherwise it
+contains a pair <span class="math inline">\((n,k&#39;)\)</span>. [In either case
+<span class="math inline">\(k,nm \in G \hspace{0.25cm} k \neq n\)</span> (the transversal does not
+intersect the diagonal)]. Remove whichever pair appears in cell
+<span class="math inline">\((i&#39;_m,j&#39;_m)\)</span> and put it in cell <span class="math inline">\((i&#39;_m,l)\)</span>. Also place <span class="math inline">\((\infty&#39;,k&#39;)\)</span>,
+<span class="math inline">\((\infty,n)\)</span> in cells <span class="math inline">\((k,j&#39;_m),(n,j&#39;_m)\)</span> respectively.<br />
+If <span class="math inline">\((i&#39;_m,j&#39;_m) \in T&#39;_2\)</span> then a pair <span class="math inline">\((k&#39;,n)\)</span> appears in cell
+<span class="math inline">\((i&#39;_m,j&#39;_m)\)</span>. Again remove it, but this time put it in <span class="math inline">\((l,j&#39;_m)\)</span>. In
+addition pairs <span class="math inline">\((k&#39;,\infty),(\infty &#39;,n)\)</span> go in cells
+<span class="math inline">\((i&#39;_m,k),(i&#39;_m,n)\)</span> respectively.<br />
+<br />
+<span class="math inline">\(F\)</span> is a <span class="math inline">\(BRS\)</span> because,</p>
+<ul>
+<li><p><span class="math inline">\(A\)</span> and <span class="math inline">\(D\)</span> between them intially contain all the unordered pairs
+<span class="math inline">\(\{i,j\},\{i&#39;,j&#39;\}\)</span> <span class="math inline">\(i,j \in G, i\neq j\)</span> and <span class="math inline">\(\{i,j&#39;\}\)</span> for all
+<span class="math inline">\(i,j \in G\)</span>. So <span class="math inline">\(F\)</span> has an ordered pair corresponding to each of
+these.</p></li>
+<li><p>The procedure in the preceding paragraph contributes the remaining
+ordered pairs<br />
+<span class="math inline">\((\infty &#39;,k&#39;),(\infty,n),(k&#39;,\infty),(\infty &#39;,n)\)</span> for all
+<span class="math inline">\(k,n \in G \hspace{0.25cm} k \neq n\)</span> in such a way that the elements
+missing from the first <span class="math inline">\(q\)</span> rows and columns are suitably placed, and
+<span class="math inline">\(\infty\)</span> and <span class="math inline">\(\infty &#39;\)</span> are placed in each row and column of <span class="math inline">\(F\)</span>.
+Hence each row and column of <span class="math inline">\(F\)</span> contains every member of
+<span class="math inline">\(\{\infty, \infty &#39;\} \cup G \cup G&#39;\)</span> exactly once.</p></li>
+</ul>
+<p>The block design obtained from the rows of <span class="math inline">\(F\)</span> has blocks:</p>
+$
+.
+
+<p>}
+0 i q-1
+$</p>
+<p>from rows 0,1,…,<span class="math inline">\(q-1\)</span> blocks</p>
+$
+.
+
+<p>}
+0 i q-1
+$</p>
+<p>from rows <span class="math inline">\(0&#39;,1&#39;,...,(q-1)&#39;\)</span>, and the blocks
+<span class="math display">\[\{\infty\} \cup F, \{\infty &#39;\} \cup G&#39;\]</span> obtained from row <span class="math inline">\(l\)</span>.<br />
+According to condition 3 of Theorem 3.6 and Lemma 3.1, these blocks for
+a <span class="math inline">\(BIBD\)</span>. <span class="math inline">\(\square\)</span><br />
+<br />
+<em>Example 5.4.1</em><br />
+Consider the following <span class="math inline">\(BRS(8)\)</span>s</p>
+<p><span class="math inline">\(R=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th></th>
+<th align="center">13</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">30</td>
+<td>56</td>
+<td align="center"></td>
+<td>24</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td>41</td>
+<td align="center">60</td>
+<td></td>
+<td>35</td>
+</tr>
+<tr class="odd">
+<td align="center">46</td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">52</td>
+<td>01</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">50</td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td>63</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center"></td>
+<td align="center">61</td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 5\)</span></td>
+<td>04</td>
+</tr>
+<tr class="even">
+<td align="center">15</td>
+<td align="center">34</td>
+<td align="center"></td>
+<td>02</td>
+<td align="center"></td>
+<td></td>
+<td><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{0.5cm} S=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th></th>
+<th></th>
+<th align="center">64</th>
+<th></th>
+<th align="center">32</th>
+<th align="center">51</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">62</td>
+<td><span class="math inline">\(\infty 1\)</span></td>
+<td></td>
+<td align="center"></td>
+<td>05</td>
+<td align="center"></td>
+<td align="center">43</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td>03</td>
+<td><span class="math inline">\(\infty 2\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center">16</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td>65</td>
+<td>14</td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center">31</td>
+<td></td>
+<td>06</td>
+<td align="center">25</td>
+<td><span class="math inline">\(\infty 4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td>42</td>
+<td></td>
+<td align="center">10</td>
+<td>36</td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td></td>
+<td>53</td>
+<td align="center"></td>
+<td>21</td>
+<td align="center">40</td>
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{3.5cm}\)</span> <strong>Figure 28</strong> <span class="math inline">\(\hspace{6cm}\)</span> <strong>Figure 29</strong><br />
+<br />
+These <span class="math inline">\(BRS\)</span> satisfy all three properties required by Theorem 3.6. (We
+shall see why later).<br />
+Suppose we take the following two disjoint common transversals as <span class="math inline">\(T_1\)</span>
+(lighter grey shading) and <span class="math inline">\(T_2\)</span> (darker grey shading).</p>
+<p><span class="math inline">\(R \odot S=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">00</th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th align="center">64</th>
+<th align="center">13</th>
+<th align="center">32</th>
+<th align="center">51</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">62</td>
+<td align="center">11</td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center">05</td>
+<td align="center">24</td>
+<td align="center">43</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td align="center">03</td>
+<td align="center">22</td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center">16</td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td align="center">46</td>
+<td align="center">65</td>
+<td align="center">14</td>
+<td align="center">33</td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="center">31</td>
+<td align="center">50</td>
+<td align="center">06</td>
+<td align="center">25</td>
+<td align="center">44</td>
+<td align="center">63</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center">42</td>
+<td align="center">61</td>
+<td align="center">10</td>
+<td align="center">36</td>
+<td align="center">55</td>
+<td align="center">04</td>
+</tr>
+<tr class="even">
+<td align="center">15</td>
+<td align="center">34</td>
+<td align="center">53</td>
+<td align="center">02</td>
+<td align="center">21</td>
+<td align="center">40</td>
+<td align="center">66</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 30</strong></p>
+<p>Next we obtain <span class="math inline">\(A\)</span> from the superposition of <span class="math inline">\(\hat{R}\)</span> and <span class="math inline">\(\hat{S&#39;}\)</span>:</p>
+<p>$A = $</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th align="center"><span class="math inline">\(6&#39;4&#39;\)</span></th>
+<th align="center">13</th>
+<th align="center"><span class="math inline">\(3&#39;2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;1&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(6&#39;2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(0&#39;5&#39;\)</span></td>
+<td align="center">24</td>
+<td align="center"><span class="math inline">\(4&#39;3&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(5&#39;4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(1&#39;6&#39;\)</span></td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td align="center"><span class="math inline">\(6&#39;5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(2&#39;0&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3&#39;1&#39;\)</span></td>
+<td align="center">50</td>
+<td align="center"><span class="math inline">\(0&#39;6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">63</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td align="center"><span class="math inline">\(4&#39;2&#39;\)</span></td>
+<td align="center">61</td>
+<td align="center"><span class="math inline">\(1&#39;0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">04</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td align="center">34</td>
+<td align="center"><span class="math inline">\(5&#39;3&#39;\)</span></td>
+<td align="center">02</td>
+<td align="center"><span class="math inline">\(2&#39;1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 31</strong></p>
+<p>Then we construct <span class="math inline">\(B\)</span>, and after swapping the order of certain pairs,
+obtain <span class="math inline">\(D\)</span>:</p>
+<p><span class="math inline">\(B=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(00&#39;\)</span></th>
+<th align="center"><span class="math inline">\(26&#39;\)</span></th>
+<th align="center"><span class="math inline">\(45&#39;\)</span></th>
+<th align="center"><span class="math inline">\(64&#39;\)</span></th>
+<th align="center"><span class="math inline">\(13&#39;\)</span></th>
+<th align="center"><span class="math inline">\(32&#39;\)</span></th>
+<th align="center"><span class="math inline">\(51&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(30&#39;\)</span></td>
+<td align="center"><span class="math inline">\(56&#39;\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(24&#39;\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(41&#39;\)</span></td>
+<td align="center"><span class="math inline">\(60&#39;\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(35&#39;\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(46&#39;\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(52&#39;\)</span></td>
+<td align="center"><span class="math inline">\(01&#39;\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(50&#39;\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(63&#39;\)</span></td>
+<td align="center"><span class="math inline">\(12&#39;\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(23&#39;\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(61&#39;\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(04&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(15&#39;\)</span></td>
+<td align="center"><span class="math inline">\(34&#39;\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(02&#39;\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{0.5cm} \Rightarrow D=\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(00&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;2\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;4\)</span></th>
+<th align="center"><span class="math inline">\(64&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;1\)</span></th>
+<th align="center"><span class="math inline">\(32&#39;\)</span></th>
+<th align="center"><span class="math inline">\(51&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\hspace{3.5cm}\)</span> <strong>Figure 32</strong> <span class="math inline">\(\hspace{6cm}\)</span> <strong>Figure 33</strong><br />
+<br />
+<span class="math inline">\(C\)</span> is obtained by arranging <span class="math inline">\(A\)</span> and <span class="math inline">\(D\)</span> thus:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center"><span class="math inline">\(0&#39;\)</span></th>
+<th align="center"><span class="math inline">\(1&#39;\)</span></th>
+<th align="center"><span class="math inline">\(2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;\)</span></th>
+<th align="center"><span class="math inline">\(4&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;\)</span></th>
+<th align="center"><span class="math inline">\(l\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td align="center"></td>
+<td align="center">26</td>
+<td align="center">45</td>
+<td align="center"><span class="math inline">\(6&#39;4&#39;\)</span></td>
+<td align="center">13</td>
+<td align="center"><span class="math inline">\(3&#39;2&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;1&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td align="center"><span class="math inline">\(6&#39;2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(0&#39;5&#39;\)</span></td>
+<td align="center">24</td>
+<td align="center"><span class="math inline">\(4&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td align="center"><span class="math inline">\(5&#39;4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(1&#39;6&#39;\)</span></td>
+<td align="center">35</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="center">46</td>
+<td align="center"><span class="math inline">\(6&#39;5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(2&#39;0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="center"><span class="math inline">\(3&#39;1&#39;\)</span></td>
+<td align="center">50</td>
+<td align="center"><span class="math inline">\(0&#39;6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">63</td>
+<td align="center">12</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td align="center">23</td>
+<td align="center"><span class="math inline">\(4&#39;2&#39;\)</span></td>
+<td align="center">61</td>
+<td align="center"><span class="math inline">\(1&#39;0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">04</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td align="center">15</td>
+<td align="center">34</td>
+<td align="center"><span class="math inline">\(5&#39;3&#39;\)</span></td>
+<td align="center">02</td>
+<td align="center"><span class="math inline">\(2&#39;1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(32&#39;\)</span></td>
+<td align="center"><span class="math inline">\(51&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(1&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(l\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 34</strong></p>
+<p>Finally we construct <span class="math inline">\(F\)</span> according to the 2 presciptions in the final
+part of the construction. Which involves first replacing some of the
+pairs in those cells of <span class="math inline">\(C\)</span> corresponding to <span class="math inline">\(D\)</span>.<br />
+Consider
+<span class="math display">\[T&#39;_1 = \{(2&#39;,6&#39;),(3&#39;,0&#39;),(4&#39;,1&#39;),(5&#39;,2&#39;),(6&#39;,3&#39;),(0&#39;,4&#39;),(1&#39;,5&#39;)\}\]</span>
+In <span class="math inline">\(R\)</span>, the cells <span class="math inline">\((2,6),(3,0),(4,1),(5,2),(6,3),(0,4)\)</span> and <span class="math inline">\((1,5)\)</span> were
+all non-empty, so <span class="math inline">\(C\)</span> contains pairs of the form <span class="math inline">\((k&#39;,n)\)</span> in all cells
+<span class="math inline">\((2&#39;,6&#39;),(3&#39;,0&#39;)\)</span>, … All of these are removed and replaced in the
+final column of the same row. And, for each pair <span class="math inline">\((k&#39;,n)\)</span>, corresponding
+pairs of the form <span class="math inline">\((\infty &#39;, k&#39;), (\infty,n)\)</span> are put in cells
+<span class="math inline">\((k,j&#39;_m),(n,j&#39;_m)\)</span>, respectively.<br />
+e.g.<br />
+<span class="math inline">\((5&#39;,3)\)</span> appears in position <span class="math inline">\((2&#39;,6&#39;)\)</span> of <span class="math inline">\(C\)</span>. So in <span class="math inline">\(F\)</span>, <span class="math inline">\((5&#39;,3)\)</span>
+appears in <span class="math inline">\((2&#39;,l)\)</span> and the additional pairs <span class="math inline">\((\infty,3)\)</span> and
+<span class="math inline">\((\infty &#39;,5&#39;)\)</span> appear in column <span class="math inline">\(6&#39;\)</span>, in rows 3 and 5 respectively.<br />
+<br />
+All of which makes the final columns appear like so:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(0&#39;\)</span></th>
+<th align="center"><span class="math inline">\(1&#39;\)</span></th>
+<th align="center"><span class="math inline">\(2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;\)</span></th>
+<th align="center"><span class="math inline">\(4&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;\)</span></th>
+<th align="center"><span class="math inline">\(l\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 1&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 3 &#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="center">$4 $</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 4 &#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td align="center"></td>
+<td align="center">$5 $</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 5 &#39;\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td align="center"><span class="math inline">\(\infty &#39; 6 &#39;\)</span></td>
+<td align="center"></td>
+<td align="center">$6 $</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(32&#39;\)</span></td>
+<td align="center"><span class="math inline">\(51&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2&#39;\)</span></td>
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(3&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(l\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 35</strong></p>
+<p>Now consider:
+<span class="math display">\[T&#39;_2 = \{(4&#39;,5&#39;),(5&#39;,6&#39;),(6&#39;,0&#39;),(0&#39;,1&#39;),(1&#39;,2&#39;),(2&#39;,3&#39;),(3&#39;,4&#39;)\}\]</span>
+In each cell <span class="math inline">\((i&#39;_m,j&#39;_m)\)</span> of <span class="math inline">\(C\)</span>, where <span class="math inline">\((i&#39;_m,j&#39;_m) \in T&#39;_2\)</span>, occurs
+a pair <span class="math inline">\((k&#39;,n)\)</span>, we remove this and place it in cell <span class="math inline">\((l,j&#39;_m)\)</span>, also
+putting pairs <span class="math inline">\((k&#39;,\infty),(\infty &#39;,n)\)</span> in cells <span class="math inline">\((i&#39;_m,k),(i&#39;_m,n)\)</span>.<br />
+e.g.<br />
+<span class="math inline">\((3&#39;,6)\)</span> appears in <span class="math inline">\((4&#39;,5&#39;)\)</span>, so <span class="math inline">\((3&#39;,6)\)</span> goes in <span class="math inline">\((l,5&#39;)\)</span> and
+<span class="math inline">\((3&#39;,\infty), (\infty &#39;, 6)\)</span> go in <span class="math inline">\((4&#39;,3),(4&#39;,6)\)</span> respectively.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center"><span class="math inline">\(0&#39;\)</span></th>
+<th align="center"><span class="math inline">\(1&#39;\)</span></th>
+<th align="center"><span class="math inline">\(2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(3&#39;\)</span></th>
+<th align="center"><span class="math inline">\(4&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;\)</span></th>
+<th align="center"><span class="math inline">\(6&#39;\)</span></th>
+<th align="center"><span class="math inline">\(l\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(0&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39; \infty\)</span></td>
+<td align="center"><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(32&#39;\)</span></td>
+<td align="center"><span class="math inline">\(51&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 3\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(05&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(43&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;2\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td align="center"><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(0&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(16&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 5\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td align="center"><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(20&#39;\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;4\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 6\)</span></td>
+<td align="center"><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td align="center"><span class="math inline">\(44&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;5\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(\infty &#39; 0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(4&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td align="center"><span class="math inline">\(36&#39;\)</span></td>
+<td align="center"><span class="math inline">\(55&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(1&#39;6\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(21&#39;\)</span></td>
+<td align="center"><span class="math inline">\(40&#39;\)</span></td>
+<td align="center"><span class="math inline">\(66&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(l\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0\)</span></td>
+<td align="center"><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 36</strong></p>
+<p>So the following array, the completed <span class="math inline">\(F\)</span>, is a <span class="math inline">\(BRS(16)\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">26</th>
+<th align="center">45</th>
+<th align="center"><span class="math inline">\(6&#39;4&#39;\)</span></th>
+<th align="center">13</th>
+<th align="center"><span class="math inline">\(3&#39;2&#39;\)</span></th>
+<th align="center"><span class="math inline">\(5&#39;1&#39;\)</span></th>
+<th></th>
+<th align="center"><span class="math inline">\(\infty &#39; 0&#39;\)</span></th>
+<th></th>
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(6&#39;2&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">30</td>
+<td align="center">56</td>
+<td align="center"><span class="math inline">\(0&#39;5&#39;\)</span></td>
+<td align="center">24</td>
+<td align="center"><span class="math inline">\(4&#39;3&#39;\)</span></td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty &#39; 1&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 1\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(5&#39;4&#39;\)</span></td>
+<td align="center"><span class="math inline">\(0&#39;3&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">41</td>
+<td align="center">60</td>
+<td align="center"><span class="math inline">\(1&#39;6&#39;\)</span></td>
+<td align="center">35</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(\infty 2\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td align="center"><span class="math inline">\(6&#39;5&#39;\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">52</td>
+<td align="center">01</td>
+<td align="center"><span class="math inline">\(2&#39;0&#39;\)</span></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty &#39; 3&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(\infty 3\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(3&#39;1&#39;\)</span></td>
+<td align="center">50</td>
+<td align="center"><span class="math inline">\(0&#39;6&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2&#39;5&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">63</td>
+<td align="center">12</td>
+<td><span class="math inline">\(\infty 4\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td><span class="math inline">\(\infty &#39; 4&#39;\)</span></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td align="center"><span class="math inline">\(4&#39;2&#39;\)</span></td>
+<td align="center">61</td>
+<td align="center"><span class="math inline">\(1&#39;0&#39;\)</span></td>
+<td align="center"><span class="math inline">\(3&#39;6&#39;\)</span></td>
+<td align="center"></td>
+<td align="center">04</td>
+<td></td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\infty &#39; 5&#39;\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td align="center">34</td>
+<td align="center"><span class="math inline">\(5&#39;3&#39;\)</span></td>
+<td align="center">02</td>
+<td align="center"><span class="math inline">\(2&#39;1&#39;\)</span></td>
+<td align="center"><span class="math inline">\(4&#39;0&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty&#39; 6&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(\infty 6\)</span></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(6&#39; \infty\)</span></td>
+<td><span class="math inline">\(00&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(5&#39;4\)</span></td>
+<td align="center"><span class="math inline">\(64&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(32&#39;\)</span></td>
+<td><span class="math inline">\(51&#39;\)</span></td>
+<td><span class="math inline">\(3&#39;1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 3\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(62&#39;\)</span></td>
+<td align="center"><span class="math inline">\(11&#39;\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(6&#39;5\)</span></td>
+<td><span class="math inline">\(05&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(43&#39;\)</span></td>
+<td><span class="math inline">\(4&#39;2\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"><span class="math inline">\(1&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 4\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(54&#39;\)</span></td>
+<td align="center"><span class="math inline">\(03&#39;\)</span></td>
+<td><span class="math inline">\(22&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(0&#39;6\)</span></td>
+<td><span class="math inline">\(16&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(5&#39;3\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(2&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 5\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(65&#39;\)</span></td>
+<td><span class="math inline">\(14&#39;\)</span></td>
+<td align="center"><span class="math inline">\(33&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(1&#39;0\)</span></td>
+<td><span class="math inline">\(20&#39;\)</span></td>
+<td><span class="math inline">\(6&#39;4\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(3&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\infty &#39; 6\)</span></td>
+<td><span class="math inline">\(31&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(06&#39;\)</span></td>
+<td align="center"><span class="math inline">\(25&#39;\)</span></td>
+<td><span class="math inline">\(44&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(2&#39;1\)</span></td>
+<td><span class="math inline">\(0&#39;5\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\infty &#39; 0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(4&#39; \infty\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(3&#39;2\)</span></td>
+<td align="center"><span class="math inline">\(42&#39;\)</span></td>
+<td></td>
+<td align="center"><span class="math inline">\(10&#39;\)</span></td>
+<td><span class="math inline">\(36&#39;\)</span></td>
+<td><span class="math inline">\(55&#39;\)</span></td>
+<td></td>
+<td><span class="math inline">\(1&#39;6\)</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="center"><span class="math inline">\(\infty &#39; 1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(5&#39; \infty\)</span></td>
+<td align="center"></td>
+<td></td>
+<td align="center"><span class="math inline">\(4&#39;3\)</span></td>
+<td><span class="math inline">\(53&#39;\)</span></td>
+<td align="center"></td>
+<td><span class="math inline">\(21&#39;\)</span></td>
+<td><span class="math inline">\(40&#39;\)</span></td>
+<td><span class="math inline">\(66&#39;\)</span></td>
+<td><span class="math inline">\(2&#39;0\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td><span class="math inline">\(5&#39;1\)</span></td>
+<td align="center"><span class="math inline">\(6&#39;2\)</span></td>
+<td><span class="math inline">\(0&#39;3\)</span></td>
+<td align="center"><span class="math inline">\(1&#39;4\)</span></td>
+<td><span class="math inline">\(2&#39;5\)</span></td>
+<td><span class="math inline">\(3&#39;6\)</span></td>
+<td><span class="math inline">\(4&#39;0\)</span></td>
+<td><span class="math inline">\(\infty &#39; \infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 37</strong></p>
+<p>Schellenberg applied his multiplicative construction to the <span class="math inline">\(BRS\)</span>
+generated by Hwang’s starter-adder construction, and in doing so was
+able to establish the following Theorem:</p>
+</div>
+<div id="theorem-5.4.2" class="section level4">
+<h4><span class="header-section-number">4.4.0.3</span> Theorem 5.4.2</h4>
+<p>[21] For <span class="math inline">\(q \equiv 3\)</span>(mod 4), with <span class="math inline">\(q\)</span> a prime power strictly greater
+than 3, there exists a <span class="math inline">\(BRS(2(q+1))\)</span>.<br />
+<br />
+<em>Proof</em><br />
+Construct <span class="math inline">\(R\)</span> from the following balanced starter,
+<span class="math display">\[X = \left \{ (x^{2i},x^{2i+1}):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+with adder,
+<span class="math display">\[A(X) = \left \{ -x^{2i}(1+x):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+Clearly this is just the Hwang starter-adder of Theorem 5.3.4, although
+the elements in the starter pairs have swapped order. Now, construct <span class="math inline">\(S\)</span>
+from the balanced starter,
+<span class="math display">\[Y = \left \{ (x^{2i-1},x^{2i}):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+<span class="math display">\[A(Y) = \left \{ -x^{2i-1}(1+x):0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+<span class="math inline">\(Y\)</span> has been obtained simply by swapping the pairs of <span class="math inline">\(X\)</span> and
+multiplying them by <span class="math inline">\(x^{-1}\)</span>. Therefore, that <span class="math inline">\(Y\)</span> is a balanced starter
+follows from the fact that <span class="math inline">\(X\)</span> is balanced, as was established in
+Theorem 3.5.<br />
+It remains to show that <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> satisfy conditions 1,2 and 3 of
+Theorem 3.6:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are a Latin pair: The positions of the starter pais in
+the first row of each square are determined by the adder, so
+<span class="math inline">\(A(X) \cap A(Y) = \varnothing\)</span>[^14] ensures that each cell of the
+first row, hence subsequent rows, of <span class="math inline">\(R \odot S\)</span> contains only one
+pair.<br />
+<br />
+That <span class="math inline">\(R \odot S\)</span> is a pair of superposed Latin squares requires that
+for the pairs in any row, the left hand members take all values
+0…<span class="math inline">\(q-1\)</span>, and the right members also take values 0…<span class="math inline">\(q-1\)</span>.<br />
+Clearly this property holds for all rows if it holds for the first.
+The pairs in the first row of <span class="math inline">\(R \odot S\)</span> are:
+<span class="math display">\[\{(0,0)\} \cup \left \{ (x^{2i-1},x^{2i}),(x^{2i},x^{2i+1}) \middle| 0 \leq i \leq \frac{q-3}{2} \right \}\]</span>
+So all <span class="math inline">\((q-1)/2\)</span> non-squares and all <span class="math inline">\((q-1)/2\)</span> squares occur as left
+hand members of pairs, and similarly as right hand members. So
+<span class="math inline">\(R \odot S\)</span> is a pair of superposed Latin squares.<br />
+For these Latin squares to be orthogonal requires that there is no
+repetition of ordered pairs. For a repetition to occur would require
+some repetition of ordered differences among the starter pairs.<br />
+Either:
+<span class="math display">\[x^{2i-1} - x^{2i} = x^{2i} - x^{2i+1} \hspace{0.2cm} \mathrm{or} \hspace{0.2cm}
+x^{2i} - x^{2i-1} = x^{2i+1} - x^{2i} \hspace{0.2cm} \mathrm{i.e.}\]</span>
+<span class="math display">\[\pm (x^{2i-1} + x^{2i+1}) = \pm (x^{2i} + x^{2i})\]</span>
+<span class="math display">\[x^{-1} + x = 2 \Rightarrow x = 1\]</span> Clearly false, so ordered
+differences are unique.</p></li>
+<li><p><span class="math inline">\(R \odot S\)</span> has a pair of disjoint <em>common transversals</em>:<br />
+For any fixed non-zero <span class="math inline">\(j\)</span> the cells <span class="math inline">\((i,i+j)\)</span>, <span class="math inline">\(0 \leq i \leq q-1\)</span>
+form a common transversal which does not intersect the diagonal.</p></li>
+<li><p>The block designs for <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are balanced:<br />
+The starters <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are balanced starters hence the block
+designs for <span class="math inline">\(R\)</span> and <span class="math inline">\(S\)</span> are <span class="math inline">\(BIBD\)</span>s. <span class="math inline">\(\square\)</span></p></li>
+</ol>
+<p>So the Schellenberg multiplication construction establishes the
+existence of some new orders <span class="math inline">\(q+1\)</span> where <span class="math inline">\(q\)</span> is not necessarily a prime
+power.<br />
+e.g.<br />
+the orders in bold are now established which had not been under Hwang’s
+construction:</p>
+<p><span>|c|c|c|c|c|c|c|c|c|c|c|c|c|</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Hwang <span class="math inline">\(BRS\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(p^r + 1: p^r \equiv 3\)</span>(mod 4)</td>
+</tr>
+</tbody>
+</table>
+<p>&amp; 8 &amp; 12 &amp; &amp; 20 &amp; 24 &amp; 28 &amp; 32 &amp; &amp; &amp; 44 &amp; 48 &amp; …<br />
+</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Schellenberg</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(2(p^r + 1)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>&amp; <strong>16</strong> &amp; 24 &amp; 32 &amp; <strong>40</strong> &amp; 48 &amp; <strong>56</strong> &amp; <strong>64</strong> &amp; 72 &amp; 80 &amp; <strong>88</strong> &amp;
+<strong>96</strong> &amp; …<br />
+</p>
+<p><strong>Table 8</strong></p>
+<p>Even with both these theorems, there are obviously missing orders. The
+first exception, 36 occurs, for example, because 35 is not a prime power
+and because 17 is not congruent to 3 mod 4.<br />
+<br />
+Schellenberg applied the multiplicative construction to the case when
+<span class="math inline">\(p^r \equiv 1\)</span>(mod 4) [then, of course, <span class="math inline">\(2(p^r+1) \equiv 0\)</span>(mod 4) as is
+required] and was able to obtain further results. Although, as an
+interesting parallel to the Mullin-Nemeth construction, he also had
+problems with the Fermat primes and again they were treated separately.
+Rather than look at his approach we consider the later approach by Du,
+Yu, Hwang and Kang amongst others.</p>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="4-3-starters-and-adders-for-brs-and-cbhr.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-5-symmetric-skew-balanced-starters.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

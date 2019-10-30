@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="2.1 Starters, Adders and Cyclic Room Squares | Room Squares" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+<meta name="github-repo" content="mhenderson/room" />
+
+<meta name="author" content="Matthew Henderson" />
+
+<meta name="date" content="2019-05-31" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+
+<meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook.">
+
+<title>2.1 Starters, Adders and Cyclic Room Squares | Room Squares</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li class="has-sub"><a href="index.html#kirkmans-schoolgirl-problem"><span class="toc-section-number">1</span> Kirkman’s Schoolgirl Problem</a><ul>
+<li><a href="1-1-tournaments.html#tournaments"><span class="toc-section-number">1.1</span> Tournaments</a></li>
+<li><a href="1-2-t-g-room-1902-86.html#t.g.-room-1902-86"><span class="toc-section-number">1.2</span> T.G. Room, (1902-86)</a></li>
+<li class="has-sub"><a href="1-3-the-galois-field.html#the-galois-field"><span class="toc-section-number">1.3</span> The Galois Field</a><ul>
+<li><a href="1-3-the-galois-field.html#example"><span class="toc-section-number">1.3.1</span> Example</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="2-existence.html#existence"><span class="toc-section-number">2</span> Existence</a><ul>
+<li class="has-sub"><a href="2-1-starters-adders-and-cyclic-room-squares.html#starters-adders-and-cyclic-room-squares"><span class="toc-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</a><ul>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-a-starter"><span class="toc-section-number">2.1.1</span> Finding a starter</a></li>
+<li><a href="2-1-starters-adders-and-cyclic-room-squares.html#finding-an-adder"><span class="toc-section-number">2.1.2</span> Finding an adder</a></li>
+</ul></li>
+<li><a href="2-2-strong-starters.html#strong-starters"><span class="toc-section-number">2.2</span> Strong Starters</a></li>
+<li><a href="2-3-the-mullin-nemeth-starters.html#the-mullin-nemeth-starters"><span class="toc-section-number">2.3</span> The Mullin-Nemeth Starters</a></li>
+<li><a href="2-4-the-trouble-with-fermat-numbers.html#the-trouble-with-fermat-numbers"><span class="toc-section-number">2.4</span> The Trouble with Fermat Numbers</a></li>
+<li><a href="2-5-a-multiplication-theorem.html#a-multiplication-theorem"><span class="toc-section-number">2.5</span> A Multiplication Theorem</a></li>
+<li><a href="2-6-summary.html#summary"><span class="toc-section-number">2.6</span> Summary</a></li>
+<li><a href="2-7-n-tuplication-of-room-squares.html#n-tuplication-of-room-squares"><span class="toc-section-number">2.7</span> n-tuplication of Room squares</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-a-graph-theoretic-approach-to-constructing-room-squares.html#a-graph-theoretic-approach-to-constructing-room-squares"><span class="toc-section-number">3</span> A graph theoretic approach to constructing Room squares</a><ul>
+<li><a href="3-1-graph-factorisations.html#graph-factorisations"><span class="toc-section-number">3.1</span> Graph factorisations</a></li>
+<li class="has-sub"><a href="3-2-hill-climbing-algorithm-for-room-squares.html#hill-climbing-algorithm-for-room-squares"><span class="toc-section-number">3.2</span> Hill-Climbing Algorithm for Room Squares</a><ul>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-one-factorisations"><span class="toc-section-number">3.2.1</span> An algorithm for One-Factorisations</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#an-algorithm-for-room-squares"><span class="toc-section-number">3.2.2</span> An Algorithm for Room Squares</a></li>
+<li><a href="3-2-hill-climbing-algorithm-for-room-squares.html#the-room-square-generator"><span class="toc-section-number">3.2.3</span> The Room Square Generator</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-balanced-room-squares.html#balanced-room-squares"><span class="toc-section-number">4</span> Balanced Room Squares</a><ul>
+<li><a href="4-1-bibds-and-brbs.html#bibds-and-brbs"><span class="toc-section-number">4.1</span> BIBDs and BRBs</a></li>
+<li><a href="4-2-complete-balanced-howell-rotations.html#complete-balanced-howell-rotations"><span class="toc-section-number">4.2</span> Complete Balanced Howell Rotations</a></li>
+<li><a href="4-3-starters-and-adders-for-brs-and-cbhr.html#starters-and-adders-for-brs-and-cbhr"><span class="toc-section-number">4.3</span> Starters and Adders for BRS and CBHR</a></li>
+<li><a href="4-4-a-multiplicative-construction-for-brs.html#a-multiplicative-construction-for-brs"><span class="toc-section-number">4.4</span> A Multiplicative Construction for BRS</a></li>
+<li><a href="4-5-symmetric-skew-balanced-starters.html#symmetric-skew-balanced-starters"><span class="toc-section-number">4.5</span> Symmetric Skew Balanced Starters</a></li>
+</ul></li>
+<li class="has-sub"><a href="5-hill-climbing-for-one-factorisations.html#hill-climbing-for-one-factorisations"><span class="toc-section-number">5</span> Hill-Climbing for One-Factorisations</a><ul>
+<li><a href="5-1-one-factors.html#one-factors"><span class="toc-section-number">5.1</span> One-factors</a></li>
+<li><a href="5-2-one-factorisations.html#one-factorisations"><span class="toc-section-number">5.2</span> One-factorisations</a></li>
+<li class="has-sub"><a href="5-3-heuristics.html#heuristics"><span class="toc-section-number">5.3</span> Heuristics</a><ul>
+<li><a href="5-3-heuristics.html#heuristic-h_1"><span class="toc-section-number">5.3.1</span> Heuristic <span class="math inline">\(H_{1}\)</span></a></li>
+<li><a href="5-3-heuristics.html#heutistic-h_2"><span class="toc-section-number">5.3.2</span> Heutistic <span class="math inline">\(H_{2}\)</span></a></li>
+</ul></li>
+<li><a href="5-4-hill-climbing.html#hill-climbing"><span class="toc-section-number">5.4</span> Hill-climbing</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="starters-adders-and-cyclic-room-squares" class="section level2">
+<h2><span class="header-section-number">2.1</span> Starters, Adders and Cyclic Room Squares</h2>
+<table style="width:61%;">
+<colgroup>
+<col width="12%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>0</strong></td>
+<td align="center">∞0</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">25</td>
+<td align="center"></td>
+<td align="center">16</td>
+<td align="center">34</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>1</strong></td>
+<td align="center">45</td>
+<td align="center">∞1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">36</td>
+<td align="center"></td>
+<td align="center">20</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>2</strong></td>
+<td align="center">31</td>
+<td align="center">56</td>
+<td align="center">∞2</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">40</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>3</strong></td>
+<td align="center"></td>
+<td align="center">42</td>
+<td align="center">60</td>
+<td align="center">∞3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">51</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>4</strong></td>
+<td align="center">62</td>
+<td align="center"></td>
+<td align="center">53</td>
+<td align="center">01</td>
+<td align="center">∞4</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>5</strong></td>
+<td align="center"></td>
+<td align="center">03</td>
+<td align="center"></td>
+<td align="center">64</td>
+<td align="center">12</td>
+<td align="center">∞5</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>6</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">14</td>
+<td align="center"></td>
+<td align="center">05</td>
+<td align="center">23</td>
+<td align="center">∞6</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 16 Cyclic Room square</strong></p>
+<p>The Room square in Figure 16 has a special property. The pairs in any
+element of the array are obtained by simply adding 1 (mod 7) to the pair
+in the element immediately above and to the left; along with the
+condition that <span class="math display">\[\infty+1 = \infty\]</span> This special property means that
+the entire square can be determined by the pairs in the first row, with
+successive rows being developed in a cyclical manner according the
+simple addition rule. We call squares like the one in Figure 16 <em>cyclic</em>
+Room squares.<br />
+<br />
+Also notice that <span class="math inline">\(\{\infty,i\}\)</span> occurs in position <span class="math inline">\((i,i)\)</span>. A square
+with this property is said to be <em>standardised</em>. It is important to
+realise that any Room square can be standardised. As mentioned
+previously neither interchanging the rows or columns nor permuting the
+symbol-set on which the Room square is based has any effect of the
+``Room&quot;-ness of that square.<br />
+<br />
+The significance of cyclic Room squares is that the problem of
+constructing a Room square is (potentially) reduced to that of finding
+an appropriate first row. These rows cannot be chosen arbitrarily, both
+the pairs used and the positions in which they appear need to satisfy
+certain criteria, but when they do exist a corresponding Room square
+always exists. So proving the existence of this subclass of Room squares
+is a matter only of proving the existence of these special first rows.</p>
+<div id="finding-a-starter" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Finding a starter</h3>
+<p>Suppose we wish to construct another Room square of the same size as
+Figure 16 based on the same symbols. This new square will also be
+standardized so we need only determine the three pairs that accompany
+<span class="math inline">\(\{0,\infty\}\)</span> in the first row (the starter), and the positions they
+occupy.<br />
+<br />
+The set we will use to build our starter will be {1,2,…,6}.<br />
+<br />
+Each member of this set must occur exactly once in the pairs of the
+starter – in order to satisfy the row condition for a Room square.
+Because of the cyclical construction the condition is automatically true
+for successive rows if true for the first.<br />
+<br />
+Consider the existence in Figure 16 of an arbitrary pair <span class="math inline">\(\{a,b\}\)</span>. We
+know one of the following must be true.<br />
+<br />
+Either:
+<span class="math display">\[\{2+i,5+i\}=\{a,b\} \hspace{0.5cm} \mathrm{or} \hspace{0.5cm} \{1+i,6+i\}=\{a,b\} \hspace{0.5cm} 
+\mathrm{or} \hspace{0.5cm} \{3+i,4+i\}=\{a,b\} \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=0,1,2,...,6\]</span>
+Say <span class="math inline">\(a-b=1\)</span>. Then <span class="math inline">\(\{2+i,5+i\}=\{a,b\}\)</span> could never be true because
+<span class="math inline">\((2+i)-(5+i)=-3(\)</span>mod $ 7)=4$ and <span class="math inline">\((5+i)-(2+i)=3\)</span>. Similarly, the
+differences in <span class="math inline">\(\{1,6\}\)</span> are <span class="math inline">\(\pm5\)</span> so <span class="math inline">\(\{a,b\}\)</span> couldn’t be generated
+from <span class="math inline">\(\{1,6\}\)</span>.<br />
+<br />
+However, <span class="math inline">\((4+i)-(3+i)=1\)</span> so <span class="math inline">\(\{a,b\}\)</span> will inevitably be generated by
+<span class="math inline">\(\{3,4\}\)</span> for some value of <span class="math inline">\(i=0,1,...,6\)</span>.<br />
+e.g. <span class="math inline">\(\{2,3\}=\{3+6,4+6\}\)</span><br />
+<br />
+Because <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> separately take on all values from
+<span class="math inline">\(\{0,1,2,...,6\}\)</span>, their differences will similarly take on all these
+values (except 0 because there are no pairs of the form <span class="math inline">\(\{a,a\}\)</span>) and
+so an essential property for the starter must be that the six
+differences generated by its three pairs contain all of
+<span class="math inline">\(\{1,2,...,6\}\)</span>.<br />
+<br />
+When a starter satisfies this property, and the condition that the pairs
+contain in their union all of <span class="math inline">\(\{1,2,...,6\}\)</span>, it is clear that it will
+inevitably generate the correct pairs which populate a 7x7 Room square.
+There are three pairs in the starter, each generates seven unique pairs
+under cyclical construction, which along with the seven pairs generated
+by <span class="math inline">\(\{0,\infty\}\)</span> counts for all the 28 unordered pairs from
+<span class="math inline">\(\{\infty,0,1,...,6\}\)</span>.<br />
+A starter for larger Room squares of course has to obey the same
+criterion. We include a general definition based on [8]:<br />
+(1,0)<span>450</span><br />
+<em>Definition:</em> If <span class="math inline">\(G\)</span> is an additive Abelian group of order <span class="math inline">\(g\)</span>, then a
+<em>starter</em> in <span class="math inline">\(G\)</span> is a set of unordered pairs:
+<span class="math display">\[S=\{\{s_i,t_i\}:1 \leq i \leq (g-1)/2\}\]</span> which satisfies these
+properties:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{s_i:1 \leq i \leq (g-1)/2\} \cup \{t_i : 1 \leq i \leq (g-1)/2\} = G \backslash \{0\}\)</span></p></li>
+<li><p><span class="math inline">\(\{\pm (s_i - t_i ) : 1 \leq i \leq (g-1)/2 \} = G \backslash \{0\}\)</span></p></li>
+</ol>
+<p>(1,0)<span>450</span><br />
+<br />
+Whenever we have any <span class="math inline">\(t\)</span> sets <span class="math inline">\(D_1,...,D_t\)</span> each of size <span class="math inline">\(k\)</span> in which
+each non-zero member of an additive abelian group can be represented as
+a difference between members of the <span class="math inline">\(D_i \lambda\)</span> times, we say those
+sets form a <strong><em>difference system</em></strong>.<br />
+Much use will be made of difference systems throughout this work.<br />
+Notice that the definition of a starter presumes standardization, and
+therefore that <span class="math inline">\(\{\infty,i\}\)</span> is in position <span class="math inline">\((i,i)\)</span>.<br />
+The following pairs form a starter in <span class="math inline">\(G=\{0,1,2,...,6\}\)</span> (an additive
+abelian group with order <span class="math inline">\(g=7\)</span>.)
+<span class="math display">\[\{1,3\} \hspace{1cm} \{2,6\} \hspace{1cm} \{4,5\}\]</span> Property 1 is
+satisfied because
+<span class="math inline">\(\{1,3\} \cup \{2,6\} \cup \{4,5\} = G \backslash \{0\}\)</span><br />
+Property 2 is also satisfied because
+<span class="math display">\[\{1-3=5,3-1=2,2-6=3,6-2=4,4-5=6,5-4=1\}=\{1,2,3,4,5,6\}=G\backslash \{0\}\]</span>
+Hence</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">13</th>
+<th align="center">26</th>
+<th align="center">45</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">24</td>
+<td align="center">30</td>
+<td align="center">56</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center">35</td>
+<td align="center">41</td>
+<td align="center">60</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">46</td>
+<td align="center">52</td>
+<td align="center">01</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td align="center">50</td>
+<td align="center">63</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center">61</td>
+<td align="center">04</td>
+<td align="center">23</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+<td align="center">02</td>
+<td align="center">15</td>
+<td align="center">34</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1</strong></p>
+<p>are all the unordered pairs from <span class="math inline">\(\{\infty,0,1,...6\}\)</span> sorted into seven
+rows that contain each of <span class="math inline">\(\{\infty,0,1,...,6\}\)</span> exactly once. ALl that
+remains is to determine the columns.</p>
+</div>
+<div id="finding-an-adder" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Finding an adder</h3>
+<p>In constructing the starter we made use of the fact that each row has to
+contain each symbol exactly once and all unordered pairs from the symbol
+set have to occur exactly once in the whole array. The remaining
+condition – namely, that each symbol must occur once in each column – is
+now employed to finish the construction.<br />
+<br />
+Again, because of the cyclical nature of Room squares generated from
+starters we can be sure that if one column contains each member of the
+symbol set, all columns will.<br />
+<br />
+Also, because we have decided to construct a standardized Room Square we
+know that column <span class="math inline">\(i\)</span> contains <span class="math inline">\(\{\infty,i\}\)</span>. So the final column
+(column 6) contains <span class="math inline">\(\{\infty,6\}\)</span>, and depending on where we place the
+starter pairs it will also include:
+<span class="math display">\[\{1,3\}+x \hspace{1cm} \{2,6\}+y \hspace{1cm} \{4,5\}+z\]</span> For some
+distinct values of <span class="math inline">\(x,y\)</span> and <span class="math inline">\(z\)</span> (only one pair allowed per box).<br />
+Considering that the new pairs to form column 6 must contain in their
+union each of <span class="math inline">\(\{0,1,2,...,5\}\)</span> we build the following table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center"><span class="math inline">\(13+x\)</span></th>
+<th align="center"><span class="math inline">\(y\)</span></th>
+<th align="center"><span class="math inline">\(26+y\)</span></th>
+<th align="center"><span class="math inline">\(z\)</span></th>
+<th align="center"><span class="math inline">\(45+z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(0\)</span></td>
+<td align="center">13</td>
+<td align="center">0</td>
+<td align="center">26</td>
+<td align="center">0</td>
+<td align="center">45</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center">24</td>
+<td align="center">1</td>
+<td align="center">30</td>
+<td align="center">1</td>
+<td align="center">56</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(2\)</span></td>
+<td align="center">35</td>
+<td align="center">2</td>
+<td align="center">41</td>
+<td align="center">2</td>
+<td align="center">60</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(3\)</span></td>
+<td align="center">46</td>
+<td align="center">3</td>
+<td align="center">52</td>
+<td align="center">3</td>
+<td align="center">01</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(4\)</span></td>
+<td align="center">50</td>
+<td align="center">4</td>
+<td align="center">63</td>
+<td align="center">4</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(5\)</span></td>
+<td align="center">61</td>
+<td align="center">5</td>
+<td align="center">04</td>
+<td align="center">5</td>
+<td align="center">23</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2</strong></p>
+<p>Our task is simply to determine three unique values for <span class="math inline">\(x,y\)</span> and <span class="math inline">\(z\)</span>
+such that <span class="math inline">\(13+x,26+y\)</span> and <span class="math inline">\(45+z\)</span> contain in their union each of
+<span class="math inline">\(\{0,1,2,...,5\}\)</span>. These values will then determine the positions to
+place 13, 26 and 45 in row 1.<br />
+<br />
+Choosing 4 from the first column corresponds to having 50 appear in the
+final column of the Room Square and forces the selection of <span class="math inline">\(y=2\)</span> from
+the next column of the table, (41 being the only pair not containing any
+of the already used 5,6 or 0). 23 is the only possible choice from the
+final column, accompanied by a value of <span class="math inline">\(z=5\)</span>. These three numbers are
+known as an <em>adder</em> corresponding to the starter 13,26,45. This is not
+necessarily the only adder.<br />
+<br />
+If 50 is to be generated in the final column of the Room square by the
+pair 13 in the first row, then 13 must go in column <span class="math inline">\(7-4=3\)</span>. Similarly
+26 has to be put in column <span class="math inline">\(7-2=5\)</span> and 45 in <span class="math inline">\(7-5=2\)</span>.<br />
+We can now construct our cyclic room square.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(\infty 0\)</span></th>
+<th align="center">45</th>
+<th align="center">13</th>
+<th align="center">-</th>
+<th align="center">26</th>
+<th align="center">-</th>
+<th align="center">-</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 1\)</span></td>
+<td align="center">56</td>
+<td align="center">24</td>
+<td align="center">-</td>
+<td align="center">30</td>
+<td align="center">-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 2\)</span></td>
+<td align="center">60</td>
+<td align="center">35</td>
+<td align="center">-</td>
+<td align="center">41</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">52</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 3\)</span></td>
+<td align="center">01</td>
+<td align="center">46</td>
+<td align="center">-</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">63</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 4\)</span></td>
+<td align="center">12</td>
+<td align="center">50</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">61</td>
+<td align="center">-</td>
+<td align="center">04</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 5\)</span></td>
+<td align="center">23</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">34</td>
+<td align="center">02</td>
+<td align="center">-</td>
+<td align="center">15</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"><span class="math inline">\(\infty 6\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Figure 17</strong></p>
+<p>In general, we define an adder by considering the elements which must
+accompany <span class="math inline">\(\{\infty,0\}\)</span> in column 0. Therefore an adder is defined in
+the following way:<br />
+(1,0)<span>450</span><br />
+An <em>adder</em> for a starter <span class="math inline">\(S=\{\{s_i,t_i\}: 1 \leq i \leq (g-1)/2 \}\)</span> is
+a set of <span class="math inline">\((g-1)/2\)</span> distinct non-zero elements <span class="math inline">\(a_1,a_2,...,a_{(g-1)/2}\)</span>
+of <span class="math inline">\(G\)</span> such that:
+<span class="math inline">\(s_1 + a_1,t_1 + a_1,s_2 + a_2,...,s_{(g-1)/2} + a_{(g-1)/2}, t_{(g-1)/2}+a_{(g-1)/2}\)</span>
+are precisely all the non-zero elements of <span class="math inline">\(G\)</span>.<br />
+(1,0)<span>450</span><br />
+The <em>starter-adder</em> method employed in the above example was introduced
+in 1968[^4] by Stanton and Mullin [23], who used it to construct Room
+squares of side 11. They also went on to apply the method to larger
+squares and gave the first real suggestions that the number of Room
+squares is infinite.<br />
+<br />
+Two simple Lemmas given by Stanton and Mullin demonstrated that the
+problem of finding starters for larger Room squares was straightforward.
+In fact they can be guaranteed always to exist, and the only difficulty
+comes from finding a corresponding adder, which is not guaranteed to
+exist.</p>
+<div id="lemma-3.2.1" class="section level4">
+<h4><span class="header-section-number">2.1.2.1</span> Lemma 3.2.1</h4>
+<p><br />
+In an additive abelian group <span class="math inline">\(G\)</span> of order <span class="math inline">\(g=2n-1\)</span>, then pairs
+<span class="math display">\[\{n-1,n\},\{n-2,n+1\},\{n-3,n+2\},\{n-4,n+3\},...\{1,2n-2\}\]</span> are a
+starter for a Room square of side <span class="math inline">\(2n-1\)</span>.<br />
+<br />
+<em>Example 3.2</em><br />
+A Room square of side <span class="math inline">\(2n-1=19\)</span>.<br />
+<span class="math inline">\(n=10, G=Z_{19}\)</span><br />
+<br />
+The set of pairs<br />
+<span class="math inline">\(S_{19} = \{\{9,10\},\{8,11\}, \{7,12\}, \{6,13\}, \{5,14\}, \{4,15\}, \{3,16\}, \{2,17\}, \{1,18\}\}\)</span><br />
+is a starter.<br />
+<br />
+Indeed, the differences are<br />
+<span class="math inline">\(\{\pm(10-9),\pm(11-8),\pm(12-7),\pm(13-6),\pm(14-5),\pm(3-16),\pm(2-17),\pm(18-1)\}\)</span><br />
+<span class="math inline">\(=\{1,18,3,16,5,14,7,12,9,10,8,11,6,13,4,15,2,17\}=G \backslash \{0\}\)</span></p>
+</div>
+<div id="lemma-3.2.2" class="section level4">
+<h4><span class="header-section-number">2.1.2.2</span> Lemma 3.2.2</h4>
+<p><br />
+In the Galois field of order <span class="math inline">\(k-1\)</span>, with primitive root <span class="math inline">\(a\)</span> the
+following pairs form a starter for a Room square of side <span class="math inline">\(k\)</span>.
+<span class="math display">\[\{a,a^n\},\{a^2,a^{n+1}\},\{a^3,a^{n+2}\},...,\{a^{n-1},a^{2n-2}\}\]</span>
+<em>Example 3.3</em><br />
+A Room square of side <span class="math inline">\(2n-1=23\)</span>. <span class="math inline">\(n=12\)</span>. <span class="math inline">\(a=5\)</span>.<br />
+The set of pairs
+<span class="math display">\[S_{23}=\{\{5,5^{12}\},\{5^2,5^{13}\},\{5^3,5^{14}\},...,\{5^{11},5^{22}\}\}\]</span>
+<span class="math display">\[=\{\{5,18\},\{2,21\},\{10,13\},\{4,19\},\{20,3\},\{8,15\},\{17,6\},\{16,7\},\{11,12\},\{9,14\},\{22,1\}\}\]</span>
+is a starter.<br />
+<br />
+On closer inspection the two types of starters are identical[^5] , with
+a general element being of the form <span class="math display">\[\{j,-j\}\]</span> Starters of this form
+are called <em>patterned</em> starters.<br />
+<br />
+Stanton and Mullin went on to show that using the method outlined in
+Example 2.1 they could find adders corresponding to the patterned
+starters for <span class="math inline">\(k=7,11,13,15,17\)</span>. They had problems with 9 (but were able
+to construct one using a different method) and finding it too laborious
+for <span class="math inline">\(k&gt;19\)</span> they developed an algorithm which, when implemented in
+Fortran, was able to find patterned starters with adders for all odd <span class="math inline">\(k\)</span>
+up to 49, with no further gaps. Suggesting the possibility (which they
+conjectured) that there are Room squares for all odd side greater than
+5.<br />
+<br />
+They also found an interesting result regarding the number of Room
+Squares which could be obtained from patterned starters, summarised in
+Table 3.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Value of <span class="math inline">\(k\)</span></th>
+<th align="center">Number of PRS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">9</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">13</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">44</td>
+</tr>
+<tr class="even">
+<td align="center">17</td>
+<td align="center">416</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">The programme was turned off after the production of 967 PRS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3</strong></p>
+<p>Stanton &amp; Mullin’s results suggest that the number of PRS (patterned
+Room squares) increases very rapidly. Which, bearing in mind that the
+PRS are a sub-class of CRS (cyclic Room squares), which are in turn a
+sub-class of Room squares, implies that there are vast numbers of Room
+squares of large order.<br />
+<br />
+Before introducing a class of starters for which the existence of a
+corresponding adder is guaranteed we quickly confirm that when a starter
+and adder exist then a Room square will always result. This seems
+obvious from the method outlined in the previous section, but now we
+prove it explicitly.</p>
+</div>
+<div id="theorem-3.2.1" class="section level4">
+<h4><span class="header-section-number">2.1.2.3</span> Theorem 3.2.1</h4>
+<p>[17]<br />
+If an Abelian group <span class="math inline">\(G\)</span> of odd order <span class="math inline">\(2n-1\)</span> admits a starter and an
+adder, then there exists a Room square of order <span class="math inline">\(2n\)</span>.<br />
+<br />
+<em>Proof</em><br />
+A square is constructed on the set <span class="math inline">\(G \cup \{\infty\}\)</span>, where <span class="math inline">\(G\)</span> is an
+additive Abelian group of order <span class="math inline">\(2n-1\)</span>.
+<span class="math display">\[G=\{g_0=0,g_1,g_2,...,g_{2n-2}\}\]</span> The columns and rows of the square
+are labelled as follows</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(g_0\)</span></th>
+<th align="center"><span class="math inline">\(g_1\)</span></th>
+<th align="center"><span class="math inline">\(g_2\)</span></th>
+<th align="center">…</th>
+<th align="center"><span class="math inline">\(g_{2n-1}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(g_0\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(g_1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(g_2\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(g_0\)</span></p>
+<p><strong>Figure 18</strong></p>
+<p>If a starter <span class="math inline">\(\{\{s_1,t_1\},\{s_2,t_2\}...\{s_{n-1},t_{n-1}\}\}\)</span> and an
+adder <span class="math inline">\(\{a_1,a_2,...,a_{n-1}\}\)</span> can be ontained from <span class="math inline">\(G\)</span> and if the
+square is populated by pairs of elements from <span class="math inline">\(G\)</span> according to the
+following rules:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\{\infty,g_i\}\)</span> goes in <span class="math inline">\((g_i,g_i)\)</span></p></li>
+<li><p>While <span class="math inline">\(\{s_i+g_i,t_i+g_i\}\)</span> goes in <span class="math inline">\((g_i,g_i-a_i)\)</span></p></li>
+</ol>
+<p>for all <span class="math inline">\(g_i \in G\)</span>. The remaining square will be a Room square on
+<span class="math inline">\(G \cup \{\infty\}\)</span>.<br />
+<em>Proof</em></p>
+<ol style="list-style-type: decimal">
+<li><p>Row <span class="math inline">\(g_0=0\)</span>, contains the pairs <span class="math inline">\(\{s_i,t_i\}:1 \leq i \leq n-1\)</span>,
+which are the elements of the starter, hence all of
+<span class="math inline">\(G \backslash \{0\}\)</span>. These pairs are accompanied by <span class="math inline">\(\{\infty,0\}\)</span>,
+so row 0 contains all of <span class="math inline">\(G \cup \{\infty\}\)</span>. Subsequent rows simple
+contain a permutation of the same elements, hence the <em>row property</em>
+of Room squares is satisfied for all rows.</p></li>
+<li><p>As mentioned before, the starter forms a difference system in
+<span class="math inline">\(G \backslash \{0\}\)</span>, so all unordered pairs of this set occur along
+with all unordered pairs of the form
+<span class="math inline">\(\{\infty,g_i\}: 1 \leq i \leq n-1\)</span>, hence <em>all unordered pairs
+from</em> <span class="math inline">\(G \cup \{\infty\}\)</span> <em>occur</em> in the square exactly once.</p></li>
+<li><p>All pairs of the form <span class="math inline">\(\{s_i+a_i,t_i+a_i\}\)</span> go in <span class="math inline">\((a_i,0)\)</span>,
+i.e. column 0. According to the definition of a starter these pairs are
+all of <span class="math inline">\(G \backslash \{0\}\)</span>, and we know that <span class="math inline">\(\{\infty,0\}\)</span> is also
+in column 0. So the first column, and hence all others, contains all
+of <span class="math inline">\(G \cup \{\infty\}\)</span>, thus satisfying the <em>column property</em> of
+Room squares.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="2-existence.html"><button class="btn btn-default">Previous</button></a>
+<a href="2-2-strong-starters.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>
